@@ -13,7 +13,7 @@ Bash: ~/bin/gh issue view <N> --json title,body
 
 ## Tool call 2 — Criar branch e pasta
 ```
-Bash: git checkout master 2>/dev/null; git checkout -b us-<N> 2>/dev/null || git checkout us-<N> && mkdir -p tasks/<N>
+Bash: git checkout main 2>/dev/null; git checkout -b us-<N> 2>/dev/null || git checkout us-<N> && mkdir -p tasks/<N>
 ```
 
 ## Tool call 3 — Escrever história
