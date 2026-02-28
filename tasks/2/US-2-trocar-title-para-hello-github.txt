@@ -1,0 +1,39 @@
+US-2 — Trocar title para Hello Github
+======================================
+
+CONTEXTO
+--------
+A página principal do aplicativo precisa ter um título atualizado que reflita a identidade do projeto. Será necessário alterar o title HTML para "Hello Github".
+
+HISTÓRIA
+--------
+Como usuário visitante,
+quero ver "Hello Github" como título da página,
+para confirmar que estou no aplicativo correto.
+
+CRITÉRIOS DE ACEITAÇÃO
+-----------------------
+1. O título HTML da página deve ser exatamente "Hello Github"
+2. O título deve estar visível na aba do navegador
+3. Deve ser aplicado em todas as páginas da aplicação
+
+REGRAS TÉCNICAS
+---------------
+- Backend Express + Frontend Angular (ver CLAUDE.md)
+- Sem banco de dados, sem auth real
+- Atualizar a propriedade title no HTML ou configuração do Angular
+
+CRITÉRIOS DE TESTE (QA)
+------------------------
+API:
+  - Não aplicável
+
+E2E:
+  - Abrir a aplicação no navegador e verificar se a aba exibe "Hello Github"
+  - Navegar por diferentes rotas e confirmar que o título permanece "Hello Github"
+
+FORA DO ESCOPO
+--------------
+- Alterar outros meta tags
+- Adicionar ícones ou favicons
+- Mudanças na navegação ou estrutura da página
