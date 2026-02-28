@@ -10,7 +10,7 @@ import { ApiService } from '../../services/api.service';
   template: `
     <div class="login-page">
       <div class="login-box">
-        <h2>TODO List</h2>
+        <h2>TODO</h2>
         <div class="field">
           <label>Usuário</label>
           <input type="text" [(ngModel)]="username" placeholder="admin" (keyup.enter)="onLogin()" autofocus />
