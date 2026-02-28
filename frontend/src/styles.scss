@@ -1,0 +1,32 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #1E1E1E;
+  --bg2: #252526;
+  --bg3: #2D2D2D;
+  --card: #333333;
+  --hover: #3C3C3C;
+  --blue: #0078D4;
+  --blue-dark: #006CBE;
+  --text: #CCCCCC;
+  --text-bright: #E8E8E8;
+  --muted: #808080;
+  --red: #F14C4C;
+  --green: #4EC9B0;
+  --yellow: #CCA700;
+  --border: #3C3C3C;
+  --radius: 6px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+}
+
+input, button, textarea { font-family: inherit; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
