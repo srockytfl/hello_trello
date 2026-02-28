@@ -1,77 +1,88 @@
-# CLAUDE.md - Sistema de Contexto: Hello Trello (Todo List)
+# System Prompt - Hello Trello
 
-## 📋 Visão Geral
-Aplicação Todo List tipo Trello com arquitetura monorepo. Frontend em Angular + Backend em Node.js/Express.
+## Stack & Tecnologias
 
-## 🛠️ Stack Tecnológico
+- **Frontend**: Angular 17, TypeScript 5.4, SCSS, RxJS 7.8
+- **Backend**: Node.js, Express 5.2
+- **Testes**: Karma, Jasmine
+- **Build & Deploy**: Angular CLI, Vercel
+- **Utilities**: CORS, npm workspaces
+
+## Estrutura do Projeto
+
+```
+hello-trello/
+├── frontend/           # Aplicação Angular
+│   ├── src/
+│   │   ├── app/       # Componentes e lógica Angular
+│   │   ├── assets/    # Arquivos estáticos
+│   │   ├── styles.scss
+│   │   └── main.ts
+│   ├── angular.json
+│   └── package.json
+├── server/            # Servidor Express
+│   ├── index.js
+│   └── package.json
+├── api/               # Rotas/endpoints adicionais
+│   └── index.js
+├── start.sh           # Script de inicialização
+├── vercel.json        # Config Vercel
+└── package.json       # Root (coordenação)
+```
+
+## Comandos Úteis
+
+### Root
+```bash
+npm run build    # Instala deps frontend, faz build, instala deps server
+npm start        # Inicia server (node server/index.js)
+```
 
 ### Frontend
-- **Framework**: Angular 17.3.0
-- **Linguagem**: TypeScript 5.4.2
-- **Styling**: SCSS
-- **Reatividade**: RxJS 7.8.0
-- **Testes**: Jasmine 5.1.0 + Karma 6.4.0
-- **Build Tool**: Angular CLI 17.3.17
-
-### Backend
-- **Runtime**: Node.js
-- **Framework**: Express 5.2.1
-- **CORS**: Habilitado para requisições cross-origin
-
-### Deployment
-- Vercel (configuração presente)
-
-## 📁 Estrutura de Pastas
-
-```
-/
-├── frontend/          # Aplicação Angular
-│   ├── src/
-│   │   ├── app/       # Componentes e lógica da aplicação
-│   │   ├── assets/    # Recursos estáticos
-│   │   ├── styles.scss
-│   │   ├── main.ts    # Ponto de entrada
-│   │   └── index.html
-│   ├── angular.json   # Configuração Angular
-│   └── tsconfig.json
-├── server/            # Backend Express
-│   └── index.js
-├── api/               # (pasta presente, conteúdo não mapeado)
-├── start.sh           # Script de inicialização
-├── vercel.json        # Configuração de deployment
-└── package.json       # Scripts raiz
+```bash
+npm run start    # ng serve - dev server com HMR
+npm run build    # Compila para produção
+npm run watch    # Build em modo watch
+npm run test     # Executa testes Karma
 ```
 
-## 🚀 Comandos Úteis
+### Server
+Sem scripts de teste configurados ainda.
 
-| Comando | Descrição |
-|---------|-----------|
-| `npm run build` | Build frontend + instala dependências do server |
-| `npm start` | Inicia servidor (node server/index.js) |
-| `cd frontend && npm start` | Dev server Angular (ng serve) |
-| `cd frontend && npm run build` | Build produção do Angular |
-| `cd frontend && npm test` | Executa testes com Karma |
-| `cd frontend && npm run watch` | Watch mode para desenvolvimento |
+## Convenções & Padrões
 
-## 📐 Convenções e Padrões
+- **Monorepo**: Coordenação via scripts npm na raiz
+- **TypeScript**: Tipagem obrigatória no frontend
+- **Angular**: Versão 17 (latest), estrutura padrão com CLI
+- **CORS habilitado**: Backend pronto para requisições cross-origin
+- **Deployment**: Vercel (vercel.json presente)
 
-- **Monorepo**: Frontend e backend em pastas separadas com package.json próprios
-- **TypeScript**: Tipagem forte obrigatória no frontend
-- **CORS**: Backend configurado para requisições cross-origin
-- **Modularidade Angular**: Uso de componentes, serviços e módulos
-- **Build integrado**: Script raiz automatiza build frontend + setup server
+## Como Executar
 
-## ✅ Boas Práticas Detectadas
+```bash
+# Desenvolvimento
+cd frontend && npm install && npm start    # Frontend em localhost (porta padrão 4200)
+cd server && npm install && node index.js  # Server rodando
 
-1. Arquitetura separada (frontend/server) facilita manutenção e deploy independente
-2. TypeScript no frontend garante type-safety
-3. Testes automatizados configurados (Jasmine/Karma)
-4. Configuração de staging (Vercel) pronta
-5. Scripts de automatização claros e simples
+# Build para produção
+npm run build
 
-## 📝 Notas Importantes
+# Iniciar em produção
+npm start
+```
 
-- **Deployment**: Usa Vercel - verificar `vercel.json` para configurações
-- **Comunicação**: Frontend → Backend via API, CORS habilitado
-- **Testes**: Executar `npm test` dentro de `frontend/` antes de deployar
-- **Build**: Sempre rodar `npm run build` da raiz antes de `npm start`
+## Boas Práticas Inferidas
+
+1. Separação clara entre frontend e backend
+2. TypeScript para type-safety
+3. SCSS para estilos componentizados
+4. Framework moderno (Angular 17) com suporte a tipos
+5. Testes integrados (Karma/Jasmine)
+6. Deploy automatizado via Vercel
+
+## Observações Importantes
+
+- A pasta `/api` existe mas não há detalhes de implementação - verificar integração com frontend
+- Server usa Express sem configuração de porta explícita - verificar `server/index.js` para detalhes
+- Build script instala dependências automaticamente
+- Projeto está pronto para cloud deployment
