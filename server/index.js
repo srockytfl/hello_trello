@@ -46,4 +46,12 @@ app.delete('/api/todos/:id', (req, res) => {
   res.json({ ok: true });
 });
 
-app.listen(3001, () => console.log('API rodando em http://localhost:3001'));
+// Serve Angular build
+const path = require('path');
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist', 'frontend', 'browser')));
+app.get('/{*path}', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'frontend', 'browser', 'index.html'));
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Rodando em http://localhost:${PORT}`));

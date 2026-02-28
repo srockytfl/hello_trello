@@ -1,0 +1,9 @@
+{
+  "name": "hello-trello",
+  "version": "1.0.0",
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npx ng build",
+    "start": "cd server && node index.js"
+  }
+}
