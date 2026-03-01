@@ -7,6 +7,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  getConfig() {
+    return this.http.get<{ title: string }>(`${this.url}/config`);
+  }
+
   login(username: string, password: string) {
     return this.http.post<any>(`${this.url}/login`, { username, password });
   }

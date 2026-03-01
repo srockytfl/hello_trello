@@ -13,6 +13,13 @@ let todos = [
 ];
 let nextId = 4;
 
+// --- Config ---
+const appConfig = { title: 'Teste 1' };
+
+app.get('/api/config', (req, res) => {
+  res.json(appConfig);
+});
+
 // --- Auth ---
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
