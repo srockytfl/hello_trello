@@ -3,39 +3,43 @@ US-1 — Trocar cor para azul
 
 CONTEXTO
 --------
-A interface da aplicação precisa ser atualizada para utilizar azul como cor principal, melhorando a identidade visual e consistência de design.
+Ajuste na paleta de cores da aplicação para melhorar a identidade visual e
+garantir consistência com o novo guia de design.
 
 HISTORIA
 --------
 Como usuário,
-quero que os elementos principais da interface sejam exibidos na cor azul,
-para ter uma experiência visual mais clara e consistente.
+quero que a interface tenha cores azuis,
+para uma melhor experiência visual e alinhamento com a marca.
 
 CRITERIOS DE ACEITACAO
 -----------------------
-1. A cor principal da interface deve ser alterada para azul
-2. Todos os elementos de destaque devem refletir a nova cor
-3. A mudança deve ser aplicada sem quebrar outros estilos existentes
-4. O resultado deve ser visível em todos os navegadores modernos
+1. Elemento visual específico está na cor azul correta
+2. Cor azul mantém contraste mínimo de 4.5:1 para acessibilidade
+3. Alteração é visível em todos os navegadores modernos
+4. Não há quebra de funcionalidade existente
 
 REGRAS TECNICAS
 ---------------
-- Seguir convencoes do CLAUDE.md
-- Sem over-engineering
-- Manter compatibilidade com navegadores modernos
+- Usar variáveis de cor definidas no sistema de design
+- Sem hardcoding de cores (utilizar constantes ou CSS variables)
+- Atualizar documentação de cores se aplicável
+- Validar com ferramentas de contraste (WebAIM, WAVE)
 
 CRITERIOS DE TESTE (QA)
 ------------------------
-API:
-  - Validar que a mudança não afeta endpoints da API
+Visual:
+  - Verificar cor em navegadores Chrome, Firefox, Safari e Edge
+  - Validar contraste de cores com ferramentas de acessibilidade
+  - Testar responsividade em diferentes tamanhos de tela
+  - Comparar com mockup/design aprovado
 
-E2E:
-  - Verificar que elementos principais exibem cor azul
-  - Validar contraste e acessibilidade
-  - Testar em diferentes navegadores (Chrome, Firefox, Safari, Edge)
+Funcional:
+  - Elemento mantém interatividade (hover, click, estados ativos)
+  - Não afeta carregamento ou performance
 
 FORA DO ESCOPO
 --------------
-- Mudanças em outras cores ou elementos visuais
-- Refatoração completa do sistema de temas
-- Alterações em estrutura HTML
+- Trocar cores de outros elementos não especificados
+- Alterar design ou layout
+- Implementar temas dinâmicos de cores
