@@ -1,0 +1,44 @@
+US-10 — Tocar cor pra rosa
+======================
+
+CONTEXTO
+--------
+O sistema precisa permitir alterar a cor principal da interface para rosa,
+oferecendo personalização visual aos usuários.
+
+HISTORIA
+--------
+Como usuário,
+quero alterar a cor principal da aplicação para rosa,
+para personalizar a interface conforme minha preferência.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. A cor principal deve ser alterada para rosa em todos os componentes
+2. A mudança deve ser persistida (salva) na sessão do usuário
+3. A cor rosa deve estar disponível como opção no menu de temas/cores
+4. A transição deve ser suave, sem piscar ou recarregar a página
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Usar padrão de cor rosa consistente (#FF69B4 ou similar)
+- Sem over-engineering
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Selecionar tema rosa e validar que a cor é retornada corretamente
+  - Verificar persistência da cor em requisições subsequentes
+
+E2E:
+  - Clicar na opção de cor rosa
+  - Validar que todos os componentes principais mudaram para rosa
+  - Recarregar a página e verificar que a cor rosa foi mantida
+  - Selecionar outra cor e depois voltar para rosa
+
+FORA DO ESCOPO
+--------------
+- Criar novas cores além de rosa
+- Personalização granular de componentes individuais
+- Exportar/importar temas customizados
