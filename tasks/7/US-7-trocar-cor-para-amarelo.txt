@@ -1,0 +1,43 @@
+US-7 — Trocar cor para amarelo
+======================
+
+CONTEXTO
+--------
+A aplicação necessita de uma atualização visual para utilizar amarelo como cor primária
+em elementos específicos da interface, melhorando a identidade visual do produto.
+
+HISTÓRIA
+--------
+Como usuário da aplicação,
+quero que os elementos principais sejam exibidos em amarelo,
+para ter uma melhor experiência visual e identificação da marca.
+
+CRITÉRIOS DE ACEITAÇÃO
+-----------------------
+1. Os elementos principais da interface (botões, headers, destaques) exibem amarelo (#FFD700 ou equivalente)
+2. A cor amarela é aplicada de forma consistente em toda a aplicação
+3. O contraste entre o amarelo e textos/elementos sobrepostos atende WCAG AA
+4. A mudança de cor é persistida no frontend Angular
+
+REGRAS TÉCNICAS
+---------------
+- Backend Express + Frontend Angular
+- Sem banco de dados, sem auth real
+- Alteração de estilos CSS/SCSS no frontend
+- Garantir compatibilidade com browsers modernos
+
+CRITÉRIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar que endpoints retornam dados esperados sem alterações
+
+E2E:
+  - Carregar aplicação e verificar que elementos primários exibem amarelo
+  - Testar em diferentes navegadores (Chrome, Firefox, Safari)
+  - Validar legibilidade do texto sobre fundo amarelo
+
+FORA DO ESCOPO
+--------------
+- Mudança de paleta de cores completa
+- Alterações de estrutura HTML
+- Novo sistema de temas
