@@ -1,0 +1,40 @@
+US-14 — Trocar Título para Teste 1
+==================================
+
+CONTEXTO
+--------
+É necessário atualizar um título existente na aplicação para "Teste 1" a fim de refletir mudanças nos requisitos ou melhorias na nomenclatura.
+
+HISTORIA
+--------
+Como usuário da aplicação,
+quero que o título seja atualizado para "Teste 1",
+para manter a precisão e relevância das informações exibidas.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O título exibido na tela deve ser "Teste 1"
+2. A alteração deve ser persistida corretamente
+3. Não deve haver regressões em funcionalidades existentes
+4. A mudança deve ser visível imediatamente após implementação
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Sem over-engineering
+- Garantir que a alteração não quebre outras dependências
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar se o endpoint retorna o título como "Teste 1"
+
+E2E:
+  - Validar que a interface exibe "Teste 1" corretamente
+  - Confirmar que a alteração persiste após reload da página
+
+FORA DO ESCOPO
+--------------
+- Alterar outras propriedades ou campos
+- Implementar sistema de histórico de mudanças
+- Adicionar permissões de acesso diferentes
