@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-todos',
@@ -12,7 +13,7 @@ import { ApiService } from '../../services/api.service';
     <header>
       <div class="logo">
         <span class="material-icons-round">check_circle</span>
-        Teste 2
+        {{ titleService.appTitle() }}
       </div>
       <div class="header-right">
         <div class="stats">
@@ -254,7 +255,11 @@ export class TodosComponent implements OnInit {
     { key: 'done', label: 'Concluídas' },
   ];
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    public titleService: TitleService,
+  ) {}
 
   ngOnInit() {
     if (!localStorage.getItem('user')) { this.router.navigate(['/login']); return; }
