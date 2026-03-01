@@ -1,40 +1,37 @@
-US-14 — Trocar Título para Teste 1
-==================================
+US-14 — Trocar Titulo para Teste 1
+====================================
 
 CONTEXTO
 --------
-É necessário atualizar um título existente na aplicação para "Teste 1" a fim de refletir mudanças nos requisitos ou melhorias na nomenclatura.
+É necessário atualizar o título da aplicação para "Teste 1" para fins de validação e testes iniciais.
 
 HISTORIA
 --------
-Como usuário da aplicação,
-quero que o título seja atualizado para "Teste 1",
-para manter a precisão e relevância das informações exibidas.
+Como um testador,
+quero que o título da página seja alterado para "Teste 1",
+para validar que o sistema permite modificações dinâmicas de títulos.
 
 CRITERIOS DE ACEITACAO
 -----------------------
-1. O título exibido na tela deve ser "Teste 1"
-2. A alteração deve ser persistida corretamente
-3. Não deve haver regressões em funcionalidades existentes
-4. A mudança deve ser visível imediatamente após implementação
+1. O título exibido na aplicação deve ser "Teste 1"
+2. A mudança deve ser persistida corretamente
+3. O título deve ser visível em todas as páginas relevantes
 
 REGRAS TECNICAS
 ---------------
-- Seguir convencoes do CLAUDE.md
+- Seguir convenções do CLAUDE.md
 - Sem over-engineering
-- Garantir que a alteração não quebre outras dependências
 
 CRITERIOS DE TESTE (QA)
 ------------------------
 API:
-  - Verificar se o endpoint retorna o título como "Teste 1"
+  - Validar que a API retorna o novo título "Teste 1"
 
 E2E:
-  - Validar que a interface exibe "Teste 1" corretamente
-  - Confirmar que a alteração persiste após reload da página
+  - Verificar que o título "Teste 1" é exibido corretamente na interface
+  - Confirmar que a alteração persiste após recarregar a página
 
 FORA DO ESCOPO
 --------------
-- Alterar outras propriedades ou campos
-- Implementar sistema de histórico de mudanças
-- Adicionar permissões de acesso diferentes
+- Alterar outros elementos da interface
+- Modificar funcionalidades existentes
