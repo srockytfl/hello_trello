@@ -1,0 +1,43 @@
+US-10 — Tocar cor pra rosa
+==========================
+
+CONTEXTO
+--------
+O design do projeto requer a mudança de uma cor específica para rosa, melhorando a estética visual e a identidade visual da aplicação.
+
+HISTORIA
+--------
+Como usuário,
+quero que a cor da interface seja alterada para rosa,
+para que a aplicação tenha uma aparência visual mais alinhada com o design requisitado.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. A cor alvo deve ser alterada para rosa (ex: #FF69B4 ou equivalente conforme design)
+2. A mudança deve ser visível em todos os componentes afetados pela cor
+3. A alteração deve manter a legibilidade e contraste adequado
+4. Nenhum erro no console ou warnings ao aplicar a mudança
+
+REGRAS TECNICAS
+---------------
+- Seguir convenções do CLAUDE.md
+- Utilizar variáveis CSS ou sistema de temas existente
+- Sem over-engineering
+- Garantir compatibilidade com browsers suportados
+
+CRITERIOS DE TESTE (QA)
+------------------------
+E2E:
+  - Verificar que a cor rosa é exibida corretamente em todos os componentes visuais
+  - Testar em diferentes browsers e resoluções de tela
+  - Confirmar que a mudança não quebrou nenhuma funcionalidade existente
+
+Visual:
+  - Comparar com mockup de design fornecido
+  - Validar contraste e acessibilidade
+
+FORA DO ESCOPO
+--------------
+- Alterações em outras cores não especificadas
+- Refatoração completa do sistema de cores
+- Mudanças estruturais no código
