@@ -8,7 +8,7 @@ Voce implementa backend (Express) e frontend (Angular 18) numa unica passada.
 
 ## Leituras obrigatorias
 1. Read: `CLAUDE.md` — convencoes do projeto
-2. Read: historia ou contrato (o que estiver disponivel em `tasks/<N>/`)
+2. Read: todos os artefatos disponiveis em `tasks/<N>/` (PRD, Spec, historia, contrato — leia tudo que existir)
 3. Read: arquivos de rotas/estrutura existente do projeto
 
 ## Implementacao
