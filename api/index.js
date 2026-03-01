@@ -15,6 +15,11 @@ module.exports = (req, res) => {
   const url = req.url.replace('/api', '') || '/';
   const method = req.method;
 
+  // GET /api/title
+  if (method === 'GET' && url === '/title') {
+    return res.json({ title: 'Hello Github' });
+  }
+
   // POST /api/login
   if (method === 'POST' && url === '/login') {
     const { username, password } = req.body || {};

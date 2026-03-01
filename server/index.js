@@ -14,7 +14,7 @@ let todos = [
 let nextId = 4;
 
 // --- Title ---
-let appTitle = 'Teste 1';
+let appTitle = 'Hello Github';
 
 app.get('/api/title', (req, res) => {
   res.json({ title: appTitle });
