@@ -2,18 +2,7 @@
 
 ## Resumo
 
-Atualização do título da aplicação de **"Teste Cores"** para **"Teste 1"** em todas as camadas da stack.
-
----
-
-## Alterações Realizadas
-
-| Local | Valor Anterior | Valor Atual |
-|-------|---------------|-------------|
-| `server/index.js` — `appTitle` | `'Teste Cores'` | `'Teste 1'` ✅ |
-| `frontend/src/index.html` — `<title>` | `'Teste Cores'` | `'Teste 1'` ✅ |
-| `title.service.ts` — sinal padrão | `'Teste Cores'` | `'Teste 1'` ✅ |
-| `title.service.ts` — fallback de erro | `'Teste Cores'` | `'Teste 1'` ✅ |
+Implementação da mudança do título da aplicação para **"Teste 1"** em todas as camadas da stack (backend, frontend e HTML). O título é exibido dinamicamente via `TitleService` que carrega o valor do endpoint `/api/title`.
 
 ---
 
@@ -25,26 +14,36 @@ Atualização do título da aplicação de **"Teste Cores"** para **"Teste 1"** 
 
 ---
 
-## Serviços
+## Arquivos Criados / Modificados
 
-| Serviço | Arquivo | Situação |
-|---------|---------|----------|
-| `TitleService` | `frontend/src/app/services/title.service.ts` | Atualizado — signal e fallback agora "Teste 1" |
-| `ApiService` | `frontend/src/app/services/api.service.ts` | Sem alteração |
+### Backend
+| Arquivo | Alteração |
+|---------|-----------|
+| `server/index.js` | `appTitle = 'Teste 1'` — endpoint `GET /api/title` retorna o título |
+
+### Frontend
+| Arquivo | Alteração |
+|---------|-----------|
+| `frontend/src/index.html` | `<title>Teste 1</title>` — título da aba do browser |
+| `frontend/src/app/services/title.service.ts` | Signal inicial e fallback de erro definidos como `'Teste 1'`; consome `GET /api/title` |
+| `frontend/src/app/pages/login/login.component.ts` | Exibe `titleService.appTitle()` como cabeçalho da tela de login |
+| `frontend/src/app/pages/todos/todos.component.ts` | Exibe `titleService.appTitle()` no header da tela principal |
 
 ---
 
-## Arquivos Modificados
+## Serviços
 
-- `server/index.js` — string `appTitle` atualizada
-- `frontend/src/index.html` — tag `<title>` atualizada
-- `frontend/src/app/services/title.service.ts` — signal inicial e fallback de erro atualizados
+| Serviço | Arquivo | Responsabilidade |
+|---------|---------|-----------------|
+| `TitleService` | `services/title.service.ts` | Carrega título do backend e o expõe como signal reativo |
+| `ApiService` | `services/api.service.ts` | Método `getTitle()` — `GET /api/title` |
 
 ---
 
 ## Critérios de Aceitação — Verificação
 
-- [x] O título exibido na tela é "Teste 1" (login + todos + aba do browser)
-- [x] A alteração é persistida via endpoint `/api/title` (backend em memória)
-- [x] Não há regressões — apenas strings de título alteradas
-- [x] A mudança é visível imediatamente após implementação
+- [x] O título exibido na interface é **"Teste 1"** (tela de login + tela de todos + aba do browser)
+- [x] A mudança é persistida via endpoint `GET /api/title` (backend em memória)
+- [x] O título é visível em todas as páginas relevantes
+- [x] Nenhuma regressão em outras funcionalidades
+- [x] Mudança visível em tempo real via signal Angular reativo
