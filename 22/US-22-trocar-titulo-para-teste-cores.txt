@@ -1,0 +1,39 @@
+US-22 — Trocar Título para Teste Cores
+========================================
+
+CONTEXTO
+--------
+A aplicação precisa exibir um título mais descritivo que reflita a funcionalidade de teste de cores, permitindo que usuários entendam melhor o propósito desta seção.
+
+HISTORIA
+--------
+Como usuário,
+quero que o título seja alterado para "Teste Cores",
+para entender melhor o propósito da seção.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O título da página/componente deve ser atualizado para "Teste Cores"
+2. A alteração deve ser visível em todos os navegadores suportados
+3. O novo título deve ser consistente com a paleta visual existente
+
+REGRAS TECNICAS
+---------------
+- Seguir convenções do CLAUDE.md
+- Sem over-engineering
+- Manter compatibilidade com o design system existente
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Validar que a resposta da API retorna o título correto, se aplicável
+
+E2E:
+  - Verificar que o título "Teste Cores" é exibido corretamente na página
+  - Validar renderização em diferentes resoluções de tela
+
+FORA DO ESCOPO
+--------------
+- Alterações no layout ou design da página
+- Mudanças em outras seções ou componentes
+- Refatoração de código não relacionado ao título
