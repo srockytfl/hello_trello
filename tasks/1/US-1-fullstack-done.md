@@ -2,7 +2,7 @@
 
 ## Resumo
 
-As variáveis CSS de acento foram corrigidas de dourado para azul real, conforme solicitado na US-1. A mudança é exclusivamente de front-end (CSS custom properties no tema global).
+As variáveis CSS de acento foram corrigidas de rosa/pink para azul real, conforme solicitado na US-1. A mudança é exclusivamente de front-end (CSS custom properties no tema global).
 
 ---
 
@@ -12,8 +12,8 @@ As variáveis CSS de acento foram corrigidas de dourado para azul real, conforme
 
 | Variável | Valor Anterior | Valor Novo |
 |----------|----------------|------------|
-| `--blue` | `#FFD700` (ouro) | `#3B82F6` (azul — Tailwind blue-500) |
-| `--blue-dark` | `#C8A800` (ouro escuro) | `#2563EB` (azul escuro — Tailwind blue-600) |
+| `--blue` | `#FF69B4` (hot pink) | `#3B82F6` (azul — Tailwind blue-500) |
+| `--blue-dark` | `#C74F8C` (dark pink) | `#2563EB` (azul escuro — Tailwind blue-600) |
 
 ---
 
