@@ -18,10 +18,10 @@ A mudança foi realizada de forma cirúrgica, sem over-engineering, editando **a
 ### Detalhes da Alteração (diff)
 
 ```diff
-- --blue: #FFD700;      /* Amarelo-dourado (anterior) */
-- --blue-dark: #C8A800; /* Amarelo-dourado escuro (anterior) */
+- --blue: #3B82F6;      /* Azul (anterior) */
+- --blue-dark: #2563EB; /* Azul escuro (anterior) */
 + --blue: #FF69B4;      /* Hot Pink */
-+ --blue-dark: #C74F8C; /* Deep Pink (hover/dark state) */
++ --blue-dark: #E91E8C; /* Deep Pink (hover/dark state) */
 ```
 
 ---
