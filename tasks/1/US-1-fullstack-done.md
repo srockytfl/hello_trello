@@ -2,25 +2,26 @@
 
 ## Resumo
 
-A cor principal da interface foi alterada de **dourado (#FFD700)** para **azul (#3B82F6)**, conforme solicitado na US-1.
+A cor principal da interface foi alterada de **dourado/ouro** (`#FFD700`) para **azul** (`#3B82F6`), atendendo aos critérios de aceitação da US-1.
 
----
+## Problema Identificado
+
+Apesar de as variáveis CSS serem chamadas `--blue` e `--blue-dark`, elas estavam configuradas com cores douradas/amarelas:
+- `--blue: #FFD700` (ouro)
+- `--blue-dark: #C8A800` (ouro escuro)
 
 ## Arquivos Modificados
 
 ### 1. `frontend/src/styles.scss`
 - `--blue`: `#FFD700` → `#3B82F6` (azul principal)
-- `--blue-dark`: `#C9A800` → `#2563EB` (azul escuro para hover)
+- `--blue-dark`: `#C8A800` → `#2563EB` (azul escuro para hover)
 
-### 2. `frontend/src/app/pages/login/login.component.ts`
-- Cor do texto do botão `.btn-login`: `#1A1400` → `#ffffff`
-  - Ajuste necessário para manter contraste adequado sobre fundo azul (WCAG AA)
+### 2. `frontend/src/app/pages/todos/todos.component.ts`
+- `.btn-add` → `color`: `#111111` → `#ffffff` (contraste adequado sobre azul)
+- `.checkbox .material-icons-round` → `color`: `#111111` → `#ffffff` (ícone de check visível sobre fundo azul)
 
-### 3. `frontend/src/app/pages/todos/todos.component.ts`
-- Cor do texto do botão `.btn-add`: `#1A1400` → `#ffffff`
-  - Ajuste necessário para manter contraste adequado sobre fundo azul
-- Cor do ícone check no checkbox: `#1A1400` → `#ffffff`
-  - Ajuste necessário para visibilidade sobre checkbox azul preenchido
+### 3. `frontend/src/app/pages/login/login.component.ts`
+- `.btn-login` → `color`: `#111111` → `#ffffff` (contraste adequado sobre azul)
 
 ---
 

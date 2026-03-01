@@ -148,7 +148,7 @@ import { ApiService } from '../../services/api.service';
       background: var(--blue);
       border: none;
       border-radius: 3px;
-      color: #111111;
+      color: #ffffff;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
@@ -204,7 +204,7 @@ import { ApiService } from '../../services/api.service';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      .material-icons-round { font-size: 14px; color: #111111; display: none; }
+      .material-icons-round { font-size: 14px; color: #ffffff; display: none; }
       &:hover { border-color: var(--blue); }
       &.checked {
         background: var(--blue);
