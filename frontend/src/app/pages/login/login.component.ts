@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { TitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { ApiService } from '../../services/api.service';
   template: `
     <div class="login-page">
       <div class="login-box">
-        <h2>Teste 2</h2>
+        <h2>{{ titleService.appTitle() }}</h2>
         <div class="field">
           <label>Usuário</label>
           <input type="text" [(ngModel)]="username" placeholder="admin" (keyup.enter)="onLogin()" autofocus />
@@ -112,7 +113,11 @@ export class LoginComponent {
   error = signal('');
   loading = signal(false);
 
-  constructor(private api: ApiService, private router: Router) {
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    public titleService: TitleService,
+  ) {
     if (localStorage.getItem('user')) this.router.navigate(['/todos']);
   }
 

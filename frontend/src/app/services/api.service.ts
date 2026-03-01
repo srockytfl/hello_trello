@@ -26,4 +26,8 @@ export class ApiService {
   deleteTodo(id: number) {
     return this.http.delete(`${this.url}/todos/${id}`);
   }
+
+  getTitle() {
+    return this.http.get<{ title: string }>(`${this.url}/title`);
+  }
 }
