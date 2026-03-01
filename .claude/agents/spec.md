@@ -50,11 +50,9 @@ Derivado do PRD:
 Definir apenas o necessario para atender o PRD.
 
 Ex:
-```js
-usuarios = [
-  { id, nome, status }
-]
-```
+    usuarios = [
+      { id, nome, status }
+    ]
 
 ## Componentes Frontend
 
