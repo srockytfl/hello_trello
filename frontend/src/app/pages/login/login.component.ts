@@ -82,7 +82,7 @@ import { ApiService } from '../../services/api.service';
       background: var(--blue);
       border: none;
       border-radius: 3px;
-      color: #1A1400;
+      color: #ffffff;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
