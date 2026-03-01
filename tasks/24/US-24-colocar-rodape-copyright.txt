@@ -1,0 +1,41 @@
+US-24 — Colocar um rodapé com copyright
+==========================================
+
+CONTEXTO
+--------
+A aplicação necessita exibir um rodapé (footer) com informações de copyright e direitos autorais para estar em conformidade com padrões legais e boas práticas web.
+
+HISTORIA
+--------
+Como usuário visitante,
+quero ver um rodapé com copyright,
+para saber o ano e a informação de direitos autorais do projeto.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Um rodapé deve estar presente na parte inferior da página
+2. O rodapé deve exibir "© [Ano] - Todos os direitos reservados"
+3. O rodapé deve estar visível em todas as páginas da aplicação
+4. O rodapé deve ter styling apropriado e estar bem posicionado
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Reutilizar componentes existentes quando possível
+- Sem over-engineering - implementar solução simples e direta
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Validar que o footer está incluído no HTML renderizado
+
+E2E:
+  - Verificar que o footer aparece na parte inferior de cada página
+  - Verificar que o copyright contém o ano atual e texto apropriado
+  - Verificar que o footer é responsivo em diferentes tamanhos de tela
+
+FORA DO ESCOPO
+--------------
+- Implementar múltiplos footers diferentes por página
+- Adicionar múltiplas seções de informação além do copyright
+- Modificar design geral da página
