@@ -32,7 +32,7 @@ import { TitleService } from '../../services/title.service';
   `,
   styles: [`
     .login-page {
-      height: 100vh;
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;

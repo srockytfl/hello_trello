@@ -64,7 +64,7 @@ import { TitleService } from '../../services/title.service';
     </main>
   `,
   styles: [`
-    :host { display: flex; flex-direction: column; height: 100vh; }
+    :host { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 
     header {
       display: flex;

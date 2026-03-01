@@ -1,0 +1,43 @@
+US-27 — O rodapé aparece em baixo e some
+==========================================
+
+CONTEXTO
+--------
+O rodapé (footer) da aplicação está apresentando comportamento instável, aparecendo e desaparecendo de forma intermitente. Isso afeta a consistência visual e a usabilidade da interface.
+
+HISTÓRIA
+--------
+Como usuário,
+quero que o rodapé seja sempre visível e estável,
+para ter acesso consistente às informações de footer e não me confundir com o desaparecimento dele.
+
+CRITÉRIOS DE ACEITAÇÃO
+-----------------------
+1. O rodapé deve estar sempre visível na parte inferior da página
+2. O rodapé não deve desaparecer ou piscar durante a navegação
+3. O rodapé deve manter sua posição consistentemente em todas as páginas
+4. O comportamento deve ser idêntico em diferentes tamanhos de tela
+
+REGRAS TÉCNICAS
+---------------
+- Seguir convenções do CLAUDE.md
+- Sem over-engineering
+- Validar em diferentes navegadores
+- Testar em diferentes breakpoints de responsive design
+
+CRITÉRIOS DE TESTE (QA)
+------------------------
+API:
+  - Nenhuma chamada específica de API necessária para rodapé
+
+E2E:
+  - Navegar pela aplicação e verificar se rodapé permanece visível
+  - Redimensionar a janela e confirmar rodapé não desaparece
+  - Verificar em mobile, tablet e desktop
+  - Verificar em diferentes navegadores (Chrome, Firefox, Safari, Edge)
+
+FORA DO ESCOPO
+--------------
+- Redesenho do rodapé
+- Mudança de conteúdo do rodapé
+- Alteração de links ou funcionalidades internas do rodapé
