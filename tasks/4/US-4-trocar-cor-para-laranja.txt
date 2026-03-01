@@ -1,0 +1,42 @@
+US-4 — Trocar cor para laranja
+======================
+
+CONTEXTO
+--------
+A aplicação precisa atualizar sua paleta de cores para melhorar a identidade visual. O laranja será usado como cor primária em elementos de destaque da interface.
+
+HISTÓRIA
+--------
+Como usuário,
+quero ver elementos da interface em cor laranja,
+para uma melhor identidade visual da aplicação.
+
+CRITÉRIOS DE ACEITAÇÃO
+-----------------------
+1. Os botões primários devem exibir a cor laranja (#FF9500 ou similar)
+2. A cor laranja deve ser aplicada consistentemente em todos os elementos de destaque
+3. O contraste com o texto deve atender aos padrões de acessibilidade (WCAG AA)
+4. A cor deve ser definida em variável/constante reutilizável no código
+
+REGRAS TÉCNICAS
+---------------
+- Backend Express + Frontend Angular
+- Sem banco de dados, sem auth real
+- Utilizar variáveis CSS ou constantes TypeScript para a cor
+- Garantir compatibilidade entre browsers modernos
+
+CRITÉRIOS DE TESTE (QA)
+------------------------
+API:
+  - N/A (alteração visual apenas)
+
+E2E:
+  - Verificar que botões primários exibem cor laranja
+  - Verificar que títulos em destaque utilizam a cor laranja
+  - Verificar responsividade em diferentes resoluções
+
+FORA DO ESCOPO
+--------------
+- Mudança de layout ou estrutura da página
+- Alteração de cores secundárias (exceto as que dependem da primária)
+- Implementação de tema escuro
