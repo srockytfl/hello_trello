@@ -1,45 +1,43 @@
-US-1 — Trocar cor para azul
+US-1 — Trocar Cor para Azul
 ======================
 
 CONTEXTO
 --------
-Ajuste na paleta de cores da aplicação para melhorar a identidade visual e
-garantir consistência com o novo guia de design.
+O componente atual utiliza uma cor diferente que não se alinha com o design system.
+Precisamos atualizar para azul para melhorar a consistência visual.
 
 HISTORIA
 --------
 Como usuário,
-quero que a interface tenha cores azuis,
-para uma melhor experiência visual e alinhamento com a marca.
+quero ver o componente na cor azul,
+para manter consistência com o design system.
 
 CRITERIOS DE ACEITACAO
 -----------------------
-1. Elemento visual específico está na cor azul correta
-2. Cor azul mantém contraste mínimo de 4.5:1 para acessibilidade
-3. Alteração é visível em todos os navegadores modernos
-4. Não há quebra de funcionalidade existente
+1. Componente primário deve exibir em azul
+2. Cor deve seguir o padrão do design system (verificável visualmente)
+3. Sem quebra de funcionalidade existente
+4. Deve funcionar em todos os navegadores suportados
 
 REGRAS TECNICAS
 ---------------
-- Usar variáveis de cor definidas no sistema de design
-- Sem hardcoding de cores (utilizar constantes ou CSS variables)
-- Atualizar documentação de cores se aplicável
-- Validar com ferramentas de contraste (WebAIM, WAVE)
+- Seguir convencoes do CLAUDE.md
+- Usar variáveis de cor definidas no design system
+- Sem inline styles — usar classes CSS ou variáveis
+- Reusabilidade em mente para futuros componentes
 
 CRITERIOS DE TESTE (QA)
 ------------------------
-Visual:
-  - Verificar cor em navegadores Chrome, Firefox, Safari e Edge
-  - Validar contraste de cores com ferramentas de acessibilidade
-  - Testar responsividade em diferentes tamanhos de tela
-  - Comparar com mockup/design aprovado
+API:
+  - N/A (alteração visual)
 
-Funcional:
-  - Elemento mantém interatividade (hover, click, estados ativos)
-  - Não afeta carregamento ou performance
+E2E:
+  - Verificar renderização do componente em azul
+  - Validar em diferentes resoluções de tela
+  - Testar em navegadores Chrome, Firefox, Safari
 
 FORA DO ESCOPO
 --------------
-- Trocar cores de outros elementos não especificados
-- Alterar design ou layout
-- Implementar temas dinâmicos de cores
+- Refatoração completa do componente
+- Mudanças em outros componentes relacionados
+- Implementação de temas (dark mode, etc.)
