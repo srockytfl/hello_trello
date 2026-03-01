@@ -3,41 +3,35 @@ US-1 — Trocar Cor para Azul
 
 CONTEXTO
 --------
-O componente atual utiliza uma cor diferente que não se alinha com o design system.
-Precisamos atualizar para azul para melhorar a consistência visual.
+A aplicação precisa mudar a cor do elemento principal para azul, melhorando a identidade visual e a experiência do usuário.
 
 HISTORIA
 --------
 Como usuário,
-quero ver o componente na cor azul,
-para manter consistência com o design system.
+quero que a cor principal seja azul,
+para melhor identificar visualmente a aplicação.
 
 CRITERIOS DE ACEITACAO
 -----------------------
-1. Componente primário deve exibir em azul
-2. Cor deve seguir o padrão do design system (verificável visualmente)
-3. Sem quebra de funcionalidade existente
-4. Deve funcionar em todos os navegadores suportados
+1. A cor principal do elemento deve ser alterada para azul (#0000FF ou similar)
+2. A mudança deve ser visível em toda a aplicação
+3. A cor deve estar definida em variável reutilizável
 
 REGRAS TECNICAS
 ---------------
 - Seguir convencoes do CLAUDE.md
-- Usar variáveis de cor definidas no design system
-- Sem inline styles — usar classes CSS ou variáveis
-- Reusabilidade em mente para futuros componentes
+- Sem over-engineering
 
 CRITERIOS DE TESTE (QA)
 ------------------------
 API:
-  - N/A (alteração visual)
+  - Validar que a cor é consistente em todas as requisições
 
 E2E:
-  - Verificar renderização do componente em azul
-  - Validar em diferentes resoluções de tela
-  - Testar em navegadores Chrome, Firefox, Safari
+  - Verificar que o elemento exibe a cor azul em todos os navegadores
+  - Confirmar que a cor azul permanece após navegação entre páginas
 
 FORA DO ESCOPO
 --------------
-- Refatoração completa do componente
-- Mudanças em outros componentes relacionados
-- Implementação de temas (dark mode, etc.)
+- Mudança de outras cores
+- Refatoração de estilos globais
