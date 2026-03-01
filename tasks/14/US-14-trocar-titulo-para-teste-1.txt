@@ -1,0 +1,38 @@
+US-14 — Trocar Título para Teste 1
+====================================
+
+CONTEXTO
+--------
+É necessário atualizar o título da aplicação para "Teste 1" a fim de refletir a mudança na identificação ou versão do projeto.
+
+HISTORIA
+--------
+Como usuário,
+quero que o título da aplicação seja alterado para "Teste 1",
+para que a interface reflita o estado ou versão corretos.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O título exibido na aplicação deve ser "Teste 1"
+2. A alteração deve estar visível em todos os pontos onde o título é exibido (header, browser tab, etc.)
+3. Não deve haver quebra de funcionalidades existentes
+
+REGRAS TECNICAS
+---------------
+- Seguir convenções do CLAUDE.md
+- Manter consistência com o padrão de código existente
+- Sem over-engineering
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar que a propriedade de título retorna "Teste 1" (se aplicável)
+
+E2E:
+  - Abrir a aplicação e confirmar que o título exibido é "Teste 1"
+  - Verificar que o título no browser tab mostra "Teste 1"
+
+FORA DO ESCOPO
+--------------
+- Alterar outros elementos de branding ou identidade visual
+- Mudanças em conteúdo além do título especificado
