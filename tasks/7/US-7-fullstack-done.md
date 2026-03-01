@@ -14,14 +14,14 @@ Nenhuma — a US-7 é exclusivamente frontend (CSS/SCSS). Os endpoints existente
 
 | Arquivo | Alteração |
 |---------|-----------|
-| `frontend/src/styles.scss` | `--blue`: `#FF69B4` → `#FFD700`; `--blue-dark`: `#E91E8C` → `#C8A800` |
+| `frontend/src/styles.scss` | `--blue`: `#FF69B4` → `#FFD700`; `--blue-dark`: `#E91E8C` → `#D4AF00` |
 | `frontend/src/app/pages/login/login.component.ts` | `.btn-login { color }`: `#ffffff` → `#111111` (contraste WCAG AA) |
 | `frontend/src/app/pages/todos/todos.component.ts` | `.btn-add { color }`: `#ffffff` → `#111111`; `.checkbox .material-icons-round { color }`: `#ffffff` → `#111111` |
 
 ## Elementos Afetados pela Mudança de `--blue`
 
-- **Botão "Entrar"** (login) — fundo amarelo (#FFD700), hover (#C8A800)
-- **Botão "Adicionar"** (todos) — fundo amarelo (#FFD700), hover (#C8A800)
+- **Botão "Entrar"** (login) — fundo amarelo (#FFD700), hover (#D4AF00)
+- **Botão "Adicionar"** (todos) — fundo amarelo (#FFD700), hover (#D4AF00)
 - **Checkbox marcado** — fundo e borda amarelos, ícone escuro
 - **Filtro ativo** — borda inferior amarela
 - **Input com foco** — borda amarela
