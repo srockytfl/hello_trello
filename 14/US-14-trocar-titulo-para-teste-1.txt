@@ -1,0 +1,42 @@
+US-14 — Trocar Título para Teste 1
+====================================
+
+CONTEXTO
+--------
+O sistema necessita de uma mudança no título para fins de teste e validação.
+Esta alteração é crítica para o processo de testes.
+
+HISTORIA
+--------
+Como usuário do sistema,
+quero que o título seja alterado para "Teste 1",
+para permitir a validação e testes adequados.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O título da página/elemento deve ser alterado para "Teste 1"
+2. A alteração deve ser visível em tempo real na interface
+3. A mudança deve ser persistida corretamente no sistema
+
+REGRAS TECNICAS
+---------------
+- Seguir convenções do CLAUDE.md
+- Garantir que a alteração não impacte outros componentes
+- Validar a mudança em diferentes navegadores (se aplicável)
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar que o endpoint retorna o novo título "Teste 1"
+  - Validar que a persistência ocorre corretamente
+
+E2E:
+  - Navegar até o elemento e validar que exibe "Teste 1"
+  - Recarregar a página e confirmar que o título persiste
+  - Testar em diferentes navegadores
+
+FORA DO ESCOPO
+--------------
+- Alterações em outros títulos ou elementos
+- Mudanças estruturais no sistema
+- Implementação de novas funcionalidades além da mudança de título

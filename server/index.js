@@ -13,6 +13,13 @@ let todos = [
 ];
 let nextId = 4;
 
+// --- Title ---
+let appTitle = 'Teste 1';
+
+app.get('/api/title', (req, res) => {
+  res.json({ title: appTitle });
+});
+
 // --- Auth ---
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
