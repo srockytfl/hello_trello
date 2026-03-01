@@ -3,41 +3,41 @@ US-7 — Trocar cor para amarelo
 
 CONTEXTO
 --------
-A aplicação necessita de uma atualização visual para utilizar amarelo como cor primária
-em elementos específicos da interface, melhorando a identidade visual do produto.
+Necessidade de ajustar a identidade visual do sistema alterando a cor primária de azul para amarelo em todos os componentes da aplicação.
 
-HISTÓRIA
+HISTORIA
 --------
 Como usuário da aplicação,
-quero que os elementos principais sejam exibidos em amarelo,
-para ter uma melhor experiência visual e identificação da marca.
+quero que os elementos visuais primários sejam exibidos em amarelo,
+para manter consistência com a nova identidade visual da marca.
 
-CRITÉRIOS DE ACEITAÇÃO
+CRITERIOS DE ACEITACAO
 -----------------------
-1. Os elementos principais da interface (botões, headers, destaques) exibem amarelo (#FFD700 ou equivalente)
-2. A cor amarela é aplicada de forma consistente em toda a aplicação
-3. O contraste entre o amarelo e textos/elementos sobrepostos atende WCAG AA
-4. A mudança de cor é persistida no frontend Angular
+1. Cor primária alterada para amarelo (#FFEB3B ou equivalente) em todos os botões primários
+2. Ícones e indicadores visuais que usavam cor primária agora exibem em amarelo
+3. Componentes hover/active mantêm contraste adequado com a nova cor
+4. Mudança é aplicada globalmente através de variável CSS ou tema
 
-REGRAS TÉCNICAS
+REGRAS TECNICAS
 ---------------
-- Backend Express + Frontend Angular
-- Sem banco de dados, sem auth real
-- Alteração de estilos CSS/SCSS no frontend
-- Garantir compatibilidade com browsers modernos
+- Usar variável CSS para cor primária (não hardcodificar valores hexadecimais)
+- Garantir contraste WCAG AA em relação ao fundo
+- Seguir as convenções de estilo do projeto
+- Atualizar paleta de cores na documentação do design system
 
-CRITÉRIOS DE TESTE (QA)
+CRITERIOS DE TESTE (QA)
 ------------------------
 API:
-  - Verificar que endpoints retornam dados esperados sem alterações
+  - N/A (mudança visual apenas)
 
 E2E:
-  - Carregar aplicação e verificar que elementos primários exibem amarelo
-  - Testar em diferentes navegadores (Chrome, Firefox, Safari)
-  - Validar legibilidade do texto sobre fundo amarelo
+  - Verificar que botões primários exibem em amarelo
+  - Confirmar que ícones de destaque usam a nova cor
+  - Testar em modo claro e escuro, se aplicável
+  - Validar contraste de cores com ferramentas de acessibilidade
 
 FORA DO ESCOPO
 --------------
-- Mudança de paleta de cores completa
-- Alterações de estrutura HTML
-- Novo sistema de temas
+- Cores secundárias ou de fundo
+- Alteração de tipografia
+- Refatoração completa do sistema de temas
