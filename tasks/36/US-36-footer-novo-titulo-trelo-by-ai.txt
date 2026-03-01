@@ -1,0 +1,42 @@
+US-36 — Footer - Novo Título Trelo by AI
+==========================================
+
+CONTEXTO
+--------
+O footer da aplicação precisa exibir um novo título que reforce a identidade da marca. O título "Trelo by AI" deve ser visível no footer como parte da branding.
+
+HISTORIA
+--------
+Como usuário da aplicação,
+quero ver o título "Trelo by AI" no footer,
+para reforçar a identidade da marca e melhorar a recognição visual.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O footer exibe o texto "Trelo by AI"
+2. O título está visível e bem posicionado no footer
+3. O estilo do título é consistente com o design do footer existente
+4. O texto está acessível (semântica HTML apropriada)
+
+REGRAS TECNICAS
+---------------
+- Seguir convenções do CLAUDE.md
+- Manter consistência visual com o footer existente
+- Usar componentes reutilizáveis do projeto
+- Sem over-engineering
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - (N/A - mudança de UI)
+
+E2E:
+  - Verificar que "Trelo by AI" aparece no footer em todos os viewports
+  - Confirmar que o title não quebra o layout responsivo
+  - Validar acessibilidade do novo elemento
+
+FORA DO ESCOPO
+--------------
+- Alterar outras seções do footer
+- Mudar cores ou fonts do footer existente
+- Adicionar links ou funcionalidades ao novo título

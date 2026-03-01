@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <footer class="app-footer">
+      <p class="footer-brand">Trelo by AI</p>
       <span>© {{ currentYear }} - Todos os direitos reservados</span>
     </footer>
   `,
@@ -18,6 +19,14 @@ import { Component } from '@angular/core';
       font-size: 0.85rem;
       border-top: 1px solid #2e2e3e;
       box-sizing: border-box;
+    }
+
+    .footer-brand {
+      margin: 0 0 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #c0c0d0;
+      letter-spacing: 0.03em;
     }
   `],
 })
