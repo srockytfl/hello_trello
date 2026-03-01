@@ -1,0 +1,45 @@
+US-35 — Layout com Icone de Usuario no Header
+=============================================
+
+CONTEXTO
+--------
+O usuário precisa de um ponto de acesso rápido para seu perfil e configurações na interface. Um ícone de usuário no header oferece localização intuitiva para essas funcionalidades.
+
+HISTORIA
+--------
+Como usuário,
+quero clicar em um ícone de usuário (avatar) no header,
+para acessar rapidamente meu perfil e configurações.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Avatar circular exibido no header (lado direito)
+2. Ao clicar no avatar, abre tela de perfil do usuário
+3. Tela de perfil possui acesso a seção de Settings
+4. Avatar é responsivo em diferentes tamanhos de tela
+5. Ícone é visualmente consistente com design system
+
+REGRAS TECNICAS
+---------------
+- Avatar deve ser renderizado em formato circular (CSS border-radius)
+- Ícone deve conter comportamento de hover (feedback visual)
+- Integrar com sistema de autenticação (dados do usuário logado)
+- Seguir padrões CSS/estrutura HTML do projeto
+- Sem dependências externas não autorizadas
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Validar que dados do usuário são carregados corretamente
+  - Testar comportamento com usuário autenticado
+
+E2E:
+  - Clicar no avatar deve renderizar tela de perfil
+  - Verificar que navegação para Settings funciona
+  - Testar layout responsivo em mobile, tablet, desktop
+
+FORA DO ESCOPO
+--------------
+- Modificar lógica de autenticação
+- Implementar nova política de permissões
+- Integração com sistemas de notificação
