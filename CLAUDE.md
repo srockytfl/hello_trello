@@ -1,77 +1,84 @@
-# Hello Trello - System Prompt
+# System Prompt - Squad Spec (hello_trello)
 
-## Stack & Tecnologias
+## Stack Tecnológico
+- **Frontend:** Angular 17 + TypeScript 5.4 + SCSS
+- **Backend:** Express.js 5.2 + Node.js
+- **Build/Runtime:** npm, Angular CLI
+- **Comunicação:** HTTP com CORS habilitado
 
-- **Frontend:** Angular 17.3.0, TypeScript 5.4.2, RxJS 7.8.0, SCSS
-- **Backend:** Node.js, Express 5.2.1, CORS
-- **Build/CLI:** Angular CLI 17.3.17, npm
-- **Testing:** Jasmine 5.1.0, Karma 6.4.0
-- **Deployment:** Vercel (vercel.json presente)
+## Estrutura de Projeto
 
-## Estrutura do Projeto
-
-Monorepo com separação clara:
-- `/frontend` - Aplicação Angular (standalone app)
-- `/server` - Backend Express
-- `/api` - Camada de API (minimal)
-- `/tasks` - Documentação de User Stories (US-X format)
-- `/start.sh` - Script de inicialização
+```
+squad-spec/
+├── frontend/          # Aplicação Angular (port 4200)
+│   ├── src/app/       # Componentes e lógica
+│   ├── src/assets/    # Recursos estáticos
+│   ├── src/styles.scss
+│   └── angular.json   # Configuração Angular
+├── server/            # Backend Express (port 3000)
+│   └── index.js       # Servidor principal
+├── api/               # Endpoints adicionais
+├── tasks/             # User Stories documentadas
+│   └── {US-NUMBER}/   # Cada story em pasta separada
+└── vercel.json        # Deploy config
+```
 
 ## Scripts Úteis
 
 **Raiz:**
 ```bash
-npm run build    # Build frontend + instalar dependências server
-npm start        # Inicia servidor Node.js
+npm run build    # Instala deps frontend, faz build, instala deps server
+npm start        # Inicia servidor (node server/index.js)
+./start.sh       # Script de inicialização
 ```
 
-**Frontend:**
+**Frontend (`cd frontend`):**
 ```bash
-npm start       # ng serve (dev server)
-npm run build   # Production build
-npm run watch   # Watch mode
-npm test        # Jasmine + Karma
-ng ...          # Angular CLI commands
+ng serve         # Dev server (localhost:4200 com proxy)
+ng build         # Build production
+npm test         # Testes com Karma/Jasmine
+ng watch         # Watch mode
+```
+
+**Server (`cd server`):**
+```bash
+node index.js    # Executa servidor Express
 ```
 
 ## Convenções do Projeto
 
-- **User Stories:** Pasta `/tasks/{numero}` com arquivos `US-{numero}-*.txt/md`
-- **Status:** Arquivos terminados em `-fullstack-done.md` indicam conclusão
-- **Componentes:** Estrutura padrão Angular em `/frontend/src/app/`
-- **Proxy:** Configurado em `proxy.conf.json` para comunicação frontend ↔ backend
+- **User Stories:** Organizadas em `tasks/{numero}/` com padrão `US-{X}-descricao.{txt|md}`
+- **Status:** Arquivo `US-X-fullstack-done.md` marca conclusão
+- **Proxy:** Frontend em dev route para `http://localhost:3000` via `proxy.conf.json`
+- **CORS:** Habilitado no server para aceitar requisições do frontend
+- **TypeScript:** Usado no frontend; `tsconfig.json` com `tsconfig.app.json` e `tsconfig.spec.json` para testes
 
-## Padrões de Código
+## Padrões Identificados
 
-- **TypeScript:** Tipagem forte obrigatória
-- **Angular:** Componentes standalone, RxJS para reatividade
-- **Estilos:** SCSS com scoping de componentes
-- **CORS:** Habilitado no Express para requisições cross-origin
-- **Routing:** Configurado via Angular Router
+- Tarefas tipicamente envolvem mudanças **UI-focused** (cores, títulos, rodapé)
+- Estrutura **monorepo** com frontend e backend acoplados em build
+- **User Stories numeradas** com documentação de conclusão "fullstack"
+- Proxy configurado para desenvolvimento local (frontend comunicando com backend local)
 
-## Boas Práticas Detectadas
+## Boas Práticas Inferidas
 
-- Monorepo bem organizado com responsabilidades separadas
-- Frontend e backend independentes (podem ser deployados separadamente)
-- Configuração de proxy para desenvolvimento local
-- TypeScript em todo o frontend para type safety
-- Testing infrastructure pronta (Jasmine/Karma)
-
-## Observações
-
-- API minimal em `/api` (status incerto - verificar se está em uso)
-- Sem script de test configurado no backend
-- Projeto aparentemente focado em CRUD de tarefas (cor, title)
+1. **Build:** Frontend build é pré-requisito antes de server; instalação automática de deps
+2. **Desenvolvimento:** Use `ng serve` para frontend (com hot reload) e `node index.js` para server
+3. **Deployment:** Configuração Vercel presente; likely serverless-ready
+4. **Documentação:** Cada US tem arquivo markdown/txt com contexto
+5. **Testing:** Estrutura Jasmine/Karma pronta no frontend
+6. **Organização:** Separação clara entre `frontend/`, `server/` e `api/`
 
 ## Workflow da Squad
 
 A squad executa os agentes na seguinte ordem:
 
-1. **PO**
-2. **Fullstack**
-3. **PR**
+1. **PRD**
+2. **Spec**
+3. **Fullstack**
+4. **PR**
 
-Fluxo: PO → Fullstack → PR
+Fluxo: PRD → Spec → Fullstack → PR
 
 ### Resumo de tempo
 
@@ -79,7 +86,8 @@ Ao final do fluxo, exibir tabela com tempos de cada agente:
 
 | Agente | Duracao (mm:ss) |
 |--------|------------------|
-| PO | XX:XX |
+| PRD | XX:XX |
+| Spec | XX:XX |
 | Fullstack | XX:XX |
 | PR | XX:XX |
 | **Total** | **XX:XX** |
