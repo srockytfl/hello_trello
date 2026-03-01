@@ -1,43 +1,36 @@
 US-7 — Trocar cor para amarelo
-======================
+===============================
 
 CONTEXTO
 --------
-Necessidade de ajustar a identidade visual do sistema alterando a cor primária de azul para amarelo em todos os componentes da aplicação.
+A aplicação necessita atualizar o esquema de cores para melhorar a interface visual. Esta história implementa a mudança da cor principal para amarelo conforme solicitado.
 
 HISTORIA
 --------
-Como usuário da aplicação,
-quero que os elementos visuais primários sejam exibidos em amarelo,
-para manter consistência com a nova identidade visual da marca.
+Como usuário,
+quero que a aplicação exiba cores amarelas,
+para ter uma interface visualmente mais atraente.
 
 CRITERIOS DE ACEITACAO
 -----------------------
-1. Cor primária alterada para amarelo (#FFEB3B ou equivalente) em todos os botões primários
-2. Ícones e indicadores visuais que usavam cor primária agora exibem em amarelo
-3. Componentes hover/active mantêm contraste adequado com a nova cor
-4. Mudança é aplicada globalmente através de variável CSS ou tema
+1. Cor principal alterada para amarelo em todos os componentes visuais
+2. Alterações aplicadas de forma consistente em toda a interface
+3. Mudança testada e validada visualmente
 
 REGRAS TECNICAS
 ---------------
-- Usar variável CSS para cor primária (não hardcodificar valores hexadecimais)
-- Garantir contraste WCAG AA em relação ao fundo
-- Seguir as convenções de estilo do projeto
-- Atualizar paleta de cores na documentação do design system
+- Seguir convencoes do CLAUDE.md
+- Sem over-engineering
+- Utilizar variáveis de cor reutilizáveis
 
 CRITERIOS DE TESTE (QA)
 ------------------------
-API:
-  - N/A (mudança visual apenas)
-
 E2E:
-  - Verificar que botões primários exibem em amarelo
-  - Confirmar que ícones de destaque usam a nova cor
-  - Testar em modo claro e escuro, se aplicável
-  - Validar contraste de cores com ferramentas de acessibilidade
+  - Validar que os componentes principais exibem a cor amarela
+  - Verificar consistência da cor em diferentes resoluções de tela
 
 FORA DO ESCOPO
 --------------
-- Cores secundárias ou de fundo
-- Alteração de tipografia
-- Refatoração completa do sistema de temas
+- Alterações em componentes não visuais
+- Refatoração arquitetural
+- Performance optimization
