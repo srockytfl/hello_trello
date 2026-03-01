@@ -3,40 +3,39 @@ US-1 — Trocar cor para azul
 
 CONTEXTO
 --------
-A aplicação apresenta cores que precisam ser atualizadas para refletir a nova identidade visual da marca. A mudança para azul é uma alteração importante na interface do usuário.
+A aplicação precisa atualizar sua paleta de cores para utilizar azul como cor principal, melhorando a identidade visual e consistência da interface.
 
 HISTORIA
 --------
 Como usuário,
-quero que a interface exiba cores em azul,
-para que a aplicação esteja de acordo com a nova identidade visual.
+quero que a interface utilize a cor azul como cor principal,
+para uma melhor experiência visual e identificação da marca.
 
 CRITERIOS DE ACEITACAO
 -----------------------
-1. Os elementos visuais principais devem usar a paleta de azul especificada
-2. Todos os componentes afetados devem ter a cor azul aplicada consistentemente
-3. A aplicação deve manter a acessibilidade (contraste mínimo WCAG AA)
-4. As alterações devem ser visíveis em todos os estados (normal, hover, ativo, desabilitado)
+1. A cor primária da aplicação é alterada para azul
+2. Todos os elementos que utilizam a cor anterior são atualizados
+3. A mudança é consistente em toda a interface
+4. Os testes passam após a alteração
 
 REGRAS TECNICAS
 ---------------
 - Seguir convencoes do CLAUDE.md
-- Usar variáveis CSS/tema para manter consistência
-- Sem duplicação de código de estilo
-- Manter compatibilidade com navegadores suportados
+- Manter consistencia visual em todos os componentes
+- Sem over-engineering
+- Utilizar valores de cor padronizados (ex: #0066cc ou equivalente)
 
 CRITERIOS DE TESTE (QA)
 ------------------------
 API:
-  - N/A (alteração visual)
+  - Verificar que a aplicação retorna as cores corretas no esquema
 
 E2E:
-  - Verificar que elementos com cor azul estão renderizados corretamente
-  - Validar que o contraste entre texto e fundo atende padrões de acessibilidade
-  - Confirmar que a cor persiste após navegação entre páginas
+  - Verificar visualmente que todos os elementos principais estão em azul
+  - Validar em diferentes navegadores e resoluções
 
 FORA DO ESCOPO
 --------------
-- Alterar paleta de cores além do azul especificado
-- Modificar estrutura HTML dos componentes
-- Implementar novo sistema de tema completo
+- Alterar outras cores secundarias
+- Redesenho completo da interface
+- Mudancas em animacoes ou efeitos
