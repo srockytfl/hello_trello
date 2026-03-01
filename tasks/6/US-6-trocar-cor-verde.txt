@@ -1,0 +1,42 @@
+US-6 — Trocar cor para verde
+======================
+
+CONTEXTO
+--------
+A aplicação precisa alterar o esquema de cores da interface para verde. Esta mudança visa melhorar a identidade visual e a usabilidade da plataforma.
+
+HISTÓRIA
+--------
+Como usuário,
+quero que a interface principal exiba cores verdes,
+para que a experiência visual esteja alinhada com a identidade visual da marca.
+
+CRITÉRIOS DE ACEITAÇÃO
+-----------------------
+1. Cor de fundo principal deve ser verde (#22c55e ou similar)
+2. Elementos de botão principal devem usar verde (#16a34a ou similar)
+3. Cores de texto devem manter contraste adequado para acessibilidade
+4. Todos os componentes devem ser responsivos com a nova paleta de cores
+
+REGRAS TÉCNICAS
+---------------
+- Backend Express + Frontend Angular
+- Sem banco de dados, sem autenticação real
+- Alteração de variáveis CSS/SCSS ou classe de tema no Angular
+- Compatibilidade com navegadores modernos (Chrome, Firefox, Safari)
+
+CRITÉRIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar que endpoints retornam dados de forma esperada (sem mudanças na API)
+
+E2E:
+  - Validar que todos os elementos exibem verde na paleta de cores
+  - Confirmar que botões e links respondem corretamente com novo esquema
+  - Testar responsividade em diferentes tamanhos de tela
+
+FORA DO ESCOPO
+--------------
+- Alteração de estrutura HTML
+- Implementação de temas dinâmicos
+- Personalização de cores por usuário
