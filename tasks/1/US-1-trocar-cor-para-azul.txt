@@ -1,41 +1,42 @@
 US-1 — Trocar cor para azul
-======================
+=============================
 
 CONTEXTO
 --------
-A interface da aplicação precisa ser atualizada para utilizar azul como cor principal, melhorando a identidade visual e consistência de design.
+A aplicação apresenta cores que precisam ser atualizadas para refletir a nova identidade visual da marca. A mudança para azul é uma alteração importante na interface do usuário.
 
 HISTORIA
 --------
 Como usuário,
-quero que os elementos principais da interface sejam exibidos na cor azul,
-para ter uma experiência visual mais clara e consistente.
+quero que a interface exiba cores em azul,
+para que a aplicação esteja de acordo com a nova identidade visual.
 
 CRITERIOS DE ACEITACAO
 -----------------------
-1. A cor principal da interface deve ser alterada para azul
-2. Todos os elementos de destaque devem refletir a nova cor
-3. A mudança deve ser aplicada sem quebrar outros estilos existentes
-4. O resultado deve ser visível em todos os navegadores modernos
+1. Os elementos visuais principais devem usar a paleta de azul especificada
+2. Todos os componentes afetados devem ter a cor azul aplicada consistentemente
+3. A aplicação deve manter a acessibilidade (contraste mínimo WCAG AA)
+4. As alterações devem ser visíveis em todos os estados (normal, hover, ativo, desabilitado)
 
 REGRAS TECNICAS
 ---------------
 - Seguir convencoes do CLAUDE.md
-- Sem over-engineering
-- Manter compatibilidade com navegadores modernos
+- Usar variáveis CSS/tema para manter consistência
+- Sem duplicação de código de estilo
+- Manter compatibilidade com navegadores suportados
 
 CRITERIOS DE TESTE (QA)
 ------------------------
 API:
-  - Validar que a mudança não afeta endpoints da API
+  - N/A (alteração visual)
 
 E2E:
-  - Verificar que elementos principais exibem cor azul
-  - Validar contraste e acessibilidade
-  - Testar em diferentes navegadores (Chrome, Firefox, Safari, Edge)
+  - Verificar que elementos com cor azul estão renderizados corretamente
+  - Validar que o contraste entre texto e fundo atende padrões de acessibilidade
+  - Confirmar que a cor persiste após navegação entre páginas
 
 FORA DO ESCOPO
 --------------
-- Mudanças em outras cores ou elementos visuais
-- Refatoração completa do sistema de temas
-- Alterações em estrutura HTML
+- Alterar paleta de cores além do azul especificado
+- Modificar estrutura HTML dos componentes
+- Implementar novo sistema de tema completo
