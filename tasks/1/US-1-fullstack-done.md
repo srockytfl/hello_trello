@@ -12,8 +12,8 @@ As variáveis CSS de acento foram corrigidas de rosa/pink para azul real, confor
 
 | Variável | Valor Anterior | Valor Novo |
 |----------|----------------|------------|
-| `--blue` | `#FF69B4` (hot pink) | `#3B82F6` (azul — Tailwind blue-500) |
-| `--blue-dark` | `#C74F8C` (dark pink) | `#2563EB` (azul escuro — Tailwind blue-600) |
+| `--blue` | `#FF69B4` (hot pink) | `#2563EB` (azul — Tailwind blue-600) |
+| `--blue-dark` | `#E91E8C` (dark pink) | `#1D4ED8` (azul escuro — Tailwind blue-700) |
 
 ---
 
