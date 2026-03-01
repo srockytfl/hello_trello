@@ -1,0 +1,41 @@
+US-1 — Trocar cor para azul
+======================
+
+CONTEXTO
+--------
+A interface da aplicação precisa ser atualizada para utilizar azul como cor principal, melhorando a identidade visual e consistência de design.
+
+HISTORIA
+--------
+Como usuário,
+quero que os elementos principais da interface sejam exibidos na cor azul,
+para ter uma experiência visual mais clara e consistente.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. A cor principal da interface deve ser alterada para azul
+2. Todos os elementos de destaque devem refletir a nova cor
+3. A mudança deve ser aplicada sem quebrar outros estilos existentes
+4. O resultado deve ser visível em todos os navegadores modernos
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Sem over-engineering
+- Manter compatibilidade com navegadores modernos
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Validar que a mudança não afeta endpoints da API
+
+E2E:
+  - Verificar que elementos principais exibem cor azul
+  - Validar contraste e acessibilidade
+  - Testar em diferentes navegadores (Chrome, Firefox, Safari, Edge)
+
+FORA DO ESCOPO
+--------------
+- Mudanças em outras cores ou elementos visuais
+- Refatoração completa do sistema de temas
+- Alterações em estrutura HTML
