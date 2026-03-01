@@ -6,6 +6,15 @@ app.use(cors());
 app.use(express.json());
 
 // --- Fake data in memory ---
+
+// --- User Profile ---
+let userProfile = {
+  name: 'Admin',
+  email: 'admin@hellotrello.dev',
+  role: 'Administrador',
+  joinedAt: '2024-01-01',
+};
+
 let todos = [
   { id: 1, text: 'Estudar Angular', done: false },
   { id: 2, text: 'Criar API com Express', done: true },
@@ -18,6 +27,11 @@ let appTitle = 'Teste 1';
 
 app.get('/api/title', (req, res) => {
   res.json({ title: appTitle });
+});
+
+// --- User Profile ---
+app.get('/api/user/profile', (req, res) => {
+  res.json(userProfile);
 });
 
 // --- Auth ---
