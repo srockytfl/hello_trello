@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { TitleService } from '../../services/title.service';
+import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.component';
 
 @Component({
   selector: 'app-todos',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, UserAvatarComponent],
   template: `
     <!-- Header -->
     <header>
@@ -23,6 +24,7 @@ import { TitleService } from '../../services/title.service';
         <button class="btn-logout" (click)="logout()">
           <span class="material-icons-round">logout</span> Sair
         </button>
+        <app-user-avatar />
       </div>
     </header>
 

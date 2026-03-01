@@ -30,4 +30,10 @@ export class ApiService {
   getTitle() {
     return this.http.get<{ title: string }>(`${this.url}/title`);
   }
+
+  getUserProfile() {
+    return this.http.get<{ name: string; email: string; role: string; joinedAt: string }>(
+      `${this.url}/user/profile`
+    );
+  }
 }
