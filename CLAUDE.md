@@ -1,84 +1,96 @@
-# System Prompt - Remote Spec (Hello Trello)
+```markdown
+# hello-trello - System Prompt para Agentes IA
 
-## Stack e Tecnologias
+## Stack & Tecnologias
 
-- **Frontend:** Angular 17.3, TypeScript 5.4, SCSS
-- **Backend:** Node.js, Express 5.2
-- **Testing:** Karma, Jasmine (frontend)
-- **Build Tools:** Angular CLI 17.3
-- **Deploy:** Vercel
-- **Dependências principais:** RxJS, CORS
+- **Frontend**: Angular 17.3.0 + TypeScript 5.4.2 + SCSS
+- **Backend**: Node.js + Express 5.2.1
+- **Package Manager**: npm
+- **Testing**: Jasmine/Karma (frontend)
+- **Build/Deploy**: Vercel
 
-## Estrutura de Pastas
+## Estrutura do Projeto
 
 ```
-/frontend       - Aplicação Angular (cliente)
-  /src
-    /app        - Componentes e lógica da aplicação
-    /assets     - Arquivos estáticos
-  package.json, tsconfig.json, angular.json
-  
-/server         - API Express (backend)
-  index.js      - Servidor principal
-  package.json
-  
-/api            - (legado ou endpoint específico)
-  index.js
-  
-/tasks          - Documentação de User Stories (US-*)
-  /1, /2, /4... - Cada pasta contém: fullstack-done.md, spec.md, prd.md
-  
-Root scripts    - build, start, vercel.json, start.sh
+hello-trello/
+├── frontend/              # Aplicação Angular
+│   ├── src/
+│   │   ├── app/          # Componentes e lógica
+│   │   ├── assets/       # Recursos estáticos
+│   │   ├── main.ts       # Ponto de entrada
+│   │   ├── index.html
+│   │   └── styles.scss   # Estilos globais
+│   ├── angular.json      # Configuração Angular
+│   ├── tsconfig.json     # Configuração TypeScript
+│   └── proxy.conf.json   # Proxy para backend em dev
+├── server/               # API Express
+│   └── index.js          # Servidor principal
+├── api/                  # Utilitários/helpers API
+├── tasks/                # Documentação de User Stories
+│   └── {US-number}/      # Pasta por tarefa
+└── package.json          # Root config
 ```
 
-## Comandos Úteis
+## Scripts Disponíveis
 
-**Build e Deploy:**
-```bash
-npm run build      # Instala deps, faz build frontend e instala deps server
-npm start          # Inicia servidor Express (node server/index.js)
-```
+### Root
+- `npm run build` - Instala deps frontend, build frontend, instala deps server
+- `npm start` - Inicia servidor Express (production)
+- `start.sh` - Script bash de inicialização
 
-**Frontend (em `/frontend`):**
-```bash
-npm start          # ng serve (dev server)
-npm run build      # ng build (produção)
-npm run watch      # ng build --watch
-npm test           # Testes com Karma
-```
-
-**Server (em `/server`):**
-```bash
-node index.js      # Inicia servidor
-```
+### Frontend
+- `npm start` - Inicia dev server (ng serve, porta 4200)
+- `npm run build` - Build otimizado para produção
+- `npm run watch` - Watch mode para desenvolvimento
+- `npm test` - Executa testes (Jasmine/Karma)
 
 ## Convenções do Projeto
 
-- **User Stories:** Numeradas como US-1, US-2, US-4, etc.
-- **Padrão de documentação:** Cada US possui arquivos como:
-  - `fullstack-done.md` - Status de conclusão
-  - `spec.md` - Especificação técnica
-  - `prd.md` - Product Requirements Document
-  - Descrição em .txt (ex: "trocar-cor-para-azul.txt")
-- **Proxy:** Frontend conecta ao backend via `proxy.conf.json`
-- **CORS:** Habilitado no servidor Express
+### Nomenclatura
+- Tasks: `US-{número}-{descrição}` (ex: `US-14-trocar-titulo-para-teste-1`)
+- Versão: 1.0.0
 
-## Padrões Observados
+### Estrutura de Tasks
+Cada task em `tasks/{numero}/` contém:
+- `US-X-fullstack-done.md` - Checklist de conclusão
+- `US-X-prd.md` - Product Requirements (quando aplicável)
+- `US-X-spec.md` - Especificação técnica (quando aplicável)
+- `US-X-*.txt` - Requisitos/descrição da tarefa
 
-- Tasks simples e iterativas (mudanças de cores, títulos, layout)
-- Ciclo fullstack: frontend + backend em cada US
-- Documentação por User Story em `/tasks`
-- Frontend isolado em `/frontend` com sua própria build
-- Backend minimalista com Express
+### Tipo de Aplicação
+Aplicação web estilo Trello com:
+- Mudanças de cores e títulos
+- Layout com header e footer
+- Ícone de usuário no header
+- Rodapé com copyright
 
-## Boas Práticas Inferidas
+## Boas Práticas Detectadas
 
-1. Seguir o fluxo de User Stories - cada feature é uma US numerada
-2. Manter documentação em `tasks/{US_NUMBER}/` para rastreamento
-3. Usar `fullstack-done.md` para marcar conclusão de USs
-4. Testar frontend com `npm test` antes de deploy
-5. Respeitar proxy configuration para desenvolvimento local
-6. Não adicionar dependências sem atualizar ambos os package.json
+1. **Monorepo**: Frontend e backend separados com dependências isoladas
+2. **TypeScript**: Tipagem forte no frontend
+3. **Proxy Development**: `proxy.conf.json` redireciona requisições para backend em dev
+4. **CI/CD**: Suporte a Vercel (vercel.json)
+5. **Documentação**: Tasks documentadas com PRD e specs
+6. **CORS**: Express configurado com CORS para requisições cross-origin
+
+## Fluxo Típico de Desenvolvimento
+
+1. Desenvolvimento: `cd frontend && npm start` (dev server com proxy)
+2. Backend: `cd server && node index.js` (porta padrão Express)
+3. Build: `npm run build` (prepara para produção)
+4. Deploy: Vercel (baseado em vercel.json)
+
+## Porta Padrão
+- Frontend dev: 4200
+- Backend: não especificado no package.json (verificar index.js)
+
+## Notas Importantes
+
+- O build root instala dependências automaticamente
+- Arquivo `api/index.js` pode conter utilitários compartilhados
+- Tarefas marcadas com `fullstack-done.md` estão completas
+- Proxy development permite requisições do frontend ao backend sem CORS durante dev
+```
 
 ## Workflow da Squad
 
