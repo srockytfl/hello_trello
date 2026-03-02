@@ -18,8 +18,8 @@ A mudança foi realizada de forma cirúrgica, sem over-engineering, editando **a
 ### Detalhes da Alteração (diff)
 
 ```diff
-- --blue: #3B82F6;      /* Azul (anterior) */
-- --blue-dark: #2563EB; /* Azul escuro (anterior) */
+- --blue: #FFD700;      /* Dourado (anterior) */
+- --blue-dark: #D4AF00; /* Dourado escuro (anterior) */
 + --blue: #FF69B4;      /* Hot Pink */
 + --blue-dark: #E91E8C; /* Deep Pink (hover/dark state) */
 ```
@@ -56,7 +56,7 @@ Nenhuma alteração no backend foi necessária — a US-10 é exclusivamente de 
 |---|---|
 | 1. Cor alterada para rosa (#FF69B4) | ✅ |
 | 2. Mudança visível em todos os componentes afetados | ✅ (via variável CSS global) |
-| 3. Legibilidade e contraste adequado mantidos | ✅ (texto claro `#CBD5E1` / `#F1F5F9` sobre rosa) |
+| 3. Legibilidade e contraste adequado mantidos | ✅ (texto escuro `#111111` sobre rosa garante contraste WCAG AA) |
 | 4. Sem erros de console / warnings | ✅ (apenas edição de valores CSS) |
 
 ---
