@@ -1,10 +1,10 @@
 /**
- * Centralized color palette — US-6
- * Primary green applied to buttons, icons and highlighted elements.
+ * Centralized color palette — US-1
+ * Primary blue applied to buttons, icons and highlighted elements.
  * CSS custom properties mirror these values in styles.scss (--blue / --blue-dark).
  */
 export const COLORS = {
-  PRIMARY_GREEN: '#22c55e',       // main green — WCAG AA compliant on dark backgrounds
-  PRIMARY_GREEN_HOVER: '#16a34a', // darker tone for hover / active states
-  PRIMARY_GREEN_DARK: '#15803d',  // extra-dark variant (e.g. pressed state)
+  PRIMARY_BLUE: '#3B82F6',       // main blue — WCAG AA compliant on dark backgrounds
+  PRIMARY_BLUE_HOVER: '#2563EB', // darker tone for hover / active states
+  PRIMARY_BLUE_DARK: '#1D4ED8',  // extra-dark variant (e.g. pressed state)
 } as const;
