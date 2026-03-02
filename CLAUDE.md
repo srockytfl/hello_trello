@@ -1,116 +1,95 @@
 ```markdown
-# hello-trello - System Prompt para Agentes IA
+# Hello Trello - System Prompt para Agentes de IA
 
 ## Stack & Tecnologias
 
-- **Frontend**: Angular 17.3.0 + TypeScript 5.4.2 + SCSS
-- **Backend**: Node.js + Express 5.2.1
-- **Package Manager**: npm
-- **Testing**: Jasmine/Karma (frontend)
-- **Build/Deploy**: Vercel
+- **Frontend:** Angular 17.3.0, TypeScript 5.4.2, RxJS 7.8.0, SCSS
+- **Backend:** Node.js, Express 5.2.1, CORS
+- **Testes:** Jasmine 5.1.0, Karma 6.4.0
+- **Build:** Angular CLI 17.3.17, npm
+- **Deploy:** Vercel (vercel.json configurado)
 
 ## Estrutura do Projeto
 
 ```
 hello-trello/
-├── frontend/              # Aplicação Angular
+├── frontend/              # Aplicação Angular SPA
 │   ├── src/
 │   │   ├── app/          # Componentes e lógica
 │   │   ├── assets/       # Recursos estáticos
-│   │   ├── main.ts       # Ponto de entrada
-│   │   ├── index.html
-│   │   └── styles.scss   # Estilos globais
+│   │   ├── styles.scss   # Estilos globais
+│   │   └── main.ts       # Entry point
 │   ├── angular.json      # Configuração Angular
-│   ├── tsconfig.json     # Configuração TypeScript
-│   └── proxy.conf.json   # Proxy para backend em dev
-├── server/               # API Express
-│   └── index.js          # Servidor principal
-├── api/                  # Utilitários/helpers API
-├── tasks/                # Documentação de User Stories
-│   └── {US-number}/      # Pasta por tarefa
-└── package.json          # Root config
+│   ├── tsconfig.json     # TypeScript config
+│   └── proxy.conf.json   # Proxy para API
+├── server/                # Servidor Express
+│   └── index.js          # Entrada do backend
+├── api/                   # Utilitários/helpers API
+│   └── index.js
+├── tasks/                 # Documentação de User Stories
+│   └── {US-number}/      # PRD, specs, fullstack-done
+└── package.json          # Scripts raiz
 ```
 
-## Scripts Disponíveis
+## Scripts Principais
 
-### Root
-- `npm run build` - Instala deps frontend, build frontend, instala deps server
-- `npm start` - Inicia servidor Express (production)
-- `start.sh` - Script bash de inicialização
+```bash
+npm run build    # Instala deps e builda frontend + server
+npm start        # Inicia servidor (cd server && node index.js)
 
-### Frontend
-- `npm start` - Inicia dev server (ng serve, porta 4200)
-- `npm run build` - Build otimizado para produção
-- `npm run watch` - Watch mode para desenvolvimento
-- `npm test` - Executa testes (Jasmine/Karma)
+# Frontend (em frontend/):
+npm start        # ng serve (desenvolvimento)
+npm run build    # ng build (produção)
+npm run watch    # Build com watch mode
+npm test         # Testes com Karma/Jasmine
+```
 
 ## Convenções do Projeto
 
-### Nomenclatura
-- Tasks: `US-{número}-{descrição}` (ex: `US-14-trocar-titulo-para-teste-1`)
-- Versão: 1.0.0
+- **User Stories:** Organizadas em `tasks/{US-number}/` com:
+  - `US-{number}-prd.md` - Requisitos
+  - `US-{number}-spec.md` - Especificação técnica
+  - `US-{number}-fullstack-done.md` - Checklist de conclusão
+  - Arquivos `.txt` com tarefas específicas
+- **Naming:** Componentes Angular em kebab-case
+- **Estilos:** SCSS com arquivos globais em `src/styles.scss`
 
-### Estrutura de Tasks
-Cada task em `tasks/{numero}/` contém:
-- `US-X-fullstack-done.md` - Checklist de conclusão
-- `US-X-prd.md` - Product Requirements (quando aplicável)
-- `US-X-spec.md` - Especificação técnica (quando aplicável)
-- `US-X-*.txt` - Requisitos/descrição da tarefa
+## Padrões & Boas Práticas
 
-### Tipo de Aplicação
-Aplicação web estilo Trello com:
-- Mudanças de cores e títulos
-- Layout com header e footer
-- Ícone de usuário no header
-- Rodapé com copyright
+1. **Separação Frontend/Backend:**
+   - Frontend comunica com backend via proxy (`proxy.conf.json`)
+   - Backend expõe API em Express
 
-## Boas Práticas Detectadas
+2. **TypeScript:** Usado em produção no frontend
 
-1. **Monorepo**: Frontend e backend separados com dependências isoladas
-2. **TypeScript**: Tipagem forte no frontend
-3. **Proxy Development**: `proxy.conf.json` redireciona requisições para backend em dev
-4. **CI/CD**: Suporte a Vercel (vercel.json)
-5. **Documentação**: Tasks documentadas com PRD e specs
-6. **CORS**: Express configurado com CORS para requisições cross-origin
+3. **Documentação:** Cada US inclui PRD e spec antes da implementação
 
-## Fluxo Típico de Desenvolvimento
+4. **Deploy:** Configurado para Vercel
 
-1. Desenvolvimento: `cd frontend && npm start` (dev server com proxy)
-2. Backend: `cd server && node index.js` (porta padrão Express)
-3. Build: `npm run build` (prepara para produção)
-4. Deploy: Vercel (baseado em vercel.json)
+5. **Dependencies:** Lock files (`package-lock.json`) versionados
 
-## Porta Padrão
-- Frontend dev: 4200
-- Backend: não especificado no package.json (verificar index.js)
+## Fluxo de Desenvolvimento
 
-## Notas Importantes
+1. US criada em `tasks/{número}/` com PRD e spec
+2. Implementação no frontend (`src/app/`) e/ou backend (`server/`)
+3. Testes e build via `npm run build`
+4. Marcação como completa em `fullstack-done.md`
 
-- O build root instala dependências automaticamente
-- Arquivo `api/index.js` pode conter utilitários compartilhados
-- Tarefas marcadas com `fullstack-done.md` estão completas
-- Proxy development permite requisições do frontend ao backend sem CORS durante dev
+## Informações Úteis
+
+- **Versão atual:** 1.0.0
+- **Node/npm:** Necessário para instalar e rodar
+- **TypeScript:** Configurado tanto para app quanto para specs
+- **CORS habilitado** no servidor para requisições frontend
 ```
 
 ## Workflow da Squad
 
-A squad executa os agentes na seguinte ordem:
+Spec-Driven Development (SDD):
 
-1. **PRD**
-2. **Spec**
-3. **Fullstack**
-4. **PR**
+1. **SDD Spec** — Define O QUE fazer
+2. **SDD Plan** — Define COMO fazer
+3. **SDD Execute** — Implementa o codigo
+4. **SDD Review** — Revisa e abre PR
 
-Fluxo: PRD → Spec → Fullstack → PR
-
-### Resumo de tempo
-
-Ao final do fluxo, exibir tabela com tempos de cada agente:
-
-| Agente | Duracao (mm:ss) |
-|--------|------------------|
-| PRD | XX:XX |
-| Spec | XX:XX |
-| Fullstack | XX:XX |
-| PR | XX:XX |
-| **Total** | **XX:XX** |
+Fluxo: SDD Spec → SDD Plan → SDD Execute → SDD Review
