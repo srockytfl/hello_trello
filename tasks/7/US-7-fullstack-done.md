@@ -1,7 +1,7 @@
 # US-7 — Trocar cor para amarelo — Implementação Fullstack
 
 ## Resumo
-Atualização visual da cor primária da aplicação de rosa (#FF69B4) para amarelo (#FFD700),
+Atualização visual da cor primária da aplicação de azul (#3B82F6) para amarelo (#FFD700),
 conforme critérios de aceitação da US-7. Mudança aplicada via variável CSS `--blue` em
 `styles.scss`, propagando automaticamente para todos os elementos que a utilizam.
 
@@ -14,15 +14,16 @@ Nenhuma — a US-7 é exclusivamente frontend (CSS/SCSS). Os endpoints existente
 
 | Arquivo | Alteração |
 |---------|-----------|
-| `frontend/src/styles.scss` | `--blue`: `#FF69B4` → `#FFD700`; `--blue-dark`: `#E91E8C` → `#D4AF00` |
-| `frontend/src/app/pages/login/login.component.ts` | `.btn-login { color }`: `#ffffff` → `#111111` (contraste WCAG AA) |
-| `frontend/src/app/pages/todos/todos.component.ts` | `.btn-add { color }`: `#ffffff` → `#111111`; `.checkbox .material-icons-round { color }`: `#ffffff` → `#111111` |
+| `frontend/src/styles.scss` | `--blue`: `#3B82F6` → `#FFD700`; `--blue-dark`: `#2563EB` → `#D4AF00` |
+
+> Os componentes `login.component.ts` e `todos.component.ts` já possuíam `color: #111111`
+> nos botões e checkbox, garantindo contraste WCAG AA sobre o fundo amarelo.
 
 ## Elementos Afetados pela Mudança de `--blue`
 
 - **Botão "Entrar"** (login) — fundo amarelo (#FFD700), hover (#D4AF00)
 - **Botão "Adicionar"** (todos) — fundo amarelo (#FFD700), hover (#D4AF00)
-- **Checkbox marcado** — fundo e borda amarelos, ícone escuro
+- **Checkbox marcado** — fundo e borda amarelos, ícone escuro (#111111)
 - **Filtro ativo** — borda inferior amarela
 - **Input com foco** — borda amarela
 - **Ícone do logo** (`.material-icons-round` no header) — amarelo
