@@ -77,7 +77,7 @@ Bash: ~/bin/gh issue comment <N> --body "$(cat tasks/<N>/US-<N>-prd.md)"
 - Liste duvidas que precisam validacao
 - Nao defina solucao tecnica
 - Nao assumir API, UI ou arquitetura
-- Mantenha simples — este e um POC, nao um produto enterprise
+- Mantenha simples — prefira solucoes diretas e claras
 - Foque no happy path e no erro principal
 - Nao invente funcionalidades que a issue nao pede
 

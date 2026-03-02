@@ -106,8 +106,8 @@ Definir:
 - Nao resolver duvidas com suposicoes silenciosas
 - Declare suposicoes explicitamente
 - Liste duvidas tecnicas em aberto
-- Mantenha simples — este e um POC
-- Dados em memoria — sem banco
+- Mantenha simples — prefira solucoes diretas e claras
+- Banco MySQL — persistencia real com tabelas estruturadas
 - Nao redesenhar arquitetura existente
 - Evitar over-engineering
 - Se o PRD nao exige backend → `backend: nao`
