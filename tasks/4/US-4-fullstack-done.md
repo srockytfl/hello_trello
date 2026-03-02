@@ -2,13 +2,19 @@
 
 ## Resumo
 
-Alteração puramente visual (frontend). Nenhuma mudança de API necessária.
+Alteração puramente visual (frontend). A cor primária foi trocada de rosa/pink (`#FF69B4`) para laranja (`#FF9500`) via variáveis CSS globais. Nenhuma mudança de API necessária.
 
 ## Arquivos Modificados
 
 | Arquivo | Tipo | Alteração |
 |---------|------|-----------|
-| `frontend/src/styles.scss` | CSS Global | Variável `--blue` trocada de amarelo (`#FFD700`) para laranja (`#FF9500`); `--blue-dark` de `#D4AF00` para `#E08400` |
+| `frontend/src/styles.scss` | CSS Global | `--blue` trocado de `#FF69B4` (pink) → `#FF9500` (orange); `--blue-dark` de `#E91E8C` → `#E68500` |
+
+## Arquivos Criados
+
+| Arquivo | Tipo | Descrição |
+|---------|------|-----------|
+| `frontend/src/app/shared/colors.ts` | TypeScript | Constante centralizada `COLORS` com `PRIMARY_ORANGE`, `PRIMARY_ORANGE_HOVER`, `PRIMARY_ORANGE_DARK` |
 
 ## Detalhes das Alterações
 
@@ -18,27 +24,37 @@ Variáveis CSS globais atualizadas em `:root`:
 
 ```scss
 /* Antes */
---blue: #FFD700;      /* amarelo — cor primária anterior */
---blue-dark: #D4AF00; /* amarelo escuro — hover anterior */
+--blue: #FF69B4;      /* pink — cor primária anterior */
+--blue-dark: #E91E8C; /* pink escuro — hover anterior */
 
 /* Depois */
---blue: #FF9500;      /* laranja primário */
---blue-dark: #E08400; /* laranja escuro — hover */
+--blue: #FF9500;       /* primary orange — US-4 */
+--blue-dark: #E68500;  /* primary orange hover/active — US-4 */
 ```
 
 A variável mantém o nome `--blue` por nomenclatura histórica do projeto; seu valor passa a ser laranja (#FF9500). Todos os elementos que referenciam `var(--blue)` e `var(--blue-dark)` passam automaticamente a exibir laranja:
 
-- Botão "Entrar" (login) — background + hover
-- Botão "Adicionar" (todos) — background + hover
-- Borda de foco nos inputs (login e todos)
-- Indicador da aba ativa nos filtros (todos)
-- Checkbox marcado (todos)
-- Ícone do logo (todos)
+- **LoginComponent** — botão "Entrar" (background + hover), foco dos inputs
+- **TodosComponent** — botão "Adicionar", checkbox marcado, aba de filtro ativa, ícone do logo, foco dos inputs
+- **ProfileComponent** — avatar grande, ícone de settings, ícones de destaque (notifications, palette, security, language)
+- **UserAvatarComponent** — avatar no header
+
+### `frontend/src/app/shared/colors.ts`
+
+Constante TypeScript centralizada criada conforme spec:
+
+```typescript
+export const COLORS = {
+  PRIMARY_ORANGE: '#FF9500',
+  PRIMARY_ORANGE_HOVER: '#E68500',
+  PRIMARY_ORANGE_DARK: '#CC7A00',
+} as const;
+```
 
 ### Contraste / Acessibilidade
 
-Os botões primários já usavam `color: #111111` como cor de texto antes dessa alteração.
-Contraste de `#111111` sobre `#FF9500` ≈ **8.6:1** — aprovado no WCAG AA (mínimo 4.5:1).
+- Texto `#111111` sobre botão laranja `#FF9500` → contraste ≈ **8.6:1** — aprovado WCAG AAA ✅
+- Laranja `#FF9500` sobre fundo escuro `#0A1A0A` → contraste > 4.5:1 — aprovado WCAG AA ✅
 
 Nenhum ajuste adicional de texto foi necessário.
 
@@ -47,15 +63,17 @@ Nenhum ajuste adicional de texto foi necessário.
 | # | Critério | Status |
 |---|----------|--------|
 | 1 | Botões primários exibem cor laranja (#FF9500) | ✅ |
-| 2 | Laranja aplicado consistentemente via variável CSS | ✅ |
+| 2 | Laranja aplicado consistentemente em todos os elementos de destaque | ✅ |
 | 3 | Contraste texto/fundo ≥ 4.5:1 (WCAG AA) | ✅ (~8.6:1) |
-| 4 | Cor definida em variável CSS reutilizável (`--blue`) | ✅ |
+| 4 | Cor definida em variável/constante reutilizável (`--blue` CSS + `COLORS` TS) | ✅ |
 
 ## Endpoints de API
 
 N/A — alteração visual apenas.
 
-## Páginas / Componentes Afetados
+## Páginas / Componentes Afetados (sem modificação de código nos componentes)
 
-- `LoginComponent` — botão "Entrar", bordas de foco nos inputs
-- `TodosComponent` — botão "Adicionar", checkbox, filtro ativo, ícone do logo
+- `LoginComponent` (`/login`) — botão "Entrar", bordas de foco nos inputs
+- `TodosComponent` (`/todos`) — botão "Adicionar", checkbox, filtro ativo, ícone do logo
+- `ProfileComponent` (`/profile`) — avatar, ícones de destaque, ícone de settings
+- `UserAvatarComponent` — avatar no header
