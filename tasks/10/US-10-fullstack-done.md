@@ -31,7 +31,7 @@ A mudança foi realizada de forma cirúrgica, sem over-engineering, editando **a
 Como todos os componentes consomem as variáveis CSS centralizadas em `:root`, a mudança propagou automaticamente para:
 
 ### `login.component.ts`
-- **Botão "Entrar"** (`btn-login`): background agora em rosa `#FF69B4`, hover em `#C74F8C`
+- **Botão "Entrar"** (`btn-login`): background agora em rosa `#FF69B4`, hover em `#E91E8C`
 - **Input focus**: border-color de foco agora em rosa
 
 ### `todos.component.ts`
@@ -56,7 +56,7 @@ Nenhuma alteração no backend foi necessária — a US-10 é exclusivamente de 
 |---|---|
 | 1. Cor alterada para rosa (#FF69B4) | ✅ |
 | 2. Mudança visível em todos os componentes afetados | ✅ (via variável CSS global) |
-| 3. Legibilidade e contraste adequado mantidos | ✅ (texto escuro `#111111` sobre rosa) |
+| 3. Legibilidade e contraste adequado mantidos | ✅ (texto claro `#CBD5E1` / `#F1F5F9` sobre rosa) |
 | 4. Sem erros de console / warnings | ✅ (apenas edição de valores CSS) |
 
 ---
