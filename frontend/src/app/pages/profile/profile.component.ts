@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 
 interface UserProfile {
@@ -12,6 +13,7 @@ interface UserProfile {
 @Component({
   selector: 'app-profile',
   standalone: true,
+  imports: [ReactiveFormsModule],
   template: `
     <div class="profile-page">
 
@@ -37,50 +39,91 @@ interface UserProfile {
         </div>
       </div>
 
-      <!-- Settings Section -->
-      <div class="settings-section">
+      <!-- Edit Form -->
+      <div class="form-section">
         <h3>
-          <span class="material-icons-round">settings</span>
-          Settings
+          <span class="material-icons-round">edit</span>
+          Editar Perfil
         </h3>
 
-        <div class="settings-list">
-          <div class="settings-item">
-            <span class="material-icons-round icon-accent">notifications</span>
-            <div class="settings-text">
-              <strong>Notificações</strong>
-              <p>Gerenciar preferências de notificação</p>
-            </div>
-            <span class="material-icons-round arrow">chevron_right</span>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+          <!-- Name -->
+          <div class="field" [class.has-error]="isInvalid('name')">
+            <label for="name">
+              Nome
+              <span class="required">*</span>
+            </label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Seu nome completo"
+              autocomplete="name"
+            />
+            @if (isInvalid('name')) {
+              <span class="field-error">
+                @if (form.get('name')?.errors?.['required']) { Nome é obrigatório. }
+                @else if (form.get('name')?.errors?.['minlength']) { Mínimo de 2 caracteres. }
+              </span>
+            }
           </div>
 
-          <div class="settings-item">
-            <span class="material-icons-round icon-accent">palette</span>
-            <div class="settings-text">
-              <strong>Aparência</strong>
-              <p>Personalizar tema e visualização</p>
-            </div>
-            <span class="material-icons-round arrow">chevron_right</span>
+          <!-- Email -->
+          <div class="field" [class.has-error]="isInvalid('email')">
+            <label for="email">
+              E-mail
+              <span class="required">*</span>
+            </label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="seu@email.com"
+              autocomplete="email"
+            />
+            @if (isInvalid('email')) {
+              <span class="field-error">
+                @if (form.get('email')?.errors?.['required']) { E-mail é obrigatório. }
+                @else if (form.get('email')?.errors?.['email']) { Informe um e-mail válido. }
+              </span>
+            }
           </div>
 
-          <div class="settings-item">
-            <span class="material-icons-round icon-accent">security</span>
-            <div class="settings-text">
-              <strong>Segurança</strong>
-              <p>Senha e autenticação</p>
-            </div>
-            <span class="material-icons-round arrow">chevron_right</span>
+          <!-- Role -->
+          <div class="field">
+            <label for="role">Cargo</label>
+            <input
+              id="role"
+              type="text"
+              formControlName="role"
+              placeholder="Ex: Administrador"
+              autocomplete="organization-title"
+            />
           </div>
 
-          <div class="settings-item">
-            <span class="material-icons-round icon-accent">language</span>
-            <div class="settings-text">
-              <strong>Idioma</strong>
-              <p>Selecionar idioma da interface</p>
+          <!-- Feedback messages -->
+          @if (successMsg()) {
+            <div class="msg msg-success">
+              <span class="material-icons-round">check_circle</span>
+              {{ successMsg() }}
             </div>
-            <span class="material-icons-round arrow">chevron_right</span>
+          }
+          @if (errorMsg()) {
+            <div class="msg msg-error">
+              <span class="material-icons-round">error</span>
+              {{ errorMsg() }}
+            </div>
+          }
+
+          <div class="form-actions">
+            <button type="submit" class="btn-save" [disabled]="saving()">
+              <span class="material-icons-round">save</span>
+              {{ saving() ? 'Salvando...' : 'Salvar Alterações' }}
+            </button>
           </div>
-        </div>
+
+        </form>
       </div>
 
       <!-- Logout -->
@@ -202,8 +245,8 @@ interface UserProfile {
       align-self: flex-start;
     }
 
-    /* ── Settings Section ── */
-    .settings-section {
+    /* ── Edit Form ── */
+    .form-section {
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -222,47 +265,113 @@ interface UserProfile {
       .material-icons-round { font-size: 18px; color: var(--blue); }
     }
 
-    .settings-list { display: flex; flex-direction: column; }
+    form {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-    .settings-item {
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--border);
+      gap: 3px;
+    }
+
+    .required {
+      color: var(--red);
+      font-size: 12px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 9px 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--text-bright);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s;
+
+      &::placeholder { color: var(--muted); opacity: 0.6; }
+      &:focus { border-color: var(--blue); }
+    }
+
+    .field.has-error input {
+      border-color: var(--red);
+      &:focus { border-color: var(--red); }
+    }
+
+    .field-error {
+      font-size: 11px;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ── Feedback messages ── */
+    .msg {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 3px;
+      font-size: 13px;
+      font-weight: 500;
+      .material-icons-round { font-size: 18px; }
+    }
+
+    .msg-success {
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      color: var(--green);
+    }
+
+    .msg-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--red);
+    }
+
+    /* ── Actions ── */
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 4px;
+    }
+
+    .btn-save {
+      padding: 9px 20px;
+      background: var(--blue);
+      border: none;
+      border-radius: 3px;
+      color: #111111;
+      font-size: 13px;
+      font-weight: 500;
       cursor: pointer;
-      transition: background 0.12s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      .material-icons-round { font-size: 16px; }
+      &:hover { background: var(--blue-dark); }
+      &:disabled { opacity: 0.6; cursor: not-allowed; }
 
-      &:last-child { border-bottom: none; }
-      &:hover { background: var(--hover); }
-    }
-
-    .icon-accent {
-      font-size: 20px;
-      color: var(--blue);
-      flex-shrink: 0;
-    }
-
-    .settings-text {
-      flex: 1;
-      min-width: 0;
-
-      strong {
-        display: block;
-        font-size: 13px;
-        color: var(--text-bright);
-        font-weight: 500;
+      @media (max-width: 480px) {
+        width: 100%;
+        justify-content: center;
       }
-      p {
-        font-size: 11px;
-        color: var(--muted);
-        margin-top: 2px;
-      }
-    }
-
-    .arrow {
-      font-size: 18px;
-      color: var(--muted);
     }
 
     /* ── Logout ── */
@@ -286,8 +395,23 @@ interface UserProfile {
 export class ProfileComponent implements OnInit {
   profile = signal<UserProfile>({ name: '', email: '', role: '', joinedAt: '' });
   initials = signal('U');
+  saving = signal(false);
+  successMsg = signal('');
+  errorMsg = signal('');
 
-  constructor(private router: Router, private api: ApiService) {}
+  form: FormGroup;
+
+  constructor(
+    private router: Router,
+    private api: ApiService,
+    private fb: FormBuilder,
+  ) {
+    this.form = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      role: [''],
+    });
+  }
 
   ngOnInit(): void {
     if (!localStorage.getItem('user')) {
@@ -299,9 +423,9 @@ export class ProfileComponent implements OnInit {
       next: (p: UserProfile) => {
         this.profile.set(p);
         this.updateInitials(p.name);
+        this.form.patchValue({ name: p.name, email: p.email, role: p.role });
       },
       error: () => {
-        // Fallback to localStorage data
         const raw = localStorage.getItem('user');
         if (raw) {
           try {
@@ -314,6 +438,7 @@ export class ProfileComponent implements OnInit {
             };
             this.profile.set(fallback);
             this.updateInitials(fallback.name);
+            this.form.patchValue({ name: fallback.name, email: fallback.email, role: fallback.role });
           } catch { /* noop */ }
         }
       },
@@ -327,6 +452,36 @@ export class ProfileComponent implements OnInit {
         ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
         : parts[0].substring(0, 2).toUpperCase();
     this.initials.set(ini);
+  }
+
+  isInvalid(field: string): boolean {
+    const ctrl = this.form.get(field);
+    return !!(ctrl && ctrl.invalid && ctrl.touched);
+  }
+
+  onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.saving.set(true);
+    this.successMsg.set('');
+    this.errorMsg.set('');
+
+    this.api.updateUserProfile(this.form.value).subscribe({
+      next: (updated: UserProfile) => {
+        this.profile.set(updated);
+        this.updateInitials(updated.name);
+        this.successMsg.set('Perfil atualizado com sucesso!');
+        this.saving.set(false);
+        setTimeout(() => this.successMsg.set(''), 4000);
+      },
+      error: () => {
+        this.errorMsg.set('Erro ao atualizar perfil. Tente novamente.');
+        this.saving.set(false);
+      },
+    });
   }
 
   goBack(): void {

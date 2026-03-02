@@ -34,6 +34,27 @@ app.get('/api/user/profile', (req, res) => {
   res.json(userProfile);
 });
 
+app.put('/api/user/profile', (req, res) => {
+  const { name, email, role } = req.body;
+  if (!name || !name.trim()) {
+    return res.status(400).json({ message: 'Nome é obrigatório' });
+  }
+  if (!email || !email.trim()) {
+    return res.status(400).json({ message: 'E-mail é obrigatório' });
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+    return res.status(400).json({ message: 'E-mail inválido' });
+  }
+  userProfile = {
+    ...userProfile,
+    name: name.trim(),
+    email: email.trim(),
+    role: role ? role.trim() : userProfile.role,
+  };
+  res.json(userProfile);
+});
+
 // --- Auth ---
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
