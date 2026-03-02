@@ -2,7 +2,7 @@
 
 ## Resumo
 
-Implementação da mudança do título da aplicação para **"Teste 1"** em todas as camadas da stack (backend, frontend e HTML). O título é exibido dinamicamente via `TitleService` que carrega o valor do endpoint `/api/title`.
+Implementação da mudança do título da aplicação de **"Teste Cores"** para **"Teste 1"** em todas as camadas da stack (backend, frontend e HTML). O título é exibido dinamicamente via `TitleService` que carrega o valor do endpoint `/api/title`.
 
 ---
 
@@ -26,8 +26,8 @@ Implementação da mudança do título da aplicação para **"Teste 1"** em toda
 |---------|-----------|
 | `frontend/src/index.html` | `<title>Teste 1</title>` — título da aba do browser |
 | `frontend/src/app/services/title.service.ts` | Signal inicial e fallback de erro definidos como `'Teste 1'`; consome `GET /api/title` |
-| `frontend/src/app/pages/login/login.component.ts` | Exibe `titleService.appTitle()` como cabeçalho da tela de login |
-| `frontend/src/app/pages/todos/todos.component.ts` | Exibe `titleService.appTitle()` no header da tela principal |
+| `frontend/src/app/pages/login/login.component.ts` | Já exibia `titleService.appTitle()` como cabeçalho (sem alteração necessária) |
+| `frontend/src/app/pages/todos/todos.component.ts` | Já exibia `titleService.appTitle()` no header (sem alteração necessária) |
 
 ---
 
@@ -36,7 +36,7 @@ Implementação da mudança do título da aplicação para **"Teste 1"** em toda
 | Serviço | Arquivo | Responsabilidade |
 |---------|---------|-----------------|
 | `TitleService` | `services/title.service.ts` | Carrega título do backend e o expõe como signal reativo |
-| `ApiService` | `services/api.service.ts` | Método `getTitle()` — `GET /api/title` |
+| `ApiService` | `services/api.service.ts` | Método `getTitle()` — `GET /api/title` (sem alteração) |
 
 ---
 
