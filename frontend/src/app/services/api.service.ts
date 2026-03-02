@@ -36,4 +36,11 @@ export class ApiService {
       `${this.url}/user/profile`
     );
   }
+
+  updateUserProfile(data: { name: string; email: string; role?: string }) {
+    return this.http.put<{ name: string; email: string; role: string; joinedAt: string }>(
+      `${this.url}/user/profile`,
+      data
+    );
+  }
 }

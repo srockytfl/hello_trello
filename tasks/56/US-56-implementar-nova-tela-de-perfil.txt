@@ -1,0 +1,50 @@
+US-56 — Implementar nova tela de perfil
+======================
+
+CONTEXTO
+--------
+Modernizar a experiência do usuário ao gerenciar seu perfil, alinhando-se com o novo design system da aplicação.
+
+HISTORIA
+--------
+Como usuário,
+quero acessar uma nova tela de perfil com formulário atualizado,
+para visualizar e editar minhas informações de forma clara e intuitiva.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. A nova tela deve ser implementada conforme o layout especificado no Figma
+2. Apenas o formulário deve ser alterado, mantendo menu, header e footer sem mudanças
+3. Todos os campos do formulário devem ser funcionais e validáveis
+4. A tela deve ser responsiva e funcionar em dispositivos móveis
+5. Mensagens de sucesso/erro devem ser exibidas após submissão do formulário
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Sem over-engineering
+- Manter compatibilidade com estrutura existente de menu, header e footer
+- Implementar validação de formulário no frontend
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar se a submissão do formulário envia dados corretos para a API
+  - Testar validação de campos obrigatórios
+  - Testar resposta de sucesso/erro da API
+
+E2E:
+  - Preencher formulário com dados válidos e submeter com sucesso
+  - Tentar submeter formulário com campos obrigatórios vazios
+  - Verificar se menu, header e footer permanecem inalterados
+  - Testar responsividade em diferentes tamanhos de tela
+
+REFERENCIA VISUAL (FIGMA)
+-------------------------
+https://www.figma.com/design/ik0Qa30O9oNUy3qelJbQO7/Ferramenta-Trello?node-id=15-6367&p=f&t=vXP7eJaRS9bW1QsA-0
+
+FORA DO ESCOPO
+--------------
+- Alterações no menu, header ou footer
+- Mudanças no layout de navegação principal
+- Implementação de novos endpoints de API (utilizar endpoints existentes)
