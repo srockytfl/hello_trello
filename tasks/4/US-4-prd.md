@@ -1,55 +1,56 @@
 # PRD — US-4: Trocar Cor para Laranja
 
 ## Problema
-Um ou mais elementos visuais da aplicação precisam ser redesenhados em laranja para melhorar a identidade visual, branding ou diferenciação de um componente específico. A cor atual não atende aos requisitos de design do projeto.
+A interface da aplicação atualmente utiliza uma cor diferente que não alinha com a paleta de cores esperada. A alteração da cor para laranja melhorará a consistência visual e a identidade da marca.
 
 ## Objetivo
-Alterar a cor de um ou mais elementos da interface para laranja, alinhando o design visual com os padrões de branding da aplicação.
+Alterar o esquema de cores da aplicação (ou componente específico) para utilizar a cor laranja conforme especificação da marca.
 
 ## Sucesso Esperado
-O elemento visual em questão exibe corretamente a cor laranja em todos os estados (normal, hover, ativo, desabilitado). A mudança é visível em navegadores modernos sem quebrar a acessibilidade de contraste.
+A cor laranja é aplicada corretamente em todos os componentes relevantes, o visual é consistente em diferentes navegadores e dispositivos, e não há regressão visual em outras áreas.
 
 ## Requisitos Funcionais
-1. Identificar qual(is) elemento(s) da interface precisam ser alterados para laranja
-2. Atualizar a cor do elemento(s) no código (CSS, tailwind, ou variáveis de estilo)
-3. Aplicar a mudança em todos os estados relevantes (normal, hover, focus, ativo)
-4. Garantir que a cor laranja selecionada atende aos padrões WCAG de contraste de acessibilidade
+1. Identificar qual(is) componente(s) ou elemento(s) devem ter cor laranja
+2. Atualizar o código de cor (hex/RGB) para laranja em todas as ocorrências
+3. Garantir consistência de tons de laranja em toda a interface (se múltiplos tons forem necessários)
 
 ## Requisitos Não-Funcionais
-- A mudança de cor deve ser consistente com a paleta de cores existente
-- Não deve introduzir regressões visuais em outros componentes relacionados
+- Acessibilidade: garantir contraste adequado entre o laranja e o fundo (WCAG AA mínimo)
+- Performance: mudanças de cor não devem impactar tempo de carregamento
+- Compatibilidade: cor deve renderizar corretamente em navegadores modernos
 
 ## Fluxo do Usuário
-1. Usuário acessa a aplicação
-2. Usuário visualiza o(s) elemento(s) com a nova cor laranja
-3. Ao interagir com o elemento (hover/click), a cor responde apropriadamente
+1. Usuário acessa a página/aplicação
+2. Sistema carrega interface com cor laranja nos componentes especificados
+3. Usuário visualiza a interface com as mudanças de cor aplicadas
 
 ## Critérios de Aceitação
-- [ ] Elemento(s) identificado(s) estão exibindo a cor laranja
-- [ ] A cor laranja é visível e legível em todos os estados do elemento
-- [ ] O contraste da cor atende ao mínimo WCAG AA (4.5:1 para texto)
-- [ ] Nenhuma regressão visual em componentes adjacentes
-- [ ] Teste em navegadores modernos (Chrome, Firefox, Safari)
+- [ ] Cor laranja aplicada em todos os elementos identificados
+- [ ] Documentação do código de cor (hex/RGB) está atualizada
+- [ ] Não há regressão visual em componentes não afetados
+- [ ] Contraste de acessibilidade é adequado (WCAG AA)
+- [ ] Validação visual em múltiplos navegadores (Chrome, Firefox, Safari, Edge)
 
 ## Suposições
-- A cor laranja específica será definida por padrão de design existente (não está explicitada na issue)
-- A mudança é apenas CSS/estilo, sem alteração de lógica funcional
-- Existe apenas um elemento principal a ser alterado (caso haja múltiplos, precisarão ser especificados)
-- Não há necessidade de criar novas componentes, apenas restyle de existentes
+- A cor laranja refere-se a um padrão específico que será definido/validado com o design
+- Não está claro se é uma mudança global ou localizada em componentes específicos
+- Assume-se que não há mudanças no comportamento ou lógica funcional, apenas visual
+- O PRD infere que existe uma paleta de cores/design system da marca
 
 ## Dúvidas em Aberto
-- Qual é o elemento exato que deve ser alterado para laranja? (botão, header, card, ícone, etc.)
-- Qual é o código hexadecimal ou nome da cor laranja a ser usada?
-- Este é um change global (toda a aplicação) ou localizado em uma página/seção específica?
-- Há especificações de design (Figma, mockup) que definem a cor exata?
+- Qual é o código de cor exato (hex/RGB) do laranja a ser utilizado?
+- Quais componentes ou áreas específicas devem ter cor laranja?
+- Há componentes secundários que devem ter tons diferentes de laranja?
+- Esta mudança é global (toda a aplicação) ou localizada?
+- Existe um design system ou guia de estilos que define essa cor?
 
 ## Fora do Escopo
-- Alterar lógica de negócio ou funcionalidade
-- Modificar estrutura HTML ou adicionar novos elementos
-- Refatoração completa do sistema de cores (apenas a mudança para laranja nesta US)
-- Suporte a temas escuros (a menos que explicitamente pedido)
+- Alterar lógica funcional ou comportamento de componentes
+- Redesenhar componentes (apenas mudar cor)
+- Criar novos componentes
+- Alterar tipografia ou dimensões
 
 ## Notas
-- Esta issue é um POC simples de mudança visual
-- Recomenda-se esclarecer quais elementos específicos precisam da mudança antes de iniciar a implementação
-- Se houver um guia de estilo ou paleta de cores definida, usar a cor laranja desse padrão
+- A issue original é breve e requer validação com o design/product sobre quais elementos exatamente devem ter a cor laranja
+- Recomenda-se revisar o design system ou guidelines da marca antes de implementar
+- Pode ser útil criar variáveis CSS/SCSS para a cor laranja a fim de manter consistência futura
