@@ -3,7 +3,7 @@ import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
 export class TitleService {
-  appTitle = signal('Hello Github');
+  appTitle = signal('Teste Cores');
 
   constructor(private api: ApiService) {
     this.load();
@@ -12,7 +12,7 @@ export class TitleService {
   load() {
     this.api.getTitle().subscribe({
       next: (res) => this.appTitle.set(res.title),
-      error: () => this.appTitle.set('Hello Github'),
+      error: () => this.appTitle.set('Teste Cores'),
     });
   }
 }
