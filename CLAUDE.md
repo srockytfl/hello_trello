@@ -1,95 +1,96 @@
-```markdown
-# Hello Trello - System Prompt para Agentes de IA
+# Sistema - hello_trello
 
-## Stack & Tecnologias
+## 🏗 Stack & Tecnologias
 
-- **Frontend:** Angular 17.3.0, TypeScript 5.4.2, RxJS 7.8.0, SCSS
+- **Frontend:** Angular 17.3.0, TypeScript 5.4.2, SCSS
 - **Backend:** Node.js, Express 5.2.1, CORS
-- **Testes:** Jasmine 5.1.0, Karma 6.4.0
-- **Build:** Angular CLI 17.3.17, npm
-- **Deploy:** Vercel (vercel.json configurado)
+- **Testes:** Jasmine 5.1.0, Karma, Karma Coverage
+- **Build & Deploy:** Angular CLI, Vercel (vercel.json detectado)
 
-## Estrutura do Projeto
+## 📁 Estrutura Principal
 
 ```
-hello-trello/
-├── frontend/              # Aplicação Angular SPA
+hello_trello/
+├── frontend/          # Aplicação Angular
 │   ├── src/
-│   │   ├── app/          # Componentes e lógica
-│   │   ├── assets/       # Recursos estáticos
-│   │   ├── styles.scss   # Estilos globais
-│   │   └── main.ts       # Entry point
-│   ├── angular.json      # Configuração Angular
-│   ├── tsconfig.json     # TypeScript config
-│   └── proxy.conf.json   # Proxy para API
-├── server/                # Servidor Express
-│   └── index.js          # Entrada do backend
-├── api/                   # Utilitários/helpers API
-│   └── index.js
-├── tasks/                 # Documentação de User Stories
-│   └── {US-number}/      # PRD, specs, fullstack-done
-└── package.json          # Scripts raiz
+│   │   ├── app/       # Componentes e módulos
+│   │   ├── assets/    # Recursos estáticos
+│   │   └── styles/    # SCSS global
+│   ├── angular.json   # Configuração Angular
+│   └── package.json   # Dependências frontend
+├── server/            # Backend Express
+│   ├── index.js       # Servidor principal
+│   └── package.json   # Dependências backend
+├── api/               # Scripts/utilitários API
+├── tasks/             # Documentação de User Stories
+│   └── US-{N}/        # (US-1, US-2, etc.)
+└── package.json       # Root (scripts de build/start)
 ```
 
-## Scripts Principais
+## 🚀 Comandos Úteis
 
-```bash
-npm run build    # Instala deps e builda frontend + server
-npm start        # Inicia servidor (cd server && node index.js)
+| Comando | Descrição |
+|---------|-----------|
+| `npm run build` | Build frontend + instala dependências server |
+| `npm start` | Inicia servidor Express |
+| `cd frontend && ng serve` | Dev server Angular (porta 4200) |
+| `cd frontend && ng build` | Build produção frontend |
+| `cd frontend && ng test` | Executa testes Jasmine |
+| `node server/index.js` | Inicia backend direto |
 
-# Frontend (em frontend/):
-npm start        # ng serve (desenvolvimento)
-npm run build    # ng build (produção)
-npm run watch    # Build com watch mode
-npm test         # Testes com Karma/Jasmine
-```
+## 📋 Convenções do Projeto
 
-## Convenções do Projeto
+- **User Stories:** Numeradas (US-1, US-2, ..., US-36)
+- **Documentação por Task:** 
+  - `prd.md` - Product Requirements
+  - `spec.md` - Especificação técnica
+  - `fullstack-done.md` - Checklist de conclusão
+  - `execute-done.md` - Execução concluída
+  - `review.md` - Revisão de código
+  - `.txt` - Descrições de features
+- **Proxy de Desenvolvimento:** `proxy.conf.json` para reqs ao backend
 
-- **User Stories:** Organizadas em `tasks/{US-number}/` com:
-  - `US-{number}-prd.md` - Requisitos
-  - `US-{number}-spec.md` - Especificação técnica
-  - `US-{number}-fullstack-done.md` - Checklist de conclusão
-  - Arquivos `.txt` com tarefas específicas
-- **Naming:** Componentes Angular em kebab-case
-- **Estilos:** SCSS com arquivos globais em `src/styles.scss`
+## ✅ Boas Práticas Observadas
 
-## Padrões & Boas Práticas
+- Separação clara frontend/backend (monorepo)
+- Documentação estruturada por US (PRD → Spec → Review → Done)
+- Build automatizado com npm scripts na raiz
+- Testes configurados para frontend (Karma + Jasmine)
+- CORS habilitado no backend
+- TypeScript em todo frontend
+- Versionamento (1.0.0)
 
-1. **Separação Frontend/Backend:**
-   - Frontend comunica com backend via proxy (`proxy.conf.json`)
-   - Backend expõe API em Express
+## 🎨 Features Identificadas
 
-2. **TypeScript:** Usado em produção no frontend
+- Sistema de cores configurável (azul, rosa, laranja, amarelo, verde)
+- Header com ícone de usuário
+- Footer com copyright e título customizável
+- Comportamento de responsividade (footer intermitente)
+- Integração PO → Dev → PR workflow
 
-3. **Documentação:** Cada US inclui PRD e spec antes da implementação
+## 🔗 Proxy & Desenvolvimento
 
-4. **Deploy:** Configurado para Vercel
-
-5. **Dependencies:** Lock files (`package-lock.json`) versionados
-
-## Fluxo de Desenvolvimento
-
-1. US criada em `tasks/{número}/` com PRD e spec
-2. Implementação no frontend (`src/app/`) e/ou backend (`server/`)
-3. Testes e build via `npm run build`
-4. Marcação como completa em `fullstack-done.md`
-
-## Informações Úteis
-
-- **Versão atual:** 1.0.0
-- **Node/npm:** Necessário para instalar e rodar
-- **TypeScript:** Configurado tanto para app quanto para specs
-- **CORS habilitado** no servidor para requisições frontend
-```
+- Dev server Angular conecta ao backend via `proxy.conf.json`
+- Reqs em localhost:4200 são repassadas ao servidor Express
+- Certifique-se que server está rodando antes de `ng serve`
 
 ## Workflow da Squad
 
-Spec-Driven Development (SDD):
+A squad executa os agentes na seguinte ordem:
 
-1. **SDD Spec** — Define O QUE fazer
-2. **SDD Plan** — Define COMO fazer
-3. **SDD Execute** — Implementa o codigo
-4. **SDD Review** — Revisa e abre PR
+1. **PO**
+2. **Fullstack**
+3. **PR**
 
-Fluxo: SDD Spec → SDD Plan → SDD Execute → SDD Review
+Fluxo: PO → Fullstack → PR
+
+### Resumo de tempo
+
+Ao final do fluxo, exibir tabela com tempos de cada agente:
+
+| Agente | Duracao (mm:ss) |
+|--------|------------------|
+| PO | XX:XX |
+| Fullstack | XX:XX |
+| PR | XX:XX |
+| **Total** | **XX:XX** |
