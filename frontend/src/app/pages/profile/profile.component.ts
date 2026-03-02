@@ -15,52 +15,63 @@ interface UserProfile {
   standalone: true,
   imports: [ReactiveFormsModule],
   template: `
-    <div class="profile-page">
-
-      <!-- Page Header -->
-      <div class="page-header">
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="header-left">
         <button class="btn-back" (click)="goBack()">
           <span class="material-icons-round">arrow_back</span>
-          Voltar
         </button>
-        <h1>Perfil do Usuário</h1>
+        <div class="page-icon">
+          <span class="material-icons-round">person_outline</span>
+        </div>
+        <h1 class="page-title">Perfil do Usuário</h1>
       </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content-area">
 
       <!-- Profile Card -->
       <div class="profile-card">
-        <div class="avatar-large">{{ initials() }}</div>
+        <div class="avatar-ring">
+          <div class="avatar-large">{{ initials() }}</div>
+        </div>
         <div class="user-meta">
-          <h2>{{ profile().name }}</h2>
-          <p class="email">
+          <h2 class="user-name">{{ profile().name }}</h2>
+          <p class="user-email">
             <span class="material-icons-round">email</span>
             {{ profile().email }}
           </p>
-          <span class="role-badge">{{ profile().role }}</span>
+          @if (profile().role) {
+            <span class="role-badge">{{ profile().role }}</span>
+          }
         </div>
       </div>
 
       <!-- Edit Form -->
-      <div class="form-section">
-        <h3>
-          <span class="material-icons-round">edit</span>
-          Editar Perfil
-        </h3>
+      <div class="form-card">
+        <div class="form-header">
+          <span class="material-icons-round">edit_note</span>
+          <h3>Editar Informações</h3>
+        </div>
 
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate class="form-body">
 
           <!-- Name -->
           <div class="field" [class.has-error]="isInvalid('name')">
             <label for="name">
-              Nome
-              <span class="required">*</span>
+              Nome <span class="required">*</span>
             </label>
-            <input
-              id="name"
-              type="text"
-              formControlName="name"
-              placeholder="Seu nome completo"
-              autocomplete="name"
-            />
+            <div class="input-wrap" [class.focused]="false">
+              <span class="material-icons-round field-icon">badge</span>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                placeholder="Seu nome completo"
+                autocomplete="name"
+              />
+            </div>
             @if (isInvalid('name')) {
               <span class="field-error">
                 @if (form.get('name')?.errors?.['required']) { Nome é obrigatório. }
@@ -72,16 +83,18 @@ interface UserProfile {
           <!-- Email -->
           <div class="field" [class.has-error]="isInvalid('email')">
             <label for="email">
-              E-mail
-              <span class="required">*</span>
+              E-mail <span class="required">*</span>
             </label>
-            <input
-              id="email"
-              type="email"
-              formControlName="email"
-              placeholder="seu@email.com"
-              autocomplete="email"
-            />
+            <div class="input-wrap">
+              <span class="material-icons-round field-icon">email</span>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="seu@email.com"
+                autocomplete="email"
+              />
+            </div>
             @if (isInvalid('email')) {
               <span class="field-error">
                 @if (form.get('email')?.errors?.['required']) { E-mail é obrigatório. }
@@ -93,32 +106,35 @@ interface UserProfile {
           <!-- Role -->
           <div class="field">
             <label for="role">Cargo</label>
-            <input
-              id="role"
-              type="text"
-              formControlName="role"
-              placeholder="Ex: Administrador"
-              autocomplete="organization-title"
-            />
+            <div class="input-wrap">
+              <span class="material-icons-round field-icon">work_outline</span>
+              <input
+                id="role"
+                type="text"
+                formControlName="role"
+                placeholder="Ex: Administrador"
+                autocomplete="organization-title"
+              />
+            </div>
           </div>
 
-          <!-- Feedback messages -->
+          <!-- Feedback -->
           @if (successMsg()) {
             <div class="msg msg-success">
-              <span class="material-icons-round">check_circle</span>
+              <span class="material-icons-round">check_circle_outline</span>
               {{ successMsg() }}
             </div>
           }
           @if (errorMsg()) {
             <div class="msg msg-error">
-              <span class="material-icons-round">error</span>
+              <span class="material-icons-round">error_outline</span>
               {{ errorMsg() }}
             </div>
           }
 
           <div class="form-actions">
             <button type="submit" class="btn-save" [disabled]="saving()">
-              <span class="material-icons-round">save</span>
+              <span class="material-icons-round">{{ saving() ? 'sync' : 'save' }}</span>
               {{ saving() ? 'Salvando...' : 'Salvar Alterações' }}
             </button>
           </div>
@@ -126,39 +142,33 @@ interface UserProfile {
         </form>
       </div>
 
-      <!-- Logout -->
-      <button class="btn-logout" (click)="logout()">
-        <span class="material-icons-round">logout</span>
-        Sair da conta
-      </button>
-
-    </div>
+    </main>
   `,
   styles: [`
-    :host { display: flex; flex-direction: column; flex: 1; min-height: 0; }
-
-    .profile-page {
-      flex: 1;
-      max-width: 560px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 24px 16px 32px;
+    :host {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
     }
 
     /* ── Page Header ── */
     .page-header {
       display: flex;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: var(--header-height, 52px);
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
     }
 
-    h1 {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-bright);
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .btn-back {
@@ -166,14 +176,50 @@ interface UserProfile {
       border: none;
       color: var(--muted);
       cursor: pointer;
+      padding: 6px;
+      border-radius: var(--radius-sm, 4px);
       display: flex;
       align-items: center;
-      gap: 4px;
-      font-size: 13px;
-      padding: 4px 8px;
-      border-radius: 3px;
-      .material-icons-round { font-size: 18px; }
-      &:hover { color: var(--text-bright); background: var(--hover); }
+      transition: background 0.15s, color 0.15s;
+
+      .material-icons-round { font-size: 20px; }
+
+      &:hover {
+        color: var(--text-bright);
+        background: var(--hover);
+      }
+    }
+
+    .page-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius, 8px);
+      background: rgba(87, 157, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .material-icons-round { font-size: 18px; color: var(--blue); }
+    }
+
+    .page-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-bright);
+      letter-spacing: -0.2px;
+    }
+
+    /* ── Content Area ── */
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
     }
 
     /* ── Profile Card ── */
@@ -183,29 +229,30 @@ interface UserProfile {
       gap: 20px;
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius, 8px);
       padding: 24px;
+    }
+
+    .avatar-ring {
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      flex-shrink: 0;
     }
 
     .avatar-large {
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      background: var(--blue);
-      color: #111111;
+      background: var(--bg3);
+      border: 3px solid var(--bg2);
+      color: var(--text-bright);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 22px;
       font-weight: 700;
       letter-spacing: 1px;
-      flex-shrink: 0;
-
-      @media (max-width: 480px) {
-        width: 52px;
-        height: 52px;
-        font-size: 18px;
-      }
     }
 
     .user-meta {
@@ -215,57 +262,61 @@ interface UserProfile {
       min-width: 0;
     }
 
-    h2 {
+    .user-name {
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-bright);
-
-      @media (max-width: 480px) {
-        font-size: 15px;
-      }
+      letter-spacing: -0.3px;
     }
 
-    .email {
+    .user-email {
       display: flex;
       align-items: center;
       gap: 6px;
       font-size: 12px;
       color: var(--muted);
+
       .material-icons-round { font-size: 14px; }
     }
 
     .role-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      background: var(--hover);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      background: rgba(87, 157, 255, 0.1);
+      border: 1px solid rgba(87, 157, 255, 0.25);
+      border-radius: 20px;
       font-size: 11px;
-      color: var(--text);
+      font-weight: 500;
+      color: var(--blue);
       align-self: flex-start;
     }
 
-    /* ── Edit Form ── */
-    .form-section {
+    /* ── Form Card ── */
+    .form-card {
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius, 8px);
       overflow: hidden;
     }
 
-    h3 {
+    .form-header {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-bright);
-      padding: 16px 20px 12px;
+      gap: 10px;
+      padding: 16px 20px;
       border-bottom: 1px solid var(--border);
-      .material-icons-round { font-size: 18px; color: var(--blue); }
+
+      .material-icons-round { font-size: 20px; color: var(--blue); }
+
+      h3 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-bright);
+      }
     }
 
-    form {
+    .form-body {
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -280,37 +331,57 @@ interface UserProfile {
 
     label {
       font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
+      font-weight: 600;
+      color: var(--text);
       display: flex;
       align-items: center;
       gap: 3px;
     }
 
-    .required {
-      color: var(--red);
-      font-size: 12px;
+    .required { color: var(--red); }
+
+    .input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg3);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius, 8px);
+      padding: 0 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+
+      &:focus-within {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(87, 157, 255, 0.12);
+      }
+    }
+
+    .field.has-error .input-wrap {
+      border-color: var(--red);
+
+      &:focus-within {
+        border-color: var(--red);
+        box-shadow: 0 0 0 3px rgba(248, 113, 104, 0.12);
+      }
+    }
+
+    .field-icon {
+      font-size: 18px;
+      color: var(--muted);
+      flex-shrink: 0;
     }
 
     input[type="text"],
     input[type="email"] {
-      width: 100%;
-      padding: 9px 12px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 3px;
+      flex: 1;
+      padding: 11px 0;
+      background: none;
+      border: none;
       color: var(--text-bright);
       font-size: 13px;
       outline: none;
-      transition: border-color 0.15s;
 
-      &::placeholder { color: var(--muted); opacity: 0.6; }
-      &:focus { border-color: var(--blue); }
-    }
-
-    .field.has-error input {
-      border-color: var(--red);
-      &:focus { border-color: var(--red); }
+      &::placeholder { color: var(--muted); }
     }
 
     .field-error {
@@ -321,27 +392,28 @@ interface UserProfile {
       gap: 4px;
     }
 
-    /* ── Feedback messages ── */
+    /* ── Feedback ── */
     .msg {
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 10px 14px;
-      border-radius: 3px;
+      border-radius: var(--radius, 8px);
       font-size: 13px;
       font-weight: 500;
+
       .material-icons-round { font-size: 18px; }
     }
 
     .msg-success {
-      background: rgba(74, 222, 128, 0.1);
-      border: 1px solid rgba(74, 222, 128, 0.3);
+      background: rgba(76, 206, 151, 0.1);
+      border: 1px solid rgba(76, 206, 151, 0.25);
       color: var(--green);
     }
 
     .msg-error {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      background: rgba(248, 113, 104, 0.1);
+      border: 1px solid rgba(248, 113, 104, 0.25);
       color: var(--red);
     }
 
@@ -353,20 +425,34 @@ interface UserProfile {
     }
 
     .btn-save {
-      padding: 9px 20px;
+      padding: 10px 22px;
       background: var(--blue);
       border: none;
-      border-radius: 3px;
-      color: #111111;
+      border-radius: var(--radius, 8px);
+      color: #fff;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      .material-icons-round { font-size: 16px; }
-      &:hover { background: var(--blue-dark); }
-      &:disabled { opacity: 0.6; cursor: not-allowed; }
+      gap: 8px;
+      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+
+      .material-icons-round { font-size: 18px; }
+
+      &:hover {
+        background: var(--blue-dark);
+        box-shadow: 0 4px 14px rgba(87, 157, 255, 0.3);
+      }
+
+      &:active { transform: scale(0.98); }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
 
       @media (max-width: 480px) {
         width: 100%;
@@ -374,21 +460,13 @@ interface UserProfile {
       }
     }
 
-    /* ── Logout ── */
-    .btn-logout {
-      align-self: flex-start;
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      .material-icons-round { font-size: 16px; }
-      &:hover { color: var(--red); border-color: var(--red); background: rgba(239,68,68,0.06); }
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .content-area { padding: 16px; }
+      .page-header { padding: 0 16px; }
+      .profile-card { gap: 14px; padding: 16px; }
+      .avatar-large { width: 52px; height: 52px; font-size: 18px; }
+      .user-name { font-size: 15px; }
     }
   `],
 })
@@ -407,9 +485,9 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
   ) {
     this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+      name:  ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      role: [''],
+      role:  [''],
     });
   }
 
