@@ -1,0 +1,52 @@
+US-58 — Implementar novo layout conforme protótipo
+======================================================
+
+CONTEXTO
+--------
+A aplicação precisa de um redesenho visual para melhorar a experiência do usuário e alinhar-se com o novo padrão de design. O protótipo no Figma define cores, menu lateral, header, footer e cards com o estilo desejado.
+
+HISTORIA
+--------
+Como usuário,
+quero visualizar uma interface redesenhada com novo layout, cores e componentes,
+para ter uma experiência visual moderna e consistente na aplicação.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Header implementado conforme design do Figma
+2. Menu lateral implementado com navegação correta
+3. Footer implementado com conteúdo apropriado
+4. Cards atualizados com novo estilo e cores
+5. Cores aplicadas em toda a interface de acordo com o protótipo
+6. Layout responsivo mantido em diferentes tamanhos de tela
+7. Transições suaves entre componentes
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Sem over-engineering
+- Manter consistência visual em todos os componentes
+- Preservar funcionalidades existentes durante o redesenho
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - N/A (frontend apenas)
+
+E2E:
+  - Validar exibição correta do header em diferentes resoluções
+  - Validar menu lateral abre/fecha corretamente
+  - Validar cards são exibidos com novo estilo
+  - Validar cores aplicadas em todos os elementos
+  - Validar footer renderiza corretamente
+  - Validar navegação funciona após redesenho
+
+REFERENCIA VISUAL (FIGMA)
+-------------------------
+https://www.figma.com/design/ik0Qa30O9oNUy3qelJbQO7/Ferramenta-Trello?node-id=23-740&t=YziyyYYWYX7nQbUA-0
+
+FORA DO ESCOPO
+--------------
+- Adicionar novas funcionalidades
+- Modificar lógica de negócio
+- Refatoração de componentes não relacionada ao layout
