@@ -1,30 +1,59 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { FooterComponent } from './components/footer/footer.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FooterComponent],
+  imports: [RouterOutlet, FooterComponent, SidebarComponent],
   template: `
-    <div class="app-wrapper">
-      <main class="app-content">
-        <router-outlet />
-      </main>
-      <app-footer />
-    </div>
+    @if (showShell()) {
+      <div class="app-shell">
+        <app-sidebar />
+        <div class="app-main">
+          <router-outlet />
+          <app-footer />
+        </div>
+      </div>
+    } @else {
+      <router-outlet />
+    }
   `,
   styles: [`
-    .app-wrapper {
+    .app-shell {
       display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
     }
-    .app-content {
+
+    .app-main {
       flex: 1;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
     }
   `],
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  showShell = signal(false);
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.updateShell(this.router.url);
+
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe((e: any) => {
+        this.updateShell((e as NavigationEnd).urlAfterRedirects);
+      });
+  }
+
+  private updateShell(url: string): void {
+    const isLogin = url === '/' || url.startsWith('/login');
+    this.showShell.set(!isLogin);
+  }
+}

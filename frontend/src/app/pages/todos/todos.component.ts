@@ -10,217 +10,375 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
   standalone: true,
   imports: [FormsModule, UserAvatarComponent],
   template: `
-    <!-- Header -->
-    <header>
-      <div class="logo">
-        <span class="material-icons-round">check_circle</span>
-        {{ titleService.appTitle() }}
+    <!-- Page Header -->
+    <header class="page-header">
+      <div class="header-left">
+        <div class="page-icon">
+          <span class="material-icons-round">check_circle_outline</span>
+        </div>
+        <div class="page-title-group">
+          <h1 class="page-title">{{ titleService.appTitle() }}</h1>
+          <div class="stats-row">
+            <span class="stat-chip stat-pending">
+              <span class="stat-dot"></span>
+              {{ pendingCount() }} pendentes
+            </span>
+            <span class="stat-chip stat-done">
+              <span class="stat-dot"></span>
+              {{ doneCount() }} concluídas
+            </span>
+          </div>
+        </div>
       </div>
       <div class="header-right">
-        <div class="stats">
-          <span><span class="dot dot-pending"></span>{{ pendingCount() }} pendentes</span>
-          <span><span class="dot dot-done"></span>{{ doneCount() }} concluídas</span>
-        </div>
-        <button class="btn-logout" (click)="logout()">
-          <span class="material-icons-round">logout</span> Sair
-        </button>
         <app-user-avatar />
       </div>
     </header>
 
-    <!-- Content -->
-    <main>
+    <!-- Main Content -->
+    <main class="content-area">
+
+      <!-- Add Task Bar -->
       <div class="add-bar">
-        <input type="text" [(ngModel)]="newText" placeholder="Nova tarefa..." (keyup.enter)="add()" autofocus />
+        <div class="add-input-wrap">
+          <span class="material-icons-round add-icon">add_task</span>
+          <input
+            type="text"
+            [(ngModel)]="newText"
+            placeholder="Adicionar nova tarefa..."
+            (keyup.enter)="add()"
+            autofocus
+            class="add-input"
+          />
+        </div>
         <button class="btn-add" (click)="add()" [disabled]="!newText.trim()">
-          <span class="material-icons-round">add</span> Adicionar
+          <span class="material-icons-round">add</span>
+          Adicionar
         </button>
       </div>
 
-      <div class="filters">
+      <!-- Filters -->
+      <div class="filters-bar">
         @for (f of filters; track f.key) {
-          <button class="filter-btn" [class.active]="filter() === f.key" (click)="filter.set(f.key)">
+          <button
+            class="filter-btn"
+            [class.active]="filter() === f.key"
+            (click)="filter.set(f.key)"
+          >
             {{ f.label }}
+            <span class="filter-count">{{ getCount(f.key) }}</span>
           </button>
         }
       </div>
 
-      <div class="todo-list">
+      <!-- Task List -->
+      <div class="task-list">
         @for (todo of filtered(); track todo.id) {
-          <div class="todo-item" [class.done]="todo.done">
-            <div class="checkbox" [class.checked]="todo.done" (click)="toggle(todo)">
-              <span class="material-icons-round">check</span>
-            </div>
-            <span class="todo-text">{{ todo.text }}</span>
-            <button class="btn-del" (click)="remove(todo.id)">
-              <span class="material-icons-round">close</span>
+          <div class="task-card" [class.done]="todo.done">
+            <button
+              class="task-check"
+              [class.checked]="todo.done"
+              (click)="toggle(todo)"
+              [attr.aria-label]="todo.done ? 'Marcar como pendente' : 'Marcar como concluída'"
+            >
+              @if (todo.done) {
+                <span class="material-icons-round">check</span>
+              }
+            </button>
+            <span class="task-text">{{ todo.text }}</span>
+            <button class="btn-del" (click)="remove(todo.id)" aria-label="Remover tarefa">
+              <span class="material-icons-round">delete_outline</span>
             </button>
           </div>
         } @empty {
-          <div class="empty">
-            <span class="material-icons-round">inbox</span>
-            <p>{{ emptyMessage() }}</p>
+          <div class="empty-state">
+            <span class="material-icons-round empty-icon">inbox</span>
+            <p class="empty-title">{{ emptyTitle() }}</p>
+            <p class="empty-sub">{{ emptyMessage() }}</p>
           </div>
         }
       </div>
+
     </main>
   `,
   styles: [`
-    :host { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+    :host {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+    }
 
-    header {
+    /* ── Page Header ── */
+    .page-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
-      height: 48px;
+      padding: 0 24px;
+      height: var(--header-height, 52px);
       background: var(--bg2);
       border-bottom: 1px solid var(--border);
       flex-shrink: 0;
+      gap: 12px;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-bright);
-      .material-icons-round { color: var(--blue); font-size: 20px; }
-    }
-
-    .header-right { display: flex; align-items: center; gap: 14px; }
-
-    .stats {
-      display: flex;
-      gap: 14px;
-      font-size: 12px;
-      color: var(--muted);
-      span { display: flex; align-items: center; gap: 5px; }
-    }
-
-    .dot { width: 7px; height: 7px; border-radius: 50%; }
-    .dot-pending { background: var(--yellow); }
-    .dot-done { background: var(--green); }
-
-    .btn-logout {
-      background: none;
-      border: none;
-      color: var(--muted);
-      cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 12px;
-      .material-icons-round { font-size: 16px; }
-      &:hover { color: var(--text-bright); background: var(--hover); }
-    }
-
-    main {
-      flex: 1;
-      max-width: 560px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 24px 16px;
-      overflow-y: auto;
-    }
-
-    .add-bar {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-
-      input {
-        flex: 1;
-        padding: 9px 12px;
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 3px;
-        color: var(--text-bright);
-        font-size: 13px;
-        outline: none;
-        &:focus { border-color: var(--blue); }
-        &::placeholder { color: var(--muted); }
-      }
-    }
-
-    .btn-add {
-      padding: 0 14px;
-      background: var(--blue);
-      border: none;
-      border-radius: 3px;
-      color: #111111;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      .material-icons-round { font-size: 18px; }
-      &:hover { background: var(--blue-dark); }
-      &:disabled { opacity: 0.5; cursor: not-allowed; }
-    }
-
-    .filters {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .filter-btn {
-      padding: 8px 14px;
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      &:hover { color: var(--text); }
-      &.active { color: var(--text-bright); border-bottom-color: var(--blue); }
-    }
-
-    .todo-list { display: flex; flex-direction: column; gap: 2px; }
-
-    .todo-item {
+    .header-left {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 10px 12px;
-      background: var(--bg2);
-      border: 1px solid transparent;
-      border-radius: var(--radius);
-      transition: background 0.15s;
-      &:hover { background: var(--bg3); border-color: var(--border); }
+      min-width: 0;
     }
 
-    .checkbox {
-      width: 18px;
+    .page-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius, 8px);
+      background: rgba(87, 157, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      .material-icons-round {
+        font-size: 20px;
+        color: var(--blue);
+      }
+    }
+
+    .page-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .page-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-bright);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.2px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .stat-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .stat-pending .stat-dot { background: var(--yellow); }
+    .stat-done .stat-dot { background: var(--green); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* ── Content Area ── */
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    /* ── Add Bar ── */
+    .add-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .add-input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius, 8px);
+      padding: 0 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+
+      &:focus-within {
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(87, 157, 255, 0.12);
+      }
+    }
+
+    .add-icon {
+      font-size: 18px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .add-input {
+      flex: 1;
+      padding: 11px 0;
+      background: none;
+      border: none;
+      color: var(--text-bright);
+      font-size: 13px;
+      outline: none;
+
+      &::placeholder { color: var(--muted); }
+    }
+
+    .btn-add {
+      padding: 0 18px;
+      height: 44px;
+      background: var(--blue);
+      border: none;
+      border-radius: var(--radius, 8px);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+
+      .material-icons-round { font-size: 18px; }
+
+      &:hover { background: var(--blue-dark); }
+      &:active { transform: scale(0.98); }
+      &:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    }
+
+    /* ── Filters ── */
+    .filters-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+      &:hover {
+        color: var(--text-bright);
+        background: var(--hover);
+      }
+
+      &.active {
+        background: rgba(87, 157, 255, 0.15);
+        border-color: var(--blue);
+        color: var(--blue);
+
+        .filter-count { background: var(--blue); color: #fff; }
+      }
+    }
+
+    .filter-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
       height: 18px;
-      border: 1px solid var(--muted);
-      border-radius: 3px;
+      padding: 0 5px;
+      background: var(--hover);
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    /* ── Task List ── */
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .task-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius, 8px);
+      transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+
+      &:hover {
+        background: var(--bg3);
+        border-color: #3a4249;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+        .btn-del { opacity: 1; }
+      }
+
+      &.done {
+        opacity: 0.65;
+        .task-text {
+          text-decoration: line-through;
+          color: var(--muted);
+        }
+      }
+    }
+
+    .task-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      background: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      .material-icons-round { font-size: 14px; color: #111111; display: none; }
+      transition: background 0.15s, border-color 0.15s;
+      padding: 0;
+
+      .material-icons-round { font-size: 14px; color: #fff; }
+
       &:hover { border-color: var(--blue); }
+
       &.checked {
         background: var(--blue);
         border-color: var(--blue);
-        .material-icons-round { display: block; }
       }
     }
 
-    .todo-text { flex: 1; font-size: 13px; line-height: 1.4; }
-
-    .todo-item.done .todo-text {
-      text-decoration: line-through;
-      color: var(--muted);
+    .task-text {
+      flex: 1;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text-bright);
+      word-break: break-word;
     }
 
     .btn-del {
@@ -228,22 +386,60 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       border: none;
       color: var(--muted);
       cursor: pointer;
-      padding: 2px;
-      border-radius: 3px;
+      padding: 4px;
+      border-radius: var(--radius-sm, 4px);
       display: flex;
+      align-items: center;
       opacity: 0;
-      .material-icons-round { font-size: 16px; }
-      &:hover { color: var(--red); }
+      transition: opacity 0.15s, color 0.15s, background 0.15s;
+      flex-shrink: 0;
+
+      .material-icons-round { font-size: 18px; }
+
+      &:hover {
+        color: var(--red);
+        background: rgba(248, 113, 104, 0.12);
+      }
     }
 
-    .todo-item:hover .btn-del { opacity: 1; }
+    /* ── Empty State ── */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 16px;
+      gap: 8px;
+    }
 
-    .empty {
-      text-align: center;
-      padding: 48px 16px;
+    .empty-icon {
+      font-size: 48px;
       color: var(--muted);
-      .material-icons-round { font-size: 36px; margin-bottom: 8px; opacity: 0.3; }
-      p { font-size: 13px; }
+      opacity: 0.3;
+      margin-bottom: 8px;
+    }
+
+    .empty-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-bright);
+    }
+
+    .empty-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .content-area { padding: 16px; }
+
+      .add-bar { flex-direction: column; }
+
+      .btn-add { height: 40px; justify-content: center; }
+
+      .page-header { padding: 0 16px; }
+
+      .stats-row { display: none; }
     }
   `]
 })
@@ -251,41 +447,61 @@ export class TodosComponent implements OnInit {
   todos = signal<any[]>([]);
   filter = signal('all');
   newText = '';
+
   filters = [
     { key: 'all', label: 'Todas' },
     { key: 'pending', label: 'Pendentes' },
     { key: 'done', label: 'Concluídas' },
   ];
 
-  constructor(private api: ApiService, private router: Router, public titleService: TitleService) {}
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    public titleService: TitleService,
+  ) {}
 
-  ngOnInit() {
-    if (!localStorage.getItem('user')) { this.router.navigate(['/login']); return; }
+  ngOnInit(): void {
+    if (!localStorage.getItem('user')) {
+      this.router.navigate(['/login']);
+      return;
+    }
     this.load();
   }
 
-  load() {
+  load(): void {
     this.api.getTodos().subscribe(todos => this.todos.set(todos));
   }
 
-  filtered() {
+  filtered(): any[] {
     const f = this.filter();
     return this.todos().filter(t =>
-      f === 'all' ? true : f === 'done' ? t.done : !t.done
+      f === 'all' ? true : f === 'done' ? t.done : !t.done,
     );
   }
 
-  pendingCount() { return this.todos().filter(t => !t.done).length; }
-  doneCount() { return this.todos().filter(t => t.done).length; }
-
-  emptyMessage() {
-    const f = this.filter();
-    if (f === 'done') return 'Nenhuma tarefa concluída';
-    if (f === 'pending') return 'Nenhuma tarefa pendente';
-    return 'Adicione sua primeira tarefa!';
+  getCount(key: string): number {
+    if (key === 'all') return this.todos().length;
+    if (key === 'done') return this.todos().filter(t => t.done).length;
+    return this.todos().filter(t => !t.done).length;
   }
 
-  add() {
+  pendingCount(): number { return this.todos().filter(t => !t.done).length; }
+  doneCount(): number    { return this.todos().filter(t =>  t.done).length; }
+
+  emptyTitle(): string {
+    const f = this.filter();
+    if (f === 'done')    return 'Nenhuma tarefa concluída';
+    if (f === 'pending') return 'Nenhuma tarefa pendente';
+    return 'Nenhuma tarefa por aqui';
+  }
+
+  emptyMessage(): string {
+    const f = this.filter();
+    if (f === 'all') return 'Adicione sua primeira tarefa usando o campo acima.';
+    return 'Tente mudar o filtro ou adicionar novas tarefas.';
+  }
+
+  add(): void {
     if (!this.newText.trim()) return;
     this.api.addTodo(this.newText).subscribe(() => {
       this.newText = '';
@@ -293,15 +509,15 @@ export class TodosComponent implements OnInit {
     });
   }
 
-  toggle(todo: any) {
+  toggle(todo: any): void {
     this.api.updateTodo(todo.id, { done: !todo.done }).subscribe(() => this.load());
   }
 
-  remove(id: number) {
+  remove(id: number): void {
     this.api.deleteTodo(id).subscribe(() => this.load());
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }

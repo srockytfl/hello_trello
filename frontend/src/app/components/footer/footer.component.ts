@@ -5,28 +5,33 @@ import { Component } from '@angular/core';
   standalone: true,
   template: `
     <footer class="app-footer">
-      <p class="footer-brand">Trelo by AI</p>
-      <span>© {{ currentYear }} - Todos os direitos reservados</span>
+      <span class="footer-brand">Hello Trello</span>
+      <span class="footer-sep">•</span>
+      <span class="footer-copy">© {{ currentYear }} Todos os direitos reservados</span>
     </footer>
   `,
   styles: [`
     .app-footer {
-      width: 100%;
-      padding: 12px 16px;
-      text-align: center;
-      background: #1e1e2e;
-      color: #a0a0b0;
-      font-size: 0.85rem;
-      border-top: 1px solid #2e2e3e;
-      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      flex-shrink: 0;
     }
 
     .footer-brand {
-      margin: 0 0 4px;
-      font-size: 0.95rem;
       font-weight: 600;
-      color: #c0c0d0;
-      letter-spacing: 0.03em;
+      color: var(--text);
+      letter-spacing: 0.2px;
+    }
+
+    .footer-sep {
+      opacity: 0.4;
     }
   `],
 })
