@@ -23,7 +23,7 @@ let todos = [
 let nextId = 4;
 
 // --- Title ---
-let appTitle = 'Teste Cores';
+let appTitle = 'Teste 1';
 
 app.get('/api/title', (req, res) => {
   res.json({ title: appTitle });

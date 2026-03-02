@@ -19,15 +19,13 @@ Implementação da mudança do título da aplicação de **"Teste Cores"** para 
 ### Backend
 | Arquivo | Alteração |
 |---------|-----------|
-| `server/index.js` | `appTitle = 'Teste 1'` — endpoint `GET /api/title` retorna o título |
+| `server/index.js` | `appTitle = 'Teste 1'` — endpoint `GET /api/title` retorna o novo título |
 
 ### Frontend
 | Arquivo | Alteração |
 |---------|-----------|
 | `frontend/src/index.html` | `<title>Teste 1</title>` — título da aba do browser |
 | `frontend/src/app/services/title.service.ts` | Signal inicial e fallback de erro definidos como `'Teste 1'`; consome `GET /api/title` |
-| `frontend/src/app/pages/login/login.component.ts` | Já exibia `titleService.appTitle()` como cabeçalho (sem alteração necessária) |
-| `frontend/src/app/pages/todos/todos.component.ts` | Já exibia `titleService.appTitle()` no header (sem alteração necessária) |
 
 ---
 
@@ -42,8 +40,9 @@ Implementação da mudança do título da aplicação de **"Teste Cores"** para 
 
 ## Critérios de Aceitação — Verificação
 
-- [x] O título exibido na interface é **"Teste 1"** (tela de login + tela de todos + aba do browser)
+- [x] O título exibido na interface é **"Teste 1"** (aba do browser + todas as páginas via TitleService)
 - [x] A mudança é persistida via endpoint `GET /api/title` (backend em memória)
-- [x] O título é visível em todas as páginas relevantes
+- [x] O título é visível em todas as páginas relevantes (login, todos)
+- [x] A API retorna o novo título "Teste 1"
+- [x] O título "Teste 1" é exibido corretamente após recarregar a página (signal reativo + backend em memória)
 - [x] Nenhuma regressão em outras funcionalidades
-- [x] Mudança visível em tempo real via signal Angular reativo
