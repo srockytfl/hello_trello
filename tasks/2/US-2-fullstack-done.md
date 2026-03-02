@@ -22,7 +22,7 @@ Alteração do título da aplicação de **"Teste 1"** para **"Hello Github"**, 
 
 | Componente | Comportamento |
 |------------|--------------|
-| `LoginComponent` | Exibe `titleService.appTitle()` → "Hello Github" no `<h2>` |
+| `LoginComponent` | Exibe `titleService.appTitle()` → "Hello Github" no heading |
 | `TodosComponent` | Exibe `titleService.appTitle()` → "Hello Github" no header |
 
 ## Critérios de Aceitação Atendidos
