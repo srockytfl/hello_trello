@@ -1,57 +1,58 @@
-# PRD — US-1: Trocar Cor para Azul
+# PRD — US-1: Trocar Cor do Componente para Azul
 
 ## Problema
-A aplicação atualmente usa cores que não correspondem à identidade visual desejada. O usuário solicitou que a cor principal do sistema seja alterada para azul, refletindo uma nova paleta de cores ou mudança de branding.
+O componente primário está utilizando uma cor que não está alinhada com o design system atual. Isso causa inconsistência visual na aplicação e dificulta a manutenção de um padrão visual coeso. O componente precisa ser atualizado para a cor azul conforme definido no design system.
 
 ## Objetivo
-Atualizar a paleta de cores da aplicação, substituindo a cor primária atual pela cor azul em todos os elementos relevantes da interface.
+Atualizar o componente primário para exibir na cor azul, conforme definido no design system, garantindo consistência visual e facilitando a manutenção futura do design.
 
 ## Sucesso Esperado
-- Todos os componentes visuais principais da aplicação exibem azul como cor primária
-- A mudança é consistente em todas as páginas e telas
-- Nenhum elemento visual fica quebrado ou ilegível após a mudança
+O componente primário é renderizado visualmente em azul em todos os navegadores suportados, mantendo toda a funcionalidade existente. A implementação utilizará variáveis de cor do design system, permitindo reutilização em futuros componentes.
 
 ## Requisitos Funcionais
-1. Identificar todos os elementos que usam a cor primária atual
-2. Substituir a cor primária atual pela cor azul em componentes de interface
-3. Garantir consistência visual em toda a aplicação
-4. Manter a hierarquia visual e acessibilidade de contraste
+1. Componente primário deve exibir em azul conforme padrão do design system
+2. Deve utilizar variáveis de cor definidas no design system (não hardcoded)
+3. A alteração deve manter toda funcionalidade existente do componente
+4. Compatibilidade com todos os navegadores suportados (Chrome, Firefox, Safari)
 
 ## Requisitos Não-Funcionais
-- **Acessibilidade**: A cor azul deve manter relação de contraste mínima de 4.5:1 com texto (WCAG AA)
-- **Consistência**: A mesma tonalidade de azul deve ser usada em todos os elementos
+- **UX/Design**: Cor deve ser visualmente consistente com o padrão do design system em diferentes resoluções de tela
+- **Manutenibilidade**: Implementação deve usar classes CSS ou variáveis, sem inline styles, para facilitar futuras mudanças
+- **Acessibilidade**: Manter contraste adequado conforme especificado no design system
 
 ## Fluxo do Usuário
-1. Usuário acessa a aplicação
-2. Sistema exibe todos os elementos com a cor primária em azul
-3. Usuário interage com botões, links e componentes que agora são azuis
-4. Sistema responde normalmente aos cliques/interações
+1. Usuário acessa a página que contém o componente primário
+2. Componente é renderizado visualmente em azul
+3. Usuário interage com o componente (clique, hover, etc.) como antes
+4. Componente responde normalmente, agora com visual atualizado
 
 ## Critérios de Aceitação
-- [ ] Botões primários exibem azul como cor de fundo
-- [ ] Links ativos e hover states usam variações de azul
-- [ ] Elementos de destaque (badges, alerts) usam azul quando apropriado
-- [ ] Barra de navegação/header usa azul consistentemente
-- [ ] Testes visuais confirmam consistência em diferentes navegadores
-- [ ] Contraste de acessibilidade é mantido
+- [ ] Componente primário exibe em azul conforme padrão do design system
+- [ ] Implementação utiliza variáveis de cor do design system (verificável no código)
+- [ ] Sem inline styles — usa apenas classes CSS ou variáveis
+- [ ] Funcionalidade existente não é quebrada
+- [ ] Visual é consistente em Chrome, Firefox e Safari
+- [ ] Visual é consistente em diferentes resoluções de tela (desktop, tablet, mobile)
 
 ## Suposições
-- "Trocar cor para azul" refere-se à cor primária da aplicação (provavelmente botões, headers, links)
-- Não há múltiplas tonalidades de azul a serem definidas (usar uma única)
-- A mudança deve ser aplicada globalmente, não apenas em um componente específico
-- O azul é um azul padrão (não uma tonalidade muito clara ou muito escura)
+- Design system já possui variável de cor azul definida e acessível no projeto
+- Componente é renderizado via HTML/CSS
+- Alteração é apenas visual — não há mudanças na API ou comportamento do componente
+- Implementação deve seguir as convenções definidas em CLAUDE.md
 
 ## Dúvidas em Aberto
-- Qual é a tonalidade exata de azul desejada? (ex: #0066CC, #0080FF, etc.)
-- Devem ser criadas variações de azul (light, dark) ou usar um único tom?
-- Há ícones, imagens ou gráficos que também precisam ser ajustados?
-- Existe um guia de estilo ou design system que especifica essa cor?
+- Qual é exatamente o valor ou nome da variável CSS da cor azul no design system?
+- Qual é o componente específico que deve ser alterado? (Nome/caminho do arquivo)
+- Há componentes relacionados que também devem ser atualizados?
 
 ## Fora do Escopo
-- Alterar cores secundárias ou de background
-- Redesenhar componentes ou mudar layout
-- Adicionar novos componentes ou funcionalidades
-- Implementar tema dark/light (a menos que azul seja aplicado a ambos)
+- Refatoração completa ou reescrita do componente
+- Mudanças em outros componentes relacionados que não sejam explicitamente necessárias
+- Implementação de temas (dark mode, tema claro/escuro, etc.)
+- Mudanças na API ou comportamento funcional do componente
 
 ## Notas
-Esta US foi interpretada como uma mudança global de cor primária da aplicação. A implementação provavelmente envolverá atualizar variáveis CSS, tokens de design, ou temas centralizados. Recomenda-se esclarecer a tonalidade exata de azul antes de começar.
+- Tarefa clara: alteração visual de cor apenas
+- Implementação deve seguir convenções do CLAUDE.md
+- Testes devem validar renderização visual em múltiplos navegadores e resoluções
+- Uso de variáveis CSS permite reutilização futura em outros componentes

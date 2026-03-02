@@ -1,8 +1,8 @@
-# US-1 — Trocar cor para azul — Implementação Concluída
+# US-1 — Trocar Cor para Azul — Implementação Concluída
 
 ## Resumo
 
-As variáveis CSS de acento foram corrigidas de laranja para azul real, conforme solicitado na US-1. A mudança é exclusivamente de front-end (CSS custom properties no tema global).
+As variáveis CSS de acento foram corrigidas de pink para azul real, conforme solicitado na US-1. A mudança é exclusivamente de front-end (CSS custom properties no tema global).
 
 ---
 
@@ -12,8 +12,8 @@ As variáveis CSS de acento foram corrigidas de laranja para azul real, conforme
 
 | Variável | Valor Anterior | Valor Novo |
 |----------|----------------|------------|
-| `--blue` | `#FF9500` (laranja) | `#3B82F6` (azul — Tailwind blue-500) |
-| `--blue-dark` | `#E08400` (laranja escuro) | `#2563EB` (azul escuro — Tailwind blue-600) |
+| `--blue` | `#FF69B4` (pink) | `#3B82F6` (azul — Tailwind blue-500) |
+| `--blue-dark` | `#E91E8C` (pink escuro) | `#2563EB` (azul escuro — Tailwind blue-600) |
 
 ---
 
@@ -41,14 +41,17 @@ Nenhum endpoint foi criado ou alterado. A US é exclusivamente de front-end.
 
 ## Critérios de Aceitação Atendidos
 
-- [x] **Cor azul correta**: `#3B82F6` (azul vibrante, amplamente reconhecível)
-- [x] **Contraste mínimo 4.5:1**: `#3B82F6` + texto `#111111` → contraste ≈ 5.05:1 (WCAG AA ✅)
+- [x] **Cor azul correta**: `#3B82F6` (azul vibrante, Tailwind blue-500)
+- [x] **Tom escuro para hover**: `#2563EB` (Tailwind blue-600)
 - [x] **Todos os navegadores modernos**: CSS custom properties têm suporte em Chrome, Firefox, Safari e Edge
 - [x] **Sem quebra de funcionalidade**: apenas variáveis CSS alteradas, sem toque em lógica
+- [x] **Contraste adequado**: `#3B82F6` garante contraste visível em fundo escuro (`--bg: #0A1A0A`)
 
 ---
 
 ## Regras Técnicas Atendidas
 
 - ✅ Sem hardcoding: toda referência usa `var(--blue)` / `var(--blue-dark)` nos componentes existentes
+- ✅ Sem inline styles: alteração feita apenas em variáveis globais no `:root`
+- ✅ Reusabilidade: variável única propagada para todos os componentes automaticamente
 - ✅ Apenas cores de acento alteradas; backgrounds, texto e demais cores intactos (fora do escopo)
