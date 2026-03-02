@@ -1,74 +1,65 @@
-# PRD — US-10: Alterar cor para rosa
+# PRD — US-10: Alterar Cor para Rosa
 
 ## Problema
-O design visual da aplicação necessita ser atualizado para alinhar-se com a identidade visual redesenhada do projeto. A mudança de cor para rosa é um requisito do design system aprovado, impactando a estética e a percepção da marca pelos usuários.
+A aplicação atual não possui uma cor rosa implementada conforme especificação de design. A identidade visual do projeto requer esta mudança para melhorar a estética e alinhamento com a identidade visual requisitada.
 
 ## Objetivo
-Alterar a cor especificada da interface para rosa, mantendo consistência visual em todos os componentes afetados e melhorando o alinhamento com a identidade visual do design.
+Alterar uma cor específica da interface para rosa, mantendo a legibilidade, contraste e funcionalidade existente da aplicação.
 
 ## Sucesso Esperado
-A cor rosa está visível em todos os componentes afetados pela alteração, o aplicativo mantém legibilidade e contraste adequado, e nenhum erro ou warning aparece no console do navegador.
+A cor alvo será exibida como rosa em todos os componentes afetados, sem erros no console, com contraste adequado e compatibilidade garantida em browsers suportados. A mudança será visível e verificável em testes visuais e E2E.
 
 ## Requisitos Funcionais
-1. Identificar e documentar todos os componentes que usam a cor a ser alterada
-2. Alterar a cor alvo para rosa (referência: #FF69B4 ou equivalente conforme mockup de design)
-3. Aplicar a mudança de forma consistente em todos os componentes afetados
-4. Manter a legibilidade e contraste adequado conforme WCAG 2.1 AA
-5. Garantir que nenhum erro ou warning é gerado no console ao aplicar a mudança
+1. A cor alvo deve ser alterada para rosa (#FF69B4 ou equivalente conforme aprovação de design)
+2. A mudança deve ser aplicada em todos os componentes visuais que utilizam esta cor
+3. A cor rosa deve ser mantida consistentemente em toda a aplicação
+4. Nenhuma cor adicional ou não solicitada deve ser alterada
 
 ## Requisitos Não-Funcionais
-- **Acessibilidade**: Contraste de cor deve atender aos padrões WCAG 2.1 AA
-- **Compatibilidade**: Funcionar em browsers suportados pelo projeto
-- **Performance**: Nenhum impacto de performance na renderização
-- **Manutenibilidade**: Usar variáveis CSS ou sistema de temas existente
+- Legibilidade: Manter contraste WCAG AA mínimo entre texto/background quando aplicável
+- Acessibilidade: Validar que a mudança de cor não compromete acessibilidade visual
+- Performance: A alteração não deve impactar tempo de renderização ou carregamento
+- Compatibilidade: Funcionar em browsers suportados conforme especificação do projeto
+- Sem warnings/erros: Console deve estar limpo após aplicação da mudança
 
 ## Fluxo do Usuário
 1. Usuário acessa a aplicação
-2. Sistema carrega a interface com a cor alterada para rosa
-3. Usuário visualiza todos os componentes afetados com a cor nova
-4. Aplicação funciona normalmente sem erros ou warnings
+2. Componentes que usam a cor alvo são exibidos em rosa
+3. Sistema renderiza sem erros
+4. Usuário visualiza interface com cor rosa consistentemente
 
 ## Critérios de Aceitação
-- [x] A cor alvo foi alterada para rosa (ex: #FF69B4 ou equivalente conforme design)
-- [x] A mudança é visível em todos os componentes afetados pela cor
-- [x] A alteração mantém a legibilidade e contraste adequado
-- [x] Nenhum erro no console ou warnings ao aplicar a mudança
-- [x] Mudança foi feita seguindo convenções do projeto (CLAUDE.md)
-- [x] Utilizada variáveis CSS ou sistema de temas existente
-- [x] Sem over-engineering na solução
-- [x] Compatibilidade com browsers suportados confirmada
-
-## Critérios de Teste (QA)
-**E2E:**
-- Verificar que a cor rosa é exibida corretamente em todos os componentes visuais
-- Testar em diferentes browsers e resoluções de tela
-- Confirmar que a mudança não quebrou nenhuma funcionalidade existente
-- Validar que não há erros ou warnings no console
-
-**Visual/Design:**
-- Comparar resultado com mockup de design fornecido
-- Validar contraste e acessibilidade (WCAG 2.1 AA minimum)
-
-**Regressão:**
-- Verificar que componentes não afetados mantêm suas cores originais
-- Testar navegação e funcionalidades críticas
+- [ ] Cor alvo identificada e alterada para rosa (#FF69B4 ou equivalente aprovado)
+- [ ] Mudança visível em todos os componentes afetados pela cor
+- [ ] Legibilidade mantida: contraste conforme WCAG AA
+- [ ] Zero erros/warnings no console do navegador
+- [ ] Testes E2E passando: cor verificada visualmente em diferentes browsers
+- [ ] Testes visuais: comparação com mockup de design aprovada
+- [ ] Funcionalidade existente não quebrada: nenhuma regressão
 
 ## Suposições
-- A cor rosa de referência é #FF69B4 ou será fornecida pelo design
-- O projeto possui um sistema de temas ou variáveis CSS existentes para aplicar a mudança
-- A mudança afeta apenas a cor especificada e componentes explicitamente relacionados
-- O projeto segue as convenções do arquivo CLAUDE.md
+- A cor rosa será implementada usando variáveis CSS ou sistema de temas existente (não hardcoded)
+- Existe um design mockup de referência que especifica qual componente/cor alvo
+- A cor rosa em questão é #FF69B4 ou será especificada pelo design
+- Componentes afetados seguem convenções do projeto (CLAUDE.md)
+- Browsers suportados já estão definidos no projeto
 
 ## Dúvidas em Aberto
-- Qual é a cor rosa exata conforme o mockup de design? (hex code, RGB, ou referência de design system)
-- Quais são todos os componentes/páginas que devem receber a alteração?
-- Existe um design system ou token de cores já implementado no projeto?
+- Qual exatamente é o valor hexadecimal da cor rosa? (#FF69B4 é estimativa)
+- Qual(is) componente(s) especificamente usam a cor alvo a ser alterada?
+- Existe mockup de design visual para referência/validação?
+- Sistema de temas está centralizado ou cores distribuídas no código?
 
 ## Fora do Escopo
 - Alterações em outras cores não especificadas
 - Refatoração completa do sistema de cores
 - Mudanças estruturais no código
-- Implementação de novo design system
+- Implementação de novo sistema de temas
+- Testes de acessibilidade além da validação de contraste
 
 ## Notas
-Esta US é uma mudança de estilo bem definida e focada. A implementação deve ser simples se o projeto já possui um sistema de temas ou variáveis CSS. Caso contrário, pode haver necessidade de refatoração anterior. Seguir as regras técnicas do projeto (CLAUDE.md) é mandatório para garantir consistência.
+- Utilizar variáveis CSS ou tema existente conforme CLAUDE.md
+- Sem over-engineering: aplicar mudança de forma direta e clara
+- Validação de contraste é essencial para acessibilidade
+- Testes visuais devem cobrir a cor rosa em diferentes resoluções e browsers
+- Possível que a cor seja aplicada em um único componente ou em múltiplos pontos da aplicação
