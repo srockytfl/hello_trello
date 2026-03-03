@@ -86,6 +86,9 @@ import { TitleService } from '../../services/title.service';
       justify-content: center;
       padding: 24px;
       background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(47, 129, 247, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(163, 113, 247, 0.05), transparent);
     }
 
     .login-card {
@@ -94,11 +97,10 @@ import { TitleService } from '../../services/title.service';
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg, 12px);
-      padding: 40px 32px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
       display: flex;
       flex-direction: column;
-      gap: 28px;
     }
 
     /* ── Logo ── */
@@ -106,27 +108,30 @@ import { TitleService } from '../../services/title.service';
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      padding: 36px 32px 28px;
+      background: linear-gradient(160deg, rgba(47, 129, 247, 0.1) 0%, transparent 60%);
+      border-bottom: 1px solid var(--border);
     }
 
     .logo-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: var(--radius, 8px);
-      background: var(--blue);
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md, 8px);
+      background: linear-gradient(135deg, var(--blue), var(--blue-darker));
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 16px rgba(87, 157, 255, 0.35);
+      box-shadow: 0 8px 24px rgba(47, 129, 247, 0.4);
 
-      .material-icons-round { font-size: 30px; color: #fff; }
+      .material-icons-round { font-size: 28px; color: #fff; }
     }
 
     .app-name {
       font-size: 20px;
       font-weight: 700;
       color: var(--text-bright);
-      letter-spacing: -0.4px;
+      letter-spacing: -0.5px;
     }
 
     .app-tagline {
@@ -140,6 +145,7 @@ import { TitleService } from '../../services/title.service';
       display: flex;
       flex-direction: column;
       gap: 16px;
+      padding: 28px 32px 24px;
     }
 
     .field {
@@ -160,19 +166,19 @@ import { TitleService } from '../../services/title.service';
       align-items: center;
       gap: 10px;
       background: var(--bg3);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius, 8px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md, 8px);
       padding: 0 14px;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
 
       &:focus-within {
         border-color: var(--blue);
-        box-shadow: 0 0 0 3px rgba(87, 157, 255, 0.15);
+        box-shadow: var(--shadow-blue);
       }
     }
 
     .field-icon {
-      font-size: 18px;
+      font-size: 16px;
       color: var(--muted);
       flex-shrink: 0;
     }
@@ -195,9 +201,9 @@ import { TitleService } from '../../services/title.service';
       align-items: center;
       gap: 8px;
       padding: 10px 14px;
-      background: rgba(248, 113, 104, 0.1);
-      border: 1px solid rgba(248, 113, 104, 0.25);
-      border-radius: var(--radius, 8px);
+      background: rgba(248, 81, 73, 0.08);
+      border: 1px solid rgba(248, 81, 73, 0.2);
+      border-radius: var(--radius-md, 8px);
       font-size: 12px;
       font-weight: 500;
       color: var(--red);
@@ -208,10 +214,10 @@ import { TitleService } from '../../services/title.service';
     /* ── Login Button ── */
     .btn-login {
       width: 100%;
-      padding: 13px;
+      padding: 12px;
       background: var(--blue);
       border: none;
-      border-radius: var(--radius, 8px);
+      border-radius: var(--radius-md, 8px);
       color: #fff;
       font-size: 14px;
       font-weight: 600;
@@ -220,21 +226,21 @@ import { TitleService } from '../../services/title.service';
       align-items: center;
       justify-content: center;
       gap: 8px;
-      letter-spacing: 0.2px;
-      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      letter-spacing: 0.1px;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
       margin-top: 4px;
 
-      .material-icons-round { font-size: 20px; }
+      .material-icons-round { font-size: 18px; }
 
       &:hover {
         background: var(--blue-dark);
-        box-shadow: 0 4px 14px rgba(87, 157, 255, 0.35);
+        box-shadow: 0 6px 20px rgba(47, 129, 247, 0.4);
       }
 
       &:active { transform: scale(0.98); }
 
       &:disabled {
-        opacity: 0.6;
+        opacity: 0.5;
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
@@ -246,7 +252,7 @@ import { TitleService } from '../../services/title.service';
       to   { transform: rotate(360deg); }
     }
 
-    .spinning { animation: spin 1s linear infinite; }
+    .spinning { animation: spin 0.8s linear infinite; }
 
     /* ── Hint ── */
     .hint {
@@ -257,8 +263,9 @@ import { TitleService } from '../../services/title.service';
       font-size: 11px;
       color: var(--muted);
       text-align: center;
+      padding: 0 32px 24px;
 
-      .material-icons-round { font-size: 14px; }
+      .material-icons-round { font-size: 13px; }
 
       strong { color: var(--text); }
     }
@@ -266,9 +273,11 @@ import { TitleService } from '../../services/title.service';
     /* ── Responsive ── */
     @media (max-width: 480px) {
       .login-card {
-        padding: 28px 20px;
-        border-radius: var(--radius, 8px);
+        border-radius: var(--radius-md, 8px);
       }
+      .login-logo { padding: 28px 20px 20px; }
+      .login-form { padding: 20px 20px 16px; }
+      .hint { padding: 0 20px 20px; }
     }
   `],
 })
