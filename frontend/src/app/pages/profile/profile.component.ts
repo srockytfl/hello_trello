@@ -18,13 +18,16 @@ interface UserProfile {
     <!-- Page Header -->
     <header class="page-header">
       <div class="header-left">
-        <button class="btn-back" (click)="goBack()">
+        <button class="btn-back" (click)="goBack()" title="Voltar para Tarefas">
           <span class="material-icons-round">arrow_back</span>
         </button>
         <div class="page-icon">
-          <span class="material-icons-round">person_outline</span>
+          <span class="material-icons-round">account_circle</span>
         </div>
-        <h1 class="page-title">Perfil do Usuário</h1>
+        <div class="page-title-group">
+          <h1 class="page-title">Meu Perfil</h1>
+          <p class="page-subtitle">Gerencie suas informações pessoais</p>
+        </div>
       </div>
     </header>
 
@@ -33,17 +36,22 @@ interface UserProfile {
 
       <!-- Profile Card -->
       <div class="profile-card">
-        <div class="avatar-ring">
-          <div class="avatar-large">{{ initials() }}</div>
+        <div class="avatar-wrap">
+          <div class="avatar-ring">
+            <div class="avatar-large">{{ initials() }}</div>
+          </div>
         </div>
         <div class="user-meta">
           <h2 class="user-name">{{ profile().name }}</h2>
           <p class="user-email">
-            <span class="material-icons-round">email</span>
+            <span class="material-icons-round">alternate_email</span>
             {{ profile().email }}
           </p>
           @if (profile().role) {
-            <span class="role-badge">{{ profile().role }}</span>
+            <span class="role-badge">
+              <span class="material-icons-round">work_outline</span>
+              {{ profile().role }}
+            </span>
           }
         </div>
       </div>
@@ -51,7 +59,7 @@ interface UserProfile {
       <!-- Edit Form -->
       <div class="form-card">
         <div class="form-header">
-          <span class="material-icons-round">edit_note</span>
+          <span class="form-header-icon material-icons-round">edit_note</span>
           <h3>Editar Informações</h3>
         </div>
 
@@ -62,7 +70,7 @@ interface UserProfile {
             <label for="name">
               Nome <span class="required">*</span>
             </label>
-            <div class="input-wrap" [class.focused]="false">
+            <div class="input-wrap">
               <span class="material-icons-round field-icon">badge</span>
               <input
                 id="name"
@@ -86,7 +94,7 @@ interface UserProfile {
               E-mail <span class="required">*</span>
             </label>
             <div class="input-wrap">
-              <span class="material-icons-round field-icon">email</span>
+              <span class="material-icons-round field-icon">alternate_email</span>
               <input
                 id="email"
                 type="email"
@@ -159,7 +167,7 @@ interface UserProfile {
       align-items: center;
       justify-content: space-between;
       padding: 0 24px;
-      height: var(--header-height, 52px);
+      height: var(--header-height, 62px);
       background: var(--bg2);
       border-bottom: 1px solid var(--border);
       flex-shrink: 0;
@@ -176,11 +184,11 @@ interface UserProfile {
       border: none;
       color: var(--muted);
       cursor: pointer;
-      padding: 6px;
-      border-radius: var(--radius-sm, 4px);
+      padding: 7px;
+      border-radius: var(--radius-md, 10px);
       display: flex;
       align-items: center;
-      transition: background 0.15s, color 0.15s;
+      transition: background var(--transition-fast), color var(--transition-fast);
 
       .material-icons-round { font-size: 20px; }
 
@@ -191,22 +199,34 @@ interface UserProfile {
     }
 
     .page-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius, 8px);
-      background: rgba(87, 157, 255, 0.15);
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md, 10px);
+      background: linear-gradient(135deg, rgba(91, 141, 238, 0.2), rgba(167, 139, 250, 0.12));
+      border: 1px solid rgba(91, 141, 238, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
 
-      .material-icons-round { font-size: 18px; color: var(--blue); }
+      .material-icons-round { font-size: 20px; color: var(--blue); }
+    }
+
+    .page-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
     }
 
     .page-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--text-bright);
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
+    }
+
+    .page-subtitle {
+      font-size: 11px;
+      color: var(--muted);
     }
 
     /* ── Content Area ── */
@@ -217,7 +237,7 @@ interface UserProfile {
       display: flex;
       flex-direction: column;
       gap: 20px;
-      max-width: 600px;
+      max-width: 620px;
       width: 100%;
       margin: 0 auto;
     }
@@ -229,20 +249,25 @@ interface UserProfile {
       gap: 20px;
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: var(--radius, 8px);
+      border-radius: var(--radius-lg, 14px);
       padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .avatar-wrap {
+      flex-shrink: 0;
     }
 
     .avatar-ring {
       padding: 3px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      box-shadow: 0 4px 16px rgba(91, 141, 238, 0.35);
     }
 
     .avatar-large {
-      width: 64px;
-      height: 64px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
       background: var(--bg3);
       border: 3px solid var(--bg2);
@@ -250,54 +275,58 @@ interface UserProfile {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      font-weight: 700;
+      font-size: 24px;
+      font-weight: 800;
       letter-spacing: 1px;
     }
 
     .user-meta {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
       min-width: 0;
     }
 
     .user-name {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
       color: var(--text-bright);
-      letter-spacing: -0.3px;
+      letter-spacing: -0.4px;
     }
 
     .user-email {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
 
-      .material-icons-round { font-size: 14px; }
+      .material-icons-round { font-size: 15px; }
     }
 
     .role-badge {
       display: inline-flex;
       align-items: center;
-      padding: 3px 10px;
-      background: rgba(87, 157, 255, 0.1);
-      border: 1px solid rgba(87, 157, 255, 0.25);
+      gap: 5px;
+      padding: 4px 12px;
+      background: rgba(91, 141, 238, 0.1);
+      border: 1px solid rgba(91, 141, 238, 0.2);
       border-radius: 20px;
       font-size: 11px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--blue);
       align-self: flex-start;
+
+      .material-icons-round { font-size: 13px; }
     }
 
     /* ── Form Card ── */
     .form-card {
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: var(--radius, 8px);
+      border-radius: var(--radius-lg, 14px);
       overflow: hidden;
+      box-shadow: var(--shadow-card);
     }
 
     .form-header {
@@ -306,13 +335,15 @@ interface UserProfile {
       gap: 10px;
       padding: 16px 20px;
       border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(91, 141, 238, 0.06), transparent);
 
-      .material-icons-round { font-size: 20px; color: var(--blue); }
+      .form-header-icon { font-size: 20px; color: var(--blue); }
 
       h3 {
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 700;
         color: var(--text-bright);
+        letter-spacing: -0.2px;
       }
     }
 
@@ -326,7 +357,7 @@ interface UserProfile {
     .field {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
     }
 
     label {
@@ -345,14 +376,14 @@ interface UserProfile {
       align-items: center;
       gap: 10px;
       background: var(--bg3);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius, 8px);
+      border: 1.5px solid var(--border-emphasis);
+      border-radius: var(--radius-md, 10px);
       padding: 0 14px;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
 
       &:focus-within {
         border-color: var(--blue);
-        box-shadow: 0 0 0 3px rgba(87, 157, 255, 0.12);
+        box-shadow: var(--shadow-blue);
       }
     }
 
@@ -361,7 +392,7 @@ interface UserProfile {
 
       &:focus-within {
         border-color: var(--red);
-        box-shadow: 0 0 0 3px rgba(248, 113, 104, 0.12);
+        box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);
       }
     }
 
@@ -374,7 +405,7 @@ interface UserProfile {
     input[type="text"],
     input[type="email"] {
       flex: 1;
-      padding: 11px 0;
+      padding: 12px 0;
       background: none;
       border: none;
       color: var(--text-bright);
@@ -387,9 +418,6 @@ interface UserProfile {
     .field-error {
       font-size: 11px;
       color: var(--red);
-      display: flex;
-      align-items: center;
-      gap: 4px;
     }
 
     /* ── Feedback ── */
@@ -398,7 +426,7 @@ interface UserProfile {
       align-items: center;
       gap: 8px;
       padding: 10px 14px;
-      border-radius: var(--radius, 8px);
+      border-radius: var(--radius-md, 10px);
       font-size: 13px;
       font-weight: 500;
 
@@ -406,14 +434,14 @@ interface UserProfile {
     }
 
     .msg-success {
-      background: rgba(76, 206, 151, 0.1);
-      border: 1px solid rgba(76, 206, 151, 0.25);
+      background: rgba(52, 211, 153, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.2);
       color: var(--green);
     }
 
     .msg-error {
-      background: rgba(248, 113, 104, 0.1);
-      border: 1px solid rgba(248, 113, 104, 0.25);
+      background: rgba(248, 113, 113, 0.08);
+      border: 1px solid rgba(248, 113, 113, 0.2);
       color: var(--red);
     }
 
@@ -425,10 +453,10 @@ interface UserProfile {
     }
 
     .btn-save {
-      padding: 10px 22px;
-      background: var(--blue);
+      padding: 11px 24px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
       border: none;
-      border-radius: var(--radius, 8px);
+      border-radius: var(--radius-md, 10px);
       color: #fff;
       font-size: 13px;
       font-weight: 600;
@@ -436,19 +464,19 @@ interface UserProfile {
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+      transition: opacity var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
 
       .material-icons-round { font-size: 18px; }
 
       &:hover {
-        background: var(--blue-dark);
-        box-shadow: 0 4px 14px rgba(87, 157, 255, 0.3);
+        opacity: 0.9;
+        box-shadow: 0 4px 16px rgba(91, 141, 238, 0.4);
       }
 
       &:active { transform: scale(0.98); }
 
       &:disabled {
-        opacity: 0.6;
+        opacity: 0.5;
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
@@ -464,9 +492,10 @@ interface UserProfile {
     @media (max-width: 600px) {
       .content-area { padding: 16px; }
       .page-header { padding: 0 16px; }
-      .profile-card { gap: 14px; padding: 16px; }
-      .avatar-large { width: 52px; height: 52px; font-size: 18px; }
-      .user-name { font-size: 15px; }
+      .profile-card { gap: 14px; padding: 16px; flex-direction: column; align-items: flex-start; }
+      .avatar-large { width: 56px; height: 56px; font-size: 20px; }
+      .user-name { font-size: 17px; }
+      .page-subtitle { display: none; }
     }
   `],
 })

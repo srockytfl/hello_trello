@@ -1,0 +1,49 @@
+US-58 — Implementar novo layout conforme prototipo
+======================
+
+CONTEXTO
+--------
+O TODO List precisa ser redesenhado seguindo o layout especificado no protótipo Figma para melhorar a experiência do usuário e alinhar-se com os padrões de design estabelecidos.
+
+HISTORIA
+--------
+Como usuário,
+quero usar a aplicação TODO List com o novo layout,
+para ter uma melhor experiência visual e navegação mais intuitiva.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O layout implementado deve corresponder exatamente ao design do prototipo Figma (node-id=23-740)
+2. Todos os componentes visuais devem respeitar as especificações de cores, tipografia e espaçamento do design
+3. A responsividade deve funcionar em dispositivos mobile, tablet e desktop
+4. Os elementos interativos (botões, campos) devem ser acessíveis e seguir as convenções de UX
+5. Não deve haver regressions nas funcionalidades existentes
+
+REGRAS TECNICAS
+---------------
+- Seguir convenções do CLAUDE.md
+- Respeitar a estrutura e padrões já estabelecidos no projeto
+- Implementação sem over-engineering
+- Validar a compatibilidade com navegadores modernos
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar que os endpoints de tarefas continuam funcionando corretamente
+  - Validar o retorno dos dados para preenchimento da nova interface
+
+E2E:
+  - Validar que o layout corresponde ao Figma em diferentes resoluções
+  - Testar criação, edição e exclusão de tarefas na nova interface
+  - Verificar a responsividade em mobile, tablet e desktop
+  - Confirmar que elementos interativos funcionam conforme esperado
+
+REFERENCIA VISUAL (FIGMA)
+-------------------------
+https://www.figma.com/design/ik0Qa30O9oNUy3qelJbQO7/Ferramenta-Trello?node-id=23-740&t=YziyyYYWYX7nQbUA-0
+
+FORA DO ESCOPO
+--------------
+- Modificação de funcionalidades existentes
+- Alteração de estrutura de dados da API
+- Implementação de novas features além do redesign do layout

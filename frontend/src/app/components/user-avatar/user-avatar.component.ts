@@ -11,45 +11,65 @@ import { Router } from '@angular/router';
       [title]="'Perfil de ' + userName()"
       aria-label="Perfil do usuário"
     >
-      {{ initials() }}
+      <span class="avatar-initials">{{ initials() }}</span>
+      <span class="avatar-ring"></span>
     </button>
   `,
   styles: [`
     .avatar {
-      width: 32px;
-      height: 32px;
+      position: relative;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      background: var(--blue);
-      color: #111111;
-      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
       flex-shrink: 0;
-      transition: opacity 0.15s, transform 0.15s, border-color 0.15s;
-      line-height: 1;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 
       &:hover {
-        opacity: 0.85;
-        transform: scale(1.08);
-        border-color: var(--blue-dark);
+        transform: scale(1.1);
+        box-shadow: 0 0 0 3px rgba(91, 141, 238, 0.25), 0 4px 12px rgba(0, 0, 0, 0.4);
+
+        .avatar-ring {
+          opacity: 1;
+        }
       }
 
       &:focus {
         outline: none;
-        border-color: var(--blue-dark);
-        box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.25);
+        box-shadow: 0 0 0 3px rgba(91, 141, 238, 0.35);
       }
 
       @media (max-width: 480px) {
-        width: 28px;
-        height: 28px;
-        font-size: 10px;
+        width: 30px;
+        height: 30px;
       }
+    }
+
+    .avatar-initials {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue), var(--purple), var(--teal), var(--blue));
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      z-index: 0;
+      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
     }
   `],
 })
