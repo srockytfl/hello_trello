@@ -13,7 +13,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
       <div class="app-shell">
         <app-sidebar />
         <div class="app-main">
-          <router-outlet />
+          <div class="app-content">
+            <router-outlet />
+          </div>
           <app-footer />
         </div>
       </div>
@@ -36,6 +38,14 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
       overflow: hidden;
       min-width: 0;
       background: var(--bg);
+    }
+
+    .app-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 0;
     }
   `],
 })
