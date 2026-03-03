@@ -22,6 +22,14 @@ Read: tasks/<N>/US-<N>-spec.md
 Read: tasks/<N>/US-<N>-plan.md
 ```
 
+## Passo 2.1 — Referencia Visual (Figma)
+Se a Spec ou o Plan contem uma secao **Referencia Visual (Figma)** com uma URL do Figma:
+1. Extraia o `fileKey` e `nodeId` da URL (formato: `figma.com/design/:fileKey/:nome?node-id=:nodeId`)
+2. Use a ferramenta `mcp__figma__get_design_context` com o `fileKey` e `nodeId` para obter o design
+3. Use o screenshot e o codigo de referencia retornados como guia visual para implementar o frontend
+4. Adapte cores, espacamentos e layout ao design do Figma, respeitando as variaveis CSS do projeto (var(--text-primary), var(--card-bg), etc.)
+5. Se a URL nao tiver `node-id`, use `mcp__figma__get_metadata` com nodeId `0:1` para listar as paginas e encontrar o node correto
+
 ## Passo 3 — Implementar Backend (se necessario)
 
 Siga o Plan para:

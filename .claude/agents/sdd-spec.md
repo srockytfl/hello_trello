@@ -21,6 +21,10 @@ Entenda as convencoes, stack e estrutura do projeto.
 Bash: ~/bin/gh issue view <N> --json title,body,labels
 ```
 
+## Passo 2.1 — Extrair URL do Figma (se existir)
+Procure no body da issue uma URL do Figma (formato `https://figma.com/design/...`).
+Se encontrar, guarde-a para incluir na Spec como **Referencia Visual**.
+
 ## Passo 3 — Criar pasta de artefatos
 ```
 Bash: mkdir -p tasks/<N>
@@ -64,6 +68,9 @@ Formato:
 ## Escopo Tecnico
 - Backend necessario: sim | nao
 - Frontend necessario: sim | nao
+
+## Referencia Visual (Figma)
+<URL do Figma se existir na issue. O agente Execute DEVE usar esta URL com a ferramenta mcp__figma__get_design_context para obter o design e implementar o frontend de acordo. Se nao existir URL, remova esta secao.>
 
 ## Suposicoes
 - <o que foi inferido por falta de clareza>

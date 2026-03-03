@@ -77,6 +77,9 @@ Tabelas, colunas e tipos necessarios.
 | `frontend/src/app/pages/<nome>/` | Criar componente |
 | `frontend/src/app/services/<nome>.service.ts` | Criar/modificar |
 
+## Referencia Visual (Figma)
+<Se a Spec contem uma URL do Figma, copie-a aqui. O agente Execute DEVE usar esta URL com a ferramenta mcp__figma__get_design_context para obter o design e implementar o frontend de acordo. Se nao existir URL, remova esta secao.>
+
 ## Criterios Tecnicos de Pronto
 - [ ] Endpoint responde conforme contrato
 - [ ] Componente consome endpoints definidos
