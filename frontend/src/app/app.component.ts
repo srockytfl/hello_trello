@@ -26,6 +26,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
       display: flex;
       height: 100vh;
       overflow: hidden;
+      background: var(--bg);
     }
 
     .app-main {
@@ -34,6 +35,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
       flex-direction: column;
       overflow: hidden;
       min-width: 0;
+      background: var(--bg);
     }
   `],
 })

@@ -75,6 +75,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       <div class="task-list">
         @for (todo of filtered(); track todo.id) {
           <div class="task-card" [class.done]="todo.done">
+            <div class="task-status-bar" [class.done]="todo.done"></div>
             <button
               class="task-check"
               [class.checked]="todo.done"
@@ -92,7 +93,9 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
           </div>
         } @empty {
           <div class="empty-state">
-            <span class="material-icons-round empty-icon">inbox</span>
+            <div class="empty-icon-wrap">
+              <span class="material-icons-round empty-icon">inbox</span>
+            </div>
             <p class="empty-title">{{ emptyTitle() }}</p>
             <p class="empty-sub">{{ emptyMessage() }}</p>
           </div>
@@ -116,7 +119,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       align-items: center;
       justify-content: space-between;
       padding: 0 24px;
-      height: var(--header-height, 52px);
+      height: var(--header-height, 56px);
       background: var(--bg2);
       border-bottom: 1px solid var(--border);
       flex-shrink: 0;
@@ -131,17 +134,18 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
     }
 
     .page-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius, 8px);
-      background: rgba(87, 157, 255, 0.15);
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-md, 8px);
+      background: linear-gradient(135deg, rgba(47, 129, 247, 0.2), rgba(47, 129, 247, 0.08));
+      border: 1px solid rgba(47, 129, 247, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
 
       .material-icons-round {
-        font-size: 20px;
+        font-size: 18px;
         color: var(--blue);
       }
     }
@@ -154,18 +158,18 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
     }
 
     .page-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--text-bright);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
     }
 
     .stats-row {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
 
     .stat-chip {
@@ -198,6 +202,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       flex: 1;
       overflow-y: auto;
       padding: 24px;
+      background: var(--bg);
     }
 
     /* ── Add Bar ── */
@@ -214,13 +219,13 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       gap: 10px;
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: var(--radius, 8px);
+      border-radius: var(--radius-md, 8px);
       padding: 0 14px;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: border-color var(--transition-base), box-shadow var(--transition-base);
 
       &:focus-within {
         border-color: var(--blue);
-        box-shadow: 0 0 0 3px rgba(87, 157, 255, 0.12);
+        box-shadow: var(--shadow-blue);
       }
     }
 
@@ -232,7 +237,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
 
     .add-input {
       flex: 1;
-      padding: 11px 0;
+      padding: 12px 0;
       background: none;
       border: none;
       color: var(--text-bright);
@@ -247,7 +252,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       height: 44px;
       background: var(--blue);
       border: none;
-      border-radius: var(--radius, 8px);
+      border-radius: var(--radius-md, 8px);
       color: #fff;
       font-size: 13px;
       font-weight: 600;
@@ -256,44 +261,48 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       align-items: center;
       gap: 6px;
       white-space: nowrap;
-      transition: background 0.15s, transform 0.1s;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 
       .material-icons-round { font-size: 18px; }
 
-      &:hover { background: var(--blue-dark); }
-      &:active { transform: scale(0.98); }
-      &:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+      &:hover {
+        background: var(--blue-dark);
+        box-shadow: 0 4px 12px rgba(47, 129, 247, 0.4);
+      }
+      &:active { transform: scale(0.97); }
+      &:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
     }
 
     /* ── Filters ── */
     .filters-bar {
       display: flex;
-      gap: 4px;
-      margin-bottom: 16px;
+      gap: 6px;
+      margin-bottom: 20px;
     }
 
     .filter-btn {
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 14px;
-      background: none;
+      padding: 6px 14px;
+      background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 20px;
       color: var(--muted);
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 
       &:hover {
         color: var(--text-bright);
         background: var(--hover);
+        border-color: var(--border-emphasis);
       }
 
       &.active {
-        background: rgba(87, 157, 255, 0.15);
-        border-color: var(--blue);
+        background: rgba(47, 129, 247, 0.12);
+        border-color: rgba(47, 129, 247, 0.4);
         color: var(--blue);
 
         .filter-count { background: var(--blue); color: #fff; }
@@ -307,78 +316,97 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       min-width: 18px;
       height: 18px;
       padding: 0 5px;
-      background: var(--hover);
+      background: var(--bg3);
       border-radius: 10px;
       font-size: 10px;
       font-weight: 700;
       color: var(--muted);
-      transition: background 0.15s, color 0.15s;
+      transition: background var(--transition-fast), color var(--transition-fast);
     }
 
     /* ── Task List ── */
     .task-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
     .task-card {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 14px 16px;
+      padding: 0 16px 0 0;
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: var(--radius, 8px);
-      transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+      border-radius: var(--radius-md, 8px);
+      overflow: hidden;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
 
       &:hover {
-        background: var(--bg3);
-        border-color: #3a4249;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        border-color: var(--border-emphasis);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-1px);
 
         .btn-del { opacity: 1; }
       }
 
       &.done {
-        opacity: 0.65;
+        opacity: 0.6;
         .task-text {
           text-decoration: line-through;
           color: var(--muted);
         }
+        .task-status-bar { background: var(--green); }
       }
     }
 
+    .task-status-bar {
+      width: 4px;
+      align-self: stretch;
+      background: var(--blue);
+      flex-shrink: 0;
+      border-radius: 0;
+      transition: background var(--transition-base);
+
+      &.done { background: var(--green); }
+    }
+
     .task-check {
-      width: 20px;
-      height: 20px;
-      border-radius: 6px;
-      border: 2px solid var(--border);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border-emphasis);
       background: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: background 0.15s, border-color 0.15s;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
       padding: 0;
+      margin-left: 12px;
 
-      .material-icons-round { font-size: 14px; color: #fff; }
+      .material-icons-round { font-size: 12px; color: #fff; }
 
-      &:hover { border-color: var(--blue); }
+      &:hover {
+        border-color: var(--blue);
+        transform: scale(1.1);
+      }
 
       &.checked {
-        background: var(--blue);
-        border-color: var(--blue);
+        background: var(--green);
+        border-color: var(--green);
       }
     }
 
     .task-text {
       flex: 1;
+      padding: 14px 0;
       font-size: 13.5px;
       line-height: 1.5;
       color: var(--text-bright);
       word-break: break-word;
+      transition: color var(--transition-fast);
     }
 
     .btn-del {
@@ -386,19 +414,20 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       border: none;
       color: var(--muted);
       cursor: pointer;
-      padding: 4px;
+      padding: 5px;
       border-radius: var(--radius-sm, 4px);
       display: flex;
       align-items: center;
       opacity: 0;
-      transition: opacity 0.15s, color 0.15s, background 0.15s;
+      transition: opacity var(--transition-fast), color var(--transition-fast), background var(--transition-fast);
       flex-shrink: 0;
 
-      .material-icons-round { font-size: 18px; }
+      .material-icons-round { font-size: 16px; }
 
       &:hover {
         color: var(--red);
-        background: rgba(248, 113, 104, 0.12);
+        background: rgba(248, 81, 73, 0.1);
+        opacity: 1;
       }
     }
 
@@ -407,19 +436,30 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 64px 16px;
-      gap: 8px;
+      padding: 72px 16px;
+      gap: 10px;
     }
 
-    .empty-icon {
-      font-size: 48px;
-      color: var(--muted);
-      opacity: 0.3;
+    .empty-icon-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 8px;
     }
 
+    .empty-icon {
+      font-size: 32px;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
     .empty-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-bright);
     }
@@ -427,18 +467,16 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
     .empty-sub {
       font-size: 12px;
       color: var(--muted);
+      text-align: center;
+      max-width: 260px;
     }
 
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .content-area { padding: 16px; }
-
       .add-bar { flex-direction: column; }
-
-      .btn-add { height: 40px; justify-content: center; }
-
+      .btn-add { height: 42px; justify-content: center; }
       .page-header { padding: 0 16px; }
-
       .stats-row { display: none; }
     }
   `]
