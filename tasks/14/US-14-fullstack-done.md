@@ -1,48 +1,77 @@
-# US-14 — Trocar Título para "Teste 1" — Fullstack Done
+# US-14 Fullstack — Trocar Título para Teste 1
 
 ## Resumo
 
-Implementação da mudança do título da aplicação de **"Teste Cores"** para **"Teste 1"** em todas as camadas da stack (backend, frontend e HTML). O título é exibido dinamicamente via `TitleService` que carrega o valor do endpoint `/api/title`.
+Alteração do título da aplicação de `'Teste Cores'` para `'Teste 1'`, com exposição de endpoints REST e serviço Angular reativo.
 
 ---
 
-## Endpoints
+## Backend
 
-| Método | Rota | Resposta |
-|--------|------|----------|
-| GET | `/api/title` | `{ "title": "Teste 1" }` |
+### Arquivos modificados
+- `server/index.js`
 
----
+### Mudanças
+- `appTitle` alterado de `'Teste Cores'` para `'Teste 1'`
+- Log de inicialização adicionado: `console.log('Título atual: Teste 1')`
+- Endpoint `PUT /api/title` adicionado:
+  - Valida que `title` não está vazio (400 `{ error: 'Título é obrigatório' }`)
+  - Atualiza `appTitle` em memória
+  - Retorna `{ title: appTitle }`
+  - Logs: sucesso (`Título atualizado para: ...`) e erro de validação
 
-## Arquivos Criados / Modificados
-
-### Backend
-| Arquivo | Alteração |
-|---------|-----------|
-| `server/index.js` | `appTitle = 'Teste 1'` — endpoint `GET /api/title` retorna o novo título |
-
-### Frontend
-| Arquivo | Alteração |
-|---------|-----------|
-| `frontend/src/index.html` | `<title>Teste 1</title>` — título da aba do browser |
-| `frontend/src/app/services/title.service.ts` | Signal inicial e fallback de erro definidos como `'Teste 1'`; consome `GET /api/title` |
-
----
-
-## Serviços
-
-| Serviço | Arquivo | Responsabilidade |
-|---------|---------|-----------------|
-| `TitleService` | `services/title.service.ts` | Carrega título do backend e o expõe como signal reativo |
-| `ApiService` | `services/api.service.ts` | Método `getTitle()` — `GET /api/title` (sem alteração) |
+### Endpoints
+| Método | Rota        | Descrição                        | Resposta 2xx               |
+|--------|-------------|----------------------------------|----------------------------|
+| GET    | /api/title  | Retorna título atual             | `{ "title": "Teste 1" }`   |
+| PUT    | /api/title  | Atualiza título (body: {title}) | `{ "title": "<novo>" }`    |
 
 ---
 
-## Critérios de Aceitação — Verificação
+## Frontend
 
-- [x] O título exibido na interface é **"Teste 1"** (aba do browser + todas as páginas via TitleService)
-- [x] A mudança é persistida via endpoint `GET /api/title` (backend em memória)
-- [x] O título é visível em todas as páginas relevantes (login, todos)
-- [x] A API retorna o novo título "Teste 1"
-- [x] O título "Teste 1" é exibido corretamente após recarregar a página (signal reativo + backend em memória)
-- [x] Nenhuma regressão em outras funcionalidades
+### Arquivos modificados
+- `frontend/src/app/services/api.service.ts`
+- `frontend/src/app/services/title.service.ts`
+
+### Mudanças
+
+#### `api.service.ts`
+- Adicionado método `updateTitle(title: string)` que faz `PUT /api/title`
+
+#### `title.service.ts`
+- Signal `appTitle` inicializado com `'Teste 1'` (antes: `'Teste Cores'`)
+- Fallback de erro atualizado para `'Teste 1'`
+- Adicionado método `updateTitle(newTitle: string)` que chama `api.updateTitle()` e atualiza o signal reativamente
+
+### Serviços
+| Serviço       | Método          | Descrição                            |
+|---------------|-----------------|--------------------------------------|
+| TitleService  | `load()`        | GET /api/title ao inicializar        |
+| TitleService  | `updateTitle()` | PUT /api/title + atualiza signal     |
+| ApiService    | `getTitle()`    | GET /api/title                       |
+| ApiService    | `updateTitle()` | PUT /api/title                       |
+
+### Exibição
+O título `'Teste 1'` é exibido no header da página `/todos` via `{{ titleService.appTitle() }}` (já existia no `TodosComponent`).
+
+---
+
+## Fluxo de Persistência
+1. Usuário acessa a aplicação
+2. `TitleService` carrega via `GET /api/title` → backend retorna `{ title: "Teste 1" }`
+3. Signal `appTitle` é atualizado para `"Teste 1"`
+4. `TodosComponent` renderiza `"Teste 1"` no header
+5. Após recarregar a página, o ciclo se repete e o título persiste (em memória)
+
+---
+
+## Critérios de Aceitação Atendidos
+- [x] Endpoint GET `/api/title` retorna `{ "title": "Teste 1" }`
+- [x] Endpoint PUT `/api/title` aceita novo título e retorna conforme contrato
+- [x] Validação de título (não vazio) implementada no backend
+- [x] Serviço `TitleService` atualizado com fallback `'Teste 1'`
+- [x] Método `updateTitle` disponível no `TitleService` e `ApiService`
+- [x] Título "Teste 1" exibido na interface (página /todos)
+- [x] Título persiste após recarregar a página
+- [x] Logs básicos implementados no servidor

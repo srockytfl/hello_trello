@@ -31,6 +31,10 @@ export class ApiService {
     return this.http.get<{ title: string }>(`${this.url}/title`);
   }
 
+  updateTitle(title: string) {
+    return this.http.put<{ title: string }>(`${this.url}/title`, { title });
+  }
+
   getUserProfile() {
     return this.http.get<{ name: string; email: string; role: string; joinedAt: string }>(
       `${this.url}/user/profile`

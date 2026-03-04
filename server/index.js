@@ -23,9 +23,21 @@ let todos = [
 let nextId = 4;
 
 // --- Title ---
-let appTitle = 'Teste Cores';
+let appTitle = 'Teste 1';
+console.log('Título atual: Teste 1');
 
 app.get('/api/title', (req, res) => {
+  res.json({ title: appTitle });
+});
+
+app.put('/api/title', (req, res) => {
+  const { title } = req.body;
+  if (!title || !title.trim()) {
+    console.log('Erro ao validar título: título vazio');
+    return res.status(400).json({ error: 'Título é obrigatório' });
+  }
+  appTitle = title.trim();
+  console.log(`Título atualizado para: ${appTitle}`);
   res.json({ title: appTitle });
 });
 
