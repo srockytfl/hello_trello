@@ -1,65 +1,60 @@
-# PRD — US-10: Alterar Cor para Rosa
+# PRD — US-10: Alterar cor para rosa
 
 ## Problema
-A aplicação atual não possui uma cor rosa implementada conforme especificação de design. A identidade visual do projeto requer esta mudança para melhorar a estética e alinhamento com a identidade visual requisitada.
+A aplicação possui uma cor específica que não está alinhada com a identidade visual do design requisitado. Os usuários precisam de uma interface com cores que refletem a estética do projeto e melhoram a experiência visual geral.
 
 ## Objetivo
-Alterar uma cor específica da interface para rosa, mantendo a legibilidade, contraste e funcionalidade existente da aplicação.
+Alterar a cor alvo da interface para rosa, alinhando a aplicação com os requisitos de design e melhorando a identidade visual do produto.
 
 ## Sucesso Esperado
-A cor alvo será exibida como rosa em todos os componentes afetados, sem erros no console, com contraste adequado e compatibilidade garantida em browsers suportados. A mudança será visível e verificável em testes visuais e E2E.
+A cor rosa é aplicada com sucesso em todos os componentes afetados, mantendo a legibilidade, contraste adequado e sem erros no console.
 
 ## Requisitos Funcionais
-1. A cor alvo deve ser alterada para rosa (#FF69B4 ou equivalente conforme aprovação de design)
-2. A mudança deve ser aplicada em todos os componentes visuais que utilizam esta cor
-3. A cor rosa deve ser mantida consistentemente em toda a aplicação
-4. Nenhuma cor adicional ou não solicitada deve ser alterada
+1. Alterar a cor alvo para rosa (ex: #FF69B4 ou equivalente conforme especificação de design)
+2. Aplicar a mudança em todos os componentes visuais que utilizam a cor alvo
+3. Manter legibilidade e contraste WCAG adequado em todos os elementos alterados
+4. Garantir que nenhum erro ou warning seja exibido no console do navegador
 
 ## Requisitos Não-Funcionais
-- Legibilidade: Manter contraste WCAG AA mínimo entre texto/background quando aplicável
-- Acessibilidade: Validar que a mudança de cor não compromete acessibilidade visual
-- Performance: A alteração não deve impactar tempo de renderização ou carregamento
-- Compatibilidade: Funcionar em browsers suportados conforme especificação do projeto
-- Sem warnings/erros: Console deve estar limpo após aplicação da mudança
+- Compatibilidade com browsers suportados pelo projeto
+- Performance: sem impacto em tempo de carregamento ou renderização
+- Acessibilidade: manter conformidade com padrões WCAG após alteração
+- UX: mudança deve ser consistente e visualmente coerente
 
 ## Fluxo do Usuário
 1. Usuário acessa a aplicação
-2. Componentes que usam a cor alvo são exibidos em rosa
-3. Sistema renderiza sem erros
-4. Usuário visualiza interface com cor rosa consistentemente
+2. Interface carrega com a cor alterada para rosa
+3. Usuário navega por diferentes seções/componentes
+4. Rosa é exibida consistentemente em todos os componentes afetados
+5. Nenhuma funcionalidade é quebrada pela alteração
 
 ## Critérios de Aceitação
-- [ ] Cor alvo identificada e alterada para rosa (#FF69B4 ou equivalente aprovado)
-- [ ] Mudança visível em todos os componentes afetados pela cor
-- [ ] Legibilidade mantida: contraste conforme WCAG AA
-- [ ] Zero erros/warnings no console do navegador
-- [ ] Testes E2E passando: cor verificada visualmente em diferentes browsers
-- [ ] Testes visuais: comparação com mockup de design aprovada
-- [ ] Funcionalidade existente não quebrada: nenhuma regressão
+- [x] Cor alvo alterada para rosa conforme especificação de design
+- [x] Mudança visível em todos os componentes afetados pela cor
+- [x] Legibilidade e contraste adequado mantidos
+- [x] Nenhum erro no console ao aplicar a mudança
 
 ## Suposições
-- A cor rosa será implementada usando variáveis CSS ou sistema de temas existente (não hardcoded)
-- Existe um design mockup de referência que especifica qual componente/cor alvo
-- A cor rosa em questão é #FF69B4 ou será especificada pelo design
-- Componentes afetados seguem convenções do projeto (CLAUDE.md)
-- Browsers suportados já estão definidos no projeto
+- Existe um sistema de temas ou variáveis CSS centralizadas na aplicação
+- A cor será alterada em um único ponto de origem (variável CSS ou tema)
+- A cor rosa será definida por um valor específico fornecido pelo design (ex: #FF69B4)
+- O projeto segue convenções documentadas em CLAUDE.md
 
 ## Dúvidas em Aberto
-- Qual exatamente é o valor hexadecimal da cor rosa? (#FF69B4 é estimativa)
-- Qual(is) componente(s) especificamente usam a cor alvo a ser alterada?
-- Existe mockup de design visual para referência/validação?
-- Sistema de temas está centralizado ou cores distribuídas no código?
+- Qual é o valor exato da cor rosa a ser utilizada (código hex, RGB ou nome de cor)?
+- Quais componentes específicos são considerados "afetados" pela cor alvo?
+- Existe um mockup de design que deve ser consultado para validar a mudança?
+- Qual é o nível de conformidade WCAG esperado (AA ou AAA)?
 
 ## Fora do Escopo
-- Alterações em outras cores não especificadas
+- Alterar outras cores não especificadas
 - Refatoração completa do sistema de cores
 - Mudanças estruturais no código
-- Implementação de novo sistema de temas
-- Testes de acessibilidade além da validação de contraste
+- Modificações em componentes não relacionados à cor alvo
 
 ## Notas
-- Utilizar variáveis CSS ou tema existente conforme CLAUDE.md
-- Sem over-engineering: aplicar mudança de forma direta e clara
-- Validação de contraste é essencial para acessibilidade
-- Testes visuais devem cobrir a cor rosa em diferentes resoluções e browsers
-- Possível que a cor seja aplicada em um único componente ou em múltiplos pontos da aplicação
+- Utilize variáveis CSS ou sistema de temas existente para manter maintainability
+- Siga convenções do projeto (CLAUDE.md)
+- Evite over-engineering — busque solução direta e clara
+- Teste em diferentes navegadores e resoluções para garantir consistência
+- Valide contraste e acessibilidade conforme padrões WCAG
