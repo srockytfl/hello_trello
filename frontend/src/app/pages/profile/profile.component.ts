@@ -202,8 +202,8 @@ interface UserProfile {
       width: 38px;
       height: 38px;
       border-radius: var(--radius-md, 10px);
-      background: linear-gradient(135deg, rgba(91, 141, 238, 0.2), rgba(167, 139, 250, 0.12));
-      border: 1px solid rgba(91, 141, 238, 0.2);
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(167, 139, 250, 0.12));
+      border: 1px solid rgba(255, 105, 180, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -262,7 +262,7 @@ interface UserProfile {
       padding: 3px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--blue), var(--purple));
-      box-shadow: 0 4px 16px rgba(91, 141, 238, 0.35);
+      box-shadow: 0 4px 16px rgba(255, 105, 180, 0.35);
     }
 
     .avatar-large {
@@ -309,8 +309,8 @@ interface UserProfile {
       align-items: center;
       gap: 5px;
       padding: 4px 12px;
-      background: rgba(91, 141, 238, 0.1);
-      border: 1px solid rgba(91, 141, 238, 0.2);
+      background: rgba(255, 105, 180, 0.1);
+      border: 1px solid rgba(255, 105, 180, 0.2);
       border-radius: 20px;
       font-size: 11px;
       font-weight: 600;
@@ -335,7 +335,7 @@ interface UserProfile {
       gap: 10px;
       padding: 16px 20px;
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, rgba(91, 141, 238, 0.06), transparent);
+      background: linear-gradient(135deg, rgba(255, 105, 180, 0.06), transparent);
 
       .form-header-icon { font-size: 20px; color: var(--blue); }
 
@@ -470,7 +470,7 @@ interface UserProfile {
 
       &:hover {
         opacity: 0.9;
-        box-shadow: 0 4px 16px rgba(91, 141, 238, 0.4);
+        box-shadow: 0 4px 16px rgba(255, 105, 180, 0.4);
       }
 
       &:active { transform: scale(0.98); }
