@@ -1,0 +1,43 @@
+US-6 — Trocar Cor para Verde
+=============================
+
+CONTEXTO
+--------
+A aplicação precisa atualizar a paleta de cores para melhor alinhamento com a identidade visual. Esta tarefa foca em alterar as cores principais do sistema para tons de verde.
+
+HISTORIA
+--------
+Como usuário,
+quero visualizar a interface com cores em tom verde,
+para ter uma experiência visual mais consistente com a marca.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Cores primárias da interface devem ser alteradas para verde
+2. Todos os componentes que usam cor primária devem refletir a mudança
+3. Contraste e acessibilidade devem ser mantidos
+4. A mudança deve ser aplicada consistentemente em toda a aplicação
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Atualizar variáveis CSS/tokens de cor, se existirem
+- Sem over-engineering
+- Manter compatibilidade com tema existente
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar que a API retorna as cores corretas se houver endpoints de configuração de tema
+
+E2E:
+  - Validar que todos os botões primários exibem verde
+  - Validar que links e elementos de destaque exibem verde
+  - Validar que contraste atende WCAG AA
+  - Testar em diferentes navegadores e resoluções
+
+FORA DO ESCOPO
+--------------
+- Alterar cores secundárias ou de suporte
+- Modificar temas adicionais além do primário
+- Implementar novo sistema de temas
