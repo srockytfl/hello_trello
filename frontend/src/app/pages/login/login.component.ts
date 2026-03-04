@@ -9,7 +9,7 @@ import { TitleService } from '../../services/title.service';
   standalone: true,
   imports: [FormsModule],
   template: `
-    <div class="login-page">
+    <main class="login-page" aria-label="Página de login">
 
       <!-- Decorative background blobs -->
       <div class="bg-blob blob-1"></div>
@@ -31,11 +31,11 @@ import { TitleService } from '../../services/title.service';
         </div>
 
         <!-- Form -->
-        <div class="login-form">
+        <form class="login-form" (ngSubmit)="onLogin()" novalidate>
 
           <div class="field">
             <label for="username">
-              <span class="material-icons-round label-icon">person_outline</span>
+              <span class="material-icons-round label-icon" aria-hidden="true">person_outline</span>
               Usuário
             </label>
             <div class="input-wrap">
@@ -52,7 +52,7 @@ import { TitleService } from '../../services/title.service';
 
           <div class="field">
             <label for="password">
-              <span class="material-icons-round label-icon">lock_outline</span>
+              <span class="material-icons-round label-icon" aria-hidden="true">lock_outline</span>
               Senha
             </label>
             <div class="input-wrap">
@@ -67,31 +67,31 @@ import { TitleService } from '../../services/title.service';
           </div>
 
           @if (error()) {
-            <div class="error-msg">
-              <span class="material-icons-round">error_outline</span>
+            <div class="error-msg" role="alert" aria-live="assertive">
+              <span class="material-icons-round" aria-hidden="true">error_outline</span>
               {{ error() }}
             </div>
           }
 
-          <button class="btn-login" (click)="onLogin()" [disabled]="loading()">
+          <button class="btn-login" type="submit" [disabled]="loading()">
             @if (loading()) {
-              <span class="material-icons-round spinning">sync</span>
+              <span class="material-icons-round spinning" aria-hidden="true">sync</span>
               Entrando...
             } @else {
               Entrar na Conta
-              <span class="material-icons-round">arrow_forward</span>
+              <span class="material-icons-round" aria-hidden="true">arrow_forward</span>
             }
           </button>
 
-        </div>
+        </form>
 
         <div class="login-hint">
-          <span class="hint-icon material-icons-round">info_outline</span>
+          <span class="hint-icon material-icons-round" aria-hidden="true">info_outline</span>
           <span>Use <strong>admin</strong> / <strong>123</strong> para acessar</span>
         </div>
 
       </div>
-    </div>
+    </main>
   `,
   styles: [`
     .login-page {

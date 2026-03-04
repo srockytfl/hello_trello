@@ -44,12 +44,12 @@ interface UserProfile {
         <div class="user-meta">
           <h2 class="user-name">{{ profile().name }}</h2>
           <p class="user-email">
-            <span class="material-icons-round">alternate_email</span>
+            <span class="material-icons-round" aria-hidden="true">alternate_email</span>
             {{ profile().email }}
           </p>
           @if (profile().role) {
             <span class="role-badge">
-              <span class="material-icons-round">work_outline</span>
+              <span class="material-icons-round" aria-hidden="true">work_outline</span>
               {{ profile().role }}
             </span>
           }
@@ -59,7 +59,7 @@ interface UserProfile {
       <!-- Edit Form -->
       <div class="form-card">
         <div class="form-header">
-          <span class="form-header-icon material-icons-round">edit_note</span>
+          <span class="form-header-icon material-icons-round" aria-hidden="true">edit_note</span>
           <h3>Editar Informações</h3>
         </div>
 
@@ -128,21 +128,21 @@ interface UserProfile {
 
           <!-- Feedback -->
           @if (successMsg()) {
-            <div class="msg msg-success">
-              <span class="material-icons-round">check_circle_outline</span>
+            <div class="msg msg-success" role="status" aria-live="polite">
+              <span class="material-icons-round" aria-hidden="true">check_circle_outline</span>
               {{ successMsg() }}
             </div>
           }
           @if (errorMsg()) {
-            <div class="msg msg-error">
-              <span class="material-icons-round">error_outline</span>
+            <div class="msg msg-error" role="alert" aria-live="assertive">
+              <span class="material-icons-round" aria-hidden="true">error_outline</span>
               {{ errorMsg() }}
             </div>
           }
 
           <div class="form-actions">
             <button type="submit" class="btn-save" [disabled]="saving()">
-              <span class="material-icons-round">{{ saving() ? 'sync' : 'save' }}</span>
+              <span class="material-icons-round" aria-hidden="true">{{ saving() ? 'sync' : 'save' }}</span>
               {{ saving() ? 'Salvando...' : 'Salvar Alterações' }}
             </button>
           </div>
