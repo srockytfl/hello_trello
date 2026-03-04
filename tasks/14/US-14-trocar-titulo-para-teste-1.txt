@@ -3,35 +3,37 @@ US-14 — Trocar Titulo para Teste 1
 
 CONTEXTO
 --------
-É necessário atualizar o título da aplicação para "Teste 1" para fins de validação e testes iniciais.
+Necessidade de atualizar o título de um elemento ou página para "Teste 1",
+melhorando a clareza e identificação do recurso.
 
 HISTORIA
 --------
-Como um testador,
-quero que o título da página seja alterado para "Teste 1",
-para validar que o sistema permite modificações dinâmicas de títulos.
+Como usuário,
+quero que o título seja alterado para "Teste 1",
+para identificar corretamente o elemento ou página.
 
 CRITERIOS DE ACEITACAO
 -----------------------
-1. O título exibido na aplicação deve ser "Teste 1"
-2. A mudança deve ser persistida corretamente
-3. O título deve ser visível em todas as páginas relevantes
+1. O título exibido deve ser exatamente "Teste 1"
+2. A mudança deve ser persistida após salvamento
+3. O título deve aparecer em todos os locais onde é exibido
 
 REGRAS TECNICAS
 ---------------
 - Seguir convenções do CLAUDE.md
 - Sem over-engineering
+- Sem quebra de funcionalidades existentes
 
 CRITERIOS DE TESTE (QA)
 ------------------------
 API:
-  - Validar que a API retorna o novo título "Teste 1"
+  - Verificar que o título está salvo corretamente no banco de dados
 
 E2E:
-  - Verificar que o título "Teste 1" é exibido corretamente na interface
-  - Confirmar que a alteração persiste após recarregar a página
+  - Navegar até o elemento e confirmar que "Teste 1" é exibido
+  - Recarregar a página e confirmar que a mudança persiste
 
 FORA DO ESCOPO
 --------------
-- Alterar outros elementos da interface
-- Modificar funcionalidades existentes
+- Alterações de funcionalidade além da mudança de título
+- Modificações em estilos ou design
