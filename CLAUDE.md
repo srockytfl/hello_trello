@@ -78,11 +78,11 @@ hello_trello/
 
 A squad executa os agentes na seguinte ordem:
 
-1. **PO**
-2. **Fullstack**
-3. **PR**
+1. **PRD**
+2. **PR**
+3. **Spec**
 
-Fluxo: PO → Fullstack → PR
+Fluxo: PRD → PR → Spec
 
 ### Resumo de tempo
 
@@ -90,7 +90,7 @@ Ao final do fluxo, exibir tabela com tempos de cada agente:
 
 | Agente | Duracao (mm:ss) |
 |--------|------------------|
-| PO | XX:XX |
-| Fullstack | XX:XX |
+| PRD | XX:XX |
 | PR | XX:XX |
+| Spec | XX:XX |
 | **Total** | **XX:XX** |
