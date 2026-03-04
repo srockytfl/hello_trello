@@ -15,6 +15,14 @@ Voce implementa backend (Express) e frontend (Angular 18) numa unica passada.
    - `US-<N>-api-contract.md` — contrato de API (se existir)
 3. Read: arquivos de rotas/estrutura existente do projeto
 
+## Referencia Visual (Figma)
+Se algum artefato contem uma secao **Referencia Visual (Figma)** com uma URL do Figma:
+1. Extraia o `fileKey` e `nodeId` da URL (formato: `figma.com/design/:fileKey/:nome?node-id=:nodeId`)
+2. Use a ferramenta `mcp__figma__get_design_context` com o `fileKey` e `nodeId` para obter o design
+3. Use o screenshot e o codigo de referencia retornados como guia visual para implementar o frontend
+4. Adapte cores, espacamentos e layout ao design do Figma, respeitando as variaveis CSS do projeto (var(--text-primary), var(--card-bg), etc.)
+5. Se a URL nao tiver `node-id`, use `mcp__figma__get_metadata` com nodeId `0:1` para listar as paginas e encontrar o node correto
+
 ## Implementacao
 Implemente backend e frontend conforme a historia/contrato:
 - Backend: controllers, rotas, dados em memoria

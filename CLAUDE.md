@@ -1,76 +1,88 @@
-```markdown
-# Sistema de IA - Hello Trello
+# Sistema - hello_trello
 
-## Stack Tecnológico
+## 🏗 Stack & Tecnologias
 
-- **Frontend:** Angular 17 (TypeScript, SCSS, RxJS)
-- **Backend:** Node.js + Express 5
-- **Build:** Angular CLI
-- **Testing:** Jasmine + Karma
-- **CORS:** Habilitado
+- **Frontend:** Angular 17.3.0, TypeScript 5.4.2, SCSS
+- **Backend:** Node.js, Express 5.2.1, CORS
+- **Testes:** Jasmine 5.1.0, Karma, Karma Coverage
+- **Build & Deploy:** Angular CLI, Vercel (vercel.json detectado)
 
-## Estrutura do Projeto
+## 📁 Estrutura Principal
 
 ```
-hello-trello/
+hello_trello/
 ├── frontend/          # Aplicação Angular
 │   ├── src/
-│   │   ├── app/       # Componentes e lógica
+│   │   ├── app/       # Componentes e módulos
 │   │   ├── assets/    # Recursos estáticos
-│   │   └── styles.scss
-│   ├── angular.json
-│   └── proxy.conf.json
-├── server/            # API Express
-│   └── index.js
-├── api/               # Possível módulo de API adicional
-├── tasks/             # Documentação de User Stories (US-X)
-└── start.sh           # Script de inicialização
+│   │   └── styles/    # SCSS global
+│   ├── angular.json   # Configuração Angular
+│   └── package.json   # Dependências frontend
+├── server/            # Backend Express
+│   ├── index.js       # Servidor principal
+│   └── package.json   # Dependências backend
+├── api/               # Scripts/utilitários API
+├── tasks/             # Documentação de User Stories
+│   └── US-{N}/        # (US-1, US-2, etc.)
+└── package.json       # Root (scripts de build/start)
 ```
 
-## Comandos Úteis
+## 🚀 Comandos Úteis
 
 | Comando | Descrição |
 |---------|-----------|
 | `npm run build` | Build frontend + instala dependências server |
 | `npm start` | Inicia servidor Express |
-| `cd frontend && npm start` | Dev frontend (ng serve) |
-| `cd frontend && npm run build` | Build de produção frontend |
-| `cd frontend && npm test` | Testes unitários (Jasmine) |
+| `cd frontend && ng serve` | Dev server Angular (porta 4200) |
+| `cd frontend && ng build` | Build produção frontend |
+| `cd frontend && ng test` | Executa testes Jasmine |
+| `node server/index.js` | Inicia backend direto |
 
-## Convenções e Padrões
+## 📋 Convenções do Projeto
 
-- **Versionamento:** User Stories numeradas (US-1, US-2, etc.)
-- **Documentação:** Cada US possui `fullstack-done.md`, `prd.md`, `spec.md`
-- **Linguagem:** Código em English, docs em português/English
-- **Proxy:** Frontend usa `proxy.conf.json` para apontar ao backend em dev
+- **User Stories:** Numeradas (US-1, US-2, ..., US-36)
+- **Documentação por Task:** 
+  - `prd.md` - Product Requirements
+  - `spec.md` - Especificação técnica
+  - `fullstack-done.md` - Checklist de conclusão
+  - `execute-done.md` - Execução concluída
+  - `review.md` - Revisão de código
+  - `.txt` - Descrições de features
+- **Proxy de Desenvolvimento:** `proxy.conf.json` para reqs ao backend
 
-## Boas Práticas
+## ✅ Boas Práticas Observadas
 
-- Monorepo com build automatizado
-- CORS configurado para comunicação frontend-backend
-- Configuração de proxy para desenvolvimento local
-- TypeScript obrigatório no frontend
-- Documentação por feature/user story
-- Separação clara entre frontend e backend
+- Separação clara frontend/backend (monorepo)
+- Documentação estruturada por US (PRD → Spec → Review → Done)
+- Build automatizado com npm scripts na raiz
+- Testes configurados para frontend (Karma + Jasmine)
+- CORS habilitado no backend
+- TypeScript em todo frontend
+- Versionamento (1.0.0)
 
-## Notas Importantes
+## 🎨 Features Identificadas
 
-- Build instala dependências automaticamente
-- Frontend gerenciado por Angular CLI
-- Backend minimalista com Express
-- Verificar `proxy.conf.json` para URL do backend em desenvolvimento
-```
+- Sistema de cores configurável (azul, rosa, laranja, amarelo, verde)
+- Header com ícone de usuário
+- Footer com copyright e título customizável
+- Comportamento de responsividade (footer intermitente)
+- Integração PO → Dev → PR workflow
+
+## 🔗 Proxy & Desenvolvimento
+
+- Dev server Angular conecta ao backend via `proxy.conf.json`
+- Reqs em localhost:4200 são repassadas ao servidor Express
+- Certifique-se que server está rodando antes de `ng serve`
 
 ## Workflow da Squad
 
 A squad executa os agentes na seguinte ordem:
 
-1. **PRD**
-2. **Spec**
-3. **Fullstack**
-4. **PR**
+1. **PO**
+2. **Fullstack**
+3. **PR**
 
-Fluxo: PRD → Spec → Fullstack → PR
+Fluxo: PO → Fullstack → PR
 
 ### Resumo de tempo
 
@@ -78,8 +90,7 @@ Ao final do fluxo, exibir tabela com tempos de cada agente:
 
 | Agente | Duracao (mm:ss) |
 |--------|------------------|
-| PRD | XX:XX |
-| Spec | XX:XX |
+| PO | XX:XX |
 | Fullstack | XX:XX |
 | PR | XX:XX |
 | **Total** | **XX:XX** |
