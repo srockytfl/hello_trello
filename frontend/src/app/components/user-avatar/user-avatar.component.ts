@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
       aria-label="Perfil do usuário"
     >
       <span class="avatar-initials">{{ initials() }}</span>
-      <span class="avatar-ring"></span>
+      <span class="avatar-ring" aria-hidden="true"></span>
     </button>
   `,
   styles: [`

@@ -10,7 +10,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
       <!-- Brand -->
       <div class="sidebar-brand">
-        <div class="brand-logo">
+        <div class="brand-logo" aria-hidden="true">
           <span class="material-icons-round">view_kanban</span>
         </div>
         @if (!collapsed()) {
@@ -23,13 +23,15 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
           class="btn-collapse"
           (click)="toggleCollapse()"
           [title]="collapsed() ? 'Expandir menu' : 'Recolher menu'"
+          [attr.aria-label]="collapsed() ? 'Expandir menu' : 'Recolher menu'"
+          [attr.aria-expanded]="!collapsed()"
         >
           <span class="material-icons-round">{{ collapsed() ? 'menu_open' : 'menu' }}</span>
         </button>
       </div>
 
       <!-- Navigation -->
-      <nav class="sidebar-nav">
+      <nav class="sidebar-nav" aria-label="Menu principal">
         @if (!collapsed()) {
           <span class="nav-section-label">Navegação</span>
         }
@@ -45,7 +47,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
           </div>
           @if (!collapsed()) {
             <span class="nav-label">Tarefas</span>
-            <span class="nav-arrow material-icons-round">chevron_right</span>
+            <span class="nav-arrow material-icons-round" aria-hidden="true">chevron_right</span>
           }
         </a>
 
@@ -60,7 +62,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
           </div>
           @if (!collapsed()) {
             <span class="nav-label">Meu Perfil</span>
-            <span class="nav-arrow material-icons-round">chevron_right</span>
+            <span class="nav-arrow material-icons-round" aria-hidden="true">chevron_right</span>
           }
         </a>
       </nav>
@@ -73,14 +75,14 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
       <!-- User Footer -->
       <div class="sidebar-footer" [class.collapsed]="collapsed()">
-        <button class="user-chip" (click)="logout()" [title]="collapsed() ? 'Sair' : 'Clique para sair'">
+        <button class="user-chip" (click)="logout()" [title]="collapsed() ? 'Sair' : 'Clique para sair'" aria-label="Sair da conta">
           <div class="user-avatar">{{ initials() }}</div>
           @if (!collapsed()) {
             <div class="user-info">
               <span class="user-name">{{ userName() }}</span>
               <span class="user-role">Administrador</span>
             </div>
-            <span class="logout-icon material-icons-round">logout</span>
+            <span class="logout-icon material-icons-round" aria-hidden="true">logout</span>
           }
         </button>
       </div>

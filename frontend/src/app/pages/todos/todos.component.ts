@@ -42,7 +42,14 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
 
       <!-- Progress Bar -->
       @if (todos().length > 0) {
-        <div class="progress-bar-wrap">
+        <div
+          class="progress-bar-wrap"
+          role="progressbar"
+          [attr.aria-valuenow]="progressPercent()"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [attr.aria-label]="progressPercent() + '% das tarefas concluídas'"
+        >
           <div
             class="progress-bar-fill"
             [style.width.%]="progressPercent()"
@@ -57,17 +64,18 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       <!-- Add Task Bar -->
       <div class="add-section">
         <div class="add-input-wrap">
-          <span class="material-icons-round add-icon">edit_note</span>
+          <span class="material-icons-round add-icon" aria-hidden="true">edit_note</span>
           <input
             type="text"
             [(ngModel)]="newText"
             placeholder="Escreva uma nova tarefa..."
+            aria-label="Nova tarefa"
             (keyup.enter)="add()"
             autofocus
             class="add-input"
           />
-          <button class="btn-add" (click)="add()" [disabled]="!newText.trim()">
-            <span class="material-icons-round">add</span>
+          <button class="btn-add" (click)="add()" [disabled]="!newText.trim()" aria-label="Adicionar tarefa">
+            <span class="material-icons-round" aria-hidden="true">add</span>
             <span class="btn-add-label">Adicionar</span>
           </button>
         </div>
@@ -81,7 +89,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
             [class.active]="filter() === f.key"
             (click)="filter.set(f.key)"
           >
-            <span class="filter-icon material-icons-round">{{ f.icon }}</span>
+            <span class="filter-icon material-icons-round" aria-hidden="true">{{ f.icon }}</span>
             {{ f.label }}
             <span class="filter-count">{{ getCount(f.key) }}</span>
           </button>
@@ -107,12 +115,12 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
               <span class="task-text">{{ todo.text }}</span>
               @if (todo.done) {
                 <span class="task-badge done-badge">
-                  <span class="material-icons-round">task_alt</span>
+                  <span class="material-icons-round" aria-hidden="true">task_alt</span>
                   Concluída
                 </span>
               } @else {
                 <span class="task-badge pending-badge">
-                  <span class="material-icons-round">pending</span>
+                  <span class="material-icons-round" aria-hidden="true">pending</span>
                   Pendente
                 </span>
               }
@@ -124,7 +132,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
         } @empty {
           <div class="empty-state">
             <div class="empty-icon-wrap">
-              <span class="material-icons-round empty-icon">
+              <span class="material-icons-round empty-icon" aria-hidden="true">
                 {{ filter() === 'done' ? 'task_alt' : filter() === 'pending' ? 'pending_actions' : 'inbox' }}
               </span>
             </div>

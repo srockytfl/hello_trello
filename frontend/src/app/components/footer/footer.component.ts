@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <footer class="app-footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <div class="footer-logo">
+          <div class="footer-logo" aria-hidden="true">
             <span class="material-icons-round">view_kanban</span>
           </div>
           <span class="footer-name">Hello Trello</span>
