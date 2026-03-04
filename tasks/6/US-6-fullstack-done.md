@@ -19,8 +19,6 @@ Nenhum endpoint novo ou modificado — a API não foi alterada (conforme critér
 | Arquivo | Alteração |
 |---------|-----------|
 | `frontend/src/styles.scss` | Atualização das variáveis CSS globais para paleta verde |
-| `frontend/src/app/pages/login/login.component.ts` | Cor hardcoded `#1A1400` → `#052e16` (texto do botão login) |
-| `frontend/src/app/pages/todos/todos.component.ts` | Cores hardcoded `#1A1400` → `#052e16` (texto do botão Adicionar e ícone do checkbox) |
 
 ---
 
@@ -30,27 +28,22 @@ Nenhum endpoint novo ou modificado — a API não foi alterada (conforme critér
 
 | Variável | Antes | Depois | Descrição |
 |----------|-------|--------|-----------|
-| `--bg` | `#1A0A0A` | `#0A1A0A` | Fundo principal (verde escuro) |
-| `--bg2` | `#200D0D` | `#0D200D` | Fundo secundário (headers, cards) |
-| `--bg3` | `#261111` | `#112611` | Fundo terciário (hover de itens) |
-| `--card` | `#261111` | `#112611` | Fundo de cards |
-| `--hover` | `#3D1515` | `#153815` | Estado hover |
-| `--blue` | `#FF9500` | `#22c55e` | Cor primária / botões principais |
-| `--blue-dark` | `#E08400` | `#16a34a` | Cor primária escura (hover de botões) |
-| `--border` | `#3D1515` | `#153815` | Bordas |
-
-### Cores hardcoded (componentes)
-
-| Arquivo | Antes | Depois | Descrição |
-|---------|-------|--------|-----------|
-| `login.component.ts` | `#1A1400` | `#052e16` | Texto do botão "Entrar" |
-| `todos.component.ts` | `#1A1400` | `#052e16` | Texto do botão "Adicionar" e ícone check |
+| `--blue` | `#FFD700` (amarelo/dourado) | `#22c55e` | Cor primária / botões principais |
+| `--blue-dark` | `#E6C200` (dourado escuro) | `#16a34a` | Cor primária escura (hover de botões) |
+| `--blue-darker` | `#D4AF37` (dourado mais escuro) | `#15803d` | Cor primária mais escura (active) |
+| `--blue-glow` | `rgba(255, 215, 0, 0.3)` | `rgba(34, 197, 94, 0.3)` | Glow/brilho de elementos primários |
+| `--shadow-blue` | `rgba(255, 215, 0, 0.22)` | `rgba(34, 197, 94, 0.22)` | Sombra de foco/destaque |
+| `::selection` bg | `rgba(255, 215, 0, 0.3)` | `rgba(34, 197, 94, 0.3)` | Cor de seleção de texto |
 
 ---
 
 ## Critérios de Aceitação Atendidos
 
-1. ✅ Cor de fundo principal verde (`#0A1A0A` — verde escuro, tom coerente com `#22c55e`)
-2. ✅ Botões principais usam verde (`--blue: #22c55e`, `--blue-dark: #16a34a`)
-3. ✅ Contraste de texto mantido (`--text: #CBD5E1`, `--text-bright: #F1F5F9` sobre fundos escuros)
-4. ✅ Todos os componentes responsivos — apenas variáveis CSS alteradas, estrutura intacta
+1. ✅ Variável `--blue` exibe verde (`#22c55e`) — não mais amarelo/dourado
+2. ✅ Variável `--blue-dark` exibe verde escuro (`#16a34a`) — hover/active de botões
+3. ✅ Variável `--blue-darker` exibe verde mais escuro (`#15803d`)
+4. ✅ Botões na página de login exibem cor verde (usam `var(--blue)`)
+5. ✅ Botões e elementos de ação na página de todos exibem cor verde
+6. ✅ Nenhum elemento exibe amarelo/dourado como cor primária
+7. ✅ Contraste texto/fundo mantido (`--text-bright: #dce8ff` sobre fundos escuros)
+8. ✅ Interface responsiva com nova paleta (mudança apenas em variáveis CSS globais)
