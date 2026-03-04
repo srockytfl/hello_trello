@@ -2,15 +2,15 @@
 
 ## Resumo
 
-Alteração do título da aplicação de **"Teste 1"** para **"Hello Github"**, conforme história US-2.
+Alteração do título da aplicação de **"Teste Cores"** para **"Hello Github"**, conforme história US-2.
 
 ## Arquivos Modificados
 
 | Arquivo | Alteração |
 |---------|-----------|
-| `server/index.js` | `appTitle` alterado de `'Teste 1'` para `'Hello Github'` |
-| `frontend/src/index.html` | `<title>` alterado de `Teste 1` para `Hello Github` |
-| `frontend/src/app/services/title.service.ts` | Signal inicial e fallback de erro alterados de `'Teste 1'` para `'Hello Github'` |
+| `server/index.js` | `appTitle` alterado de `'Teste Cores'` para `'Hello Github'` |
+| `frontend/src/index.html` | `<title>` alterado de `Teste Cores` para `Hello Github` |
+| `frontend/src/app/services/title.service.ts` | Signal inicial e fallback de erro alterados de `'Teste Cores'` para `'Hello Github'` |
 
 ## Endpoints
 
