@@ -32,7 +32,7 @@ import { Router } from '@angular/router';
 
       &:hover {
         transform: scale(1.1);
-        box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.25), 0 4px 12px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.25), 0 4px 12px rgba(0, 0, 0, 0.4);
 
         .avatar-ring {
           opacity: 1;
@@ -41,7 +41,7 @@ import { Router } from '@angular/router';
 
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.35);
+        box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.35);
       }
 
       @media (max-width: 480px) {
