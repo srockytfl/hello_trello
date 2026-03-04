@@ -1,88 +1,107 @@
-# Sistema - hello_trello
+```markdown
+# hello-trello - System Prompt para Agentes IA
 
-## 🏗 Stack & Tecnologias
+## Stack & Tecnologias
 
-- **Frontend:** Angular 17.3.0, TypeScript 5.4.2, SCSS
-- **Backend:** Node.js, Express 5.2.1, CORS
-- **Testes:** Jasmine 5.1.0, Karma, Karma Coverage
-- **Build & Deploy:** Angular CLI, Vercel (vercel.json detectado)
+- **Frontend**: Angular 17.3.0 + TypeScript 5.4.2 + SCSS
+- **Backend**: Node.js + Express 5.2.1
+- **Package Manager**: npm
+- **Testing**: Jasmine/Karma (frontend)
+- **Build/Deploy**: Vercel
 
-## 📁 Estrutura Principal
+## Estrutura do Projeto
 
 ```
-hello_trello/
-├── frontend/          # Aplicação Angular
+hello-trello/
+├── frontend/              # Aplicação Angular
 │   ├── src/
-│   │   ├── app/       # Componentes e módulos
-│   │   ├── assets/    # Recursos estáticos
-│   │   └── styles/    # SCSS global
-│   ├── angular.json   # Configuração Angular
-│   └── package.json   # Dependências frontend
-├── server/            # Backend Express
-│   ├── index.js       # Servidor principal
-│   └── package.json   # Dependências backend
-├── api/               # Scripts/utilitários API
-├── tasks/             # Documentação de User Stories
-│   └── US-{N}/        # (US-1, US-2, etc.)
-└── package.json       # Root (scripts de build/start)
+│   │   ├── app/          # Componentes e lógica
+│   │   ├── assets/       # Recursos estáticos
+│   │   ├── main.ts       # Ponto de entrada
+│   │   ├── index.html
+│   │   └── styles.scss   # Estilos globais
+│   ├── angular.json      # Configuração Angular
+│   ├── tsconfig.json     # Configuração TypeScript
+│   └── proxy.conf.json   # Proxy para backend em dev
+├── server/               # API Express
+│   └── index.js          # Servidor principal
+├── api/                  # Utilitários/helpers API
+├── tasks/                # Documentação de User Stories
+│   └── {US-number}/      # Pasta por tarefa
+└── package.json          # Root config
 ```
 
-## 🚀 Comandos Úteis
+## Scripts Disponíveis
 
-| Comando | Descrição |
-|---------|-----------|
-| `npm run build` | Build frontend + instala dependências server |
-| `npm start` | Inicia servidor Express |
-| `cd frontend && ng serve` | Dev server Angular (porta 4200) |
-| `cd frontend && ng build` | Build produção frontend |
-| `cd frontend && ng test` | Executa testes Jasmine |
-| `node server/index.js` | Inicia backend direto |
+### Root
+- `npm run build` - Instala deps frontend, build frontend, instala deps server
+- `npm start` - Inicia servidor Express (production)
+- `start.sh` - Script bash de inicialização
 
-## 📋 Convenções do Projeto
+### Frontend
+- `npm start` - Inicia dev server (ng serve, porta 4200)
+- `npm run build` - Build otimizado para produção
+- `npm run watch` - Watch mode para desenvolvimento
+- `npm test` - Executa testes (Jasmine/Karma)
 
-- **User Stories:** Numeradas (US-1, US-2, ..., US-36)
-- **Documentação por Task:** 
-  - `prd.md` - Product Requirements
-  - `spec.md` - Especificação técnica
-  - `fullstack-done.md` - Checklist de conclusão
-  - `execute-done.md` - Execução concluída
-  - `review.md` - Revisão de código
-  - `.txt` - Descrições de features
-- **Proxy de Desenvolvimento:** `proxy.conf.json` para reqs ao backend
+## Convenções do Projeto
 
-## ✅ Boas Práticas Observadas
+### Nomenclatura
+- Tasks: `US-{número}-{descrição}` (ex: `US-14-trocar-titulo-para-teste-1`)
+- Versão: 1.0.0
 
-- Separação clara frontend/backend (monorepo)
-- Documentação estruturada por US (PRD → Spec → Review → Done)
-- Build automatizado com npm scripts na raiz
-- Testes configurados para frontend (Karma + Jasmine)
-- CORS habilitado no backend
-- TypeScript em todo frontend
-- Versionamento (1.0.0)
+### Estrutura de Tasks
+Cada task em `tasks/{numero}/` contém:
+- `US-X-fullstack-done.md` - Checklist de conclusão
+- `US-X-prd.md` - Product Requirements (quando aplicável)
+- `US-X-spec.md` - Especificação técnica (quando aplicável)
+- `US-X-*.txt` - Requisitos/descrição da tarefa
 
-## 🎨 Features Identificadas
+### Tipo de Aplicação
+Aplicação web estilo Trello com:
+- Mudanças de cores e títulos
+- Layout com header e footer
+- Ícone de usuário no header
+- Rodapé com copyright
 
-- Sistema de cores configurável (azul, rosa, laranja, amarelo, verde)
-- Header com ícone de usuário
-- Footer com copyright e título customizável
-- Comportamento de responsividade (footer intermitente)
-- Integração PO → Dev → PR workflow
+## Boas Práticas Detectadas
 
-## 🔗 Proxy & Desenvolvimento
+1. **Monorepo**: Frontend e backend separados com dependências isoladas
+2. **TypeScript**: Tipagem forte no frontend
+3. **Proxy Development**: `proxy.conf.json` redireciona requisições para backend em dev
+4. **CI/CD**: Suporte a Vercel (vercel.json)
+5. **Documentação**: Tasks documentadas com PRD e specs
+6. **CORS**: Express configurado com CORS para requisições cross-origin
 
-- Dev server Angular conecta ao backend via `proxy.conf.json`
-- Reqs em localhost:4200 são repassadas ao servidor Express
-- Certifique-se que server está rodando antes de `ng serve`
+## Fluxo Típico de Desenvolvimento
+
+1. Desenvolvimento: `cd frontend && npm start` (dev server com proxy)
+2. Backend: `cd server && node index.js` (porta padrão Express)
+3. Build: `npm run build` (prepara para produção)
+4. Deploy: Vercel (baseado em vercel.json)
+
+## Porta Padrão
+- Frontend dev: 4200
+- Backend: não especificado no package.json (verificar index.js)
+
+## Notas Importantes
+
+- O build root instala dependências automaticamente
+- Arquivo `api/index.js` pode conter utilitários compartilhados
+- Tarefas marcadas com `fullstack-done.md` estão completas
+- Proxy development permite requisições do frontend ao backend sem CORS durante dev
+```
 
 ## Workflow da Squad
 
 A squad executa os agentes na seguinte ordem:
 
-1. **PO**
-2. **Fullstack**
-3. **PR**
+1. **PRD**
+2. **Spec**
+3. **Fullstack**
+4. **PR**
 
-Fluxo: PO → Fullstack → PR
+Fluxo: PRD → Spec → Fullstack → PR
 
 ### Resumo de tempo
 
@@ -90,7 +109,8 @@ Ao final do fluxo, exibir tabela com tempos de cada agente:
 
 | Agente | Duracao (mm:ss) |
 |--------|------------------|
-| PO | XX:XX |
+| PRD | XX:XX |
+| Spec | XX:XX |
 | Fullstack | XX:XX |
 | PR | XX:XX |
 | **Total** | **XX:XX** |
