@@ -2,127 +2,93 @@
 
 ## Filosofia do Projeto
 
-**Squad Simples — Hello Trello**
+**Hello SDD — Sistema simplificado de desenvolvimento com histórias estruturadas.**
 
-Sistema simples para gerenciamento de tarefas. Foco em entregar valor real com máxima simplicidade.
+Regras que se aplicam a TODOS os agentes, sem exceção:
+- **Mantenha simples** — prefira soluções diretas e claras
+- **Sem over-engineering** — sem abstrações desnecessárias
+- **Pragmatismo** — foque em entregar valor real
+- **Qualidade** — trate erros relevantes, valide inputs em boundaries
 
-Regras:
-- **Mantenha simples** — sem over-engineering
-- **Separação clara** — frontend e backend desacoplados via API
-- **Qualidade** — trate erros e valide inputs nos boundaries
-- **Consistência** — todas as histórias seguem o padrão US-N
+## Comandos
+
+- `npm start` — inicia o servidor Express (porta configurada em server/)
+- `npm run build` — instala dependências e faz build do frontend + backend
+- `cd frontend && npm start` — inicia Angular dev server (ng serve)
+- `cd frontend && npm run build` — gera build de produção do frontend
+- `cd frontend && npm test` — roda testes Karma + Jasmine
 
 ## Stack
 
-- **Runtime:** Node.js (específico: check `.nvmrc` ou documentação)
-- **Frontend:** Angular 17.3 (standalone components) — porta 4200
-- **Backend:** Express 5.2 — porta 3000
-- **Linguagem:** TypeScript + SCSS
-- **Testes:** Karma + Jasmine (Angular)
-- **Deploy:** Vercel (vercel.json presente)
-
-## Comandos Principais
-
-```bash
-# Instalar dependências (frontend + server)
-npm run build
-
-# Iniciar servidor (backend)
-npm start
-
-# Desenvolver frontend
-cd frontend && npm start
-
-# Testes frontend
-cd frontend && npm test
-
-# Build produção frontend
-cd frontend && npm run build
-```
+- **Runtime:** Node.js
+- **Frontend:** Angular 17.3 (TypeScript, SCSS, Karma + Jasmine)
+- **Backend:** Express 5.2
+- **Proxy:** Configurado em `frontend/proxy.conf.json`
+- **Deploy:** Vercel
 
 ## Estrutura
 
 ```
-server/
-├── index.js              # Express app — endpoints da API
-└── package.json
-
 frontend/
 ├── src/
-│   ├── app/              # componentes Angular
-│   ├── assets/           # imagens, ícones, etc.
-│   ├── styles.scss       # estilos globais
-│   ├── index.html        # HTML principal
-│   └── main.ts           # entry point
-├── angular.json          # config Angular
-├── proxy.conf.json       # proxy para /api → http://localhost:3000
-└── package.json
+│   ├── app/            # componentes e serviços Angular
+│   ├── assets/         # arquivos estáticos
+│   ├── index.html      # template HTML
+│   ├── main.ts         # entry point
+│   └── styles.scss     # estilos globais
+├── angular.json        # config Angular CLI
+├── tsconfig.json       # config TypeScript
+└── proxy.conf.json     # proxy para API
+
+server/
+└── index.js            # entry point Express
+
+api/
+└── index.js            # (verificar propósito)
 
 tasks/
-├── 1/                    # artefatos da US-1
-│   ├── US-1-spec.md
-│   ├── US-1-plan.md
-│   ├── US-1-prd.md
-│   ├── US-1-execute-done.md
-│   ├── US-1-review.md
-│   └── US-1-fullstack-done.md
-└── N/                    # pasta por história
+├── 1/
+│   ├── US-1-trocar-cor-azul.txt       # história em linguagem livre
+│   └── US-1-fullstack-done.md         # resultado da implementação
+└── 85/
+    ├── US-85-tema-azul.txt            # história
+    └── US-85-fullstack-done.md        # resultado
 
-CLAUDE.md                 # este arquivo
-vercel.json              # config deploy Vercel
+CLAUDE.md                # este arquivo
 ```
 
 ## Convenções
 
-- **Histórias:** todo trabalho é organizado em `tasks/N/US-N-<nome>.txt` (N = número)
-- **Artefatos:** cada história gera `spec.md`, `plan.md`, `prd.md`, `execute-done.md`, `review.md`, `fullstack-done.md`
-- **Backend:** todos os endpoints retornam JSON (sucesso ou erro)
-- **Frontend:** sempre usar `proxy.conf.json` para chamar `/api` (nunca hardcodar `http://localhost:3000`)
-- **Componentes:** um diretório por página/componente (TypeScript + HTML + SCSS)
-- **Serviços Angular:** prefixo `*.service.ts` e usar `providedIn: 'root'`
+- Histórias em `tasks/NNN/US-NNN-*.txt` (requisitos em linguagem livre)
+- Resultado da implementação em `tasks/NNN/US-NNN-fullstack-done.md`
+- **Sem separação backend/frontend** — todas as histórias são fullstack
+- Frontend comunica com backend via proxy configurado em `frontend/proxy.conf.json`
+- Serviços Angular sempre em `frontend/src/app/services/` com `providedIn: 'root'`
+- Variáveis de ambiente do servidor em `.env` (nunca commitar)
 
 ## Fluxo de Trabalho
 
-1. **Requisitos** → arquivo `tasks/N/requisitos-N-<nome>.txt` ou GitHub Issue
-2. **PO transforma em história** → `tasks/N/US-N-<nome>.txt` (contexto, critérios, escopo)
-3. **TL define contrato** → `tasks/N/US-N-plan.md` (endpoints, payloads, responses)
-4. **Backend implementa** → endpoints no Express seguindo o contrato
-5. **Frontend implementa** → componentes/páginas Angular chamando `/api`
-6. **QA testa** → validação E2E com Karma ou testes manuais
-7. **Registra conclusão** → `tasks/N/US-N-fullstack-done.md`
+1. **Escrever requisitos** em `tasks/NNN/US-NNN-<nome>.txt` (linguagem livre)
+2. **Implementar** — modificar frontend e backend conforme necessário
+3. **Registrar resultado** em `tasks/NNN/US-NNN-fullstack-done.md` com o que foi feito
+4. **Testar** — rodar `npm test` (frontend) ou testes manuais
 
-## Proxy para Desenvolvimento
+## Restrições
 
-O arquivo `frontend/proxy.conf.json` redireciona chamadas `/api/*` para o servidor backend.
-
-**Ao desenvolver:**
-- Inicie o backend (`npm start` na raiz ou `node server/index.js`)
-- Inicie o frontend (`cd frontend && npm start`)
-- Chamadas de API usam `this.http.get('/api/...')` automaticamente redirecionadas para `http://localhost:3000/api/...`
-
-## Deploy
-
-- **Vercel:** `vercel.json` presente — deploy automático via CI/CD
-- **Build:** `npm run build` prepara frontend + server
-- **Start:** `npm start` executa o servidor
-
-## Boas Práticas
-
-- **Um agente por história** — evita conflitos e mantém rastreabilidade
-- **Commits explicativos** — referencia a US (ex: `feat: US-14 trocar título`)
-- **Testes manuais aceitáveis** — projeto simples, Karma/Jasmine para casos críticos
-- **Valide no backend** — nunca confie apenas em validação do frontend
-- **CORS habilitado** — Express está configurado para aceitar requisições cross-origin
+- Não instalar o Angular CLI globalmente
+- Proxy do frontend aponta para o servidor — nunca hardcodar URLs de API
+- Deploy em Vercel — verificar compatibilidade antes de commit
 
 ## Workflow da Squad
 
 A squad executa os agentes na seguinte ordem:
 
-1. **PO**
-2. **Fullstack**
-3. **PR**
+1. **SDD Spec**
+2. **SDD Plan**
+3. **SDD Execute**
+4. **SDD Review**
 
-Fluxo: PO → Fullstack → PR
+Fluxo: SDD Spec → SDD Plan → SDD Execute → SDD Review
 
 ### Resumo de tempo
 
@@ -130,7 +96,8 @@ Ao final do fluxo, exibir tabela com tempos de cada agente:
 
 | Agente | Duracao (mm:ss) |
 |--------|------------------|
-| PO | XX:XX |
-| Fullstack | XX:XX |
-| PR | XX:XX |
+| SDD Spec | XX:XX |
+| SDD Plan | XX:XX |
+| SDD Execute | XX:XX |
+| SDD Review | XX:XX |
 | **Total** | **XX:XX** |
