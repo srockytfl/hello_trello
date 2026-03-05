@@ -1,30 +1,30 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — dark rosa */
-  --bg: #1A0A14;
-  --bg2: #2D1020;
-  --bg3: #3D1629;
-  --card: #3D1629;
-  --hover: #4E1A33;
+  /* Backgrounds — amarelo em gradação */
+  --bg: #3D2F1F;           /* Amarelo escuro para background principal */
+  --bg2: #5C4620;          /* Amarelo escuro-médio para cards/headers */
+  --bg3: #7A5C2D;          /* Amarelo médio para hover states */
+  --card: #5C4620;         /* Amarelo escuro-médio para cards */
+  --hover: #8B6F47;        /* Amarelo mais claro para hover */
 
-  /* Primary rosa */
-  --blue: #EC4899;
-  --blue-dark: #DB2777;
+  /* Primary amarelo */
+  --blue: #FDD835;         /* Amarelo brilhante para botões primários */
+  --blue-dark: #F9A825;    /* Amarelo mais escuro para hover de botões */
 
   /* Text */
-  --text: #FBCFE8;
-  --text-bright: #FDF2F8;
-  --muted: #9D7A8E;
+  --text: #FAE6C3;         /* Amarelo bem claro para texto em fundos escuros */
+  --text-bright: #FFFAF0;  /* Branco quase puro para texto/títulos principais */
+  --muted: #D4B896;        /* Amarelo desbotado para texto secundário */
 
   /* State */
-  --red: #EF4444;
-  --green: #F9A8D4;
-  --yellow: #FACC15;
+  --red: #EF4444;          /* Manter vermelho para erros (não é amarelo) */
+  --green: #FCC34D;        /* Amarelo-ouro para sucesso */
+  --yellow: #FDD835;       /* Amarelo brilhante para destaque/focus */
 
   /* Structure */
-  --border: #4E1A33;
-  --radius: 6px;
+  --border: #7A5C2D;       /* Amarelo médio para bordas */
+  --radius: 6px;           /* Manter border-radius */
 }
 
 body {

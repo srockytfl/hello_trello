@@ -79,7 +79,7 @@ import { ApiService } from '../../services/api.service';
     .btn-login {
       width: 100%;
       padding: 9px;
-      background: var(--yellow);
+      background: var(--blue);
       border: none;
       border-radius: 3px;
       color: #0A1628;
@@ -87,7 +87,7 @@ import { ApiService } from '../../services/api.service';
       font-weight: 500;
       cursor: pointer;
       margin-top: 6px;
-      &:hover { background: #E6B800; }
+      &:hover { background: var(--blue-dark); }
       &:disabled { opacity: 0.6; cursor: not-allowed; }
     }
 
