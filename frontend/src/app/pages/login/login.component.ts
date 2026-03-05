@@ -73,21 +73,21 @@ import { ApiService } from '../../services/api.service';
       color: var(--text-bright);
       font-size: 13px;
       outline: none;
-      &:focus { border-color: var(--blue); }
+      &:focus { border-color: var(--yellow); }
     }
 
     .btn-login {
       width: 100%;
       padding: 9px;
-      background: var(--blue);
+      background: var(--yellow);
       border: none;
       border-radius: 3px;
-      color: white;
+      color: #0A1628;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
       margin-top: 6px;
-      &:hover { background: var(--blue-dark); }
+      &:hover { background: #E6B800; }
       &:disabled { opacity: 0.6; cursor: not-allowed; }
     }
 
