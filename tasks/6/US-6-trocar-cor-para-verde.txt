@@ -1,0 +1,39 @@
+US-6 — Trocar cor para verde
+=============================
+
+CONTEXTO
+--------
+Ajuste visual na interface para melhorar a experiência do usuário com uma cor mais adequada ao design system.
+
+HISTORIA
+--------
+Como usuário,
+quero que a cor de um elemento específico seja verde,
+para que a interface esteja alinhada com o design visual desejado.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O elemento deve ser renderizado na cor verde
+2. A mudança deve ser consistente em todos os navegadores suportados
+3. Não deve haver regressão visual em outros elementos
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Utilizar variáveis de cor do design system quando aplicável
+- Sem over-engineering
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar que a resposta da API não foi alterada
+
+E2E:
+  - Confirmar que o elemento é exibido em cor verde
+  - Validar que o elemento é visível em diferentes resoluções de tela
+
+FORA DO ESCOPO
+--------------
+- Alterações em outros elementos
+- Mudanças na tipografia ou layout
+- Ajustes de animações
