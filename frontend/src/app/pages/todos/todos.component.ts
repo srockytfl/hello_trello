@@ -145,7 +145,7 @@ import { ApiService } from '../../services/api.service';
 
     .btn-add {
       padding: 0 14px;
-      background: var(--yellow);
+      background: var(--blue);
       border: none;
       border-radius: 3px;
       color: #0A1628;
@@ -156,7 +156,7 @@ import { ApiService } from '../../services/api.service';
       align-items: center;
       gap: 4px;
       .material-icons-round { font-size: 18px; }
-      &:hover { background: #E6B800; }
+      &:hover { background: var(--blue-dark); }
       &:disabled { opacity: 0.5; cursor: not-allowed; }
     }
 
