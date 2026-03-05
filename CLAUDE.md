@@ -84,11 +84,11 @@ CLAUDE.md                # este arquivo
 A squad executa os agentes na seguinte ordem:
 
 1. **SDD PRD + SDD PRD** (paralelo)
-2. **SDD Execute + SDD Spec** (paralelo)
-3. **SDD Execute + SDD Spec** (paralelo)
+2. **SDD Spec + SDD Spec** (paralelo)
+3. **SDD Execute + SDD Execute** (paralelo)
 4. **PR + SDD Review** (paralelo)
 
-Fluxo: [SDD PRD | SDD PRD] → [SDD Execute | SDD Spec] → [SDD Execute | SDD Spec] → [PR | SDD Review]
+Fluxo: [SDD PRD | SDD PRD] → [SDD Spec | SDD Spec] → [SDD Execute | SDD Execute] → [PR | SDD Review]
 
 ### Resumo de tempo
 
@@ -98,10 +98,10 @@ Ao final do fluxo, exibir tabela com tempos de cada agente:
 |--------|------------------|
 | SDD PRD | XX:XX |
 | SDD PRD | XX:XX |
-| SDD Execute | XX:XX |
+| SDD Spec | XX:XX |
 | SDD Spec | XX:XX |
 | SDD Execute | XX:XX |
-| SDD Spec | XX:XX |
+| SDD Execute | XX:XX |
 | PR | XX:XX |
 | SDD Review | XX:XX |
 | **Total** | **XX:XX** |
