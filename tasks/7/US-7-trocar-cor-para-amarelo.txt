@@ -1,43 +1,41 @@
 US-7 — Trocar cor para amarelo
-======================
+================================
 
 CONTEXTO
 --------
-A aplicação necessita de uma atualização visual para utilizar amarelo como cor primária
-em elementos específicos da interface, melhorando a identidade visual do produto.
+A aplicação necessita atualizar a cor de um elemento visual de sua cor atual para amarelo, melhorando a experiência visual do usuário.
 
-HISTÓRIA
+HISTORIA
 --------
-Como usuário da aplicação,
-quero que os elementos principais sejam exibidos em amarelo,
-para ter uma melhor experiência visual e identificação da marca.
+Como usuário,
+quero que a cor seja alterada para amarelo,
+para melhorar a visualização e a experiência da interface.
 
-CRITÉRIOS DE ACEITAÇÃO
+CRITERIOS DE ACEITACAO
 -----------------------
-1. Os elementos principais da interface (botões, headers, destaques) exibem amarelo (#FFD700 ou equivalente)
-2. A cor amarela é aplicada de forma consistente em toda a aplicação
-3. O contraste entre o amarelo e textos/elementos sobrepostos atende WCAG AA
-4. A mudança de cor é persistida no frontend Angular
+1. O elemento visual alvo deve exibir a cor amarelo
+2. A mudança de cor deve ser aplicada corretamente em todos os estados da aplicação
+3. A cor amarelo deve estar em conformidade com o padrão de design da aplicação
+4. A mudança não deve afetar outros elementos visuais
 
-REGRAS TÉCNICAS
+REGRAS TECNICAS
 ---------------
-- Backend Express + Frontend Angular
-- Sem banco de dados, sem auth real
-- Alteração de estilos CSS/SCSS no frontend
-- Garantir compatibilidade com browsers modernos
+- Seguir convenções do CLAUDE.md
+- Sem over-engineering
+- Usar valores de cor consistentes com o design system
 
-CRITÉRIOS DE TESTE (QA)
+CRITERIOS DE TESTE (QA)
 ------------------------
 API:
-  - Verificar que endpoints retornam dados esperados sem alterações
+  - Validar que a cor amarelo é aplicada corretamente
 
 E2E:
-  - Carregar aplicação e verificar que elementos primários exibem amarelo
-  - Testar em diferentes navegadores (Chrome, Firefox, Safari)
-  - Validar legibilidade do texto sobre fundo amarelo
+  - Verificar que o elemento exibe a cor amarelo após a alteração
+  - Confirmar que a cor persiste após recarregar a página
+  - Validar que outros elementos não foram afetados
 
 FORA DO ESCOPO
 --------------
-- Mudança de paleta de cores completa
-- Alterações de estrutura HTML
-- Novo sistema de temas
+- Alterações em outros elementos visuais
+- Mudanças na estrutura do layout
+- Ajustes de acessibilidade relacionados à cor (isso será feito em future stories)
