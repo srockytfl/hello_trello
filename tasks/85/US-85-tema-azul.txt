@@ -1,0 +1,45 @@
+US-85 — Quero que troque todas cores para azul
+================================================
+
+CONTEXTO
+--------
+O sistema atual utiliza múltiplas cores. Precisamos padronizar a paleta de cores para tons de azul com cinza para contraste, mantendo a flexibilidade para trocar cores no futuro sem necessidade de refatoração.
+
+HISTORIA
+--------
+Como usuário,
+quero que o site inteiro tenha uma paleta de cores consistente em tons de azul,
+para que o design seja coeso e profissional.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Todos os temas (light/dark) utilizam apenas tons de azul como cor primária
+2. Cinza é utilizado apenas para contraste e elementos secundários
+3. Cores aplicadas consistentemente em: backgrounds, botões, checkboxes, links, borders e outros elementos UI
+4. Paleta de cores é definida de forma genérica (variáveis CSS) para permitir mudança futura
+5. Nenhuma cor secundária diferente de azul/cinza permanece no código
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Utilizar variáveis CSS customizadas (custom properties) para cores
+- Estrutura de paleta flexível: permitir redefinição de cores por arquivo único
+- Sem over-engineering
+
+CRITERIOS DE TESTE (QA)
+------------------------
+Visual:
+  - Verificar que todos os componentes exibem apenas tons de azul e cinza
+  - Comparar tema light vs dark para consistência
+  - Validar contraste de cores em relação a acessibilidade (WCAG)
+
+Técnico:
+  - Validar que variáveis CSS são reutilizáveis
+  - Verificar que uma alteração na paleta afeta todos os componentes corretamente
+  - Confirmar que não há cores hardcoded em componentes
+
+FORA DO ESCOPO
+--------------
+- Mudar estrutura HTML dos componentes
+- Alterar tamanho ou layout dos elementos
+- Implementar novas funcionalidades no sistema
