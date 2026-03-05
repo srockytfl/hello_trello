@@ -1,0 +1,42 @@
+US-10 – Tocar cor pra rosa
+==========================
+
+CONTEXTO
+--------
+A aplicação precisa adotar rosa como cor principal de identidade visual. Esta mudança deve ser refletida em toda a interface e no título do site.
+
+HISTORIA
+--------
+Como usuário,
+quero visualizar o site com as cores alteradas para rosa,
+para experienciar a nova identidade visual da aplicação.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Cores primárias alteradas para rosa em todos os componentes do site
+2. Título do site (tag <title>) atualizado para "Rosa" ou com referência clara à cor rosa
+3. Todas as páginas e componentes refletem a mudança de cor
+4. Cores complementares ajustadas para harmonizar com rosa (se aplicável)
+
+REGRAS TECNICAS
+---------------
+- Seguir convenções do CLAUDE.md
+- Atualizar variáveis CSS de cores globais
+- Sem over-engineering
+- Verificar contraste de cores para acessibilidade
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - N/A (mudança visual)
+
+E2E:
+  - Verificar que todos os componentes são exibidos em rosa
+  - Validar que o título da página foi atualizado
+  - Testar em diferentes navegadores para consistência de cor
+
+FORA DO ESCOPO
+--------------
+- Alterações de conteúdo textual
+- Mudanças funcionais da aplicação
+- Criação de novas páginas
