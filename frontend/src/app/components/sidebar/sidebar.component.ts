@@ -130,7 +130,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 4px 16px rgba(255, 105, 180, 0.4);
+      box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4);
 
       .material-icons-round {
         font-size: 20px;
@@ -226,7 +226,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
         color: var(--text-bright);
 
         .nav-icon-wrap {
-          background: rgba(255, 105, 180, 0.15);
+          background: rgba(34, 197, 94, 0.15);
         }
 
         .nav-arrow {
@@ -236,11 +236,11 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
       }
 
       &.active {
-        background: rgba(255, 105, 180, 0.12);
+        background: rgba(34, 197, 94, 0.12);
         color: var(--blue);
 
         .nav-icon-wrap {
-          background: rgba(255, 105, 180, 0.2);
+          background: rgba(34, 197, 94, 0.2);
           .nav-icon { color: var(--blue); }
         }
 
