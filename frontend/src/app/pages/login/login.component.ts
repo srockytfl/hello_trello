@@ -117,7 +117,7 @@ import { TitleService } from '../../services/title.service';
     .blob-1 {
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(255, 105, 180, 0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 149, 0, 0.12) 0%, transparent 70%);
       top: -150px;
       left: -150px;
     }
@@ -147,7 +147,7 @@ import { TitleService } from '../../services/title.service';
       border: 1px solid var(--border-emphasis);
       border-radius: var(--radius-xl, 20px);
       overflow: hidden;
-      box-shadow: var(--shadow-lg), 0 0 60px rgba(255, 105, 180, 0.06);
+      box-shadow: var(--shadow-lg), 0 0 60px rgba(255, 149, 0, 0.06);
       display: flex;
       flex-direction: column;
       position: relative;
@@ -163,7 +163,7 @@ import { TitleService } from '../../services/title.service';
       padding: 40px 32px 32px;
       background: linear-gradient(
         160deg,
-        rgba(255, 105, 180, 0.1) 0%,
+        rgba(255, 149, 0, 0.1) 0%,
         rgba(167, 139, 250, 0.06) 50%,
         transparent 100%
       );
@@ -182,7 +182,7 @@ import { TitleService } from '../../services/title.service';
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 32px rgba(255, 105, 180, 0.45);
+      box-shadow: 0 8px 32px rgba(255, 149, 0, 0.45);
       position: relative;
       z-index: 1;
 
@@ -193,7 +193,7 @@ import { TitleService } from '../../services/title.service';
       position: absolute;
       inset: -6px;
       border-radius: 20px;
-      background: linear-gradient(135deg, rgba(255, 105, 180, 0.3), rgba(167, 139, 250, 0.3));
+      background: linear-gradient(135deg, rgba(255, 149, 0, 0.3), rgba(167, 139, 250, 0.3));
       z-index: 0;
       filter: blur(8px);
     }
@@ -303,7 +303,7 @@ import { TitleService } from '../../services/title.service';
 
       &:hover {
         opacity: 0.9;
-        box-shadow: 0 6px 24px rgba(255, 105, 180, 0.45);
+        box-shadow: 0 6px 24px rgba(255, 149, 0, 0.45);
       }
 
       &:active { transform: scale(0.98); }
