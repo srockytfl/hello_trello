@@ -83,7 +83,7 @@ import { ApiService } from '../../services/api.service';
       font-size: 13px;
       font-weight: 600;
       color: var(--text-bright);
-      .material-icons-round { color: var(--blue); font-size: 20px; }
+      .material-icons-round { color: var(--yellow); font-size: 20px; }
     }
 
     .header-right { display: flex; align-items: center; gap: 14px; }
@@ -138,17 +138,17 @@ import { ApiService } from '../../services/api.service';
         color: var(--text-bright);
         font-size: 13px;
         outline: none;
-        &:focus { border-color: var(--blue); }
+        &:focus { border-color: var(--yellow); }
         &::placeholder { color: var(--muted); }
       }
     }
 
     .btn-add {
       padding: 0 14px;
-      background: var(--blue);
+      background: var(--yellow);
       border: none;
       border-radius: 3px;
-      color: white;
+      color: #0A1628;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
@@ -156,7 +156,7 @@ import { ApiService } from '../../services/api.service';
       align-items: center;
       gap: 4px;
       .material-icons-round { font-size: 18px; }
-      &:hover { background: var(--blue-dark); }
+      &:hover { background: #E6B800; }
       &:disabled { opacity: 0.5; cursor: not-allowed; }
     }
 
@@ -177,7 +177,7 @@ import { ApiService } from '../../services/api.service';
       font-weight: 500;
       cursor: pointer;
       &:hover { color: var(--text); }
-      &.active { color: var(--text-bright); border-bottom-color: var(--blue); }
+      &.active { color: var(--text-bright); border-bottom-color: var(--yellow); }
     }
 
     .todo-list { display: flex; flex-direction: column; gap: 2px; }
@@ -204,11 +204,11 @@ import { ApiService } from '../../services/api.service';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      .material-icons-round { font-size: 14px; color: white; display: none; }
-      &:hover { border-color: var(--blue); }
+      .material-icons-round { font-size: 14px; color: #0A1628; display: none; }
+      &:hover { border-color: var(--yellow); }
       &.checked {
-        background: var(--blue);
-        border-color: var(--blue);
+        background: var(--yellow);
+        border-color: var(--yellow);
         .material-icons-round { display: block; }
       }
     }
