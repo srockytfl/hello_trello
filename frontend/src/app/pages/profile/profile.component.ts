@@ -202,8 +202,8 @@ interface UserProfile {
       width: 38px;
       height: 38px;
       border-radius: var(--radius-md, 10px);
-      background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(167, 139, 250, 0.12));
-      border: 1px solid rgba(255, 105, 180, 0.2);
+      background: linear-gradient(135deg, rgba(255, 149, 0, 0.2), rgba(167, 139, 250, 0.12));
+      border: 1px solid rgba(255, 149, 0, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -262,7 +262,7 @@ interface UserProfile {
       padding: 3px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--blue), var(--purple));
-      box-shadow: 0 4px 16px rgba(255, 105, 180, 0.35);
+      box-shadow: 0 4px 16px rgba(255, 149, 0, 0.35);
     }
 
     .avatar-large {

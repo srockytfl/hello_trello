@@ -11,10 +11,10 @@
   --sidebar-bg: #060c18;
 
   /* ── Brand / Primary ── */
-  --blue: #FF69B4;
-  --blue-dark: #e05599;
-  --blue-darker: #c03d7d;
-  --blue-glow: rgba(255, 105, 180, 0.3);
+  --blue: #FF9500;
+  --blue-dark: #E68500;
+  --blue-darker: #CC7A00;
+  --blue-glow: rgba(255, 149, 0, 0.3);
 
   /* ── Accent colors ── */
   --purple: #a78bfa;
@@ -41,7 +41,7 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.6);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.7);
-  --shadow-blue: 0 0 0 3px rgba(255, 105, 180, 0.22);
+  --shadow-blue: 0 0 0 3px rgba(255, 149, 0, 0.22);
   --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.4);
 
   /* ── Geometry ── */
@@ -90,6 +90,6 @@ input, button, textarea, select { font-family: inherit; }
 
 /* ── Selection ── */
 ::selection {
-  background: rgba(255, 105, 180, 0.3);
+  background: rgba(255, 149, 0, 0.3);
   color: var(--text-bright);
 }

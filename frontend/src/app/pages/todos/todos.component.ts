@@ -181,8 +181,8 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       width: 38px;
       height: 38px;
       border-radius: var(--radius-md, 10px);
-      background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(167, 139, 250, 0.12));
-      border: 1px solid rgba(255, 105, 180, 0.2);
+      background: linear-gradient(135deg, rgba(255, 149, 0, 0.2), rgba(167, 139, 250, 0.12));
+      border: 1px solid rgba(255, 149, 0, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -349,7 +349,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
 
       &:hover {
         background: var(--blue-dark);
-        box-shadow: 0 4px 16px rgba(255, 105, 180, 0.45);
+        box-shadow: 0 4px 16px rgba(255, 149, 0, 0.45);
       }
       &:active { transform: scale(0.97); }
       &:disabled {
@@ -390,8 +390,8 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       }
 
       &.active {
-        background: rgba(255, 105, 180, 0.12);
-        border-color: rgba(255, 105, 180, 0.35);
+        background: rgba(255, 149, 0, 0.12);
+        border-color: rgba(255, 149, 0, 0.35);
         color: var(--blue);
 
         .filter-count {
@@ -494,7 +494,7 @@ import { UserAvatarComponent } from '../../components/user-avatar/user-avatar.co
       &:hover {
         border-color: var(--blue);
         transform: scale(1.15);
-        box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.15);
+        box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.15);
       }
 
       &.checked {
