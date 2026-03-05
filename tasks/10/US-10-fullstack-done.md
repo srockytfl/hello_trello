@@ -3,9 +3,9 @@
 ## Resumo
 
 A US-10 solicitava a alteração da cor principal da interface para rosa (`#FF69B4`).
-A mudança foi realizada usando **Opção A (variável CSS global)** — editando as variáveis em `styles.scss` e atualizando todos os valores rgba hardcoded nos componentes.
+A mudança foi realizada usando **Opção A (variável CSS global)** — editando as variáveis CSS em `frontend/src/styles.scss`.
 
-A cor anterior era **amarelo/dourado** (`#FFD700`), aplicada através das variáveis CSS `--blue` (nomenclatura legada). Todos os valores foram migrados para rosa.
+A cor anterior era **verde** (`#22c55e`), aplicada através das variáveis CSS `--blue` (nomenclatura legada do projeto). Todos os valores foram migrados para rosa.
 
 ---
 
@@ -15,51 +15,45 @@ A cor anterior era **amarelo/dourado** (`#FFD700`), aplicada através das variá
 
 | Arquivo | Descrição da Alteração |
 |---|---|
-| `frontend/src/styles.scss` | Variáveis `--blue`, `--blue-dark`, `--blue-darker`, `--blue-glow`, `--shadow-blue` e `::selection` atualizadas de dourado para rosa |
-| `frontend/src/app/shared/colors.ts` | Constantes `PRIMARY_BLUE`, `PRIMARY_BLUE_HOVER`, `PRIMARY_BLUE_DARK` atualizadas para valores rosa |
-| `frontend/src/app/components/sidebar/sidebar.component.ts` | Substituição de todos `rgba(255, 215, 0, ...)` → `rgba(255, 105, 180, ...)` |
-| `frontend/src/app/pages/profile/profile.component.ts` | Substituição de todos `rgba(255, 215, 0, ...)` → `rgba(255, 105, 180, ...)` |
-| `frontend/src/app/components/user-avatar/user-avatar.component.ts` | Substituição de todos `rgba(255, 215, 0, ...)` → `rgba(255, 105, 180, ...)` |
+| `frontend/src/styles.scss` | Variáveis `--blue`, `--blue-dark`, `--blue-darker`, `--blue-glow`, `--shadow-blue` e `::selection` atualizadas de verde para rosa |
+
+> `frontend/src/app/shared/colors.ts` já estava com os valores rosa corretos (sem alteração necessária).
+> Todos os componentes (`login`, `todos`, `profile`, `sidebar`, `user-avatar`, `footer`) já usavam `var(--blue)` — herdaram a mudança automaticamente via variável CSS global.
 
 ### Detalhes das Variáveis CSS (diff)
 
 ```diff
-// styles.scss (:root)
-- --blue: #FFD700;
-- --blue-dark: #E6C200;
-- --blue-darker: #B8960C;
-- --blue-glow: rgba(255, 215, 0, 0.3);
-- --shadow-blue: 0 0 0 3px rgba(255, 215, 0, 0.22);
+// frontend/src/styles.scss (:root)
+- --blue: #22c55e;
+- --blue-dark: #16a34a;
+- --blue-darker: #15803d;
+- --blue-glow: rgba(34, 197, 94, 0.3);
+- --shadow-blue: 0 0 0 3px rgba(34, 197, 94, 0.22);
 + --blue: #FF69B4;
 + --blue-dark: #e05599;
 + --blue-darker: #c03d7d;
 + --blue-glow: rgba(255, 105, 180, 0.3);
 + --shadow-blue: 0 0 0 3px rgba(255, 105, 180, 0.22);
 
-// colors.ts
-- PRIMARY_BLUE: '#FFD700',       // main yellow
-- PRIMARY_BLUE_HOVER: '#E6C200', // darker tone
-- PRIMARY_BLUE_DARK: '#B8960C',  // extra-dark variant
-+ PRIMARY_BLUE: '#FF69B4',       // hot pink
-+ PRIMARY_BLUE_HOVER: '#e05599', // darker tone
-+ PRIMARY_BLUE_DARK: '#c03d7d',  // extra-dark variant
+// ::selection
+- background: rgba(34, 197, 94, 0.3);
++ background: rgba(255, 105, 180, 0.3);
 ```
 
 ---
 
 ## Impacto Visual (Componentes Afetados via Variável `--blue`)
 
-### `sidebar.component.ts`
-- Logo da marca (gradiente + glow), links de navegação ativos (background + indicador lateral + ícone hover), avatar do usuário (gradiente)
+Todos os componentes que referenciam `var(--blue)` passaram a exibir rosa automaticamente:
 
-### `profile.component.ts`
-- Ícone da página, anel do avatar, badge de cargo, cabeçalho do formulário, inputs (focus), botão "Salvar" (gradiente + hover shadow)
-
-### `user-avatar.component.ts`
-- Gradiente do avatar, anel de hover (box-shadow), foco (box-shadow)
-
-### Todos os componentes com `var(--blue)` (propagação automática)
-- `login`, `todos`, `footer` — herdam a variável CSS via `:root`, sem hardcoding
+| Componente | Elementos afetados |
+|---|---|
+| `login.component.ts` | Ícone da logo (gradiente), label icons, input focus border/shadow, botão Entrar (gradiente), hint icon |
+| `todos.component.ts` | Page icon, filtro ativo, botão Adicionar, input focus, task accent bar, task-check hover |
+| `profile.component.ts` | Page icon, avatar ring, role badge, form header icon, input focus, botão Salvar (gradiente) |
+| `sidebar.component.ts` | Brand logo (gradiente + glow), nav link ativo (background + indicador lateral), user avatar |
+| `user-avatar.component.ts` | Avatar (gradiente), hover ring (box-shadow), focus ring |
+| `footer.component.ts` | Footer logo (gradiente) |
 
 ---
 
