@@ -1,0 +1,48 @@
+US-1 — Trocar Cor para Azul
+======================
+
+CONTEXTO
+--------
+A aplicação possui elementos visuais que atualmente não seguem o esquema de cores esperado. É necessário atualizar a cor primária para azul conforme identidade visual do projeto.
+
+HISTORIA
+--------
+Como usuário,
+quero que os elementos principais da aplicação sejam exibidos em azul,
+para que a interface visual seja consistente com a identidade da marca.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. A cor primária da aplicação deve ser azul (#0066CC ou equivalente definido no design)
+2. Todos os botões principais devem utilizar a cor azul especificada
+3. Links e elementos interativos devem exibir em azul
+4. O contraste da cor azul com o fundo deve atender aos padrões WCAG AA
+5. Não deve quebrar nenhuma funcionalidade existente
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Usar variáveis CSS ou tokens de design para a cor (não hardcoding)
+- Atualizar valores nos arquivos de estilo centralizados
+- Sem over-engineering
+- Manter consistência com o sistema de design existente
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar que nenhuma alteração quebrou endpoints
+  - Confirmar que respostas da API continuam válidas
+
+E2E:
+  - Visualizar página inicial e confirmar que botões exibem em azul
+  - Verificar links em diferentes estados (normal, hover, ativo)
+  - Testar em múltiplos navegadores (Chrome, Firefox, Safari)
+  - Validar contraste de cores com ferramentas de acessibilidade
+  - Testar em diferentes resoluções (mobile, tablet, desktop)
+
+FORA DO ESCOPO
+--------------
+- Alterar cores secundárias ou de aviso
+- Refatorar componentes de UI completos
+- Mudanças em animações ou transições
+- Alteração de ícones ou imagens
