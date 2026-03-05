@@ -2,7 +2,7 @@
 
 ## Resumo
 
-Implementação da mudança do título da aplicação de **"Teste Cores"** para **"Teste 1"** em todas as camadas da stack (backend, frontend e HTML). O título é exibido dinamicamente via `TitleService` que carrega o valor do endpoint `/api/title`.
+Implementação da mudança do título da aplicação de **"Hello Github"** para **"Teste 1"** em todas as camadas da stack (backend, frontend e HTML). O título é exibido dinamicamente via `TitleService` que carrega o valor do endpoint `/api/title`.
 
 ---
 
