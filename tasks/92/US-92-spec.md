@@ -2,12 +2,12 @@
 
 ## Escopo Técnico
 Derivado do PRD:
-- Backend necessário: **não**
-- Frontend necessário: **sim**
-- Foco: redesign visual (CSS/SCSS apenas)
+- **Backend necessário:** não
+- **Frontend necessário:** sim
+- **Foco:** redesign visual (CSS/SCSS apenas)
 
 ## Objetivo
-Transformar toda a paleta de cores do site de rosa/magenta para amarelo, mantendo a estrutura existente. O amarelo será a cor dominante em 100% do site, com variações para backgrounds, componentes, textos e estados interativos.
+Transformar toda a paleta de cores do site de azul para amarelo, mantendo a estrutura existente. O amarelo será a cor dominante em 100% do site, com variações para backgrounds, componentes, textos e estados interativos.
 
 ---
 
@@ -73,7 +73,7 @@ Nenhuma mudança em banco de dados — apenas visual.
 - **Elementos:** inputs, botão de login (btn-login), mensagem de erro, hint
 - **Mudanças de Estilo:**
   - `.login-box`: background `var(--bg2)` (amarelo escuro-médio)
-  - `input`: border em foco usar `var(--yellow)` (já existe)
+  - `input`: border em foco usar `var(--yellow)` (já existe, novo amarelo)
   - `.btn-login`: background `var(--blue)` (amarelo brilhante), color escuro (#0A1628)
   - `.btn-login:hover`: background `var(--blue-dark)` (amarelo escuro)
   - `.error`: color `var(--red)` (manter vermelho)
@@ -90,7 +90,7 @@ Nenhuma mudança em banco de dados — apenas visual.
   - `.filter-btn.active`: border-bottom-color em `var(--yellow)`
   - `.checkbox.checked`: background `var(--yellow)`, border `var(--yellow)`
   - `.checkbox:hover`: border-color `var(--yellow)`
-  - `.dot-pending`: background `var(--yellow)` (já existe)
+  - `.dot-pending`: background `var(--yellow)` (já usa --yellow)
   - `.dot-done`: background `var(--green)` (novo amarelo para sucesso)
   - `.todo-item`: background `var(--bg2)`, hover `var(--bg3)`
 
@@ -102,6 +102,7 @@ Nenhuma mudança em banco de dados — apenas visual.
 3. Todos os backgrounds, bordas, botões, estados (hover, focus, active) mostram paleta amarela
 4. Usuário interage com componentes (botões, inputs, checkboxes)
 5. Transições e hover states funcionam com variações de amarelo
+6. Layout permanece 100% visível em amarelo
 
 ---
 
@@ -126,8 +127,8 @@ Nenhuma mudança em banco de dados — apenas visual.
 - [ ] Cores de estado (red, green) alinhadas: vermelho para erro, amarelo-ouro para sucesso
 - [ ] LoginComponent renderiza com novo tema
 - [ ] TodosComponent renderiza com novo tema
-- [ ] Nenhuma cor rosa/magenta visível na interface
-- [ ] Testes manuais: navegação entre `/login` e `/todos`, interações com inputs/botões/checkboxes, verificação de contraste
+- [ ] Nenhuma cor azul visível na interface
+- [ ] Testes manuais: navegação entre `/login` e `/todos`, interações com inputs/botões/checkboxes
 
 ---
 
@@ -136,5 +137,5 @@ Não disponível — especificação baseada em requisitos textuais do PRD.
 
 ---
 
-## Resumo
-Esta é uma mudança **puramente visual/CSS**, sem alterações de lógica, estrutura HTML ou banco de dados. Todos os componentes usam CSS variables, portanto basta redefinir as 8 variáveis raiz para atingir a transformação. A paleta mantém acessibilidade com contraste WCAG AA.
+## Resumo Técnico
+Esta é uma mudança **puramente visual/CSS**, sem alterações de lógica, estrutura HTML ou banco de dados. Todos os componentes usam CSS variables, portanto basta redefinir 8 variáveis raiz para atingir a transformação completa. A paleta mantém acessibilidade com contraste WCAG AA.
