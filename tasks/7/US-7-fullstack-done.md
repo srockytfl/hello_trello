@@ -16,8 +16,8 @@ Nenhuma — a US-7 é exclusivamente frontend (CSS/SCSS). Os endpoints existente
 | Arquivo | Alteração |
 |---------|-----------|
 | `frontend/src/styles.scss` | `--blue`: `#FF69B4` → `#FFD700` |
-| `frontend/src/styles.scss` | `--blue-dark`: `#e05599` → `#E6C200` |
-| `frontend/src/styles.scss` | `--blue-darker`: `#c03d7d` → `#D4AF37` |
+| `frontend/src/styles.scss` | `--blue-dark`: `#E65EA2` → `#E6C200` |
+| `frontend/src/styles.scss` | `--blue-darker`: `#CC5490` → `#D4AF37` |
 | `frontend/src/styles.scss` | `--blue-glow`: `rgba(255, 105, 180, 0.3)` → `rgba(255, 215, 0, 0.3)` |
 | `frontend/src/styles.scss` | `--shadow-blue`: `rgba(255, 105, 180, 0.22)` → `rgba(255, 215, 0, 0.22)` |
 | `frontend/src/styles.scss` | `::selection background`: `rgba(255, 105, 180, 0.3)` → `rgba(255, 215, 0, 0.3)` |
