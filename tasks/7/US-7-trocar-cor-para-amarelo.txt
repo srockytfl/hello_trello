@@ -1,0 +1,37 @@
+US-7 — Trocar cor para amarelo
+================================
+
+CONTEXTO
+--------
+A interface necessita de uma mudança visual para melhor destaque. A alteração de cor para amarelo visa melhorar a visibilidade e orientação do usuário.
+
+HISTORIA
+--------
+Como usuário,
+quero que o elemento visual seja exibido em cor amarela,
+para melhor identificar e destacar a funcionalidade na interface.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O elemento deve exibir na cor amarela quando renderizado
+2. A cor amarela deve atender aos padrões de contraste mínimo de acessibilidade
+3. Não deve haver degradação visual em diferentes temas (light/dark mode se aplicável)
+4. A alteração deve ser consistente em todos os navegadores suportados
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Sem over-engineering
+- Validar contraste mínimo WCAG AA (4.5:1 para texto, 3:1 para elementos gráficos)
+
+CRITERIOS DE TESTE (QA)
+------------------------
+E2E:
+  - Verificar que o elemento renderiza em cor amarela
+  - Validar exibição em navegadores Chrome, Firefox, Safari
+  - Confirmar contraste de acessibilidade
+
+FORA DO ESCOPO
+--------------
+- Alterações em outros elementos
+- Mudanças de comportamento funcional
