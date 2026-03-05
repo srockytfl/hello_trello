@@ -28,12 +28,17 @@ Bash: ~/bin/gh issue view <N> --json title,body,labels
 Procure no body da issue uma URL do Figma (formato `https://figma.com/design/...`).
 Se encontrar, guarde-a para incluir no PRD como **Referencia Visual**.
 
-## Passo 2 â€” Criar pasta de artefatos
+## Passo 2 â€” Criar pasta e arquivo
 ```
-Bash: mkdir -p tasks/<N>
+Bash: mkdir -p tasks/<N> && touch tasks/<N>/US-<N>-prd.md
 ```
 
-## Passo 3 â€” Escrever PRD
+## Passo 3 â€” Ler e escrever PRD
+Primeiro leia o arquivo (mesmo vazio) para desbloquear a escrita:
+```
+Read: tasks/<N>/US-<N>-prd.md
+```
+Depois escreva o conteudo:
 ```
 Write: tasks/<N>/US-<N>-prd.md
 ```
