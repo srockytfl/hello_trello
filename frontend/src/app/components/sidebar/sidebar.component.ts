@@ -1,12 +1,14 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   template: `
-    <aside class="sidebar" [class.collapsed]="collapsed()">
+    <aside class="sidebar" [class.collapsed]="collapsed()" role="navigation" aria-label="Menu lateral">
 
       <!-- Brand -->
       <div class="sidebar-brand">
@@ -41,6 +43,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
           routerLink="/todos"
           routerLinkActive="active"
           [title]="collapsed() ? 'Tarefas' : ''"
+          aria-label="Ir para Tarefas"
         >
           <div class="nav-icon-wrap">
             <span class="nav-icon material-icons-round">checklist_rtl</span>
@@ -56,6 +59,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
           routerLink="/profile"
           routerLinkActive="active"
           [title]="collapsed() ? 'Perfil' : ''"
+          aria-label="Ir para Meu Perfil"
         >
           <div class="nav-icon-wrap">
             <span class="nav-icon material-icons-round">account_circle</span>
@@ -75,12 +79,17 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
       <!-- User Footer -->
       <div class="sidebar-footer" [class.collapsed]="collapsed()">
-        <button class="user-chip" (click)="logout()" [title]="collapsed() ? 'Sair' : 'Clique para sair'" aria-label="Sair da conta">
-          <div class="user-avatar">{{ initials() }}</div>
+        <button
+          class="user-chip"
+          (click)="logout()"
+          [title]="collapsed() ? 'Sair' : 'Clique para sair'"
+          aria-label="Sair da conta"
+        >
+          <div class="user-avatar" aria-hidden="true">{{ initials() }}</div>
           @if (!collapsed()) {
             <div class="user-info">
               <span class="user-name">{{ userName() }}</span>
-              <span class="user-role">Administrador</span>
+              <span class="user-role">{{ userRole() }}</span>
             </div>
             <span class="logout-icon material-icons-round" aria-hidden="true">logout</span>
           }
@@ -440,29 +449,38 @@ export class SidebarComponent implements OnInit {
   collapsed = signal(false);
   userName = signal('');
   initials = signal('U');
+  userRole = signal('Usuário');
 
-  constructor(private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private api: ApiService,
+  ) {}
 
   ngOnInit(): void {
-    this.loadUser();
+    this.loadUserFromAuth();
+    this.loadRoleFromApi();
   }
 
-  loadUser(): void {
-    const raw = localStorage.getItem('user');
-    if (!raw) return;
-    try {
-      const user = JSON.parse(raw);
-      const name: string = user.name || 'Admin';
-      this.userName.set(name);
-      const parts = name.trim().split(/\s+/);
-      const ini =
-        parts.length >= 2
-          ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
-          : parts[0].substring(0, 2).toUpperCase();
-      this.initials.set(ini);
-    } catch {
-      this.initials.set('A');
-    }
+  private loadUserFromAuth(): void {
+    const user = this.auth.user();
+    if (!user) return;
+    const name = user.name || 'Admin';
+    this.userName.set(name);
+    const parts = name.trim().split(/\s+/);
+    const ini =
+      parts.length >= 2
+        ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+        : parts[0].substring(0, 2).toUpperCase();
+    this.initials.set(ini);
+  }
+
+  private loadRoleFromApi(): void {
+    this.api.getUserProfile().subscribe({
+      next: (profile) => {
+        if (profile.role) this.userRole.set(profile.role);
+      },
+      error: () => { /* mantém valor padrão */ },
+    });
   }
 
   toggleCollapse(): void {
@@ -470,7 +488,6 @@ export class SidebarComponent implements OnInit {
   }
 
   logout(): void {
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    this.auth.logout();
   }
 }

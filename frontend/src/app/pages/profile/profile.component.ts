@@ -521,11 +521,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!localStorage.getItem('user')) {
-      this.router.navigate(['/login']);
-      return;
-    }
-
+    // Proteção de rota garantida pelo authGuard na configuração de rotas
     this.api.getUserProfile().subscribe({
       next: (p: UserProfile) => {
         this.profile.set(p);

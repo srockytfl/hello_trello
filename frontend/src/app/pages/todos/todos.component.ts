@@ -657,10 +657,7 @@ export class TodosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (!localStorage.getItem('user')) {
-      this.router.navigate(['/login']);
-      return;
-    }
+    // Proteção de rota garantida pelo authGuard na configuração de rotas
     this.load();
   }
 

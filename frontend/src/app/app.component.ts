@@ -3,6 +3,7 @@ import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -52,7 +53,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 export class AppComponent implements OnInit {
   showShell = signal(false);
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+  ) {}
 
   ngOnInit(): void {
     this.updateShell(this.router.url);
@@ -66,6 +70,7 @@ export class AppComponent implements OnInit {
 
   private updateShell(url: string): void {
     const isLogin = url === '/' || url.startsWith('/login');
-    this.showShell.set(!isLogin);
+    // Exibe o shell apenas em rotas autenticadas
+    this.showShell.set(!isLogin && this.auth.isAuthenticated());
   }
 }

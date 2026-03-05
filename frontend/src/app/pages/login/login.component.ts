@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { TitleService } from '../../services/title.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -359,9 +360,11 @@ export class LoginComponent {
   constructor(
     private api: ApiService,
     private router: Router,
+    private auth: AuthService,
     public titleService: TitleService,
   ) {
-    if (localStorage.getItem('user')) this.router.navigate(['/todos']);
+    // Redireciona automaticamente se já estiver autenticado
+    if (this.auth.isAuthenticated()) this.router.navigate(['/todos']);
   }
 
   onLogin(): void {
@@ -369,7 +372,7 @@ export class LoginComponent {
     this.loading.set(true);
     this.api.login(this.username, this.password).subscribe({
       next: (res) => {
-        localStorage.setItem('user', JSON.stringify(res.user));
+        this.auth.setUser(res.user);
         this.router.navigate(['/todos']);
       },
       error: () => {
