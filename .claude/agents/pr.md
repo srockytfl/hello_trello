@@ -17,9 +17,26 @@ Se nao houver commits, informe "Nenhum commit na branch" e PARE.
 git push -u origin BRANCH_NAME --force
 ```
 
-## Passo 3 — Criar PR
+## Passo 3 — Preparar resumo da issue
+
+Antes de criar o PR, leia o conteudo da issue para incluir no body do PR:
 ```
-gh pr create --base BASE_BRANCH --head BRANCH_NAME --title "US-<N>: BRANCH_NAME" --body "Implementacao da US-<N> pela squad."
+gh issue view <N> --json title,body --jq '.title + "\n" + .body'
+```
+
+- Se a issue for curta (ate ~500 caracteres), copie o texto integral como descricao.
+- Se a issue for longa (mais de ~500 caracteres), escreva um resumo conciso de 3-5 bullet points com os pontos principais.
+
+## Passo 4 — Criar PR
+
+Monte o body do PR com o resumo:
+```
+gh pr create --base BASE_BRANCH --head BRANCH_NAME --title "US-<N>: BRANCH_NAME" --body "## Resumo da Issue #<N>
+
+<resumo ou texto integral da issue aqui>
+
+---
+Implementacao pela squad."
 ```
 
 Se o PR ja existir, informe a URL existente:
