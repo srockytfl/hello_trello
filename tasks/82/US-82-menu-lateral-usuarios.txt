@@ -1,0 +1,48 @@
+US-82 — Menu Lateral de Usuários
+==================================
+
+CONTEXTO
+--------
+O aplicativo necessita de um menu lateral que permita aos usuários acessar funcionalidades e dados relacionados à sua conta e perfil. O menu deve estar acessível em toda a aplicação para navegação eficiente.
+
+HISTORIA
+--------
+Como usuário autenticado,
+quero visualizar um menu lateral com opções relacionadas à minha conta,
+para acessar facilmente as funcionalidades e configurações do meu perfil.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O menu lateral deve estar visível na lateral esquerda ou direita da interface
+2. O menu deve conter opções relevantes para usuários (perfil, configurações, logout, etc.)
+3. O menu deve ser responsivo e funcionar em desktop e mobile
+4. O menu deve ser acessível apenas quando o usuário está autenticado
+5. O menu deve ser colapsável/expansível (com ícone de toggle, se aplicável)
+6. Os itens do menu devem ser navegáveis por links ou botões
+
+REGRAS TECNICAS
+---------------
+- Implementar seguindo padrões de componentes reutilizáveis
+- Garantir acessibilidade (ARIA labels, navegação por teclado)
+- Sem over-engineering: começar com funcionalidade básica
+- Responsivo para mobile-first
+
+CRITERIOS DE TESTE (QA)
+------------------------
+API:
+  - Verificar se usuário autenticado pode acessar o menu
+  - Validar que usuário não autenticado não vê o menu
+
+E2E:
+  - Menu lateral é visível quando o usuário está logado
+  - Menu lateral está oculto quando o usuário está deslogado
+  - Itens do menu navegam para as páginas corretas
+  - Menu é responsivo e acessível em diferentes tamanhos de tela
+  - Menu permanece visível ao navegar entre páginas
+
+FORA DO ESCOPO
+--------------
+- Animações complexas do menu
+- Integração com sistemas de permissões avançados
+- Personalização dinâmica do menu por role/permissão (fase futura)
+- Dark mode do menu (se não especificado nos designs)
