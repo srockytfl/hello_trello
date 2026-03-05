@@ -3,9 +3,9 @@
 ## Resumo
 
 A US-10 solicitava a alteração da cor principal da interface para rosa (`#FF69B4`).
-A mudança foi realizada usando **Opção A (variável CSS global)** — editando as variáveis CSS em `frontend/src/styles.scss`.
+A mudança foi realizada usando **Opção A (variável CSS global)** — editando as variáveis CSS em `frontend/src/styles.scss` e os valores hardcoded `rgba` em todos os componentes afetados.
 
-A cor anterior era **verde** (`#22c55e`), aplicada através das variáveis CSS `--blue` (nomenclatura legada do projeto). Todos os valores foram migrados para rosa.
+A cor anterior era **laranja** (`#FF9500`), aplicada através das variáveis CSS `--blue` (nomenclatura legada do projeto) e de valores `rgba(255, 149, 0, ...)` hardcoded em componentes. Todos os valores foram migrados para rosa.
 
 ---
 
@@ -15,30 +15,39 @@ A cor anterior era **verde** (`#22c55e`), aplicada através das variáveis CSS `
 
 | Arquivo | Descrição da Alteração |
 |---|---|
-| `frontend/src/styles.scss` | Variáveis `--blue`, `--blue-dark`, `--blue-darker`, `--blue-glow`, `--shadow-blue` e `::selection` atualizadas de verde para rosa |
-
-> `frontend/src/app/shared/colors.ts` já estava com os valores rosa corretos (sem alteração necessária).
-> Todos os componentes (`login`, `todos`, `profile`, `sidebar`, `user-avatar`, `footer`) já usavam `var(--blue)` — herdaram a mudança automaticamente via variável CSS global.
+| `frontend/src/styles.scss` | Variáveis `--blue`, `--blue-dark`, `--blue-darker`, `--blue-glow`, `--shadow-blue` e `::selection` atualizadas de laranja para rosa |
+| `frontend/src/app/shared/colors.ts` | Constantes `PRIMARY_ORANGE`, `PRIMARY_ORANGE_HOVER`, `PRIMARY_ORANGE_DARK` atualizadas para pink |
+| `frontend/src/app/pages/login/login.component.ts` | 5 ocorrências de `rgba(255, 149, 0, X)` → `rgba(255, 105, 180, X)` |
+| `frontend/src/app/pages/todos/todos.component.ts` | 5 ocorrências de `rgba(255, 149, 0, X)` → `rgba(255, 105, 180, X)` |
+| `frontend/src/app/pages/profile/profile.component.ts` | 3 ocorrências de `rgba(255, 149, 0, X)` → `rgba(255, 105, 180, X)` |
 
 ### Detalhes das Variáveis CSS (diff)
 
 ```diff
 // frontend/src/styles.scss (:root)
-- --blue: #22c55e;
-- --blue-dark: #16a34a;
-- --blue-darker: #15803d;
-- --blue-glow: rgba(34, 197, 94, 0.3);
-- --shadow-blue: 0 0 0 3px rgba(34, 197, 94, 0.22);
+- --blue: #FF9500;
+- --blue-dark: #E68500;
+- --blue-darker: #CC7A00;
+- --blue-glow: rgba(255, 149, 0, 0.3);
+- --shadow-blue: 0 0 0 3px rgba(255, 149, 0, 0.22);
 + --blue: #FF69B4;
-+ --blue-dark: #e05599;
-+ --blue-darker: #c03d7d;
++ --blue-dark: #E65EA2;
++ --blue-darker: #CC5490;
 + --blue-glow: rgba(255, 105, 180, 0.3);
 + --shadow-blue: 0 0 0 3px rgba(255, 105, 180, 0.22);
 
 // ::selection
-- background: rgba(34, 197, 94, 0.3);
+- background: rgba(255, 149, 0, 0.3);
 + background: rgba(255, 105, 180, 0.3);
 ```
+
+### Cor Rosa Aplicada
+
+| Variante | Hex | RGB |
+|---|---|---|
+| Principal | `#FF69B4` | rgb(255, 105, 180) |
+| Hover | `#E65EA2` | rgb(230, 94, 162) |
+| Dark | `#CC5490` | rgb(204, 84, 144) |
 
 ---
 
@@ -68,7 +77,7 @@ Nenhuma alteração no backend foi necessária — a US-10 é exclusivamente de 
 | Critério | Status |
 |---|---|
 | 1. Cor alterada para rosa (#FF69B4) | ✅ |
-| 2. Mudança visível em todos os componentes afetados | ✅ (variável CSS global + rgba hardcoded) |
+| 2. Mudança visível em todos os componentes afetados | ✅ (variável CSS global + rgba hardcoded nos componentes) |
 | 3. Legibilidade e contraste mantidos | ✅ (#FF69B4 sobre #080e1a — contraste ≈ 8:1, WCAG AA ✓) |
 | 4. Sem erros de console / warnings | ✅ (apenas edição de valores CSS) |
 | 5. Nenhuma cor não solicitada alterada | ✅ |
@@ -78,6 +87,6 @@ Nenhuma alteração no backend foi necessária — a US-10 é exclusivamente de 
 
 ## Estratégia Técnica
 
-- **Abordagem**: Opção A — variáveis CSS globais no `:root` de `styles.scss`
+- **Abordagem**: Opção A — variáveis CSS globais no `:root` de `styles.scss` + atualização de rgba hardcoded
 - **Sem over-engineering**: Somente valores de cor alterados, nenhuma estrutura refatorada
 - **Compatibilidade**: CSS Custom Properties suportadas em todos os browsers modernos
