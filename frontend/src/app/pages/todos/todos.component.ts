@@ -11,7 +11,7 @@ import { ApiService } from '../../services/api.service';
     <!-- Header -->
     <header>
       <div class="logo">
-        <span class="material-icons-round">check_circle</span>
+        <span class="material-icons-round">circle</span>
         TODO List
       </div>
       <div class="header-right">
