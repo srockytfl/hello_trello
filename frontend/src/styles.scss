@@ -1,29 +1,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — rosa em gradação (Pink palette) */
-  --bg: #FDF2F8;           /* Rosa muito claro para background principal */
-  --bg2: #FCE7F3;          /* Rosa claro para cards/headers */
-  --bg3: #F9A8D4;          /* Rosa médio para hover states */
-  --card: #FCE7F3;         /* Rosa claro para cards */
-  --hover: #F9A8D4;        /* Rosa médio para hover */
+  /* Backgrounds — amarelo em gradação (Yellow/Amber palette) */
+  --bg: #FFFBEB;           /* Amarelo muito claro para background principal */
+  --bg2: #FEF3C7;          /* Amarelo claro para cards/headers */
+  --bg3: #FDE68A;          /* Amarelo médio para hover states */
+  --card: #FEF3C7;         /* Amarelo claro para cards */
+  --hover: #FDE68A;        /* Amarelo médio para hover */
 
-  /* Primary rosa (Pink) */
-  --blue: #EC4899;         /* Rosa vibrante para botões primários */
-  --blue-dark: #DB2777;    /* Rosa escuro para hover de botões */
+  /* Primary amarelo/âmbar (Amber) */
+  --blue: #D97706;         /* Âmbar escuro para botões primários */
+  --blue-dark: #B45309;    /* Âmbar muito escuro para hover de botões */
 
   /* Text */
-  --text: #374151;         /* Cinza escuro para texto em fundos rosa */
+  --text: #374151;         /* Cinza escuro para texto em fundos amarelos */
   --text-bright: #1F2937;  /* Cinza muito escuro para texto/títulos principais */
-  --muted: #9D174D;        /* Rosa escuro para texto secundário */
+  --muted: #92400E;        /* Marrom âmbar para texto secundário */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #F472B6;       /* Rosa highlight para destaque/focus/checkbox */
+  --yellow: #F59E0B;       /* Âmbar para destaque/focus/checkbox */
 
   /* Structure */
-  --border: #F9A8D4;       /* Rosa médio para bordas */
+  --border: #FDE68A;       /* Amarelo médio para bordas */
   --radius: 6px;           /* Manter border-radius */
 }
 
