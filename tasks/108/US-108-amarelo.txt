@@ -1,0 +1,16 @@
+US-108 — Tema visual amarelo completo
+
+Descrição do usuário:
+Eu queria trocar a cor do site para amarelo, todo o fundo, todos os componentes, simplesmente tudo. Depois disso eu gostaria que o título do site fosse "Amarelo". O icone também precisa ter algo em amarelo.
+
+Requisitos funcionais:
+- Trocar a cor do site para amarelo em todo o fundo
+- Trocar todos os componentes para a paleta amarela
+- Mudar o título do site para "Amarelo"
+- Incluir amarelo no ícone do site
+
+Critério de aceitação:
+- Visual do site deve usar paleta de cores amarela
+- Título exibido é "Amarelo"
+- Ícone contém elemento em amarelo
+- Tema aplicado consistentemente em todos os componentes
