@@ -11,7 +11,7 @@ import { ApiService } from '../../services/api.service';
     <!-- Header -->
     <header>
       <div class="logo">
-        <span class="material-icons-round">check_circle</span>
+        <div class="logo-circle"></div>
         TODO List
       </div>
       <div class="header-right">
@@ -83,7 +83,15 @@ import { ApiService } from '../../services/api.service';
       font-size: 13px;
       font-weight: 600;
       color: var(--text-bright);
-      .material-icons-round { color: var(--yellow); font-size: 20px; }
+    }
+
+    .logo-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: inline-block;
+      flex-shrink: 0;
     }
 
     .header-right { display: flex; align-items: center; gap: 14px; }
