@@ -1,29 +1,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — azul em gradação */
-  --bg: #0F172A;           /* Azul escuro para background principal */
-  --bg2: #1E293B;          /* Azul médio para cards/headers */
-  --bg3: #334155;          /* Azul claro para hover states */
-  --card: #1E293B;         /* Azul médio para cards */
-  --hover: #334155;        /* Azul claro para hover */
+  /* Backgrounds — amarelo em gradação (Amber palette) */
+  --bg: #FEF9E7;           /* Amarelo muito claro para background principal */
+  --bg2: #FEF3C7;          /* Amarelo claro para cards/headers */
+  --bg3: #FCD34D;          /* Amarelo médio para hover states */
+  --card: #FEF3C7;         /* Amarelo claro para cards */
+  --hover: #FCD34D;        /* Amarelo médio para hover */
 
-  /* Primary azul */
-  --blue: #3B82F6;         /* Azul brilhante para botões primários */
-  --blue-dark: #2563EB;    /* Azul mais escuro para hover de botões */
+  /* Primary amarelo (Amber) */
+  --blue: #F59E0B;         /* Amarelo ouro para botões primários */
+  --blue-dark: #D97706;    /* Amarelo ouro escuro para hover de botões */
 
   /* Text */
-  --text: #E2E8F0;         /* Cinza claro para texto em fundos escuros */
-  --text-bright: #FFFAF0;  /* Branco quase puro para texto/títulos principais */
-  --muted: #94A3B8;        /* Cinza médio para texto secundário */
+  --text: #374151;         /* Cinza escuro para texto em fundos amarelos */
+  --text-bright: #1F2937;  /* Cinza muito escuro para texto/títulos principais */
+  --muted: #6B7280;        /* Cinza médio para texto secundário */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #60A5FA;       /* Azul para destaque/focus */
+  --yellow: #FBBF24;       /* Amarelo brilhante para destaque/focus */
 
   /* Structure */
-  --border: #334155;       /* Azul médio para bordas */
+  --border: #FCD34D;       /* Amarelo médio para bordas */
   --radius: 6px;           /* Manter border-radius */
 }
 
