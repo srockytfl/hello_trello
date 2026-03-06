@@ -1,91 +1,83 @@
 # CLAUDE.md
 
-## O Produto
+## Filosofia do Projeto
 
-**Hello Trello** — Aplicação web para gerenciamento de tarefas e quadros estilo Trello.
+**Hello SDD — Sistema simplificado de desenvolvimento com histórias estruturadas.**
 
-Funcionalidades principais:
-- **Frontend** — aplicação Angular 17 com interface reativa
-- **Backend** — servidor Express para gerenciar dados de quadros e tarefas
-- **Comunicação** — API REST entre frontend e server com CORS habilitado
+Regras que se aplicam a TODOS os agentes, sem exceção:
+- **Mantenha simples** — prefira soluções diretas e claras
+- **Sem over-engineering** — sem abstrações desnecessárias
+- **Pragmatismo** — foque em entregar valor real
+- **Qualidade** — trate erros relevantes, valide inputs em boundaries
+
+## Comandos
+
+- `npm start` — inicia o servidor Express (porta configurada em server/)
+- `npm run build` — instala dependências e faz build do frontend + backend
+- `cd frontend && npm start` — inicia Angular dev server (ng serve)
+- `cd frontend && npm run build` — gera build de produção do frontend
+- `cd frontend && npm test` — roda testes Karma + Jasmine
 
 ## Stack
 
 - **Runtime:** Node.js
-- **Frontend:** Angular 17 (standalone components) + RxJS — porta 4200 (default ng serve)
-- **Backend:** Express 5.2.1 — porta 3000 (padrão ou configurável)
-- **Linguagem:** TypeScript (frontend), JavaScript (server)
-- **Testes:** Jasmine + Karma (frontend)
-- **Deploy:** Vercel (`vercel.json` configurado)
-- **Proxy:** `frontend/proxy.conf.json` para redirecionar requisições locais ao server
+- **Frontend:** Angular 17.3 (TypeScript, SCSS, Karma + Jasmine)
+- **Backend:** Express 5.2
+- **Proxy:** Configurado em `frontend/proxy.conf.json`
+- **Deploy:** Vercel
 
 ## Estrutura
 
 ```
 frontend/
-  src/
-    app/              # componentes e lógica Angular
-    assets/           # imagens, fontes, etc.
-  angular.json        # configuração Angular CLI
-  proxy.conf.json     # proxy para desenvolvimento local
-  tsconfig.json       # TypeScript config
+├── src/
+│   ├── app/            # componentes e serviços Angular
+│   ├── assets/         # arquivos estáticos
+│   ├── index.html      # template HTML
+│   ├── main.ts         # entry point
+│   └── styles.scss     # estilos globais
+├── angular.json        # config Angular CLI
+├── tsconfig.json       # config TypeScript
+└── proxy.conf.json     # proxy para API
 
 server/
-  index.js            # entry point Express
+└── index.js            # entry point Express
 
-api/                  # (aparentemente legado/não utilizado)
+api/
+└── index.js            # (verificar propósito)
 
-start.sh              # script de inicialização
-CLAUDE.md             # este arquivo
-```
+tasks/
+├── 1/
+│   ├── US-1-trocar-cor-azul.txt       # história em linguagem livre
+│   └── US-1-fullstack-done.md         # resultado da implementação
+└── 85/
+    ├── US-85-tema-azul.txt            # história
+    └── US-85-fullstack-done.md        # resultado
 
-## Comandos
-
-### Desenvolvimento
-
-```bash
-# Instalar dependências (frontend + server)
-npm run build
-
-# Iniciar apenas o frontend (http://localhost:4200)
-cd frontend && npm start
-
-# Iniciar apenas o server (http://localhost:3000)
-cd server && node index.js
-
-# Watch mode frontend (rebuild on changes)
-cd frontend && npm run watch
-
-# Testes frontend
-cd frontend && npm test
-```
-
-### Produção
-
-```bash
-# Build frontend
-npm run build
-
-# Iniciar produção
-npm start
+CLAUDE.md                # este arquivo
 ```
 
 ## Convenções
 
-- **Frontend** em `frontend/src/app/` — componentes, serviços, pipes
-- **Backend** em `server/index.js` — rotas Express e handlers
-- **Porta 4200** — ng serve (frontend)
-- **Porta 3000** — server Express (backend)
-- **Proxy local** — frontend/proxy.conf.json redireciona `/api/*` para o server durante dev
-- **TypeScript** — tipo-safe no frontend; JavaScript simples no server
-- **Standalone Components** — Angular 17 moderno, sem NgModules
+- Histórias em `tasks/NNN/US-NNN-*.txt` (requisitos em linguagem livre)
+- Resultado da implementação em `tasks/NNN/US-NNN-fullstack-done.md`
+- **Sem separação backend/frontend** — todas as histórias são fullstack
+- Frontend comunica com backend via proxy configurado em `frontend/proxy.conf.json`
+- Serviços Angular sempre em `frontend/src/app/services/` com `providedIn: 'root'`
+- Variáveis de ambiente do servidor em `.env` (nunca commitar)
 
-## Notas
+## Fluxo de Trabalho
 
-- Arquivo `api/` parece legado — verificar necessidade antes de usar
-- CORS habilitado no server — permitir requisições do frontend
-- Build automático instala dependências — não commitar `node_modules`
-- Vercel configurado — deploy automático possível
+1. **Escrever requisitos** em `tasks/NNN/US-NNN-<nome>.txt` (linguagem livre)
+2. **Implementar** — modificar frontend e backend conforme necessário
+3. **Registrar resultado** em `tasks/NNN/US-NNN-fullstack-done.md` com o que foi feito
+4. **Testar** — rodar `npm test` (frontend) ou testes manuais
+
+## Restrições
+
+- Não instalar o Angular CLI globalmente
+- Proxy do frontend aponta para o servidor — nunca hardcodar URLs de API
+- Deploy em Vercel — verificar compatibilidade antes de commit
 
 ## Workflow da Squad
 
@@ -95,8 +87,9 @@ A squad executa os agentes na seguinte ordem:
 2. **SDD Spec**
 3. **SDD Execute**
 4. **PR**
+5. **Code Review**
 
-Fluxo: SDD PRD → SDD Spec → SDD Execute → PR
+Fluxo: SDD PRD → SDD Spec → SDD Execute → PR → Code Review
 
 ### Resumo de tempo
 
@@ -108,4 +101,5 @@ Ao final do fluxo, exibir tabela com tempos de cada agente:
 | SDD Spec | XX:XX |
 | SDD Execute | XX:XX |
 | PR | XX:XX |
+| Code Review | XX:XX |
 | **Total** | **XX:XX** |
