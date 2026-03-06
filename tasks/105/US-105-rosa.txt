@@ -1,0 +1,19 @@
+US-105: Rosa Theme
+
+GitHub Issue #105
+
+CUSTOMER REQUEST:
+The user wants all colors, background screen, components, buttons, etc. to be pink (Rosa in Portuguese).
+The website title should be called "Rosa".
+
+ACCEPTANCE CRITERIA:
+- All colors in the application should use pink tones
+- Background should be pink-themed
+- All components (buttons, cards, etc.) should be pink
+- All UI elements should use pink color scheme
+- Website title should be "Rosa"
+
+SCOPE:
+- Frontend: Update color scheme across the entire Angular application
+- Backend: Update title/branding in API responses if needed
+- Update page title to "Rosa"
