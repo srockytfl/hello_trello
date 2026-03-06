@@ -12,7 +12,7 @@ import { ApiService } from '../../services/api.service';
     <header>
       <div class="logo">
         <span class="material-icons-round">check_circle</span>
-        TODO List
+        Rosa
       </div>
       <div class="header-right">
         <div class="stats">
@@ -148,7 +148,7 @@ import { ApiService } from '../../services/api.service';
       background: var(--blue);
       border: none;
       border-radius: 3px;
-      color: #0A1628;
+      color: #FFFFFF;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;

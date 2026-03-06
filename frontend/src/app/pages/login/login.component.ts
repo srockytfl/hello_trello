@@ -10,7 +10,7 @@ import { ApiService } from '../../services/api.service';
   template: `
     <div class="login-page">
       <div class="login-box">
-        <h2>TODO List</h2>
+        <h2>Rosa</h2>
         <div class="field">
           <label>Usuário</label>
           <input type="text" [(ngModel)]="username" placeholder="admin" (keyup.enter)="onLogin()" autofocus />
@@ -82,7 +82,7 @@ import { ApiService } from '../../services/api.service';
       background: var(--blue);
       border: none;
       border-radius: 3px;
-      color: #0A1628;
+      color: #FFFFFF;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
