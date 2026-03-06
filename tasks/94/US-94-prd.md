@@ -14,6 +14,7 @@ Quando a US for concluída, todos os elementos visuais do site (fundo, component
 2. Todos os componentes visíveis devem utilizar azul como cor principal
 3. Todos os botões devem ser azuis
 4. O título do site deve ser azul
+5. O logo do site deve ser alterado para uma bolinha azul
 
 ## Requisitos Não-Funcionais
 - A mudança deve manter a acessibilidade e contraste de cores (WCAG)
@@ -30,6 +31,7 @@ Quando a US for concluída, todos os elementos visuais do site (fundo, component
 - [ ] Todos os componentes da interface utilizam a cor azul
 - [ ] Botões são azuis
 - [ ] Título do site é azul
+- [ ] Logo do site foi alterado para uma bolinha azul
 - [ ] A cor azul é aplicada de forma consistente em todo o site
 
 ## Escopo Técnico
