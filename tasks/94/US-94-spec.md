@@ -6,9 +6,13 @@ Derivado do PRD:
 - Frontend necessário: **sim**
 
 ## Descrição Geral
-Transformação visual do site Hello Trello para utilizar **azul como cor dominante** em toda a interface. A mudança é puramente visual (CSS) e não afeta funcionalidades ou estrutura do código.
+Aplicação de **tema azul coeso** em toda a interface do Hello Trello. O projeto já utiliza variáveis CSS de cores em escala azul; a tarefa é revisar e consolidar que:
+1. **Todos os elementos visuais** usam tonalidades de azul (backgrounds, botões, inputs, borders)
+2. **O logo** é substituído por uma bolinha azul simples
+3. **Títulos e textos** mantêm legibilidade com contraste adequado (WCAG)
+4. **Cores de estado** (erro, sucesso, focus) são consistentes com a identidade azul
 
-## Paleta de Cores Azul
+## Paleta de Cores Atual (Validar)
 
 | Variável CSS | Elemento | Cor Hex | Descrição |
 |----------|----------|---------|-----------|
@@ -22,100 +26,142 @@ Transformação visual do site Hello Trello para utilizar **azul como cor domina
 | `--text` | Texto Normal | `#E2E8F0` | Cinza claro (legibilidade em fundo azul) |
 | `--text-bright` | Texto Títulos | `#FFFAF0` | Branco quase puro (máximo contraste) |
 | `--muted` | Texto Secundário | `#94A3B8` | Cinza médio (textos menos importante) |
-| `--yellow` | Acentos/Focus | `#60A5FA` | Azul claro (checkboxes, ícones, focos) |
+| `--yellow` | Acentos/Focus | `#60A5FA` | Azul claro para destaques (checkboxes, ícones, focus) |
+| `--red` | Erros | `#EF4444` | Vermelho (alertas, erros) |
+| `--green` | Sucesso | `#10B981` | Verde (status sucesso) |
 | `--border` | Bordas | `#334155` | Azul médio (linhas separadoras) |
 
 ## Estrutura de Dados
-Não há alterações em tabelas ou persistência de dados. A mudança é **puramente visual**.
+Não há alterações em tabelas ou persistência de dados. A mudança é **puramente visual** (CSS).
 
 ## Componentes Frontend Afetados
 
 ### Elemento Global: `frontend/src/styles.scss`
 - **Descrição:** Define CSS custom properties que são herdadas por toda a interface
-- **Mudança:** Atualizar valores do bloco `:root { ... }` com a paleta azul
+- **Mudança:** **Validar e confirmar** que todas as variáveis usam tonalidades de azul
+- **Especificamente:**
+  - Backgrounds (`--bg`, `--bg2`, `--bg3`, `--card`) em escalas de azul
+  - Botões primários (`--blue`, `--blue-dark`) em azul brilhante
+  - Bordas e hover (`--border`, `--hover`) em azul médio
+  - Textos (`--text`, `--text-bright`, `--muted`) com contraste adequado em fundo azul
+  - Acentos (`--yellow`) em azul claro para manter coesão visual
 - **Impacto:** Afeta automaticamente todos os componentes e elementos HTML
 
 ### Componente: `frontend/src/app/pages/login/login.component.ts`
 - **Rota:** `/login`
 - **Descrição:** Página de autenticação
-- **Mudança:** Nenhuma — herda cores via CSS variables
-- **Elementos que recebem azul:**
-  - Background da login-box (usa `--bg2`)
-  - Inputs (usa `--card`, `--border`, focus em `--yellow`)
-  - Botão login (usa `--blue`, hover em `--blue-dark`)
-  - Textos (usa `--text`, `--muted`, `--text-bright`)
+- **Mudança:** Nenhuma no código TypeScript — herda cores via CSS variables
+- **Validação visual:**
+  - Background da login-box renderiza em azul (`--bg2`)
+  - Inputs com bordas azul (`--border`), focus em azul claro (`--yellow`)
+  - Botão login com fundo azul brilhante (`--blue`), hover azul escuro (`--blue-dark`)
+  - Todos os textos com contraste adequado
+  - Mensagens de erro em vermelho (`--red`)
 
 ### Componente: `frontend/src/app/pages/todos/todos.component.ts`
 - **Rota:** `/todos`
 - **Descrição:** Lista de tarefas com header, filtros e interações
-- **Mudança:** Nenhuma — herda cores via CSS variables
-- **Elementos que recebem azul:**
-  - Header (usa `--bg2`, `--border`)
-  - Logo/ícone (usa `--yellow` para ícones)
-  - Botões (usa `--blue`, hover em `--blue-dark`)
-  - Cards de tarefas (usa `--bg2`, hover em `--bg3`)
-  - Checkboxes (usa `--yellow`, border em `--border`)
-  - Inputs (usa `--card`, `--border`)
-  - Filtros (usa `--muted`, active em `--text-bright`)
-  - Textos (usa `--text`, `--muted`, `--text-bright`)
+- **Mudança:**
+  - **Logo:** Substituir o ícone `check_circle` do Material Icons por um círculo azul puro
+    - Opções: (1) Usar um Material Icon diferente (ex: `radio_button_unchecked`), (2) Usar um `<span>` com `border-radius: 50%` em CSS azul, ou (3) Um SVG simples
+    - Recomendação: Usar CSS puro para máxima consistência (`border-radius: 50%` com `background: var(--blue)`)
+- **Validação visual:**
+  - Header com fundo azul (`--bg2`), bordas azul (`--border`)
+  - Logo: Um círculo azul puro no lugar do ícone `check_circle`
+  - Botões em azul brilhante (`--blue`)
+  - Cards de tarefas com backgrounds em azul (`--bg2`), hover azul médio (`--bg3`)
+  - Checkboxes com bordas azul, fundo azul claro quando selecionados (`--yellow`)
+  - Inputs com fundo azul escuro (`--card`), bordas azul (`--border`)
+  - Filtros com texto muted, destaque em texto-bright
+  - Textos em tons de cinza claro para legibilidade
 
 ### Arquivo: `frontend/src/index.html`
 - **Descrição:** HTML raiz da aplicação
-- **Mudança:** Atualizar `<title>` para refletir tema azul
-- **De:** Título atual (exemplo: "Rosa")
-- **Para:** Um título apropriado como "TODO List" ou "Hello Trello"
+- **Mudança:**
+  - Validar `<title>` (já está "TODO List" — mantém como está)
+  - Confirmar que favicon carrega corretamente
+- **Nota:** O título HTML já é apropriado; sem necessidade de alteração
 
 ## Fluxo Técnico de Implementação
 
-1. **SDD Execute modifica `frontend/src/styles.scss`:**
-   - Atualiza o bloco `:root { ... }` com novos valores Hex das variáveis CSS
-   - Mantém a estrutura do arquivo inalterada
-   - Sem adicionar novas variáveis ou propriedades
+### Fase 1: Revisar e Validar Paleta Azul
+1. **Revisar `frontend/src/styles.scss`:**
+   - Validar que `:root { ... }` possui todas as variáveis CSS com tonalidades azuis
+   - Confirmar que `--bg`, `--bg2`, `--bg3` são azuis em escala
+   - Confirmar que `--blue` e `--blue-dark` são azuis brilhantes
+   - Confirmar que `--yellow` é na verdade azul claro (`#60A5FA`)
+   - Validar contraste de texto: `--text` em `#E2E8F0`, `--text-bright` em `#FFFAF0`
+   - **Se houver cores não-azuis (ex: verde, laranja):** Remapeá-las para tonalidades azuis
 
-2. **SDD Execute modifica `frontend/src/index.html`:**
-   - Localiza `<title>` e atualiza para um título coerente com tema azul
-   - Sem alterar qualquer outra tag ou estrutura
+### Fase 2: Substituir Logo
+2. **Atualizar `frontend/src/app/pages/todos/todos.component.ts`:**
+   - **Localizar:** Linha 13-15 com `<span class="material-icons-round">check_circle</span>`
+   - **Ação:** Substituir por um círculo azul puro. Opções:
+     - **Opção A (Recomendada - CSS puro):** Substituir o ícone por um `<div>` com classe `.logo-circle` contendo `border-radius: 50%`, `background: var(--blue)`, `width: 20px`, `height: 20px`
+     - **Opção B (Ícone Material):** Usar `radio_button_unchecked` ou similar (círculo vazio)
+   - **Adicionar CSS:** Se usar Opção A, adicionar ao `styles` do componente:
+     ```scss
+     .logo-circle {
+       width: 20px;
+       height: 20px;
+       border-radius: 50%;
+       background: var(--blue);
+       display: inline-block;
+     }
+     ```
 
-3. **Resultado visual automático:**
-   - TodosComponent renderiza em azul (sem mudanças no TypeScript)
-   - LoginComponent renderiza em azul (sem mudanças no TypeScript)
-   - Todos os estilos inline `:host { ... }` herdam as variáveis
-   - Scrollbar herda `--hover`
+### Fase 3: Validação Final
+3. **Executar build e testes:**
+   - `npm run build` — deve compilar sem erros
+   - `npm start` — deve servir a aplicação normalmente
 
-4. **Validação visual:**
-   - `npm run build` deve compilar sem erros
-   - `npm start` deve servir a aplicação normalmente
-   - Abrir `http://localhost:4200/login` — verificar cores azuis
-   - Abrir `http://localhost:4200/todos` — verificar cores azuis
-   - Verificar que botões, inputs, cards e textos estão em tons de azul
+4. **Validação visual manual:**
+   - Abrir `http://localhost:4200/login`
+     - ✓ Background azul escuro
+     - ✓ Inputs com bordas azul
+     - ✓ Botão login em azul brilhante
+     - ✓ Textos com contraste adequado
+   - Abrir `http://localhost:4200/todos`
+     - ✓ Header com fundo azul
+     - ✓ Logo é um círculo azul puro (não ícone)
+     - ✓ Todos botões em azul
+     - ✓ Cards em tons de azul
+     - ✓ Checkboxes com bordas azul
+     - ✓ Acentos em azul claro
+   - Testar navegação: Login e logout funcionam normalmente
+   - Verificar WCAG: Usar ferramenta de contraste (ex: WebAIM)
 
 ## Arquivos a Modificar/Criar
 
 | Arquivo | Ação | Detalhes |
 |---------|------|----------|
-| `frontend/src/styles.scss` | Modificar | Alterar valores hex das 12 variáveis CSS no bloco `:root` |
-| `frontend/src/index.html` | Modificar | Atualizar `<title>` |
+| `frontend/src/styles.scss` | **Validar/Revisar** | Confirmar que variáveis CSS estão em tonalidades azuis corretas; remapear qualquer cor não-azul |
+| `frontend/src/app/pages/todos/todos.component.ts` | **Modificar** | Substituir ícone `check_circle` por círculo azul puro (CSS ou ícone alternativo) |
+| `frontend/src/index.html` | Sem mudança | Título já é "TODO List" — apropriado |
 | `frontend/src/app/pages/login/login.component.ts` | Sem mudança | Herdará cores via CSS variables |
-| `frontend/src/app/pages/todos/todos.component.ts` | Sem mudança | Herdará cores via CSS variables |
 
 ## Notas Técnicas
 
-- **Sem alterações de código TypeScript/JavaScript:** Apenas CSS é modificado
-- **Sem breaking changes:** Todos os componentes usam CSS variables há; nenhum color é hardcoded
+- **Mínima alteração de código TypeScript:** Apenas substituição do ícone do logo no HTML template do TodosComponent
+- **Alteração CSS controlada:** Revisar/confirmar que `:root { ... }` em `styles.scss` está totalmente em tons de azul
+- **Sem breaking changes:** Todos os componentes usam CSS variables; nenhuma cor é hardcoded
 - **Sem alteração de arquitetura:** A estrutura do projeto permanece intacta
 - **Sem alteração de funcionalidades:** Apenas skin/tema visual muda
-- **Acessibilidade WCAG:** A paleta azul mantém contraste adequado:
-  - Texto claro (`#E2E8F0`) em fundo azul escuro (`#0F172A`) — razão ~10:1 (nível AAA)
-  - Botões azuis (`#3B82F6`) com texto escuro (`#0A1628`) — razão ~7:1 (nível AAA)
+- **Acessibilidade WCAG:** A paleta azul deve manter contraste adequado:
+  - Texto normal (`#E2E8F0`) em fundo azul escuro (`#0F172A`) — razão ~10:1 (nível AAA ✓)
+  - Botões azuis (`#3B82F6`) com texto escuro (`#0A1628`) — razão ~7:1 (nível AAA ✓)
+  - Validar após aplicar todas as mudanças
 
 ## Critérios Técnicos de Pronto
 
-- [ ] Arquivo `frontend/src/styles.scss` modificado com paleta azul
-- [ ] Arquivo `frontend/src/index.html` com título atualizado
-- [ ] Componente LoginComponent renderiza com tema azul
-- [ ] Componente TodosComponent renderiza com tema azul
-- [ ] Todos elementos visuais (background, botões, inputs, cards, checkboxes) em tons de azul
+- [ ] Variáveis CSS em `frontend/src/styles.scss` confirmadas/ajustadas para tons de azul
+- [ ] Logo em `frontend/src/app/pages/todos/todos.component.ts` substituído por círculo azul
+- [ ] Página de login renderiza com tema azul coeso
+- [ ] Página de tarefas renderiza com tema azul coeso (incluindo novo logo)
+- [ ] Todos elementos visuais (backgrounds, botões, inputs, cards, checkboxes) em tons de azul
+- [ ] Logo é um círculo azul puro (não ícone, não check_circle)
 - [ ] Contraste de cores atende mínimo WCAG AA
 - [ ] Build do frontend sem erros: `npm run build`
 - [ ] Servidor responde corretamente: `npm start`
-- [ ] Nenhuma alteração em lógica ou funcionalidade
+- [ ] Testes manuais: Login e navegação para /todos funcionam
+- [ ] Nenhuma alteração em lógica ou funcionalidade do sistema
