@@ -7,13 +7,14 @@ O site atualmente utiliza outras cores como tema principal. É necessário fazer
 Transformar todo o site para utilizar azul como cor principal, aplicando essa cor aos elementos estruturais, componentes e interativos do site para criar uma identidade visual unificada.
 
 ## Sucesso Esperado
-Quando a US for concluída, todos os elementos visuais do site (fundo, componentes, botões e título) estarão apresentados em tons de azul, mantendo a legibilidade e usabilidade da interface.
+Quando a US for concluída, todos os elementos visuais do site (fundo, componentes, botões, título) estarão apresentados em tons de azul, e o logo será uma bolinha azul, mantendo a legibilidade e usabilidade da interface.
 
 ## Requisitos Funcionais
 1. O fundo da página deve ser azul
 2. Todos os componentes visíveis devem utilizar azul como cor principal
 3. Todos os botões devem ser azuis
 4. O título do site deve ser azul
+5. O logo do site deve ser substituído por uma bolinha azul
 
 ## Requisitos Não-Funcionais
 - A mudança deve manter a acessibilidade e contraste de cores (WCAG)
@@ -30,6 +31,7 @@ Quando a US for concluída, todos os elementos visuais do site (fundo, component
 - [ ] Todos os componentes da interface utilizam a cor azul
 - [ ] Botões são azuis
 - [ ] Título do site é azul
+- [ ] Logo do site é uma bolinha azul
 - [ ] A cor azul é aplicada de forma consistente em todo o site
 
 ## Escopo Técnico
