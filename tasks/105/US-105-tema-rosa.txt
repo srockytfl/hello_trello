@@ -1,0 +1,16 @@
+US-105 — Tema Rosa
+
+Como usuário, quero que toda a interface do aplicativo seja apresentada em tons de rosa,
+para ter uma experiência visual completamente temática.
+
+Requisitos:
+- Todas as cores de fundo (backgrounds) devem ser tons de rosa
+- Componentes, cards e bordas devem usar tons de rosa
+- Botões primários (adicionar, entrar) devem ser rosa
+- O hover e estados interativos devem seguir a paleta rosa
+- O título do site (tab do browser) deve ser "Rosa"
+- O nome exibido na tela de login deve ser "Rosa" (em vez de "TODO List")
+- O logo/nome exibido no header da tela de tarefas deve ser "Rosa"
+- Checkbox de tarefa concluída deve usar tom rosa
+- Manter acessibilidade: texto deve contrastar adequadamente com os fundos rosa
+- Não alterar funcionalidades — apenas visual
