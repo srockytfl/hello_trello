@@ -1,29 +1,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — amarelo em gradação (Yellow/Amber palette) */
-  --bg: #FFFBEB;           /* Amarelo muito claro para background principal */
-  --bg2: #FEF3C7;          /* Amarelo claro para cards/headers */
-  --bg3: #FDE68A;          /* Amarelo médio para hover states */
-  --card: #FEF3C7;         /* Amarelo claro para cards */
-  --hover: #FDE68A;        /* Amarelo médio para hover */
+  /* Backgrounds — azul em gradação (Blue palette) */
+  --bg: #EFF6FF;           /* Azul muito claro para background principal */
+  --bg2: #DBEAFE;          /* Azul claro para cards/headers */
+  --bg3: #BFDBFE;          /* Azul médio claro para hover states */
+  --card: #DBEAFE;         /* Azul claro para cards */
+  --hover: #BFDBFE;        /* Azul médio claro para hover */
 
-  /* Primary amarelo/âmbar (Amber) */
-  --blue: #D97706;         /* Âmbar escuro para botões primários */
-  --blue-dark: #B45309;    /* Âmbar muito escuro para hover de botões */
+  /* Primary azul (Blue) */
+  --blue: #2563EB;         /* Azul forte para botões primários */
+  --blue-dark: #1D4ED8;    /* Azul escuro para hover de botões */
 
   /* Text */
-  --text: #374151;         /* Cinza escuro para texto em fundos amarelos */
-  --text-bright: #1F2937;  /* Cinza muito escuro para texto/títulos principais */
-  --muted: #92400E;        /* Marrom âmbar para texto secundário */
+  --text: #1E3A5F;         /* Azul escuro para texto padrão */
+  --text-bright: #0F2544;  /* Azul muito escuro para títulos e texto principal */
+  --muted: #3B6EA5;        /* Azul médio para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #F59E0B;       /* Âmbar para destaque/focus/checkbox */
+  --yellow: #F59E0B;       /* Amarelo para destaque/focus/checkbox */
 
   /* Structure */
-  --border: #FDE68A;       /* Amarelo médio para bordas */
+  --border: #BFDBFE;       /* Azul médio claro para bordas */
   --radius: 6px;           /* Manter border-radius */
 }
 

@@ -12,7 +12,7 @@ import { ApiService } from '../../services/api.service';
     <header>
       <div class="logo">
         <span class="material-icons-round">check_circle</span>
-        Amarelo
+        Azul
       </div>
       <div class="header-right">
         <div class="stats">
