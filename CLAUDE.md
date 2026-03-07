@@ -136,5 +136,6 @@ Pipeline:
 1. PO
 2. Fullstack
 3. PR
+4. Code Review
 
-Flow: PO → Fullstack → PR
+Flow: PO → Fullstack → PR → Code Review

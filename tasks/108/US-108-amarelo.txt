@@ -1,16 +1,43 @@
-US-108 — Tema visual amarelo completo
+US-108 – Amarelo
+=================
 
-Descrição do usuário:
-Eu queria trocar a cor do site para amarelo, todo o fundo, todos os componentes, simplesmente tudo. Depois disso eu gostaria que o título do site fosse "Amarelo". O icone também precisa ter algo em amarelo.
+CONTEXTO
+--------
+O usuário deseja personalizar a aparência visual da aplicação com um tema amarelo,
+incluindo alteração completa da paleta de cores, título do site e ícone.
 
-Requisitos funcionais:
-- Trocar a cor do site para amarelo em todo o fundo
-- Trocar todos os componentes para a paleta amarela
-- Mudar o título do site para "Amarelo"
-- Incluir amarelo no ícone do site
+HISTORIA
+--------
+Como usuário,
+quero que toda a aplicação tenha tema amarelo,
+para uma experiência visual personalizada e coerente.
 
-Critério de aceitação:
-- Visual do site deve usar paleta de cores amarela
-- Título exibido é "Amarelo"
-- Ícone contém elemento em amarelo
-- Tema aplicado consistentemente em todos os componentes
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Fundo de toda a aplicação deve ser amarelo
+2. Todos os componentes devem usar amarelo em sua paleta de cores
+3. Título da página deve ser alterado para "Amarelo"
+4. Ícone da aplicação deve incluir elemento amarelo
+
+REGRAS TECNICAS
+---------------
+- Modificar variáveis SCSS globais para tema amarelo
+- Atualizar styles.scss com novas cores
+- Alterar título em index.html
+- Substituir ou modificar favicon/ícone com elemento amarelo
+- Seguir convenções do CLAUDE.md
+- Manter responsividade e acessibilidade
+
+CRITERIOS DE TESTE (QA)
+------------------------
+E2E:
+  - Validar que todos os elementos renderizam com tema amarelo
+  - Verificar que o título da página exibe "Amarelo"
+  - Confirmar que o ícone contém elemento amarelo
+  - Testar em diferentes resoluções de tela
+
+FORA DO ESCOPO
+--------------
+- Criar temas dinâmicos/alternáveis
+- Adicionar seletor de cores no frontend
+- Modificar dados/lógica de negócio
