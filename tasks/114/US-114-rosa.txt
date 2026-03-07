@@ -1,0 +1,52 @@
+US-114 – Rosa
+======================
+
+CONTEXTO
+--------
+O site deve ser rebrandizado com uma paleta de cores rosa. Esta alteração afeta todos os componentes visuais da aplicação, desde botões e fundos até texto, checkboxes e ícones, além do título do site.
+
+HISTORIA
+--------
+Como usuário,
+quero que a interface da aplicação use rosa como cor predominante,
+para que o site tenha uma identidade visual consistente e renovada.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Todos os botões da aplicação devem ter rosa como cor de fundo ou borda
+2. Os fundos dos componentes principais devem ser rosa ou tons derivados
+3. O texto deve ser legível sobre os fundos rosa (contraste adequado)
+4. Checkboxes e elementos interativos devem seguir a paleta rosa
+5. O título da página deve ser alterado para "Rosa"
+6. O ícone do site (favicon) deve ser rosa
+7. A aplicação deve manter a responsividade em todos os breakpoints
+
+REGRAS TECNICAS
+---------------
+- Seguir a estrutura existente em frontend/src/styles.scss
+- Usar variáveis CSS para cores rosa reutilizáveis
+- Manter a acessibilidade (contraste mínimo WCAG AA)
+- Não quebrar funcionalidades existentes
+- Componentes Angular devem ser atualizados em src/app/
+- Favicon deve ser atualizado em frontend/src/assets/
+
+CRITERIOS DE TESTE (QA)
+------------------------
+E2E/Manual:
+  - Verificar que todos os botões são renderizados em rosa
+  - Verificar que o título da página exibe "Rosa"
+  - Verificar que os fundos dos cards/containers são rosa
+  - Verificar que o favicon é rosa no navegador
+  - Verificar contraste de texto em todos os elementos
+  - Verificar responsividade em mobile, tablet e desktop
+
+Visual:
+  - Screenshot da home em diferentes resoluções
+  - Comparação antes e depois dos componentes principais
+
+FORA DO ESCOPO
+--------------
+- Alterações na lógica de negócio
+- Novas funcionalidades
+- Mudança na estrutura do HTML
+- Temas dinâmicos ou modo claro/escuro
