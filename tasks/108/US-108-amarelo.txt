@@ -1,16 +1,44 @@
-US-108 — Tema visual amarelo completo
+US-108 – Amarelo
+=================
 
-Descrição do usuário:
-Eu queria trocar a cor do site para amarelo, todo o fundo, todos os componentes, simplesmente tudo. Depois disso eu gostaria que o título do site fosse "Amarelo". O icone também precisa ter algo em amarelo.
+CONTEXTO
+--------
+O usuário deseja uma mudança visual completa da aplicação para o tema amarelo, incluindo todos os componentes, fundos e elementos visuais do site. Isso afetará a identidade visual da aplicação e deve ser consistente em toda a interface.
 
-Requisitos funcionais:
-- Trocar a cor do site para amarelo em todo o fundo
-- Trocar todos os componentes para a paleta amarela
-- Mudar o título do site para "Amarelo"
-- Incluir amarelo no ícone do site
+HISTORIA
+--------
+Como usuário,
+quero que o site tenha um tema amarelo em todo o fundo e componentes,
+para que a aplicação tenha uma identidade visual consistente e amarela, com o título "Amarelo" e ícone com elemento amarelo.
 
-Critério de aceitação:
-- Visual do site deve usar paleta de cores amarela
-- Título exibido é "Amarelo"
-- Ícone contém elemento em amarelo
-- Tema aplicado consistentemente em todos os componentes
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O fundo de toda a aplicação deve ser amarelo
+2. Todos os componentes devem utilizar a paleta de cores amarela
+3. O título da página (browser title e heading principal) deve ser "Amarelo"
+4. O ícone da aplicação deve incluir um elemento amarelo visível
+5. A paleta amarela deve ser consistente em toda a interface (botões, cards, borders, etc.)
+6. A aplicação deve manter legibilidade e contraste adequado com o tema amarelo
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Sem over-engineering
+- Aplicar cores amarelas em estilos SCSS/CSS
+- Manter componentes Angular existentes funcional
+- Atualizar assets de ícone para incluir amarelo
+
+CRITERIOS DE TESTE (QA)
+------------------------
+E2E:
+  - Verificar que toda a página é renderizada com tons de amarelo
+  - Confirmar que o title do browser é "Amarelo"
+  - Validar que o ícone da aplicação exibe elemento amarelo
+  - Testar contraste de texto contra fundo amarelo para acessibilidade
+  - Verificar que todas as rotas da aplicação aplicam o tema amarelo
+
+FORA DO ESCOPO
+--------------
+- Criar novos componentes ou funcionalidades
+- Alterar estrutura de dados ou API
+- Modificar lógica de negócio
