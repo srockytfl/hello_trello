@@ -1,0 +1,11 @@
+Requisitos - US-110: Azul
+
+Descricao:
+Trocar a cor do site para Azul. Todo o fundo, todos os componentes, simplesmente tudo precisa ficar azul.
+
+Alem disso:
+- O título do site deve ser mudado para "Azul"
+- O ícone também precisa ter algo em amarelo
+
+Contexto:
+O usuário quer uma mudança visual completa do tema da aplicação, de modo que toda a paleta de cores seja baseada em azul com destaque amarelo no ícone.
