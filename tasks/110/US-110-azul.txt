@@ -1,0 +1,44 @@
+US-110 – Azul
+======================
+
+CONTEXTO
+--------
+O usuario deseja transformar o tema visual da aplicacao para um tema azul coeso, alterando cores de fundo, componentes, titulo e iconografia.
+
+HISTORIA
+--------
+Como usuario,
+quero que a aplicacao tenha um tema azul em todos os componentes,
+para ter uma experiencia visual coerente e personalizada.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Todos os fundos da aplicacao devem ser azuis (diferentes tons se necessario)
+2. Todos os componentes devem seguir a paleta azul
+3. O titulo da aplicacao deve exibir "Azul"
+4. O icone deve conter elementos em amarelo
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Manter consistencia visual em toda a aplicacao (frontend)
+- Usar variaveis SCSS para paleta de cores (facilita manutencao)
+- Sem breaking changes em funcionalidade existente
+
+CRITERIOS DE TESTE (QA)
+------------------------
+Visual:
+  - Verificar que fundo principal é azul
+  - Verificar que titulo exibe "Azul"
+  - Verificar que icone contem amarelo
+  - Verificar que todos os componentes respeitam paleta azul
+
+E2E:
+  - Carregar aplicacao e validar tema visual
+  - Interagir com componentes e validar cores mantidas
+
+FORA DO ESCOPO
+--------------
+- Mudancas em funcionalidade da aplicacao
+- Suporte a tema claro/escuro ou preferencias de usuario
+- Mudancas estruturais de layout
