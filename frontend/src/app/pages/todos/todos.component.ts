@@ -82,8 +82,8 @@ import { ApiService } from '../../services/api.service';
       gap: 8px;
       font-size: 13px;
       font-weight: 600;
-      color: var(--text-bright);
-      .material-icons-round { color: var(--yellow); font-size: 20px; }
+      color: var(--green);
+      .material-icons-round { color: var(--green); font-size: 20px; }
     }
 
     .header-right { display: flex; align-items: center; gap: 14px; }
