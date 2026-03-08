@@ -12,7 +12,7 @@ import { ApiService } from '../../services/api.service';
     <header>
       <div class="logo">
         <span class="material-icons-round">check_circle</span>
-        Verde
+        Roxo
       </div>
       <div class="header-right">
         <div class="stats">
@@ -82,8 +82,8 @@ import { ApiService } from '../../services/api.service';
       gap: 8px;
       font-size: 13px;
       font-weight: 600;
-      color: var(--red);
-      .material-icons-round { color: var(--red); font-size: 20px; }
+      color: var(--yellow);
+      .material-icons-round { color: var(--yellow); font-size: 20px; }
     }
 
     .header-right { display: flex; align-items: center; gap: 14px; }
