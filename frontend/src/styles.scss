@@ -1,29 +1,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — roxo em gradação */
-  --bg: #FAF5FF;           /* Roxo muito claro para background principal */
-  --bg2: #F3E8FF;          /* Roxo claro para cards/headers */
-  --bg3: #E9D5FF;          /* Roxo médio claro para hover states */
-  --card: #F3E8FF;         /* Roxo claro para cards */
-  --hover: #E9D5FF;        /* Roxo médio claro para hover */
+  /* Backgrounds — laranja em gradação */
+  --bg: #FFF8F0;           /* Laranja muito claro para background principal */
+  --bg2: #FFE8D0;          /* Laranja claro para cards/headers */
+  --bg3: #FFD4A3;          /* Laranja médio claro para hover states */
+  --card: #FFE8D0;         /* Laranja claro para cards */
+  --hover: #FFD4A3;        /* Laranja médio claro para hover */
 
-  /* Primary roxo */
-  --blue: #9333EA;         /* Roxo primário para botões primários */
-  --blue-dark: #7E22CE;    /* Roxo escuro para hover de botões */
+  /* Primary laranja */
+  --blue: #EA8A3A;         /* Laranja primário para botões primários */
+  --blue-dark: #D96E1A;    /* Laranja escuro para hover de botões */
 
   /* Text */
-  --text: #2E1065;         /* Roxo muito escuro para texto padrão (contraste OK) */
-  --text-bright: #2E1065;  /* Roxo muito escuro para títulos e texto principal */
-  --muted: #6B21A8;        /* Roxo médio para texto secundário/mutado */
+  --text: #5C3014;         /* Laranja muito escuro para texto padrão (contraste OK) */
+  --text-bright: #5C3014;  /* Laranja muito escuro para títulos e texto principal */
+  --muted: #B8652C;        /* Laranja médio para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #A855F7;       /* Roxo vibrante para destaque/focus/checkbox */
+  --yellow: #F39C12;       /* Laranja vibrante para destaque/focus/checkbox */
 
   /* Structure */
-  --border: #E9D5FF;       /* Roxo médio claro para bordas */
+  --border: #FFD4A3;       /* Laranja médio claro para bordas */
   --radius: 6px;           /* Manter border-radius */
 }
 
