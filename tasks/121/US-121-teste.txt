@@ -1,0 +1,40 @@
+US-121 – Teste
+===============
+
+CONTEXTO
+--------
+O site atual utiliza temas de cores em roxo e outros tons. É necessário alterar o esquema de cores para laranja em todas as páginas e elementos da aplicação.
+
+HISTORIA
+--------
+Como usuário,
+quero que toda a interface do site utilize cores laranja,
+para que a aplicação tenha um novo esquema visual consistente.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. Todas as cores do site (backgrounds, borders, highlights, buttons) devem ser alteradas para laranja
+2. O título da página deve ser alterado para "Laranja"
+3. O esquema de cores deve ser aplicado de forma consistente em todos os componentes
+4. As mudanças devem ser visíveis em todas as páginas da aplicação
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Atualizar variáveis SCSS/CSS de tema para laranja
+- Manter a acessibilidade e contraste adequado
+- Sem over-engineering
+
+CRITERIOS DE TESTE (QA)
+------------------------
+E2E:
+  - Verificar que o título da página exibe "Laranja"
+  - Validar que todos os elementos visuais (buttons, cards, headers) utilizam tons de laranja
+  - Confirmar consistência de cores em diferentes resoluções e páginas
+  - Testar navegação para garantir que o tema laranja persiste em todas as rotas
+
+FORA DO ESCOPO
+--------------
+- Alterações em funcionalidade ou comportamento da aplicação
+- Mudanças em estrutura HTML (apenas estilos e tema)
+- Suporte a temas dinâmicos ou seleção de cores pelo usuário
