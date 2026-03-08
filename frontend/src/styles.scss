@@ -1,29 +1,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — marrom em gradação */
-  --bg: #F5E6D3;           /* Marrom muito claro para background principal */
-  --bg2: #E8D4BF;          /* Marrom claro para cards/headers */
-  --bg3: #D9C0A3;          /* Marrom médio claro para hover states */
-  --card: #E8D4BF;         /* Marrom claro para cards */
-  --hover: #D9C0A3;        /* Marrom médio claro para hover */
+  /* Backgrounds — rosa em gradação */
+  --bg: #FCE4EC;           /* Rosa pastel para background principal */
+  --bg2: #F8BBD0;          /* Rosa claro para cards/headers */
+  --bg3: #F48FB1;          /* Rosa médio claro para hover states */
+  --card: #F8BBD0;         /* Rosa claro para cards */
+  --hover: #F48FB1;        /* Rosa médio claro para hover */
 
-  /* Primary marrom */
-  --blue: #8B6F47;         /* Marrom primário para botões primários */
-  --blue-dark: #6B5638;    /* Marrom escuro para hover de botões */
+  /* Primary rosa */
+  --blue: #E91E63;         /* Rosa primária para botões primários */
+  --blue-dark: #C2185B;    /* Rosa escuro para hover de botões */
 
   /* Text */
-  --text: #4A3C2E;         /* Marrom muito escuro para texto padrão (contraste OK) */
-  --text-bright: #4A3C2E;  /* Marrom muito escuro para títulos e texto principal */
-  --muted: #A0846F;        /* Marrom médio para texto secundário/mutado */
+  --text: #880E4F;         /* Rosa muito escuro para texto padrão (contraste OK) */
+  --text-bright: #880E4F;  /* Rosa muito escuro para títulos e texto principal */
+  --muted: #C2185B;        /* Rosa médio para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #D4A574;       /* Marrom quente para destaque/focus/checkbox */
+  --yellow: #E91E63;       /* Rosa para destaque/focus/checkbox */
 
   /* Structure */
-  --border: #D9C0A3;       /* Marrom médio claro para bordas */
+  --border: #F48FB1;       /* Rosa médio claro para bordas */
   --radius: 6px;           /* Manter border-radius */
 }
 
