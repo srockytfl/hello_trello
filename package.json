@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "cd frontend && npm install && npm run build && cd ../server && npm install",
-    "start": "cd server && node index.js"
+    "start": "cd server && node index.js",
+    "dev": "cd frontend && npm start"
   }
 }
