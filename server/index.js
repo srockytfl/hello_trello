@@ -46,11 +46,11 @@ app.delete('/api/todos/:id', (req, res) => {
   res.json({ ok: true });
 });
 
-// Serve Angular build
+// Serve React build
 const path = require('path');
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist', 'frontend', 'browser')));
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
 app.get('/{*path}', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'frontend', 'browser', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'dist', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3001;

@@ -18,9 +18,8 @@ export default function Todos() {
   const [newText, setNewText] = useState('')
 
   useEffect(() => {
-    if (!localStorage.getItem('user')) { navigate('/login'); return }
     load()
-  }, [navigate])
+  }, [])
 
   async function load() {
     const data = await getTodos()
@@ -133,6 +132,10 @@ export default function Todos() {
           )}
         </div>
       </main>
+
+      <footer className="page-footer">
+        Feito com React ⚛️ · © 2026
+      </footer>
     </div>
   )
 }
