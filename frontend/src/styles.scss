@@ -1,29 +1,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — laranja em gradação */
-  --bg: #FFF8F0;           /* Laranja muito claro para background principal */
-  --bg2: #FFE8D0;          /* Laranja claro para cards/headers */
-  --bg3: #FFD4A3;          /* Laranja médio claro para hover states */
-  --card: #FFE8D0;         /* Laranja claro para cards */
-  --hover: #FFD4A3;        /* Laranja médio claro para hover */
+  /* Backgrounds — marrom em gradação */
+  --bg: #F5E6D3;           /* Marrom muito claro para background principal */
+  --bg2: #E8D4BF;          /* Marrom claro para cards/headers */
+  --bg3: #D9C0A3;          /* Marrom médio claro para hover states */
+  --card: #E8D4BF;         /* Marrom claro para cards */
+  --hover: #D9C0A3;        /* Marrom médio claro para hover */
 
-  /* Primary laranja */
-  --blue: #EA8A3A;         /* Laranja primário para botões primários */
-  --blue-dark: #D96E1A;    /* Laranja escuro para hover de botões */
+  /* Primary marrom */
+  --blue: #8B6F47;         /* Marrom primário para botões primários */
+  --blue-dark: #6B5638;    /* Marrom escuro para hover de botões */
 
   /* Text */
-  --text: #5C3014;         /* Laranja muito escuro para texto padrão (contraste OK) */
-  --text-bright: #5C3014;  /* Laranja muito escuro para títulos e texto principal */
-  --muted: #B8652C;        /* Laranja médio para texto secundário/mutado */
+  --text: #4A3C2E;         /* Marrom muito escuro para texto padrão (contraste OK) */
+  --text-bright: #4A3C2E;  /* Marrom muito escuro para títulos e texto principal */
+  --muted: #A0846F;        /* Marrom médio para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #F39C12;       /* Laranja vibrante para destaque/focus/checkbox */
+  --yellow: #D4A574;       /* Marrom quente para destaque/focus/checkbox */
 
   /* Structure */
-  --border: #FFD4A3;       /* Laranja médio claro para bordas */
+  --border: #D9C0A3;       /* Marrom médio claro para bordas */
   --radius: 6px;           /* Manter border-radius */
 }
 
