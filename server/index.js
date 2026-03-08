@@ -7,7 +7,7 @@ app.use(express.json());
 
 // --- Fake data in memory ---
 let todos = [
-  { id: 1, text: 'Estudar Angular', done: false },
+  { id: 1, text: 'Estudar React', done: false },
   { id: 2, text: 'Criar API com Express', done: true },
   { id: 3, text: 'Fazer deploy do projeto', done: false },
 ];

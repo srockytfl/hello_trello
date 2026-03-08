@@ -305,10 +305,11 @@ input, button, textarea { font-family: inherit; }
   .page-footer {
     flex-shrink: 0;
     text-align: center;
-    padding: 10px;
-    font-size: 11px;
+    padding: 12px;
+    font-size: 12px;
     color: var(--muted);
     border-top: 1px solid var(--border);
     background: var(--bg2);
+    margin-top: auto;
   }
 }
