@@ -1,27 +1,36 @@
 import axios from 'axios';
-import type { LoginResponse } from '../types';
+import type { LoginRequest, LoginResponse } from '../types/auth';
 
-const BASE_URL = import.meta.env.VITE_API_URL ?? '';
+const API_URL = import.meta.env.VITE_API_URL ?? '';
 
-export async function loginWithCredentials(
-  usernameOrEmail: string,
-  password: string
-): Promise<LoginResponse> {
-  const isEmail = usernameOrEmail.includes('@');
-  const payload = isEmail
-    ? { email: usernameOrEmail, password }
-    : { username: usernameOrEmail, password };
-
-  const res = await axios.post<LoginResponse>(
-    `${BASE_URL}/auth/login`,
-    payload
+export async function login(credentials: LoginRequest): Promise<LoginResponse> {
+  const { data } = await axios.post<LoginResponse>(
+    `${API_URL}/auth/login`,
+    credentials
   );
-  return res.data;
+  return data;
+}
+
+export function saveToken(token: string): void {
+  localStorage.setItem('auth_token', token);
+}
+
+export function getToken(): string | null {
+  return localStorage.getItem('auth_token');
+}
+
+export function clearToken(): void {
+  localStorage.removeItem('auth_token');
+}
+
+export function isAuthenticated(): boolean {
+  return !!getToken();
 }
 
 export function logout(): void {
   localStorage.removeItem('user');
   localStorage.removeItem('token');
+  clearToken();
 }
 
 export function getStoredUser(): LoginResponse['user'] | null {
