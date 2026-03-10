@@ -1,62 +1,69 @@
-// ── Board Page (Kanban) ───────────────────────────────────────────────────────
+// ── Board Page (Kanban) ─────────────────────────────────────────────────────────
 
 .board-page {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: var(--bg);
+  background: #F5F7FA;
   overflow: hidden;
 }
 
-// ── Header ───────────────────────────────────────────────────────────────────
+// ── Header ─────────────────────────────────────────────────────────────────────
 
 .board-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  height: 52px;
-  background: var(--blue);
+  padding: 0 24px;
+  height: 56px;
+  background: linear-gradient(135deg, #E91E63 0%, #C2185B 60%, #880E4F 100%);
   flex-shrink: 0;
   gap: 16px;
+  box-shadow: 0 2px 8px rgba(136, 14, 79, 0.25);
 }
 
 .board-header__left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .board-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  text-decoration: none;
 }
 
 .board-logo__name {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: #fff;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.3px;
 }
 
 .board-separator {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 18px;
-  font-weight: 300;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  user-select: none;
 }
 
 .board-project-name {
   font-size: 14px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: -0.1px;
 }
 
 .board-header__right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
+
+// Progress bar
 
 .board-progress {
   display: flex;
@@ -68,42 +75,53 @@
   }
 }
 
-.board-progress__text {
+.board-progress__label {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.8);
-  white-space: nowrap;
+  font-weight: 700;
+  color: #fff;
+  min-width: 30px;
+  text-align: right;
 }
 
-.board-progress__bar {
-  width: 80px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 2px;
+.board-progress__track {
+  width: 90px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .board-progress__fill {
   height: 100%;
   background: #fff;
-  border-radius: 2px;
-  transition: width 0.3s ease;
+  border-radius: 10px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.board-user {
+.board-progress__text {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+
+// User group
+
+.board-user-group {
   display: flex;
   align-items: center;
   gap: 8px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 520px) {
     display: none;
   }
 }
 
 .board-avatar {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.22);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,63 +129,102 @@
   font-weight: 700;
   color: #fff;
   flex-shrink: 0;
+  letter-spacing: 0;
+  cursor: default;
+  user-select: none;
 }
 
 .board-user__name {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+// Logout button
 
 .board-btn-logout {
   display: flex;
   align-items: center;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 6px;
-  color: #fff;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 12px;
-  font-weight: 500;
-  padding: 5px 10px;
+  font-weight: 600;
+  padding: 6px 12px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.18s, border-color 0.18s;
+  white-space: nowrap;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.24);
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255,255,255,0.7);
+    outline-offset: 2px;
   }
 }
 
-// ── Board main ────────────────────────────────────────────────────────────────
+.board-btn-logout__label {
+  @media (max-width: 400px) {
+    display: none;
+  }
+}
+
+// ── Board main ──────────────────────────────────────────────────────────────────
 
 .board-main {
   flex: 1;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 20px;
+  padding: 24px 20px;
+
+  @media (max-width: 767px) {
+    padding: 16px 12px;
+  }
 }
 
 .board-columns {
   display: flex;
-  gap: 16px;
+  gap: 18px;
   height: 100%;
   min-height: 0;
   align-items: flex-start;
+
+  @media (max-width: 767px) {
+    gap: 12px;
+  }
 }
 
-// ── Column ────────────────────────────────────────────────────────────────────
+// ── Column ──────────────────────────────────────────────────────────────────────
 
 .board-column {
-  flex: 0 0 280px;
-  background: var(--bg2);
-  border-radius: 10px;
+  flex: 0 0 296px;
+  background: #ECEEF2;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 92px);
-  overflow: hidden;
+  max-height: calc(100vh - 104px);
+  transition: box-shadow 0.2s, background 0.2s;
+
+  @media (max-width: 900px) {
+    flex: 0 0 264px;
+  }
 
   @media (max-width: 767px) {
     flex: 0 0 240px;
+  }
+
+  &--drag-over {
+    background: #E0E3EA;
+    box-shadow: inset 0 0 0 2.5px #E91E63;
   }
 }
 
@@ -175,67 +232,84 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 14px 10px;
+  padding: 14px 16px 10px;
   flex-shrink: 0;
 }
 
-.column-header__left {
+.column-header__meta {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 
-.column-dot {
+.column-status-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
 }
 
 .column-title {
   font-size: 13px;
   font-weight: 700;
-  color: var(--text-bright);
+  color: #1A1D23;
   letter-spacing: -0.1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .column-count {
   font-size: 11px;
-  font-weight: 600;
-  color: var(--muted);
-  background: var(--bg3);
-  padding: 1px 6px;
-  border-radius: 10px;
-  min-width: 20px;
-  text-align: center;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  line-height: 1.4;
 }
 
 .column-add-btn {
   background: none;
   border: none;
-  color: var(--muted);
+  color: #7B8495;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   transition: background 0.15s, color 0.15s;
 
   &:hover {
-    background: var(--bg3);
-    color: var(--text-bright);
+    background: rgba(0, 0, 0, 0.06);
+    color: #1A1D23;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #E91E63;
+    outline-offset: 1px;
   }
 }
 
-// ── Column cards area ─────────────────────────────────────────────────────────
+.column-divider {
+  height: 3px;
+  margin: 0 16px 6px;
+  border-radius: 2px;
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+// ── Column cards area ───────────────────────────────────────────────────────────
 
 .column-cards {
   padding: 4px 10px 10px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   overflow-y: auto;
   flex: 1;
 
@@ -244,99 +318,216 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--border);
+    background: rgba(0, 0, 0, 0.12);
     border-radius: 2px;
   }
 }
 
-// ── Card ──────────────────────────────────────────────────────────────────────
+// ── Empty state ─────────────────────────────────────────────────────────────────
 
-.board-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 12px;
+.column-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 12px;
+  color: #B0B7C3;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  user-select: none;
+  border-radius: 10px;
+  border: 1.5px dashed #C8CCDA;
+  transition: border-color 0.15s;
+}
+
+// ── Kanban Card ─────────────────────────────────────────────────────────────────
+
+.kanban-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 2px 6px rgba(0, 0, 0, 0.04);
   cursor: grab;
-  box-shadow: 0 1px 3px rgba(136, 14, 79, 0.06);
-  transition: box-shadow 0.15s, transform 0.1s;
+  transition:
+    box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.18s;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  outline: none;
 
   &:hover {
-    box-shadow: 0 3px 8px rgba(136, 14, 79, 0.12);
-    transform: translateY(-1px);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      0 1px 4px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
   }
 
   &:active {
     cursor: grabbing;
+    transform: translateY(-1px) scale(0.99);
   }
 
-  &--done {
-    opacity: 0.75;
+  &:focus-visible {
+    outline: 2px solid #E91E63;
+    outline-offset: 2px;
+  }
 
-    .board-card__text {
-      text-decoration: line-through;
-      color: var(--muted);
+  // Done state
+  &--done {
+    opacity: 0.7;
+
+    .kanban-card__accent {
+      opacity: 0.5;
     }
   }
+
+  // Dragging state
+  &--dragging {
+    opacity: 0.45;
+    transform: scale(0.97);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.14),
+      0 2px 6px rgba(0, 0, 0, 0.08);
+    cursor: grabbing;
+  }
 }
 
-.board-card__text {
-  font-size: 13px;
+// Top accent bar
+
+.kanban-card__accent {
+  height: 4px;
+  width: 100%;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+// Card body
+
+.kanban-card__body {
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// Status tag / label
+
+.kanban-card__tag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+// Card title
+
+.kanban-card__title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1A1D23;
   line-height: 1.5;
-  color: var(--text-bright);
-  margin-bottom: 8px;
   word-break: break-word;
+  letter-spacing: -0.1px;
+
+  &--done {
+    text-decoration: line-through;
+    color: #9BA3B2;
+  }
 }
 
-.board-card__footer {
+// Footer row
+
+.kanban-card__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
+  gap: 6px;
+  margin-top: 2px;
+  padding-top: 8px;
+  border-top: 1px solid #F0F2F5;
 }
 
-.card-move-btns {
+// Move buttons
+
+.kanban-card__moves {
   display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
 }
 
-.card-move-btn {
+.kanban-card__move-btn {
   display: flex;
   align-items: center;
-  gap: 4px;
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 10px;
-  font-weight: 500;
-  color: var(--muted);
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  background: #F5F7FA;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
-  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s, transform 0.12s;
+  flex-shrink: 0;
 
   &:hover {
-    background: var(--bg);
-    color: var(--text);
-    border-color: var(--text);
+    border-color: var(--move-color, #E91E63);
+    background: rgba(0,0,0,0.04);
+    transform: scale(1.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--move-color, #E91E63);
+    outline-offset: 1px;
   }
 }
 
-.card-move-dot {
-  width: 6px;
-  height: 6px;
+.kanban-card__move-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-.card-delete-btn {
+// Right side actions
+
+.kanban-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kanban-card__drag-hint {
+  color: #C8CCDA;
+  display: flex;
+  align-items: center;
+  cursor: grab;
+  padding: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.kanban-card:hover .kanban-card__drag-hint {
+  opacity: 1;
+}
+
+.kanban-card__delete-btn {
   background: none;
   border: none;
-  color: var(--muted);
+  color: #B0B7C3;
   cursor: pointer;
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,104 +536,136 @@
   flex-shrink: 0;
 
   &:hover {
-    color: var(--red);
-    background: rgba(239, 68, 68, 0.08);
+    color: #EF4444;
+    background: rgba(239, 68, 68, 0.09);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #EF4444;
+    outline-offset: 1px;
+    opacity: 1;
   }
 }
 
-.board-card:hover .card-delete-btn {
+.kanban-card:hover .kanban-card__delete-btn {
   opacity: 1;
 }
 
-// ── New card form ─────────────────────────────────────────────────────────────
+// ── New card form ───────────────────────────────────────────────────────────────
 
-.board-card-new {
+.card-new {
   background: #fff;
-  border: 1.5px solid var(--blue);
-  border-radius: 8px;
-  padding: 8px;
-  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+  border: 2px solid #E91E63;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow:
+    0 0 0 4px rgba(233, 30, 99, 0.08),
+    0 2px 8px rgba(233, 30, 99, 0.1);
+  flex-shrink: 0;
 }
 
-.card-new-input {
+.card-new__input {
   width: 100%;
   border: none;
   outline: none;
   font-family: inherit;
-  font-size: 13px;
-  color: var(--text-bright);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #1A1D23;
   resize: none;
   background: transparent;
   line-height: 1.5;
-  padding: 2px 0;
+  padding: 0;
 
   &::placeholder {
-    color: var(--muted);
+    color: #B0B7C3;
+    font-weight: 400;
   }
 }
 
-.card-new-actions {
+.card-new__actions {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
-.card-new-confirm {
-  padding: 5px 12px;
-  background: var(--blue);
+.card-new__confirm {
+  padding: 6px 14px;
+  background: #E91E63;
   border: none;
-  border-radius: 5px;
+  border-radius: 7px;
   color: #fff;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.15s, transform 0.1s;
+  letter-spacing: 0.1px;
 
   &:hover {
-    background: var(--blue-dark);
+    background: #C2185B;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #E91E63;
+    outline-offset: 2px;
   }
 }
 
-.card-new-cancel {
+.card-new__cancel {
   background: none;
   border: none;
-  color: var(--muted);
+  color: #9BA3B2;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: color 0.15s, background 0.15s;
 
   &:hover {
-    color: var(--text-bright);
-    background: var(--bg3);
+    color: #1A1D23;
+    background: #F0F2F5;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #9BA3B2;
+    outline-offset: 1px;
   }
 }
 
-// ── Add card button ───────────────────────────────────────────────────────────
+// ── Add card button ─────────────────────────────────────────────────────────────
 
 .column-add-card-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   width: 100%;
   background: none;
-  border: 1.5px dashed var(--border);
-  border-radius: 7px;
-  padding: 8px 10px;
-  color: var(--muted);
+  border: 1.5px dashed #C8CCDA;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #9BA3B2;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  letter-spacing: 0.1px;
 
   &:hover {
-    border-color: var(--blue);
-    color: var(--blue);
+    border-color: #E91E63;
+    color: #E91E63;
     background: rgba(233, 30, 99, 0.04);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #E91E63;
+    outline-offset: 2px;
   }
 }
