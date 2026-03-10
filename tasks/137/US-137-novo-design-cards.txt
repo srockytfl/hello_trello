@@ -1,0 +1,21 @@
+US-137 — Novo Design na tela de cards
+
+Como usuário, quero que os cards (tarefas) sejam redesenhados de acordo com o novo design
+definido no Figma, para ter uma interface mais moderna e melhorada.
+
+Figma: https://www.figma.com/design/ik0Qa30O9oNUy3qelJbQO7/Ferramenta-Trello?node-id=0-1&p=f&t=8Br3fsvucc1k1yg7-0
+
+Requisitos:
+- Implementar o novo design dos cards conforme especificado no Figma
+- Manter todas as funcionalidades existentes (criar, editar, deletar, mover tarefas)
+- Atualizar estilos SCSS para o novo design
+- Garantir responsividade em dispositivos móveis e desktops
+- Manter acessibilidade e boas práticas de UX
+- Garantir que a interação com cards seja intuitiva e fluida
+- Testar compatibilidade com os navegadores principais
+- Não alterar a lógica de negócio ou endpoints da API
+
+Notas:
+- O design deve ser implementado tanto no frontend React quanto validado visualmente
+- Usar SCSS para todos os novos estilos (não CSS puro ou inline styles)
+- Documentar as alterações visuais realizadas

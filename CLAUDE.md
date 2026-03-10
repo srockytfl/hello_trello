@@ -125,7 +125,8 @@ Frontend estará em `http://localhost:5173`, backend em `http://localhost:<PORTA
 This workspace is being operated by a squad of AI agents.
 
 Pipeline:
-1. Dev Fullstack
-2. PR
+1. Product Owner
+2. Dev Fullstack
+3. PR
 
-Flow: Dev Fullstack → PR
+Flow: Product Owner → Dev Fullstack → PR
