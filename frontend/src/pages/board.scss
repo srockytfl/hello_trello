@@ -1,0 +1,448 @@
+// ── Board Page (Kanban) ───────────────────────────────────────────────────────
+
+.board-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+// ── Header ───────────────────────────────────────────────────────────────────
+
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 52px;
+  background: var(--blue);
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.board-header__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.board-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.board-logo__name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+
+.board-separator {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.board-project-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.board-header__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.board-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.board-progress__text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+
+.board-progress__bar {
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.board-progress__fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.board-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.board-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.board-user__name {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.board-btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+// ── Board main ────────────────────────────────────────────────────────────────
+
+.board-main {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px;
+}
+
+.board-columns {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+  min-height: 0;
+  align-items: flex-start;
+}
+
+// ── Column ────────────────────────────────────────────────────────────────────
+
+.board-column {
+  flex: 0 0 280px;
+  background: var(--bg2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 92px);
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    flex: 0 0 240px;
+  }
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  flex-shrink: 0;
+}
+
+.column-header__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.column-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.column-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: -0.1px;
+}
+
+.column-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg3);
+  padding: 1px 6px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.column-add-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover {
+    background: var(--bg3);
+    color: var(--text-bright);
+  }
+}
+
+// ── Column cards area ─────────────────────────────────────────────────────────
+
+.column-cards {
+  padding: 4px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+}
+
+// ── Card ──────────────────────────────────────────────────────────────────────
+
+.board-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: grab;
+  box-shadow: 0 1px 3px rgba(136, 14, 79, 0.06);
+  transition: box-shadow 0.15s, transform 0.1s;
+
+  &:hover {
+    box-shadow: 0 3px 8px rgba(136, 14, 79, 0.12);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &--done {
+    opacity: 0.75;
+
+    .board-card__text {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+  }
+}
+
+.board-card__text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-bright);
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.board-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.card-move-btns {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.card-move-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--bg);
+    color: var(--text);
+    border-color: var(--text);
+  }
+}
+
+.card-move-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.card-delete-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, background 0.15s;
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--red);
+    background: rgba(239, 68, 68, 0.08);
+  }
+}
+
+.board-card:hover .card-delete-btn {
+  opacity: 1;
+}
+
+// ── New card form ─────────────────────────────────────────────────────────────
+
+.board-card-new {
+  background: #fff;
+  border: 1.5px solid var(--blue);
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+.card-new-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text-bright);
+  resize: none;
+  background: transparent;
+  line-height: 1.5;
+  padding: 2px 0;
+
+  &::placeholder {
+    color: var(--muted);
+  }
+}
+
+.card-new-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.card-new-confirm {
+  padding: 5px 12px;
+  background: var(--blue);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--blue-dark);
+  }
+}
+
+.card-new-cancel {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, background 0.15s;
+
+  &:hover {
+    color: var(--text-bright);
+    background: var(--bg3);
+  }
+}
+
+// ── Add card button ───────────────────────────────────────────────────────────
+
+.column-add-card-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: none;
+  border: 1.5px dashed var(--border);
+  border-radius: 7px;
+  padding: 8px 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+
+  &:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background: rgba(233, 30, 99, 0.04);
+  }
+}

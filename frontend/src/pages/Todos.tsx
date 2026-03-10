@@ -1,21 +1,21 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getTodos, addTodo, updateTodo, deleteTodo } from '../services/api'
-import type { Todo } from '../types'
+import type { Todo, TodoStatus } from '../types'
+import './board.scss'
 
-type FilterKey = 'all' | 'pending' | 'done'
-
-const filters: { key: FilterKey; label: string }[] = [
-  { key: 'all', label: 'Todas' },
-  { key: 'pending', label: 'Pendentes' },
-  { key: 'done', label: 'Concluídas' },
+const COLUMNS: { key: TodoStatus; label: string; color: string }[] = [
+  { key: 'todo', label: 'A Fazer', color: '#E91E63' },
+  { key: 'doing', label: 'Em Andamento', color: '#FF9800' },
+  { key: 'done', label: 'Concluído', color: '#4CAF50' },
 ]
 
 export default function Todos() {
   const navigate = useNavigate()
   const [todos, setTodos] = useState<Todo[]>([])
-  const [filter, setFilter] = useState<FilterKey>('all')
+  const [addingIn, setAddingIn] = useState<TodoStatus | null>(null)
   const [newText, setNewText] = useState('')
+  const [dragId, setDragId] = useState<number | null>(null)
 
   useEffect(() => {
     load()
@@ -26,36 +26,44 @@ export default function Todos() {
     setTodos(data)
   }
 
-  const filtered = useMemo(() => {
-    return todos.filter(t =>
-      filter === 'all' ? true : filter === 'done' ? t.done : !t.done
-    )
-  }, [todos, filter])
-
-  const pendingCount = todos.filter(t => !t.done).length
-  const doneCount = todos.filter(t => t.done).length
-
-  function emptyMessage() {
-    if (filter === 'done') return 'Nenhuma tarefa concluída'
-    if (filter === 'pending') return 'Nenhuma tarefa pendente'
-    return 'Adicione sua primeira tarefa!'
-  }
-
-  async function add() {
-    if (!newText.trim()) return
-    await addTodo(newText)
+  async function handleAddCard(status: TodoStatus) {
+    if (!newText.trim()) {
+      setAddingIn(null)
+      return
+    }
+    await addTodo(newText.trim(), status)
     setNewText('')
+    setAddingIn(null)
     load()
   }
 
-  async function toggle(todo: Todo) {
-    await updateTodo(todo.id, { done: !todo.done })
+  async function handleMoveCard(id: number, newStatus: TodoStatus) {
+    await updateTodo(id, { status: newStatus })
     load()
   }
 
-  async function remove(id: number) {
+  async function handleDelete(id: number) {
     await deleteTodo(id)
     load()
+  }
+
+  function handleDragStart(id: number) {
+    setDragId(id)
+  }
+
+  function handleDrop(status: TodoStatus) {
+    if (dragId === null) return
+    handleMoveCard(dragId, status)
+    setDragId(null)
+  }
+
+  function getUser(): string {
+    try {
+      const u = JSON.parse(localStorage.getItem('user') || '{}')
+      return u.name || 'Usuário'
+    } catch {
+      return 'Usuário'
+    }
   }
 
   function logout() {
@@ -63,79 +71,177 @@ export default function Todos() {
     navigate('/login')
   }
 
+  const columnTodos = (status: TodoStatus) => todos.filter(t => t.status === status)
+  const totalCount = todos.length
+  const doneCount = todos.filter(t => t.status === 'done').length
+
   return (
-    <div className="todos-page">
-      <header>
-        <div className="logo">
-          <span className="material-icons-round">check_circle</span>
-          Rosa
-        </div>
-        <div className="header-right">
-          <div className="stats">
-            <span><span className="dot dot-pending"></span>{pendingCount} pendentes</span>
-            <span><span className="dot dot-done"></span>{doneCount} concluídas</span>
+    <div className="board-page">
+      {/* Header */}
+      <header className="board-header">
+        <div className="board-header__left">
+          <div className="board-logo">
+            <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <rect width="40" height="40" rx="8" fill="rgba(255,255,255,0.2)" />
+              <rect x="6" y="6" width="11" height="26" rx="3" fill="white" />
+              <rect x="23" y="6" width="11" height="17" rx="3" fill="white" />
+            </svg>
+            <span className="board-logo__name">FusionRun</span>
           </div>
-          <button className="btn-logout" onClick={logout}>
-            <span className="material-icons-round">logout</span> Sair
+          <span className="board-separator" aria-hidden="true">/</span>
+          <span className="board-project-name">Meu Quadro</span>
+        </div>
+        <div className="board-header__right">
+          <div className="board-progress">
+            <span className="board-progress__text">{doneCount}/{totalCount} concluídas</span>
+            <div className="board-progress__bar">
+              <div
+                className="board-progress__fill"
+                style={{ width: totalCount > 0 ? `${(doneCount / totalCount) * 100}%` : '0%' }}
+              />
+            </div>
+          </div>
+          <div className="board-user">
+            <span className="board-avatar">{getUser().charAt(0).toUpperCase()}</span>
+            <span className="board-user__name">{getUser()}</span>
+          </div>
+          <button className="board-btn-logout" onClick={logout} title="Sair">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+              <path d="M10 11l3-3-3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M13 8H6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+            </svg>
+            Sair
           </button>
         </div>
       </header>
 
-      <main>
-        <div className="add-bar">
-          <input
-            type="text"
-            value={newText}
-            onChange={e => setNewText(e.target.value)}
-            placeholder="Nova tarefa..."
-            onKeyDown={e => e.key === 'Enter' && add()}
-            autoFocus
-          />
-          <button className="btn-add" onClick={add} disabled={!newText.trim()}>
-            <span className="material-icons-round">add</span> Adicionar
-          </button>
-        </div>
-
-        <div className="filters">
-          {filters.map(f => (
-            <button
-              key={f.key}
-              className={`filter-btn${filter === f.key ? ' active' : ''}`}
-              onClick={() => setFilter(f.key)}
+      {/* Board */}
+      <main className="board-main">
+        <div className="board-columns">
+          {COLUMNS.map(col => (
+            <div
+              key={col.key}
+              className="board-column"
+              onDragOver={e => e.preventDefault()}
+              onDrop={() => handleDrop(col.key)}
             >
-              {f.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="todo-list">
-          {filtered.length === 0 ? (
-            <div className="empty">
-              <span className="material-icons-round">inbox</span>
-              <p>{emptyMessage()}</p>
-            </div>
-          ) : (
-            filtered.map(todo => (
-              <div key={todo.id} className={`todo-item${todo.done ? ' done' : ''}`}>
-                <div
-                  className={`checkbox${todo.done ? ' checked' : ''}`}
-                  onClick={() => toggle(todo)}
-                >
-                  <span className="material-icons-round">check</span>
+              {/* Column header */}
+              <div className="column-header">
+                <div className="column-header__left">
+                  <span
+                    className="column-dot"
+                    style={{ background: col.color }}
+                    aria-hidden="true"
+                  />
+                  <span className="column-title">{col.label}</span>
+                  <span className="column-count">{columnTodos(col.key).length}</span>
                 </div>
-                <span className="todo-text">{todo.text}</span>
-                <button className="btn-del" onClick={() => remove(todo.id)}>
-                  <span className="material-icons-round">close</span>
+                <button
+                  className="column-add-btn"
+                  onClick={() => { setAddingIn(col.key); setNewText('') }}
+                  title={`Adicionar cartão em ${col.label}`}
+                  aria-label={`Adicionar cartão em ${col.label}`}
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 2v10M2 7h10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                  </svg>
                 </button>
               </div>
-            ))
-          )}
+
+              {/* Cards */}
+              <div className="column-cards">
+                {columnTodos(col.key).map(todo => (
+                  <div
+                    key={todo.id}
+                    className={`board-card${todo.status === 'done' ? ' board-card--done' : ''}`}
+                    draggable
+                    onDragStart={() => handleDragStart(todo.id)}
+                  >
+                    <p className="board-card__text">{todo.text}</p>
+                    <div className="board-card__footer">
+                      <div className="card-move-btns">
+                        {COLUMNS.filter(c => c.key !== col.key).map(target => (
+                          <button
+                            key={target.key}
+                            className="card-move-btn"
+                            onClick={() => handleMoveCard(todo.id, target.key)}
+                            title={`Mover para ${target.label}`}
+                            aria-label={`Mover para ${target.label}`}
+                          >
+                            <span className="card-move-dot" style={{ background: target.color }} />
+                            {target.label}
+                          </button>
+                        ))}
+                      </div>
+                      <button
+                        className="card-delete-btn"
+                        onClick={() => handleDelete(todo.id)}
+                        title="Excluir cartão"
+                        aria-label="Excluir cartão"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                          <path d="M2 2l9 9M11 2l-9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Add card form */}
+                {addingIn === col.key ? (
+                  <div className="board-card-new">
+                    <textarea
+                      className="card-new-input"
+                      value={newText}
+                      onChange={e => setNewText(e.target.value)}
+                      placeholder="Título do cartão..."
+                      rows={3}
+                      autoFocus
+                      onKeyDown={e => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault()
+                          handleAddCard(col.key)
+                        }
+                        if (e.key === 'Escape') {
+                          setAddingIn(null)
+                          setNewText('')
+                        }
+                      }}
+                    />
+                    <div className="card-new-actions">
+                      <button
+                        className="card-new-confirm"
+                        onClick={() => handleAddCard(col.key)}
+                      >
+                        Adicionar
+                      </button>
+                      <button
+                        className="card-new-cancel"
+                        onClick={() => { setAddingIn(null); setNewText('') }}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                          <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    className="column-add-card-btn"
+                    onClick={() => { setAddingIn(col.key); setNewText('') }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M7 2v10M2 7h10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                    </svg>
+                    Adicionar cartão
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </main>
-
-      <footer className="page-footer">
-        Feito com React ⚛️ · © 2026
-      </footer>
     </div>
   )
 }
