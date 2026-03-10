@@ -30,6 +30,21 @@ app.post('/api/login', (req, res) => {
   res.status(401).json({ message: 'Credenciais inválidas' });
 });
 
+// POST /auth/login — canonical auth endpoint (US-130)
+app.post('/auth/login', (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ error: 'E-mail e senha são obrigatórios' });
+  }
+  if (email === 'admin@example.com' && password === '123') {
+    return res.json({
+      token: 'fake-token-abc123',
+      user: { id: 1, name: 'Admin', email }
+    });
+  }
+  res.status(401).json({ error: 'Credenciais inválidas' });
+});
+
 // --- Todos CRUD ---
 app.get('/api/todos', (req, res) => {
   res.json(todos);
