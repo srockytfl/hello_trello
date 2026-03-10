@@ -1,157 +1,164 @@
-import { useState, useEffect, type FormEvent } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { loginWithCredentials } from '../../services/auth'
+import { login } from '../../services/api'
 import './login.scss'
 
-type ErrorKind = 'validation' | 'unauthorized' | 'network'
+interface FormErrors {
+  email?: string
+  password?: string
+}
 
-interface ErrorState {
-  kind: ErrorKind
-  field?: 'email' | 'password'
-  message: string
+function validateEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
 export default function LoginPage() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [errorState, setErrorState] = useState<ErrorState | null>(null)
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [apiError, setApiError] = useState('')
   const [loading, setLoading] = useState(false)
+  const emailRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
-      navigate('/todos', { replace: true })
+      navigate('/todos')
     }
+    emailRef.current?.focus()
   }, [navigate])
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setErrorState(null)
-
+  function validate(): boolean {
+    const newErrors: FormErrors = {}
     if (!email.trim()) {
-      setErrorState({ kind: 'validation', field: 'email', message: 'O e-mail ou usuário é obrigatório.' })
-      return
+      newErrors.email = 'E-mail é obrigatório'
+    } else if (!validateEmail(email)) {
+      newErrors.email = 'E-mail inválido'
     }
-    if (!password.trim()) {
-      setErrorState({ kind: 'validation', field: 'password', message: 'A senha é obrigatória.' })
-      return
+    if (!password) {
+      newErrors.password = 'Senha é obrigatória'
+    } else if (password.length < 3) {
+      newErrors.password = 'Senha deve ter ao menos 3 caracteres'
     }
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setApiError('')
+    if (!validate()) return
 
     setLoading(true)
     try {
-      const res = await loginWithCredentials(email.trim(), password)
-      localStorage.setItem('token', res.token)
+      const res = await login(email, password)
       localStorage.setItem('user', JSON.stringify(res.user))
-      navigate('/todos', { replace: true })
+      navigate('/todos')
     } catch (err: unknown) {
-      setLoading(false)
-      if (axios.isAxiosError(err)) {
-        if (err.response?.status === 401) {
-          setErrorState({ kind: 'unauthorized', message: 'E-mail ou senha incorretos.' })
-        } else if (!err.response) {
-          setErrorState({ kind: 'network', message: 'Falha de conexão. Verifique sua internet e tente novamente.' })
-        } else {
-          setErrorState({ kind: 'network', message: 'Erro inesperado. Tente novamente.' })
-        }
+      if (
+        err &&
+        typeof err === 'object' &&
+        'response' in err &&
+        (err as { response?: { status?: number } }).response?.status === 401
+      ) {
+        setApiError('E-mail ou senha inválidos')
       } else {
-        setErrorState({ kind: 'network', message: 'Erro inesperado. Tente novamente.' })
+        setApiError('Erro de conexão. Tente novamente.')
       }
+    } finally {
+      setLoading(false)
     }
   }
 
-  const emailError =
-    errorState?.kind === 'validation' && errorState.field === 'email'
-      ? errorState.message
-      : null
-
-  const passwordError =
-    errorState?.kind === 'validation' && errorState.field === 'password'
-      ? errorState.message
-      : null
-
-  const globalError =
-    errorState?.kind === 'unauthorized' || errorState?.kind === 'network'
-      ? errorState.message
-      : null
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === 'Enter') {
+      handleSubmit(e as unknown as React.FormEvent)
+    }
+  }
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <div className="login-card__logo">
-          <span className="login-card__logo-icon" aria-hidden="true">&#9642;</span>
-          <span className="login-card__logo-text">Trello Clone</span>
-        </div>
+    <main className="login-page" role="main">
+      <div className="login-card" aria-label="Formulário de login">
+        <h1 className="login-title">Entrar</h1>
+        <p className="login-subtitle">Acesse sua conta</p>
 
-        <h1 className="login-card__title">Entrar na sua conta</h1>
-
-        {globalError && (
-          <p className="login-card__error" role="alert">
-            {globalError}
-          </p>
-        )}
-
-        <form className="login-card__form" onSubmit={handleSubmit} noValidate>
-          <div className="login-field">
-            <label className="login-field__label" htmlFor="login-email">
-              E-mail ou usuário
+        <form
+          className="login-form"
+          onSubmit={handleSubmit}
+          aria-label="Login"
+          noValidate
+        >
+          <div className="form-field">
+            <label htmlFor="email" className="field-label">
+              E-mail
             </label>
             <input
-              id="login-email"
-              className={`login-field__input${emailError ? ' login-field__input--error' : ''}`}
-              type="text"
+              id="email"
+              ref={emailRef}
+              type="email"
+              className={`field-input${errors.email ? ' field-input--error' : ''}`}
               value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="admin"
-              autoComplete="username"
-              autoFocus
+              onChange={e => {
+                setEmail(e.target.value)
+                if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
+              }}
+              onKeyDown={handleKeyDown}
+              placeholder="seu@email.com"
+              autoComplete="email"
+              aria-describedby={errors.email ? 'email-error' : undefined}
+              aria-invalid={!!errors.email}
               disabled={loading}
-              aria-describedby={emailError ? 'login-email-error' : undefined}
-              aria-invalid={emailError ? true : undefined}
             />
-            {emailError && (
-              <span id="login-email-error" className="login-field__error" role="alert">
-                {emailError}
+            {errors.email && (
+              <span id="email-error" className="field-error" role="alert">
+                {errors.email}
               </span>
             )}
           </div>
 
-          <div className="login-field">
-            <label className="login-field__label" htmlFor="login-password">
+          <div className="form-field">
+            <label htmlFor="password" className="field-label">
               Senha
             </label>
             <input
-              id="login-password"
-              className={`login-field__input${passwordError ? ' login-field__input--error' : ''}`}
+              id="password"
               type="password"
+              className={`field-input${errors.password ? ' field-input--error' : ''}`}
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={e => {
+                setPassword(e.target.value)
+                if (errors.password) setErrors(prev => ({ ...prev, password: undefined }))
+              }}
+              onKeyDown={handleKeyDown}
               placeholder="••••••"
               autoComplete="current-password"
+              aria-describedby={errors.password ? 'password-error' : undefined}
+              aria-invalid={!!errors.password}
               disabled={loading}
-              aria-describedby={passwordError ? 'login-password-error' : undefined}
-              aria-invalid={passwordError ? true : undefined}
             />
-            {passwordError && (
-              <span id="login-password-error" className="login-field__error" role="alert">
-                {passwordError}
+            {errors.password && (
+              <span id="password-error" className="field-error" role="alert">
+                {errors.password}
               </span>
             )}
           </div>
 
+          {apiError && (
+            <div className="api-error" role="alert" aria-live="assertive">
+              {apiError}
+            </div>
+          )}
+
           <button
             type="submit"
-            className="login-card__btn"
+            className="btn-submit"
             disabled={loading}
+            aria-busy={loading}
           >
             {loading ? 'Entrando...' : 'Entrar'}
           </button>
         </form>
-
-        <p className="login-card__hint">
-          Demo: <strong>admin</strong> / <strong>123</strong>
-        </p>
       </div>
-    </div>
+    </main>
   )
 }

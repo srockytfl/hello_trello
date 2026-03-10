@@ -1,58 +1,36 @@
-# US-128 — Nova tela de login
+# US-128 — Nova Tela de Login
 
-## CONTEXTO
+## Contexto
 
-A aplicação precisa de uma tela de login seguindo o design definido no Figma. Esta tela será o ponto de entrada para autenticação de usuários na plataforma Trello Clone.
+O sistema possui uma tela de login básica que utiliza campos de `username` e `password`. A nova tela de login deve usar `email` e `password`, com validação client-side, estados de erro claros e acessibilidade adequada.
 
-## HISTÓRIA
+## História de Usuário
 
-Como usuário,
-quero acessar uma tela de login conforme o design do Figma,
-para autenticar-me na aplicação de forma clara e intuitiva.
+**Como** usuário do sistema,
+**Quero** acessar a aplicação com meu e-mail e senha,
+**Para** ter autenticação mais segura e padronizada.
 
-## CRITÉRIOS DE ACEITAÇÃO
+## Critérios de Aceitação
 
-1. A tela de login deve seguir exatamente o layout definido no Figma (node-id: 48-721)
-2. Deve conter campos para email/username e senha
-3. Deve ter um botão "Entrar" com estados (normal, hover, disabled)
-4. Deve exibir mensagens de erro quando credenciais forem inválidas
-5. Deve ser responsivo em dispositivos móveis e desktop
-6. Deve integrar com o backend para validação de credenciais
-7. Após login bem-sucedido, deve redirecionar para a página principal
-8. Deve persistir o estado de autenticação em sessão/token
+1. O formulário deve ter campos de **e-mail** e **senha**
+2. Validação client-side:
+   - E-mail é obrigatório e deve ter formato válido (x@y.z)
+   - Senha é obrigatória e deve ter ao menos 3 caracteres
+3. Erros de validação devem aparecer inline abaixo do campo correspondente
+4. Erro 401 da API deve exibir mensagem "E-mail ou senha inválidos"
+5. Erro de rede deve exibir mensagem "Erro de conexão. Tente novamente."
+6. Botão de submit deve mostrar estado de loading (disabled + texto "Entrando...")
+7. Acessibilidade: labels associados via `htmlFor`, `aria-invalid`, `aria-describedby`, `role="alert"`
+8. O componente reside em `frontend/src/pages/login/LoginPage.tsx`
+9. Estilos em `frontend/src/pages/login/login.scss`
 
-## CRITÉRIOS DE TESTE (QA)
+## Critérios de Teste
 
-### E2E:
-- Usuário pode preencher email e senha e submeter o formulário
-- Sistema exibe erro ao submeter credenciais inválidas
-- Sistema redireciona para página principal ao submeter credenciais válidas
-- Formulário mantém valores ao focar em diferentes campos
-- Layout é responsivo em telas de diferentes tamanhos
-
-### API:
-- Endpoint POST `/auth/login` retorna token e dados do usuário em caso de sucesso
-- Endpoint retorna erro 401 quando credenciais são inválidas
-- Endpoint valida presença de email e senha antes de processar
-
-## REGRAS TÉCNICAS
-
-- Seguir convenções do CLAUDE.md — React functional components com hooks
-- Componente React em `frontend/src/pages/login/`
-- Usar React Router para navegação pós-login
-- Backend em `server/index.js` ou rota dedicada
-- TypeScript obrigatório no frontend
-- Styling com SASS/SCSS
-- Sem over-engineering — implementar o mínimo viável conforme design
-- Validação de entrada apenas campos obrigatórios
-
-## REFERÊNCIA VISUAL (FIGMA)
-
-[https://www.figma.com/design/ik0Qa30O9oNUy3qelJbQO7/Ferramenta-Trello?node-id=48-721](https://www.figma.com/design/ik0Qa30O9oNUy3qelJbQO7/Ferramenta-Trello?node-id=48-721)
-
-## FORA DO ESCOPO
-
-- Recuperação de senha (será US separada)
-- Autenticação com provedores terceiros (Google, GitHub, etc.)
-- Implementação de captcha
-- Rate limiting no login (será tratado em hardening de segurança)
+- [ ] Campo e-mail vazio → erro "E-mail é obrigatório"
+- [ ] E-mail inválido (sem @) → erro "E-mail inválido"
+- [ ] Senha vazia → erro "Senha é obrigatória"
+- [ ] Senha muito curta → erro "Senha deve ter ao menos 3 caracteres"
+- [ ] Credenciais corretas → navega para /todos
+- [ ] Credenciais incorretas → erro "E-mail ou senha inválidos"
+- [ ] Durante loading → botão desabilitado com texto "Entrando..."
+- [ ] Usuário já logado → redireciona automaticamente para /todos
