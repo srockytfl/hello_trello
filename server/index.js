@@ -14,10 +14,15 @@ let todos = [
 let nextId = 4;
 
 // --- Auth ---
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ message: 'E-mail e senha são obrigatórios' });
+  }
+  if (!EMAIL_REGEX.test(email)) {
+    return res.status(400).json({ message: 'Formato de e-mail inválido' });
   }
   if (email === 'admin@example.com' && password === '123') {
     return res.json({ token: 'fake-token', user: { name: 'Admin', email } });
