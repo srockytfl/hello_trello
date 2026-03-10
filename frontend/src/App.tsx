@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
-const Login = lazy(() => import('./pages/Login'))
+const LoginPage = lazy(() => import('./pages/login/LoginPage'))
 const Todos = lazy(() => import('./pages/Todos'))
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
@@ -15,7 +15,7 @@ export default function App() {
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/todos" element={<RequireAuth><Todos /></RequireAuth>} />
         </Routes>
       </Suspense>

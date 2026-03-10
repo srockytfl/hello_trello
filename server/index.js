@@ -14,13 +14,30 @@ let todos = [
 let nextId = 4;
 
 // --- Auth ---
-app.post('/api/login', (req, res) => {
-  const { username, password } = req.body;
-  if (username === 'admin' && password === '123') {
-    return res.json({ token: 'fake-token', user: { name: 'Admin' } });
+const USERS = [
+  { id: 1, username: 'admin', email: 'admin@example.com', password: '123', name: 'Admin' },
+];
+
+function authHandler(req, res) {
+  const { username, email, password } = req.body;
+  if (!password || (!username && !email)) {
+    return res.status(400).json({ message: 'Email/usuário e senha são obrigatórios' });
   }
-  res.status(401).json({ message: 'Credenciais inválidas' });
-});
+  const user = USERS.find(u =>
+    (username && u.username === username) ||
+    (email && u.email === email)
+  );
+  if (!user || user.password !== password) {
+    return res.status(401).json({ message: 'Credenciais inválidas' });
+  }
+  return res.json({
+    token: 'fake-token-' + user.id,
+    user: { id: user.id, name: user.name, email: user.email, username: user.username },
+  });
+}
+
+app.post('/api/login', authHandler);
+app.post('/auth/login', authHandler);
 
 // --- Todos CRUD ---
 app.get('/api/todos', (req, res) => {
