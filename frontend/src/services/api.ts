@@ -3,8 +3,8 @@ import type { Todo, LoginResponse } from '../types';
 
 const BASE = '/api';
 
-export async function login(username: string, password: string): Promise<LoginResponse> {
-  const res = await axios.post<LoginResponse>(`${BASE}/login`, { username, password });
+export async function login(email: string, password: string): Promise<LoginResponse> {
+  const res = await axios.post<LoginResponse>(`${BASE}/login`, { email, password });
   return res.data;
 }
 

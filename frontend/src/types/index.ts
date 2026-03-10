@@ -5,7 +5,9 @@ export interface Todo {
 }
 
 export interface LoginResponse {
+  token: string;
   user: {
-    username: string;
+    name: string;
+    email: string;
   };
 }

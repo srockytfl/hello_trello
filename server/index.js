@@ -15,9 +15,12 @@ let nextId = 4;
 
 // --- Auth ---
 app.post('/api/login', (req, res) => {
-  const { username, password } = req.body;
-  if (username === 'admin' && password === '123') {
-    return res.json({ token: 'fake-token', user: { name: 'Admin' } });
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ message: 'E-mail e senha são obrigatórios' });
+  }
+  if (email === 'admin@example.com' && password === '123') {
+    return res.json({ token: 'fake-token', user: { name: 'Admin', email } });
   }
   res.status(401).json({ message: 'Credenciais inválidas' });
 });
