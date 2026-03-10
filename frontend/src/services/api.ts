@@ -1,10 +1,10 @@
 import axios from 'axios';
-import type { Todo, LoginResponse } from '../types';
+import type { Todo, LoginResponse, TodoStatus } from '../types';
 
 const BASE = '/api';
 
-export async function login(email: string, password: string): Promise<LoginResponse> {
-  const res = await axios.post<LoginResponse>(`${BASE}/login`, { email, password });
+export async function login(username: string, password: string): Promise<LoginResponse> {
+  const res = await axios.post<LoginResponse>(`${BASE}/login`, { username, password });
   return res.data;
 }
 
@@ -13,8 +13,8 @@ export async function getTodos(): Promise<Todo[]> {
   return res.data;
 }
 
-export async function addTodo(text: string): Promise<Todo> {
-  const res = await axios.post<Todo>(`${BASE}/todos`, { text });
+export async function addTodo(text: string, status: TodoStatus = 'todo'): Promise<Todo> {
+  const res = await axios.post<Todo>(`${BASE}/todos`, { text, status });
   return res.data;
 }
 
