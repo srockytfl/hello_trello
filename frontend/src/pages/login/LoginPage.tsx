@@ -4,37 +4,31 @@ import { login } from '../../services/api'
 import './login.scss'
 
 interface FormErrors {
-  email?: string
+  username?: string
   password?: string
-}
-
-function validateEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [errors, setErrors] = useState<FormErrors>({})
   const [apiError, setApiError] = useState('')
   const [loading, setLoading] = useState(false)
-  const emailRef = useRef<HTMLInputElement>(null)
+  const usernameRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
       navigate('/todos')
     }
-    emailRef.current?.focus()
+    usernameRef.current?.focus()
   }, [navigate])
 
   function validate(): boolean {
     const newErrors: FormErrors = {}
-    if (!email.trim()) {
-      newErrors.email = 'E-mail é obrigatório'
-    } else if (!validateEmail(email)) {
-      newErrors.email = 'E-mail inválido'
+    if (!username.trim()) {
+      newErrors.username = 'Usuário é obrigatório'
     }
     if (!password) {
       newErrors.password = 'Senha é obrigatória'
@@ -52,7 +46,7 @@ export default function LoginPage() {
 
     setLoading(true)
     try {
-      const res = await login(email, password)
+      const res = await login(username, password)
       localStorage.setItem('user', JSON.stringify(res.user))
       navigate('/todos')
     } catch (err: unknown) {
@@ -62,7 +56,7 @@ export default function LoginPage() {
         'response' in err &&
         (err as { response?: { status?: number } }).response?.status === 401
       ) {
-        setApiError('E-mail ou senha inválidos')
+        setApiError('Usuário ou senha inválidos')
       } else {
         setApiError('Erro de conexão. Tente novamente.')
       }
@@ -126,37 +120,37 @@ export default function LoginPage() {
             noValidate
           >
             <div className="form-field">
-              <label htmlFor="email" className="field-label">
-                E-mail
+              <label htmlFor="username" className="field-label">
+                Usuário
               </label>
               <div className="field-input-wrapper">
                 <span className="field-icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M2 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4z" stroke="currentColor" strokeWidth="1.2" fill="none"/>
-                    <path d="m2 4 6 5 6-5" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+                    <circle cx="8" cy="5" r="3" stroke="currentColor" strokeWidth="1.2" fill="none"/>
+                    <path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
                   </svg>
                 </span>
                 <input
-                  id="email"
-                  ref={emailRef}
-                  type="email"
-                  className={`field-input field-input--icon${errors.email ? ' field-input--error' : ''}`}
-                  value={email}
+                  id="username"
+                  ref={usernameRef}
+                  type="text"
+                  className={`field-input field-input--icon${errors.username ? ' field-input--error' : ''}`}
+                  value={username}
                   onChange={e => {
-                    setEmail(e.target.value)
-                    if (errors.email) setErrors(prev => ({ ...prev, email: undefined }))
+                    setUsername(e.target.value)
+                    if (errors.username) setErrors(prev => ({ ...prev, username: undefined }))
                     if (apiError) setApiError('')
                   }}
-                  placeholder="seu@email.com"
-                  autoComplete="email"
-                  aria-describedby={errors.email ? 'email-error' : undefined}
-                  aria-invalid={!!errors.email}
+                  placeholder="admin"
+                  autoComplete="username"
+                  aria-describedby={errors.username ? 'username-error' : undefined}
+                  aria-invalid={!!errors.username}
                   disabled={loading}
                 />
               </div>
-              {errors.email && (
-                <span id="email-error" className="field-error" role="alert">
-                  {errors.email}
+              {errors.username && (
+                <span id="username-error" className="field-error" role="alert">
+                  {errors.username}
                 </span>
               )}
             </div>
@@ -255,7 +249,7 @@ export default function LoginPage() {
           </form>
 
           <p className="login-hint">
-            Use <strong>admin@example.com</strong> / <strong>123</strong> para testar
+            Use <strong>admin</strong> / <strong>123</strong> para testar
           </p>
         </div>
       </section>
