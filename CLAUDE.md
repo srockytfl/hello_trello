@@ -1,131 +1,111 @@
-# CLAUDE.md
+```markdown
+# CLAUDE.md — hello_trello
 
-## Filosofia do Projeto
+## Stack Tecnológico
 
-**Trello Clone** — Aplicação fullstack para gerenciamento de tarefas com React frontend e Express backend.
+- **Frontend:** React 18 + TypeScript + Vite + Sass + React Router DOM 6
+- **Backend:** Node.js + Express 5 + CORS
+- **Cliente HTTP:** Axios
+- **Testes:** Vitest
+- **Porta Backend:** Inferido (padrão Express: 3000)
+- **Porta Frontend:** Vite dev server (padrão: 5173)
 
-O projeto segue arquitetura monorepo com agentes de IA coordenados via arquivos em `tasks/` para implementação de histórias de usuário (US) do backlog.
+## Estrutura do Projeto
 
-### Arquitetura
+```
+frontend/
+  ├── src/
+  │   ├── pages/          # Páginas React
+  │   ├── services/       # Serviços Axios (HTTP client)
+  │   ├── types/          # Definições TypeScript
+  │   ├── App.tsx         # Componente raiz
+  │   ├── main.tsx        # Entry point
+  │   └── styles.scss     # Estilos globais
+  ├── index.html          # Template HTML
+  └── vite.config.ts      # Config Vite
 
-- **Frontend** — React 18 + TypeScript + Vite (porta 5173 por padrão)
-- **Backend** — Express 5 com CORS habilitado (porta definido em `server/index.js`)
-- **Comunicação** — Axios para chamadas HTTP
-- **Estrutura** — Monorepo com `frontend/`, `server/` e `tasks/` para artefatos
+server/
+  └── index.js            # Express API
 
-### Plataforma
+api/
+  └── index.js            # Código de cliente/reutilizável (verificar uso)
 
-Histórias de usuário são orquestradas via agentes que se comunicam através de arquivos:
-
-- **PO** — Lê requisitos, estrutura a história em `tasks/NNN/US-NNN-*.txt`
-- **TL** — Define contrato de API em `US-NNN-api-contract.md` ou `US-NNN-plan.md`
-- **Dev Fullstack** — Implementa backend + frontend, registra em `US-NNN-fullstack-done.md`
-- **Dev Backend** — Implementa apenas server, registra em `US-NNN-backend-done.md`
-- **Dev Frontend** — Implementa apenas React, registra em `US-NNN-frontend-done.md`
-- **QA** — Testa e registra em `US-NNN-qa-report.md`
-
-## Regras para todos os agentes
-
-- **Mantenha simples** — soluções diretas e pragmáticas
-- **Sem over-engineering** — sem abstrações desnecessárias
-- **TypeScript obrigatório** — types explícitos em frontend
-- **SCSS para estilos** — arquivo `styles.scss` como base
-- **API REST** — endpoints JSON simples, sem GraphQL
-- **Validação nas boundaries** — inputs do usuário (frontend) + requests (backend)
+tasks/
+  └── <N>/                # Artefatos de histórias (US-NNN-*.md/txt)
+      ├── US-N-spec.md
+      ├── US-N-prd.md
+      ├── US-N-plan.md
+      ├── US-N-fullstack-done.md
+      └── US-N-qa-report.md
+```
 
 ## Comandos
 
-- `npm run dev` — inicia frontend Vite (:5173) apenas
-- `npm start` — inicia servidor Express apenas
-- `npm run build` — build frontend + install dependências do server
-- `npm run preview` — preview de build do frontend
-- `npm run test` — roda testes Vitest (frontend)
-
-## Stack
-
-- **Runtime:** Node.js v18+
-- **Frontend:** React 18, TypeScript 5.6, Vite 5.4, SCSS — porta 5173
-- **Backend:** Express 5, CORS habilitado — porta a definir em `server/index.js`
-- **HTTP Client:** Axios 1.7.7
-- **Roteamento:** React Router 6
-- **Testes:** Vitest 2.1.4
-- **Build:** Vite + TypeScript
-
-## Estrutura
-
+**Raiz:**
+```bash
+npm run dev            # Inicia frontend em dev (Vite)
+npm run build          # Build de produção (instala deps, faz build frontend + prepara server)
+npm run start          # Inicia server em produção
+./start.sh             # Script customizado de inicialização
 ```
-frontend/src/
-├── pages/              # páginas React (um diretório por página)
-├── services/           # serviços (HttpClient, hooks customizados)
-├── types/              # tipos TypeScript compartilhados
-├── App.tsx             # componente raiz
-├── main.tsx            # entry point
-└── styles.scss         # estilos globais
 
-server/
-└── index.js            # Express app — rotas e handlers
+**Frontend:**
+```bash
+cd frontend && npm start     # Vite dev server
+cd frontend && npm run build # Produção
+cd frontend && npm test      # Vitest
+```
 
-tasks/
-└── NNN/                # artefatos da US-NNN
-    ├── US-NNN-*.txt    # requisitos originais
-    ├── US-NNN-spec.md  # especificação técnica
-    ├── US-NNN-plan.md  # plano de implementação
-    ├── US-NNN-api-contract.md  # contrato da API
-    ├── US-NNN-prd.md   # requisitos de produto
-    └── US-NNN-*-done.md # registro de conclusão (backend/frontend/fullstack/qa)
+**Server:**
+```bash
+cd server && node index.js   # Inicia Express
 ```
 
 ## Convenções
 
-- **Novas páginas React** → criar em `frontend/src/pages/<nome>/` com `<nome>.tsx` + `<nome>.scss`
-- **Novos endpoints** → adicionar em `server/index.js` com rota Express clara
-- **Tipos reutilizáveis** → em `frontend/src/types/` com sufixo `.ts`
-- **Serviços HTTP** → em `frontend/src/services/` (usar Axios, tipado com TypeScript)
-- **Variáveis de ambiente** → `.env` no frontend, nunca hardcodar URLs (usar variável `VITE_API_URL`)
-- **Estilos** → SCSS em arquivo separado por página, importar em component
-- **Arquivos de teste** — `US-NNN-*.spec.ts` em `frontend/src/` para evitar colisões
-- **Git: branch por US** — `us-NNN` para cada história
-- **Toda US tem contrato de API** — mesmo que mínimo, documentar em `US-NNN-api-contract.md`
+- **Histórias de Usuário** — armazenadas em `tasks/<N>/` com padrão `US-<N>-<tipo>.md`
+  - Tipos: `spec`, `prd`, `plan`, `execute-done`, `fullstack-done`, `qa-report`
+- **Páginas React** — criar em `frontend/src/pages/<nome>/` com componentes standalone
+- **Serviços HTTP** — criar em `frontend/src/services/` com Axios
+- **Tipos TypeScript** — manter em `frontend/src/types/`
+- **Estilos** — Sass global em `frontend/src/styles.scss` ou SCSS por componente
+- **Roteamento** — React Router DOM v6 (verificar `App.tsx` para configuração)
 
-## Fluxo de Trabalho
+## Padrão de Squad
 
-1. **PO** lê requisito → escreve `tasks/NNN/US-NNN-*.txt`
-2. **TL** define `US-NNN-api-contract.md` e marca `backend:` e `frontend:`
-3. **Dev Backend** OU **Dev Fullstack** implementa server
-4. **Dev Frontend** OU **Dev Fullstack** implementa React (pode rodar em paralelo)
-5. **QA** testa (rodar `npm run dev` e `npm start` antes) → registra resultado
-6. Se OK → PR + merge manual
+O projeto segue fluxo de agentes (Fusion AI):
+- **PO** → analisa requisitos
+- **TL** → define contrato de API
+- **Backend/Frontend** → implementação paralela
+- **QA** → testes e validação
+- **PR** → abertura de pull request
 
-## Agentes necessários
+Artefatos são salvos em `tasks/<N>/` para comunicação entre agentes.
 
-| Agente | Modelo | Função |
-|--------|--------|--------|
-| PO | Haiku | Estrutura requisitos |
-| TL | Sonnet | Define contrato + decisões de arquitetura |
-| Dev Fullstack | Sonnet | Backend + Frontend na mesma passada |
-| Dev Backend | Sonnet | Apenas server |
-| Dev Frontend | Sonnet | Apenas React |
-| QA | Sonnet | Testes + validação |
-| PR | Haiku | Push + abre PR |
+## Notas
 
-## Iniciar desenvolvimento
+- Projeto usa `vercel.json` — validar configuração de deployment
+- Express é responsável por servir API; Vite é dev server do frontend
+- TypeScript em ambos frontend (strict) e package.json version pinned
+- Axios configurado para comunicação com backend — verificar baseURL em serviços
 
-```bash
-# Terminal 1 — Frontend
-npm run dev
+## Boas Práticas
 
-# Terminal 2 — Backend
-npm start
+- Mantenha types TypeScript atualizados em `frontend/src/types/`
+- Serviços de HTTP sempre em `frontend/src/services/` com AxiosInstance
+- Evite hardcoding URLs — use variáveis de ambiente para API endpoint
+- Validação de entrada em boundaries (controllers Express, formulários React)
+- Testes em Vitest para lógica isolada; E2E via Playwright se disponível
 ```
-
-Frontend estará em `http://localhost:5173`, backend em `http://localhost:<PORTA>` (verificar `server/index.js`).
 
 ## Squad Workflow
 
 This workspace is being operated by a squad of AI agents.
 
 Pipeline:
-1. Dev Fullstack
-2. PR
+1. SDD PRD
+2. SDD Spec
+3. SDD Execute
+4. PR
 
-Flow: Dev Fullstack → PR
+Flow: SDD PRD → SDD Spec → SDD Execute → PR
