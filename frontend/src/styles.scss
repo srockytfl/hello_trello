@@ -1,29 +1,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — amarelo em gradação */
-  --bg: #FFFDE7;           /* Amarelo muito claro para background principal */
-  --bg2: #FFF9C4;          /* Amarelo claro para cards/headers */
-  --bg3: #FFEB3B;          /* Amarelo médio para hover states */
-  --card: #FFF9C4;         /* Amarelo claro para cards */
-  --hover: #FFEB3B;        /* Amarelo médio para hover */
+  /* Backgrounds — verde em gradação */
+  --bg: #F1F8F4;           /* Verde muito claro para background principal */
+  --bg2: #DCF0E4;          /* Verde claro para cards/headers */
+  --bg3: #A8D5B5;          /* Verde médio para hover states */
+  --card: #DCF0E4;         /* Verde claro para cards */
+  --hover: #A8D5B5;        /* Verde médio para hover */
 
-  /* Primary amarelo */
-  --blue: #FBC02D;         /* Amarelo primário para botões primários */
-  --blue-dark: #F9A825;    /* Amarelo escuro para hover de botões */
+  /* Primary verde */
+  --blue: #2E7D32;         /* Verde primário para botões primários */
+  --blue-dark: #1B5E20;    /* Verde escuro para hover de botões */
 
   /* Text */
-  --text: #827000;         /* Amarelo muito escuro para texto padrão (contraste OK) */
-  --text-bright: #827000;  /* Amarelo muito escuro para títulos e texto principal */
-  --muted: #A18E5D;        /* Amarelo acastanhado para texto secundário/mutado */
+  --text: #1B5E20;         /* Verde muito escuro para texto padrão (contraste OK) */
+  --text-bright: #1B5E20;  /* Verde muito escuro para títulos e texto principal */
+  --muted: #5A8A65;        /* Verde acinzentado para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #FFD600;       /* Amarelo para destaque/focus/checkbox */
+  --yellow: #388E3C;       /* Verde de destaque para focus/checkbox/ícones */
 
   /* Structure */
-  --border: #FFEB3B;       /* Amarelo médio claro para bordas */
+  --border: #A8D5B5;       /* Verde médio claro para bordas */
   --radius: 6px;           /* Manter border-radius */
 }
 
