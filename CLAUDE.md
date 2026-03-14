@@ -103,10 +103,6 @@ Artefatos são salvos em `tasks/<N>/` para comunicação entre agentes.
 This workspace is being operated by a squad of AI agents.
 
 Pipeline:
-1. PO
-2. TL
-3. Backend + Frontend (parallel)
-4. QA
-5. PR
+1. Acessibilidade
 
-Flow: PO → TL → [Backend | Frontend] → QA → PR
+Flow: Acessibilidade
