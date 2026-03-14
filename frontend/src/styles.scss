@@ -1,29 +1,29 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — azul em gradação */
-  --bg: #E3F2FD;           /* Azul pastel para background principal */
-  --bg2: #BBDEFB;          /* Azul claro para cards/headers */
-  --bg3: #90CAF9;          /* Azul médio claro para hover states */
-  --card: #BBDEFB;         /* Azul claro para cards */
-  --hover: #90CAF9;        /* Azul médio claro para hover */
+  /* Backgrounds — amarelo em gradação */
+  --bg: #FFFDE7;           /* Amarelo muito claro para background principal */
+  --bg2: #FFF9C4;          /* Amarelo claro para cards/headers */
+  --bg3: #FFEB3B;          /* Amarelo médio para hover states */
+  --card: #FFF9C4;         /* Amarelo claro para cards */
+  --hover: #FFEB3B;        /* Amarelo médio para hover */
 
-  /* Primary azul */
-  --blue: #1976D2;         /* Azul primária para botões primários */
-  --blue-dark: #1565C0;    /* Azul escuro para hover de botões */
+  /* Primary amarelo */
+  --blue: #FBC02D;         /* Amarelo primário para botões primários */
+  --blue-dark: #F9A825;    /* Amarelo escuro para hover de botões */
 
   /* Text */
-  --text: #0D47A1;         /* Azul muito escuro para texto padrão (contraste OK) */
-  --text-bright: #0D47A1;  /* Azul muito escuro para títulos e texto principal */
-  --muted: #5E7FA6;        /* Azul médio para texto secundário/mutado */
+  --text: #827000;         /* Amarelo muito escuro para texto padrão (contraste OK) */
+  --text-bright: #827000;  /* Amarelo muito escuro para títulos e texto principal */
+  --muted: #A18E5D;        /* Amarelo acastanhado para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #2196F3;       /* Azul para destaque/focus/checkbox */
+  --yellow: #FFD600;       /* Amarelo para destaque/focus/checkbox */
 
   /* Structure */
-  --border: #90CAF9;       /* Azul médio claro para bordas */
+  --border: #FFEB3B;       /* Amarelo médio claro para bordas */
   --radius: 6px;           /* Manter border-radius */
 }
 

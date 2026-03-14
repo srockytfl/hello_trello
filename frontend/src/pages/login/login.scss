@@ -15,7 +15,7 @@
 
 .login-brand {
   flex: 0 0 45%;
-  background: linear-gradient(140deg, #1976D2 0%, #1565C0 60%, #0D47A1 100%);
+  background: linear-gradient(140deg, #FBC02D 0%, #F9A825 60%, #827000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,7 +203,7 @@
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--muted);
+  color: var(--yellow);
   display: flex;
   align-items: center;
   pointer-events: none;
@@ -252,7 +252,7 @@
 
   &:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.12);
+    box-shadow: 0 0 0 3px rgba(130, 112, 0, 0.12);
   }
 
   &:disabled {
