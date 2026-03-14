@@ -1,97 +1,96 @@
-# Spec — US-139: Trocar cor do site para amarelo
+# Spec — US-139: Trocar cor do site para Verde
 
 ## Problema
-O site nao possui uma identidade visual coerente baseada em amarelo. Fundos, componentes, icones e titulos devem seguir uma paleta amarela consistente em todas as paginas.
+O site utiliza atualmente uma paleta amarelo/ambar como cor primaria em toda a interface
+(variaveis CSS como `--bg`, `--blue`, `--yellow`, gradientes hardcoded no painel de login e
+favicon rosa em `index.html`). Nao ha identidade visual em verde, contrariando a intencao
+da US.
 
 ## Objetivo
-Garantir que toda a interface aplique amarelo como cor primaria, cobrindo fundos de pagina, componentes interativos (botoes, cards, inputs), icones e o titulo/heading principal de cada pagina.
+Substituir a paleta de cores primaria — hoje amarelo/ambar — por uma paleta coerente de
+verde, mantendo contraste WCAG AA e sem alterar estrutura, layout ou funcionalidades.
 
 ## Requisitos Funcionais
-1. O fundo de todas as paginas (login e todos/board) deve ser amarelo ou variacao de amarelo
-2. Botoes primarios devem usar cor amarela como background
-3. Cards e inputs devem aplicar amarelo como cor primaria de borda ou fundo
-4. Icones exibidos no site devem ser amarelos
-5. O titulo/heading principal de cada pagina deve ser exibido em amarelo
-6. O texto sobre fundos amarelos deve manter contraste adequado para legibilidade (WCAG AA minimo)
-7. A paleta amarela deve ser aplicada de forma uniforme em todas as paginas da aplicacao
-
-## Arquivos de Estilo Envolvidos
-Com base na analise do codigo existente, os seguintes arquivos de estilo precisam ser revisados e ajustados:
-
-- `frontend/src/styles.scss` — variaveis CSS globais (`:root`) e estilos da pagina Todos
-- `frontend/src/pages/login/login.scss` — estilos da pagina Login
-- `frontend/src/pages/board.scss` — estilos da pagina Board (Kanban)
-
-## Variaveis CSS a Revisar (`:root` em `styles.scss`)
-As variaveis abaixo ja existem no projeto e representam a paleta atual. A spec define o que cada uma deve expressar visualmente — a tonalidade exata e decisao de implementacao:
-
-| Variavel       | Proposito semantico                                  | Expectativa visual        |
-|----------------|------------------------------------------------------|---------------------------|
-| `--bg`         | Background principal das paginas                     | Amarelo muito claro        |
-| `--bg2`        | Background de headers, cards e paineis secundarios  | Amarelo claro              |
-| `--bg3`        | Background de hover states                           | Amarelo medio              |
-| `--card`       | Background de cards                                  | Amarelo claro              |
-| `--hover`      | Background de hover interativo                       | Amarelo medio              |
-| `--blue`       | Cor primaria de botoes e elementos de acao           | Amarelo primario saturado  |
-| `--blue-dark`  | Variante escura para hover de botoes                 | Amarelo escuro             |
-| `--text`       | Texto padrao sobre fundos amarelos                   | Escuro com contraste OK    |
-| `--text-bright`| Titulos e texto principal                            | Amarelo escuro/dourado     |
-| `--border`     | Bordas de componentes                                | Amarelo medio claro        |
-| `--yellow`     | Destaque, focus, checkbox ativo, icones              | Amarelo puro/saturado      |
-
-## Elementos Visuais por Pagina
-
-### Pagina Login (`/login`)
-- Painel de marca (esquerda): gradiente amarelo — sem mudanca se ja usa amarelo
-- Titulo de login (`.login-title`): cor amarela via `var(--text-bright)`
-- Botao de submit (`.btn-submit`): background `var(--blue)` (amarelo primario)
-- Inputs (`.field-input`): borda e focus em amarelo via `var(--blue)`
-- Icones dos campos (`field-icon`): cor amarela
-
-### Pagina Todos (`/todos`)
-- Logo (`.logo`, `.material-icons-round`): cor amarela
-- Header (`.todos-page header`): background amarelo via `var(--bg2)`
-- Botao adicionar (`.btn-add`): background `var(--blue)` (amarelo primario)
-- Input de adicionar tarefa: borda focus amarela via `var(--yellow)`
-- Filtro ativo (`.filter-btn.active`): borda inferior amarela
-- Checkbox marcado (`.checkbox.checked`): background amarelo via `var(--yellow)`
-
-### Pagina Board (`/board` — se existir rota ativa)
-- Header (`.board-header`): background `var(--blue)` (amarelo primario)
-- Colunas (`.board-column`): background `var(--bg2)` (amarelo claro)
-- Botao de nova card (`.card-new-confirm`): background `var(--blue)` (amarelo primario)
-- Botao de adicionar card (`.column-add-card-btn`): hover com borda e texto `var(--blue)`
+1. As variaveis CSS de cor definidas em `:root` dentro de `frontend/src/styles.scss` devem
+   ser redefinidas para tons de verde (backgrounds, primario, hover, bordas, texto).
+2. O gradiente hardcoded do painel de marca da pagina de login (`.login-brand` em
+   `login.scss`) deve usar tons de verde.
+3. O favicon embutido em `frontend/index.html` deve exibir um circulo verde com letra inicial.
+4. Icones exibidos na interface (via `color: var(--yellow)` e `color: var(--blue)`) devem
+   herdar a nova variavel de cor primaria verde apos a atualizacao das variaveis.
+5. Todos os componentes que referenciam variaveis de cor (`--blue`, `--blue-dark`,
+   `--yellow`, `--bg`, `--bg2`, `--bg3`, `--card`, `--hover`, `--border`, `--text`,
+   `--text-bright`, `--muted`) devem refletir automaticamente o verde ao se atualizar as
+   variaveis no `:root`, sem necessidade de alterar cada componente individualmente.
+6. Sombras hardcoded em `board.scss` com `rgba(130, 112, 0, ...)` referenciando o amarelo
+   escuro devem ser substituidas pelo equivalente verde escuro.
+7. Texto sobre fundos verdes deve manter contraste minimo 4.5:1 (WCAG AA).
 
 ## Fluxo do Usuario
-1. Usuario acessa qualquer pagina do site
-2. Sistema exibe a pagina com tema amarelo em todos os elementos visuais: fundo, icones, titulos e componentes interativos
-3. Usuario navega entre paginas
-4. Elementos mantem tema amarelo consistente em toda a navegacao
+1. Usuario acessa o site (pagina de login ou pagina de todos/board).
+2. Sistema exibe a interface com tema verde em: fundo da pagina, painel de marca do login,
+   botoes, inputs, cards, icones e headings.
+3. Icone da aba do navegador (favicon) aparece em verde.
+4. Usuario navega entre paginas; o tema verde se mantem consistente em todos os elementos.
 
 ## Criterios de Aceitacao
-- [ ] Fundo das paginas login e todos/board e amarelo ou variacao de amarelo
-- [ ] Botoes primarios (submit, add, confirm) exibem cor amarela como background
-- [ ] Cards e inputs usam amarelo como cor primaria de borda ou fundo
-- [ ] Icones (Material Icons) exibidos no site sao amarelos
-- [ ] Titulos/headings principais de cada pagina sao amarelos
-- [ ] Texto sobre fundos amarelos mantem contraste minimo WCAG AA (razao 4.5:1 para texto normal)
-- [ ] Visual e consistente entre as paginas login, todos e board
+- [ ] Variaveis CSS em `:root` de `styles.scss` estao mapeadas para tons de verde
+- [ ] Background das paginas login e todos/board e verde (via `--bg`, `--bg2`)
+- [ ] Painel lateral de marca no login exibe gradiente em verde
+- [ ] Botoes primarios (`.btn-add`, `.btn-submit`, `.card-new-confirm`) exibem verde como
+      background
+- [ ] Cards e inputs usam bordas e fundos verdes via variaveis atualizadas
+- [ ] Icones da interface aparecem em verde (variaveis de cor icone atualizadas)
+- [ ] Favicon em `index.html` exibe circulo verde
+- [ ] Texto sobre fundos verdes passa verificacao de contraste WCAG AA (4.5:1)
+- [ ] Nenhuma cor hardcoded em amarelo/ambar persiste como cor primaria nos arquivos
+      `styles.scss`, `login.scss` e `board.scss`
 
 ## Escopo Tecnico
 - Backend necessario: nao
 - Frontend necessario: sim
 
+## Arquivos a Modificar
+
+| Arquivo | O que alterar |
+|---|---|
+| `frontend/src/styles.scss` | Todas as variaveis CSS em `:root` — backgrounds, primario, hover, bordas, texto |
+| `frontend/src/pages/login/login.scss` | Gradiente hardcoded em `.login-brand` (hex amarelo: `#FBC02D`, `#F9A825`, `#827000`) |
+| `frontend/src/pages/board.scss` | Sombras hardcoded `rgba(130, 112, 0, ...)` |
+| `frontend/index.html` | Favicon SVG inline (fill atual `%23E91E63` — rosa) e titulo da aba |
+
+## Variaveis CSS a Redefinir (`:root` em `styles.scss`)
+
+| Variavel | Proposito semantico | Expectativa visual |
+|---|---|---|
+| `--bg` | Background principal das paginas | Verde muito claro |
+| `--bg2` | Background de headers, cards e paineis | Verde claro |
+| `--bg3` | Background de hover states | Verde medio |
+| `--card` | Background de cards | Verde claro |
+| `--hover` | Background de hover interativo | Verde medio |
+| `--blue` | Cor primaria de botoes e elementos de acao | Verde primario saturado |
+| `--blue-dark` | Variante escura para hover de botoes | Verde escuro |
+| `--text` | Texto padrao sobre fundos verdes | Escuro com contraste adequado |
+| `--text-bright` | Titulos e texto principal | Verde muito escuro |
+| `--muted` | Texto secundario/desativado | Verde acinzentado |
+| `--border` | Bordas de componentes | Verde medio claro |
+| `--yellow` | Destaque, focus, checkbox ativo, icones | Verde de destaque (redefinir valor) |
+
 ## Suposicoes
-- O projeto ja possui variaveis CSS em `:root` com nomes semanticos (`--blue`, `--bg`, `--text-bright`, etc.) que abstraem a cor primaria — a mudanca deve ser feita nessas variaveis globais, nao em valores hardcoded individuais
-- "Amarelo" refere-se a uma paleta coerente com variações de claridade (muito claro para fundos, saturado para acoes, escuro para texto), nao uma unica cor flat
-- O texto sobre fundos amarelos usara tom escuro (ex.: amarelo muito escuro / dourado) para garantir contraste
-- Nao ha guia de marca ou Figma definido; a tonalidade exata do amarelo e decidida durante implementacao com base no que ja existe no projeto
-- A variavel `--blue` e seu uso semantico ja representa a cor de acao primaria — renomear a variavel esta fora do escopo; apenas o valor hex deve ser ajustado se necessario
+- A variavel `--blue` e `--blue-dark` mantem os nomes no CSS para nao quebrar referencias
+  existentes nos componentes — apenas os valores hex mudam para verde.
+- A variavel `--yellow` usada em checkboxes e icones sera redefinida com valor verde
+  (nome mantido para nao quebrar referencias).
+- O texto branco (`#fff`) sobre botoes com verde escuro primario mantera contraste adequado.
+- A tonalidade exata do verde e decisao do agente Execute; a paleta deve ser coerente e
+  seguir a estrutura semantica descrita acima.
+- O favicon atual usa rosa (`%23E91E63`); sera trocado para verde sem alterar a estrutura SVG.
+- Nao ha guia de marca ou Figma definido para esta US.
 
 ## Fora do Escopo
-- Nao alterar estrutura ou layout das paginas
-- Nao adicionar novos componentes
-- Nao modificar funcionalidades ou logica de negocio
-- Nao criar sistema de temas (dark/light mode)
+- Nao alterar estrutura HTML ou layout dos componentes
+- Nao adicionar novos componentes ou paginas
+- Nao modificar logica de negocio, rotas ou servicos
+- Nao criar sistema de temas dinamico (light/dark toggle)
 - Nao renomear variaveis CSS existentes
-- Nao alterar codigo backend (`server/index.js`)
+- Nao modificar arquivos de backend (`server/index.js`, `api/index.js`)
