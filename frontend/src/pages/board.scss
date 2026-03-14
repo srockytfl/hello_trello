@@ -252,7 +252,7 @@
 // ── Card ──────────────────────────────────────────────────────────────────────
 
 .board-card {
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 10px 12px;
@@ -357,7 +357,7 @@
 // ── New card form ─────────────────────────────────────────────────────────────
 
 .board-card-new {
-  background: #fff;
+  background: var(--card);
   border: 1.5px solid var(--blue);
   border-radius: 8px;
   padding: 8px;
@@ -443,6 +443,6 @@
   &:hover {
     border-color: var(--blue);
     color: var(--blue);
-    background: rgba(130, 112, 0, 0.04);
+    background: var(--bg2);
   }
 }
