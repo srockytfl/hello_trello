@@ -1,43 +1,51 @@
-# US-144 — Azul
+# PRD — US-144: Aplicação com Tema Azul
 
-## Contexto
-O site necessita de uma identidade visual coesa com tema azul. A aplicação deve refletir essa paleta de cores em todos os elementos visuais, incluindo a página do navegador.
+## Problema
+O site atualmente não possui uma identidade visual coesa. Os usuários precisam de uma experiência visual consistente e profissional com uma paleta de cores bem definida.
 
-## História
-Como usuário,
-quero que a aplicação tenha uma identidade visual azul coerente,
-para que o site seja visualmente consistente e profissional.
+## Objetivo
+Aplicar um tema azul consistente em toda a aplicação, incluindo fundos, componentes, título da página e favicon, criando uma identidade visual coerente e profissional.
+
+## Sucesso Esperado
+A aplicação apresenta uma paleta de cores azul consistente em todos os elementos visuais, com título "Azul" na aba do navegador e favicon azul visível, resultando em uma experiência visual unificada.
+
+## Requisitos Funcionais
+1. Todos os componentes da aplicação devem utilizar tons de azul para cores de fundo
+2. O título da página (page title) deve exibir "Azul" na aba do navegador
+3. O favicon deve ser exibido em tom azul
+4. A paleta de cores azul deve ser consistente em toda a aplicação
+
+## Requisitos Não-Funcionais
+- Legibilidade: contraste adequado entre texto e fundos azuis (WCAG AA mínimo)
+- Responsividade: tema azul deve funcionar corretamente em mobile, tablet e desktop
+- Acessibilidade: cores azuis não devem prejudicar a experiência de usuários com daltonismo
+
+## Fluxo do Usuário
+1. Usuário acessa a aplicação
+2. Sistema exibe toda a interface com paleta de cores azul
+3. Usuário visualiza título "Azul" na aba do navegador
+4. Usuário vê favicon azul na aba do navegador
 
 ## Critérios de Aceitação
-1. Todas as cores de fundo dos componentes devem ser variações de azul (claro, médio ou escuro conforme apropriado)
-2. O título da aba do navegador (page title) deve exibir "Azul"
-3. O favicon (ícone do site) deve ser em tom azul
-4. A paleta de cores azul deve ser aplicada de forma consistente em toda a aplicação
-5. O design visual deve manter legibilidade e contraste apropriados
+- [ ] Todos os fundos de componentes utilizam variações de azul
+- [ ] Página título exibe "Azul"
+- [ ] Favicon azul está configurado e visível
+- [ ] Paleta de cores é aplicada consistentemente em todas as páginas
+- [ ] Texto mantém legibilidade em fundos azuis
+- [ ] Layout responsivo funciona com tema azul
 
-## Regras Técnicas
-- Seguir convenções do CLAUDE.md
-- Utilizar variáveis CSS/SCSS para a paleta de cores azul
-- Manter a estrutura de componentes existentes (sem over-engineering)
-- Atualizar arquivo global `frontend/src/styles.scss` com nova paleta
-- Favicon deve ser gerado/atualizado em `frontend/public/` ou equivalente
-- Page title deve ser atualizado no arquivo `frontend/index.html` ou via React
+## Escopo Técnico
+- Backend necessário: não
+- Frontend necessário: sim
 
-## Critérios de Teste (QA)
-
-### Visual/UI:
-- Verificar se todos os elementos de fundo utilizam tons de azul
-- Validar legibilidade de textos sobre fundos azuis (contraste WCAG)
-- Confirmar consistência visual em diferentes páginas/componentes
-
-### Navegador:
-- Aba do navegador exibe "Azul" como título
-- Favicon azul é exibido corretamente na aba
-
-### Responsividade:
-- Layout com tema azul mantém responsividade em mobile/tablet/desktop
+## Suposições
+- Utilizar variáveis CSS/SCSS para manter consistência da paleta azul
+- A paleta azul será aplicada aos estilos globais e componentes existentes
+- Favicon será atualizado em `frontend/public/` ou local padrão
+- Page title será atualizado em `frontend/index.html` ou via React Helmet
 
 ## Fora do Escopo
 - Alterar tipografia ou fontes
-- Modificar estrutura de layout dos componentes
+- Modificar estrutura ou layout dos componentes
 - Adicionar novos componentes ou funcionalidades
+- Alterar funcionalidades existentes
