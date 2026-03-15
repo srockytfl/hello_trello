@@ -3,7 +3,7 @@
 .board-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - var(--footer-height, 40px));
   background: var(--bg);
   overflow: hidden;
 }
@@ -163,7 +163,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 92px);
+  max-height: calc(100vh - 92px - var(--footer-height, 40px));
   overflow: hidden;
 
   @media (max-width: 767px) {

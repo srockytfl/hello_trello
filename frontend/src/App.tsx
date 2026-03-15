@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import Footer from './components/Footer/Footer'
 
 const Login = lazy(() => import('./pages/login/LoginPage'))
 const Todos = lazy(() => import('./pages/Todos'))
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/todos" element={<RequireAuth><Todos /></RequireAuth>} />
         </Routes>
       </Suspense>
+      <Footer />
     </BrowserRouter>
   )
 }

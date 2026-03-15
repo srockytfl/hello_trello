@@ -31,6 +31,9 @@
   --color-blue-medium: #1976D2;
   --color-blue-dark: #1565C0;
   --color-blue-primary: #1976D2;
+
+  /* Footer */
+  --footer-height: 40px;
 }
 
 body {
@@ -38,6 +41,7 @@ body {
   background: var(--bg);
   color: var(--text);
   height: 100vh;
+  padding-bottom: var(--footer-height);
 }
 
 input, button, textarea { font-family: inherit; }
@@ -45,6 +49,30 @@ input, button, textarea { font-family: inherit; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--hover); border-radius: 3px; }
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--footer-height);
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.app-footer__text {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+}
 
 /* ─── Todos ──────────────────────────────────────────────────── */
 
