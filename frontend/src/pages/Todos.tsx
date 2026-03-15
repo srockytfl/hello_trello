@@ -5,9 +5,9 @@ import type { Todo, TodoStatus } from '../types'
 import './board.scss'
 
 const COLUMNS: { key: TodoStatus; label: string; color: string }[] = [
-  { key: 'todo', label: 'A Fazer', color: '#E91E63' },
-  { key: 'doing', label: 'Em Andamento', color: '#FF9800' },
-  { key: 'done', label: 'Concluído', color: '#4CAF50' },
+  { key: 'todo', label: 'A Fazer', color: '#90CAF9' },
+  { key: 'doing', label: 'Em Andamento', color: '#1976D2' },
+  { key: 'done', label: 'Concluído', color: '#0D47A1' },
 ]
 
 export default function Todos() {

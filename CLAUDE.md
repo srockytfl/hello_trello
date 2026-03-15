@@ -103,8 +103,9 @@ Artefatos são salvos em `tasks/<N>/` para comunicação entre agentes.
 This workspace is being operated by a squad of AI agents.
 
 Pipeline:
-1. PO
-2. Fullstack
-3. PR
+1. SDD PRD
+2. SDD Spec
+3. SDD Execute
+4. PR
 
-Flow: PO → Fullstack → PR
+Flow: SDD PRD → SDD Spec → SDD Execute → PR

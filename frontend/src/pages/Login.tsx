@@ -33,7 +33,7 @@ export default function Login() {
   return (
     <div className="login-page">
       <div className="login-box">
-        <h2>Rosa</h2>
+        <h2>Azul</h2>
         <div className="field">
           <label>Usuário</label>
           <input
