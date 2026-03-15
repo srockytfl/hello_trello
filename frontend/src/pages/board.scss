@@ -257,11 +257,11 @@
   border-radius: 8px;
   padding: 10px 12px;
   cursor: grab;
-  box-shadow: 0 1px 3px rgba(21, 101, 192, 0.06);
+  box-shadow: 0 1px 3px rgba(27, 94, 32, 0.06);
   transition: box-shadow 0.15s, transform 0.1s;
 
   &:hover {
-    box-shadow: 0 3px 8px rgba(21, 101, 192, 0.12);
+    box-shadow: 0 3px 8px rgba(27, 94, 32, 0.12);
     transform: translateY(-1px);
   }
 
@@ -361,7 +361,7 @@
   border: 1.5px solid var(--blue);
   border-radius: 8px;
   padding: 8px;
-  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
 }
 
 .card-new-input {

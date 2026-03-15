@@ -1,36 +1,45 @@
+// ── Sass Variables — Paleta Verde (US-139) ──────────────────────────────────
+$primary-green:       #2E7D32;   // Verde primário para botões e destaques
+$secondary-green:     #388E3C;   // Verde secundário para ícones e focus
+$green-dark:          #1B5E20;   // Verde escuro para hover de botões e texto
+$green-light:         #F1F8F4;   // Verde muito claro para background principal
+$green-light-2:       #DCF0E4;   // Verde claro para cards e headers
+$green-medium:        #A8D5B5;   // Verde médio para hover states e bordas
+$green-muted:         #5A8A65;   // Verde acinzentado para texto secundário
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — azul em gradação */
-  --bg: #E3F2FD;           /* Azul muito claro para background principal */
-  --bg2: #BBDEFB;          /* Azul claro para cards/headers */
-  --bg3: #90CAF9;          /* Azul médio para hover states */
-  --card: #BBDEFB;         /* Azul claro para cards */
-  --hover: #90CAF9;        /* Azul médio para hover */
+  /* Backgrounds — verde em gradação */
+  --bg: #{$green-light};         /* Verde muito claro para background principal */
+  --bg2: #{$green-light-2};      /* Verde claro para cards/headers */
+  --bg3: #{$green-medium};       /* Verde médio para hover states */
+  --card: #{$green-light-2};     /* Verde claro para cards */
+  --hover: #{$green-medium};     /* Verde médio para hover */
 
-  /* Primary azul */
-  --blue: #1976D2;         /* Azul primário para botões primários */
-  --blue-dark: #1565C0;    /* Azul escuro para hover de botões */
+  /* Primary verde (mantém nomes para compatibilidade com componentes existentes) */
+  --blue: #{$primary-green};     /* Verde primário para botões primários */
+  --blue-dark: #{$green-dark};   /* Verde escuro para hover de botões */
 
   /* Text */
-  --text: #0D47A1;         /* Azul muito escuro para texto padrão (contraste OK) */
-  --text-bright: #0D47A1;  /* Azul muito escuro para títulos e texto principal */
-  --muted: #5C8AB4;        /* Azul acinzentado para texto secundário/mutado */
+  --text: #{$green-dark};        /* Verde escuro para texto padrão (contraste OK) */
+  --text-bright: #{$green-dark}; /* Verde escuro para títulos e texto principal */
+  --muted: #{$green-muted};      /* Verde acinzentado para texto secundário/mutado */
 
   /* State */
-  --red: #EF4444;          /* Manter vermelho para erros */
-  --green: #10B981;        /* Verde para sucesso */
-  --yellow: #1976D2;       /* Azul de destaque para focus/checkbox/ícones */
+  --red: #EF4444;                /* Manter vermelho para erros */
+  --green: #10B981;              /* Verde para sucesso */
+  --yellow: #{$secondary-green}; /* Verde de destaque para focus/checkbox/ícones */
 
   /* Structure */
-  --border: #90CAF9;       /* Azul médio claro para bordas */
-  --radius: 6px;           /* Manter border-radius */
+  --border: #{$green-medium};    /* Verde médio claro para bordas */
+  --radius: 6px;                 /* Manter border-radius */
 
-  /* Paleta de cores azul (spec US-144) */
-  --color-blue-light: #E3F2FD;
-  --color-blue-medium: #1976D2;
-  --color-blue-dark: #1565C0;
-  --color-blue-primary: #1976D2;
+  /* Paleta de cores verde (spec US-139) */
+  --color-green-light: #{$green-light};
+  --color-green-medium: #{$primary-green};
+  --color-green-dark: #{$green-dark};
+  --color-green-primary: #{$primary-green};
 }
 
 body {
@@ -192,7 +201,7 @@ input, button, textarea { font-family: inherit; }
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    .material-icons-round { font-size: 14px; color: #0A1628; display: none; }
+    .material-icons-round { font-size: 14px; color: #fff; display: none; }
     &:hover { border-color: var(--yellow); }
     &.checked {
       background: var(--yellow);
