@@ -1,47 +1,45 @@
-# US-144 — Azul (Especificação Técnica)
+# Spec — US-144: Azul
 
-## Contexto Técnico
-Implementação de tema azul na aplicação React com atualização do favicon e título da página.
+## Problema
+A aplicacao nao possui uma identidade visual coesa. Os usuarios percebem inconsistencia de cores entre os componentes, o que prejudica a experiencia visual e a sensacao de produto acabado.
 
-## Arquivos a Modificar
+## Objetivo
+Aplicar um tema de cor azul de forma consistente em toda a aplicacao, incluindo backgrounds, componentes, titulo da aba do navegador e favicon.
 
-### 1. Frontend Styles
-**Arquivo:** `frontend/src/styles.scss`
-- Definir variáveis CSS para paleta azul:
-  - `--color-blue-light`: #E3F2FD (azul claro)
-  - `--color-blue-medium`: #1976D2 (azul médio)
-  - `--color-blue-dark`: #1565C0 (azul escuro)
-  - `--color-blue-primary`: #1976D2 (cor primária)
-- Aplicar cores de fundo aos elementos principais (body, containers, componentes)
-- Manter contraste mínimo de 4.5:1 para textos (WCAG AA)
+## Requisitos Funcionais
+1. Todos os fundos de paginas e componentes devem utilizar variacoes de azul
+2. O titulo exibido na aba do navegador deve ser "Azul"
+3. O favicon exibido na aba do navegador deve ser em tom azul
+4. A paleta azul deve ser aplicada de forma uniforme em todas as paginas existentes (login e todos)
 
-### 2. HTML Title
-**Arquivo:** `frontend/index.html`
-- Atualizar tag `<title>` para "Azul"
+## Fluxo do Usuario
+1. Usuario acessa a aplicacao pela URL
+2. Sistema exibe toda a interface com paleta de cores azul em backgrounds e componentes
+3. Usuario visualiza o titulo "Azul" na aba do navegador
+4. Usuario visualiza o favicon em tom azul na aba do navegador
 
-### 3. Favicon
-**Arquivo:** `frontend/public/favicon.ico` (ou similar)
-- Gerar/atualizar favicon em tom azul
-- Alternativa: utilizar SVG inline em `frontend/index.html` se preferir
+## Criterios de Aceitacao
+- [ ] Todos os fundos de componentes utilizam variacoes de azul
+- [ ] Titulo da aba do navegador exibe "Azul"
+- [ ] Favicon azul esta configurado e visivel na aba do navegador
+- [ ] Paleta de cores azul e aplicada consistentemente em todas as paginas (login e todos/board)
+- [ ] Texto mantem legibilidade sobre fundos azuis (contraste minimo WCAG AA — ratio 4.5:1)
+- [ ] Layout responsivo funciona corretamente com o tema azul em mobile, tablet e desktop
 
-## Componentes Afetados
-- Layout principal (background)
-- Cards/containers
-- Headers/footers
-- Botões (se houver elementos de fundo)
-- Inputs/formulários
+## Escopo Tecnico
+- Backend necessario: nao
+- Frontend necessario: sim
 
-## Fluxo de Trabalho
-1. Definir variáveis CSS/SCSS de cores azuis
-2. Aplicar variáveis aos seletores de background existentes
-3. Atualizar título HTML
-4. Gerar/atualizar favicon
-5. Validar em browser (contraste, renderização)
-6. Testar em diferentes resoluções (responsive)
+## Suposicoes
+- A paleta azul sera aplicada via variaveis CSS/SCSS globais para garantir consistencia
+- Favicon pode ser definido como SVG inline no HTML em vez de arquivo .ico separado
+- O titulo da pagina e gerenciado diretamente via tag `<title>` no HTML
+- Cores de estado (erro em vermelho, sucesso em verde) sao mantidas para nao prejudicar usabilidade
+- A mudanca e puramente visual: nenhuma funcionalidade ou estrutura de layout deve ser alterada
 
-## Validação
-- CSS valida sem erros de sintaxe
-- Favicon exibe corretamente em navegador
-- Title visível em aba do navegador
-- Cores aplicadas em todos os componentes visíveis
-- Sem quebra de funcionalidade existente
+## Fora do Escopo
+- Alterar tipografia, fontes ou espacamentos
+- Modificar estrutura ou layout dos componentes
+- Adicionar novos componentes ou funcionalidades
+- Alterar funcionalidades existentes (CRUD de todos, autenticacao, kanban)
+- Suporte a modo escuro ou troca de tema dinamica
