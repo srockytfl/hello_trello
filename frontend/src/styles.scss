@@ -1,30 +1,36 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — verde em gradação */
-  --bg: #F1F8F4;           /* Verde muito claro para background principal */
-  --bg2: #DCF0E4;          /* Verde claro para cards/headers */
-  --bg3: #A8D5B5;          /* Verde médio para hover states */
-  --card: #DCF0E4;         /* Verde claro para cards */
-  --hover: #A8D5B5;        /* Verde médio para hover */
+  /* Backgrounds — azul em gradação */
+  --bg: #E3F2FD;           /* Azul muito claro para background principal */
+  --bg2: #BBDEFB;          /* Azul claro para cards/headers */
+  --bg3: #90CAF9;          /* Azul médio para hover states */
+  --card: #BBDEFB;         /* Azul claro para cards */
+  --hover: #90CAF9;        /* Azul médio para hover */
 
-  /* Primary verde */
-  --blue: #2E7D32;         /* Verde primário para botões primários */
-  --blue-dark: #1B5E20;    /* Verde escuro para hover de botões */
+  /* Primary azul */
+  --blue: #1976D2;         /* Azul primário para botões primários */
+  --blue-dark: #1565C0;    /* Azul escuro para hover de botões */
 
   /* Text */
-  --text: #1B5E20;         /* Verde muito escuro para texto padrão (contraste OK) */
-  --text-bright: #1B5E20;  /* Verde muito escuro para títulos e texto principal */
-  --muted: #5A8A65;        /* Verde acinzentado para texto secundário/mutado */
+  --text: #0D47A1;         /* Azul muito escuro para texto padrão (contraste OK) */
+  --text-bright: #0D47A1;  /* Azul muito escuro para títulos e texto principal */
+  --muted: #5C8AB4;        /* Azul acinzentado para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;          /* Manter vermelho para erros */
   --green: #10B981;        /* Verde para sucesso */
-  --yellow: #388E3C;       /* Verde de destaque para focus/checkbox/ícones */
+  --yellow: #1976D2;       /* Azul de destaque para focus/checkbox/ícones */
 
   /* Structure */
-  --border: #A8D5B5;       /* Verde médio claro para bordas */
+  --border: #90CAF9;       /* Azul médio claro para bordas */
   --radius: 6px;           /* Manter border-radius */
+
+  /* Paleta de cores azul (spec US-144) */
+  --color-blue-light: #E3F2FD;
+  --color-blue-medium: #1976D2;
+  --color-blue-dark: #1565C0;
+  --color-blue-primary: #1976D2;
 }
 
 body {

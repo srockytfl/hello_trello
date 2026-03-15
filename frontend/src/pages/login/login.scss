@@ -15,7 +15,7 @@
 
 .login-brand {
   flex: 0 0 45%;
-  background: linear-gradient(140deg, #4CAF50 0%, #2E7D32 60%, #1B5E20 100%);
+  background: linear-gradient(140deg, #42A5F5 0%, #1976D2 60%, #1565C0 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,7 +252,7 @@
 
   &:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.12);
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
   }
 
   &:disabled {
