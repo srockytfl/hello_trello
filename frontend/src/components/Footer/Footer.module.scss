@@ -1,8 +1,11 @@
 .footer {
-  flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   background: var(--bg2);
   border-top: 1px solid var(--border);
-  margin-top: auto;
 
   &__container {
     max-width: 1200px;
