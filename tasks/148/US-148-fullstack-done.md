@@ -2,14 +2,14 @@
 
 ## Resumo
 
-História de usuário para tornar o footer fixo no rodapé da tela e atualizar a mensagem com "powered by Fusion AI".
+Atualização do footer para exibir a data atual dinamicamente e remover o texto "hello_trello".
 
 ## Critérios Atendidos
 
-1. ✅ Footer fixo na parte inferior da tela (independente do scroll)
-2. ✅ Mensagem atualizada para incluir "powered by Fusion AI"
-3. ✅ Footer responsivo (mantido, com media query para mobile)
-4. ✅ Conteúdo da página não sobreposto pelo footer fixo
+1. ✅ A data atual é exibida no footer (gerada dinamicamente no cliente via `new Date()`)
+2. ✅ O texto "hello_trello" foi removido do footer
+3. ✅ A data é atualizada dinamicamente — reflete sempre a data do dia em que a página é acessada
+4. ✅ O layout do footer permanece bem formatado (nenhuma alteração de estilo necessária)
 
 ---
 
@@ -19,20 +19,16 @@ História de usuário para tornar o footer fixo no rodapé da tela e atualizar a
 
 | Arquivo | Alteração |
 |---|---|
-| `frontend/src/components/Footer/Footer.tsx` | Texto atualizado: `© 2026 hello_trello — powered by Fusion AI` |
-| `frontend/src/components/Footer/Footer.module.scss` | Adicionado `position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;`; removido `flex-shrink: 0; margin-top: auto;` |
-| `frontend/src/styles.scss` | Adicionado `--footer-height: 54px` em `:root`; adicionado `padding-bottom: var(--footer-height)` ao `body` para evitar sobreposição de conteúdo |
-| `frontend/src/pages/board.scss` | `.board-page` height: `calc(100vh - var(--footer-height))`; `.board-column` max-height: `calc(100vh - 92px - var(--footer-height))` para garantir que o board kanban não fique oculto atrás do footer |
+| `frontend/src/components/Footer/Footer.tsx` | Removido "hello_trello" do texto; adicionada data dinâmica com `new Date().toLocaleDateString('pt-BR')` |
 
 ### Backend
 
-Nenhuma alteração necessária — a issue é puramente de UI/CSS.
+Nenhuma alteração necessária — a data é gerada no cliente.
 
 ---
 
 ## Detalhes Técnicos
 
-- **`position: fixed`** com `bottom: 0; left: 0; right: 0; z-index: 100` garante que o footer fique sempre visível no rodapé.
-- **`--footer-height: 54px`** é uma variável CSS global usada para ajustar os layouts que dependem da altura do viewport (`100vh`), evitando que conteúdo fique escondido atrás do footer.
-- **`body { padding-bottom: var(--footer-height) }`** garante que páginas com scroll (ex: login em mobile) tenham espaço reservado abaixo do último elemento.
-- **Board Kanban** (`board.scss`): ajustado para `height: calc(100vh - var(--footer-height))` e `max-height` das colunas corrigido — o board usa `overflow: hidden` e altura fixa, portanto precisa de ajuste explícito.
+- **Data dinâmica:** `new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })` formata a data como `DD/MM/AAAA` em português brasileiro.
+- **Texto final do footer:** `powered by Fusion AI — DD/MM/AAAA`
+- Nenhuma dependência nova foi adicionada.
