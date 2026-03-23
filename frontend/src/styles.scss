@@ -34,6 +34,7 @@ $green-muted:         #5A8A65;   // Verde acinzentado para texto secundário
   /* Structure */
   --border: #{$green-medium};    /* Verde médio claro para bordas */
   --radius: 6px;                 /* Manter border-radius */
+  --footer-height: 54px;         /* Altura do footer fixo */
 
   /* Paleta de cores verde (spec US-139) */
   --color-green-light: #{$green-light};
@@ -47,6 +48,7 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
+  padding-bottom: var(--footer-height);
 }
 
 input, button, textarea { font-family: inherit; }
