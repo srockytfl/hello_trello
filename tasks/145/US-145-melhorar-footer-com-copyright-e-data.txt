@@ -1,0 +1,41 @@
+US-145 — Melhorar footer com copyright e Data
+===============================================
+
+CONTEXTO
+--------
+O footer do aplicativo precisa ser aprimorado para exibir informações de copyright junto com a data atual. Isso melhora a credibilidade e mantém o rodapé sempre atualizado com a data do ano.
+
+HISTORIA
+--------
+Como visitante,
+quero ver a data atual no footer junto com o copyright,
+para ter informações atualizadas sobre a data de publicação/atualização do site.
+
+CRITERIOS DE ACEITACAO
+-----------------------
+1. O footer exibe o texto de copyright corretamente
+2. O footer exibe a data atual (ano) junto ao copyright
+3. A data é atualizada automaticamente a cada ano
+4. O layout do footer permanece responsivo em dispositivos móveis
+5. O copyright e data são alinhados de forma legível
+
+REGRAS TECNICAS
+---------------
+- Seguir convencoes do CLAUDE.md
+- Usar componentes existentes do footer
+- Data deve ser gerada dinamicamente (não hardcoded)
+- Sem over-engineering
+
+CRITERIOS DE TESTE (QA)
+------------------------
+E2E:
+  - Verificar que o footer exibe copyright + data no desktop
+  - Verificar que o footer exibe copyright + data no mobile
+  - Verificar que a data está formatada corretamente
+  - Verificar que a data atualiza quando o ano mudar
+
+FORA DO ESCOPO
+--------------
+- Mudar o design ou cores do footer
+- Adicionar links extras além do copyright
+- Internacionalização de datas para múltiplos idiomas
