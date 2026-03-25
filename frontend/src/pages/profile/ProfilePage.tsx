@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateProfile } from '../../services/api'
 import type { UserProfile } from '../../types'
+import UserMenuPopup from '../../components/UserMenuPopup'
 import '../board.scss'
 import './profile.scss'
 
@@ -23,6 +24,7 @@ export default function ProfilePage() {
   const [loadError, setLoadError] = useState('')
   const [saveError, setSaveError] = useState('')
   const [saving, setSaving] = useState(false)
+  const [popupOpen, setPopupOpen] = useState(false)
 
   function loadFromStorage() {
     const raw = localStorage.getItem('user')
@@ -80,9 +82,16 @@ export default function ProfilePage() {
       </div>
       <div className="board-header__right">
         {profile && (
-          <div className="board-user">
-            <span className="board-avatar">{profile.name.charAt(0).toUpperCase()}</span>
-            <span className="board-user__name">{profile.name}</span>
+          <div className="board-user-wrap">
+            <div
+              className="board-user"
+              onClick={() => setPopupOpen(o => !o)}
+              title="Menu do usuário"
+            >
+              <span className="board-avatar">{profile.name.charAt(0).toUpperCase()}</span>
+              <span className="board-user__name">{profile.name}</span>
+            </div>
+            {popupOpen && <UserMenuPopup onClose={() => setPopupOpen(false)} />}
           </div>
         )}
       </div>

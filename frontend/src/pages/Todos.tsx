@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { getTodos, addTodo, updateTodo, deleteTodo } from '../services/api'
 import type { Todo, TodoStatus } from '../types'
+import UserMenuPopup from '../components/UserMenuPopup'
 import './board.scss'
 
 const COLUMNS: { key: TodoStatus; label: string; color: string }[] = [
@@ -11,11 +11,11 @@ const COLUMNS: { key: TodoStatus; label: string; color: string }[] = [
 ]
 
 export default function Todos() {
-  const navigate = useNavigate()
   const [todos, setTodos] = useState<Todo[]>([])
   const [addingIn, setAddingIn] = useState<TodoStatus | null>(null)
   const [newText, setNewText] = useState('')
   const [dragId, setDragId] = useState<number | null>(null)
+  const [popupOpen, setPopupOpen] = useState(false)
 
   useEffect(() => {
     load()
@@ -87,9 +87,16 @@ export default function Todos() {
               />
             </div>
           </div>
-          <div className="board-user" onClick={() => navigate('/profile')} title="Ver perfil">
-            <span className="board-avatar">{getUser().charAt(0).toUpperCase()}</span>
-            <span className="board-user__name">{getUser()}</span>
+          <div className="board-user-wrap">
+            <div
+              className="board-user"
+              onClick={() => setPopupOpen(o => !o)}
+              title="Menu do usuário"
+            >
+              <span className="board-avatar">{getUser().charAt(0).toUpperCase()}</span>
+              <span className="board-user__name">{getUser()}</span>
+            </div>
+            {popupOpen && <UserMenuPopup onClose={() => setPopupOpen(false)} />}
           </div>
         </div>
       </header>

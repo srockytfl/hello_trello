@@ -1,38 +1,38 @@
-// ── Sass Variables — Paleta Roxa ─────────────────────────────────────────────
-$primary-purple:      #6D28D9;   // Roxo primário para botões e destaques
-$secondary-purple:    #7C3AED;   // Roxo secundário para ícones e focus
-$purple-dark:         #4C1D95;   // Roxo escuro para hover de botões e texto
-$purple-light:        #F5F3FF;   // Roxo muito claro para background principal
-$purple-light-2:      #EDE9FE;   // Roxo claro para cards e headers
-$purple-medium:       #C4B5FD;   // Roxo médio para hover states e bordas
-$purple-muted:        #7C6FAD;   // Roxo acinzentado para texto secundário
+// ── Sass Variables — Paleta Laranja ──────────────────────────────────────────
+$primary-orange:      #EA580C;   // Laranja primário para botões e destaques
+$secondary-orange:    #F97316;   // Laranja secundário para ícones e focus
+$orange-dark:         #9A3412;   // Laranja escuro para hover de botões e sidebar
+$orange-light:        #FFF7ED;   // Laranja muito claro para background principal
+$orange-light-2:      #FFEDD5;   // Laranja claro para cards e headers
+$orange-medium:       #FED7AA;   // Laranja médio para hover states e bordas
+$orange-muted:        #B45309;   // Laranja acinzentado para texto secundário
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — roxo em gradação */
-  --bg: #{$purple-light};        /* Roxo muito claro para background principal */
-  --bg2: #{$purple-light-2};     /* Roxo claro para cards/headers */
-  --bg3: #{$purple-medium};      /* Roxo médio para hover states */
-  --card: #{$purple-light-2};    /* Roxo claro para cards */
-  --hover: #{$purple-medium};    /* Roxo médio para hover */
+  /* Backgrounds — laranja em gradação */
+  --bg: #{$orange-light};        /* Laranja muito claro para background principal */
+  --bg2: #{$orange-light-2};     /* Laranja claro para cards/headers */
+  --bg3: #{$orange-medium};      /* Laranja médio para hover states */
+  --card: #{$orange-light-2};    /* Laranja claro para cards */
+  --hover: #{$orange-medium};    /* Laranja médio para hover */
 
-  /* Primary roxo */
-  --blue: #{$primary-purple};    /* Roxo primário para botões primários */
-  --blue-dark: #{$purple-dark};  /* Roxo escuro para hover de botões */
+  /* Primary laranja */
+  --blue: #{$primary-orange};    /* Laranja primário para botões primários */
+  --blue-dark: #{$orange-dark};  /* Laranja escuro para hover de botões */
 
   /* Text */
-  --text: #{$purple-dark};       /* Roxo escuro para texto padrão */
-  --text-bright: #{$purple-dark};/* Roxo escuro para títulos e texto principal */
-  --muted: #{$purple-muted};     /* Roxo acinzentado para texto secundário/mutado */
+  --text: #7C2D12;               /* Laranja escuro para texto padrão */
+  --text-bright: #7C2D12;        /* Laranja escuro para títulos e texto principal */
+  --muted: #{$orange-muted};     /* Laranja acinzentado para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;                /* Manter vermelho para erros */
   --green: #10B981;              /* Verde para sucesso */
-  --yellow: #{$secondary-purple};/* Roxo de destaque para focus/checkbox/ícones */
+  --yellow: #{$secondary-orange};/* Laranja de destaque para focus/checkbox/ícones */
 
   /* Structure */
-  --border: #{$purple-medium};   /* Roxo médio claro para bordas */
+  --border: #{$orange-medium};   /* Laranja médio claro para bordas */
   --radius: 6px;
   --footer-height: 54px;
   --sidebar-width: 64px;
