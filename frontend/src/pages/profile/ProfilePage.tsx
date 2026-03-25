@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updateProfile } from '../../services/api'
 import type { UserProfile } from '../../types'
+import '../board.scss'
 import './profile.scss'
 
 export function getInitials(name: string): string {
@@ -72,32 +73,78 @@ export default function ProfilePage() {
     }
   }
 
+  function logout() {
+    localStorage.removeItem('user')
+    navigate('/login')
+  }
+
+  const header = (
+    <header className="board-header">
+      <div className="board-header__left">
+        <div className="board-logo" onClick={() => navigate('/todos')} style={{ cursor: 'pointer' }}>
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect width="40" height="40" rx="8" fill="rgba(255,255,255,0.2)" />
+            <rect x="6" y="6" width="11" height="26" rx="3" fill="white" />
+            <rect x="23" y="6" width="11" height="17" rx="3" fill="white" />
+          </svg>
+          <span className="board-logo__name">FusionRun</span>
+        </div>
+        <span className="board-separator" aria-hidden="true">/</span>
+        <span className="board-project-name">Meu Perfil</span>
+      </div>
+      <div className="board-header__right">
+        {profile && (
+          <div className="board-user">
+            <span className="board-avatar">{profile.name.charAt(0).toUpperCase()}</span>
+            <span className="board-user__name">{profile.name}</span>
+          </div>
+        )}
+        <button className="board-btn-logout" onClick={logout} title="Sair">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+            <path d="M10 11l3-3-3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M13 8H6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+          </svg>
+          Sair
+        </button>
+      </div>
+    </header>
+  )
+
   if (loadError) {
     return (
-      <main className="profile-page">
-        <div className="profile-error" role="alert">
-          <p>{loadError}</p>
-          <button className="profile-btn profile-btn--primary" onClick={loadFromStorage}>
-            Tentar novamente
-          </button>
-        </div>
-      </main>
+      <div className="board-page">
+        {header}
+        <main className="profile-page">
+          <div className="profile-error" role="alert">
+            <p>{loadError}</p>
+            <button className="profile-btn profile-btn--primary" onClick={loadFromStorage}>
+              Tentar novamente
+            </button>
+          </div>
+        </main>
+      </div>
     )
   }
 
   if (!profile) {
     return (
-      <main className="profile-page">
-        <div className="profile-loading" aria-label="Carregando perfil">
-          <span className="profile-spinner" aria-hidden="true" />
-          <span>Carregando...</span>
-        </div>
-      </main>
+      <div className="board-page">
+        {header}
+        <main className="profile-page">
+          <div className="profile-loading" aria-label="Carregando perfil">
+            <span className="profile-spinner" aria-hidden="true" />
+            <span>Carregando...</span>
+          </div>
+        </main>
+      </div>
     )
   }
 
   return (
-    <main className="profile-page">
+    <div className="board-page">
+      {header}
+      <main className="profile-page">
       <div className="profile-card">
         <div className="profile-card__header">
           <h1 className="profile-card__title">Meu Perfil</h1>
@@ -193,5 +240,6 @@ export default function ProfilePage() {
         )}
       </div>
     </main>
+    </div>
   )
 }

@@ -58,6 +58,48 @@ cd server && node index.js
 - **URLs** — nunca hardcodar; usar variáveis de ambiente para API endpoint
 - **Validação** — apenas nos boundaries (controllers Express, formulários React)
 
+## Template de Tela (OBRIGATÓRIO)
+
+**Toda página do app DEVE seguir este template.** Sem exceção — o PO, Tech Spec e Code devem garantir isso.
+
+### Estrutura obrigatória
+
+```tsx
+<div className="board-page">          {/* wrapper raiz — flex column, height 100vh */}
+  <header className="board-header">   {/* header fixo do app */}
+    <div className="board-header__left">
+      {/* logo FusionRun clicável → navega para /todos */}
+      {/* separador "/" */}
+      {/* nome da página atual */}
+    </div>
+    <div className="board-header__right">
+      {/* avatar + nome do usuário (clicável → /profile) */}
+      {/* botão Sair */}
+    </div>
+  </header>
+  <main className="[page]-page">      {/* conteúdo da página */}
+    ...
+  </main>
+</div>
+```
+
+### Referência de implementação
+
+- **CSS do header:** `frontend/src/pages/board.scss` (classes `.board-header`, `.board-logo`, `.board-user`, `.board-btn-logout`)
+- **Exemplo completo:** `frontend/src/pages/Todos.tsx` — copiar o bloco `<header>` como base
+- **Rota `/todos`** é o ponto de entrada após login — o logo sempre volta para lá
+
+### Checklist para qualquer nova tela
+
+- [ ] Usa `<div className="board-page">` como wrapper raiz
+- [ ] Tem `<header className="board-header">` com logo + nome da página + avatar + botão Sair
+- [ ] Logo navega para `/todos` ao clicar
+- [ ] Avatar do usuário navega para `/profile` ao clicar
+- [ ] Importa `../board.scss` (ou caminho relativo correto) para herdar os estilos do header
+- [ ] Tem SCSS próprio para o conteúdo interno da página
+
+---
+
 ## Boas Práticas
 
 - Types TypeScript sempre atualizados em `frontend/src/types/`

@@ -101,7 +101,7 @@ export default function Todos() {
               />
             </div>
           </div>
-          <div className="board-user">
+          <div className="board-user" onClick={() => navigate('/profile')} title="Ver perfil">
             <span className="board-avatar">{getUser().charAt(0).toUpperCase()}</span>
             <span className="board-user__name">{getUser()}</span>
           </div>
