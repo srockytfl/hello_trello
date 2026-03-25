@@ -47,6 +47,11 @@ app.post('/api/register', (req, res) => {
   res.status(201).json({ token: 'fake-token', user: { name: newUser.name, username: newUser.username } });
 });
 
+app.post('/api/forgot-password', (req, res) => {
+  // Always returns 200 — never reveal whether username exists
+  res.json({ message: 'Se esse usuário existir em nossa base, você receberá instruções de recuperação.' });
+});
+
 // --- Profile ---
 app.patch('/api/profile', (req, res) => {
   const { name, username } = req.body;

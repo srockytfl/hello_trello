@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar/Sidebar'
 
 const Login = lazy(() => import('./pages/login/LoginPage'))
 const Register = lazy(() => import('./pages/register/RegisterPage'))
+const ForgotPassword = lazy(() => import('./pages/forgot-password/ForgotPasswordPage'))
 const Todos = lazy(() => import('./pages/Todos'))
 const Profile = lazy(() => import('./pages/profile/ProfilePage'))
 
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/todos" element={<RequireAuth><AuthLayout><Todos /></AuthLayout></RequireAuth>} />
             <Route path="/profile" element={<RequireAuth><AuthLayout><Profile /></AuthLayout></RequireAuth>} />
           </Routes>

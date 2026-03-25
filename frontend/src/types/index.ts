@@ -41,3 +41,7 @@ export interface RegisterResponse {
     username: string;
   };
 }
+
+export interface ForgotPasswordResponse {
+  message: string;
+}

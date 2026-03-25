@@ -65,12 +65,6 @@ export default function LoginPage() {
     }
   }
 
-  function handleForgotPassword(e: React.MouseEvent) {
-    e.preventDefault()
-    // Fora do escopo — exibir aviso amigável
-    alert('Recuperação de senha não disponível no momento.')
-  }
-
   return (
     <main className="login-page" role="main">
       {/* Painel esquerdo — apresentação da marca */}
@@ -160,14 +154,13 @@ export default function LoginPage() {
                 <label htmlFor="password" className="field-label">
                   Senha
                 </label>
-                <a
-                  href="#"
+                <Link
+                  to="/forgot-password"
                   className="forgot-link"
-                  onClick={handleForgotPassword}
                   aria-label="Esqueci minha senha"
                 >
                   Esqueci minha senha
-                </a>
+                </Link>
               </div>
               <div className="field-input-wrapper">
                 <span className="field-icon" aria-hidden="true">
