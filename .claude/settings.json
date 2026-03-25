@@ -5,7 +5,8 @@
       "mcp__atlassian__getJiraIssue",
       "mcp__atlassian__addCommentToJiraIssue",
       "Edit(/.claude/skills/fusion-stitch/**)",
-      "Edit(/.claude/skills/fusion-figma/**)"
+      "Edit(/.claude/skills/fusion-figma/**)",
+      "Edit(/.claude/skills/fusion-po/**)"
     ]
   }
 }
