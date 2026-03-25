@@ -3,7 +3,7 @@ name: fusion-tech-spec
 description: >-
   Atua como Tech Lead: gera a especificação técnica completa de uma feature
   (component map, data contracts, estados, regras de negócio e test plan)
-  baseada nos AC do Jira e no design do Figma. Publica no Jira após confirmação.
+  baseada nos AC do Jira e no design do Figma. Publica no Jira diretamente sem pedir confirmação.
 ---
 
 # Skill: Fusion Tech Spec

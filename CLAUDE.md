@@ -132,17 +132,16 @@ O projeto usa skills do Claude Code para o ciclo completo de entrega.
 /fusion-feature-builder PROJ-123
 ```
 
-Orquestra as 4 fases em sequência, pausando em cada gate para confirmação:
+Orquestra as 4 fases em sequência **sem pausas** — executa tudo automaticamente até o código estar escrito.
 
 ```
 [1] Fusion PO        → refina AC no Jira
-    ↓ GATE: confirmar AC
+    ↓ (automático)
 [2] Fusion Stitch    → cria screens por estado
-    ↓ GATE: confirmar design
+    ↓ (automático)
 [3] Fusion Tech Spec → gera spec técnica no Jira
-    ↓ GATE: confirmar spec
-[4] Fusion Code      → gera o código
-    ↓ GATE: confirmar código → arquivos escritos
+    ↓ (automático)
+[4] Fusion Code      → escreve os arquivos no projeto
 ```
 
 ### Fases isoladas
@@ -156,7 +155,7 @@ Orquestra as 4 fases em sequência, pausando em cada gate para confirmação:
 
 ### Regras do pipeline
 
-- Nunca pular uma fase sem confirmação explícita
+- Executar todas as fases em sequência sem pedir confirmação humana
+- Publicar no Jira e escrever arquivos diretamente — sem gates
 - Cada fase depende da anterior — não gerar código sem tech spec no Jira
-- Nunca publicar no Jira ou escrever arquivos sem gate de confirmação cumprido
-- Em caso de dúvida em qualquer fase, parar e perguntar ao dev
+- Perguntas ao dev: máximo 1 rodada no início, só se faltar info impossível de inferir

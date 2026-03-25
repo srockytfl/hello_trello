@@ -3,7 +3,7 @@ name: fusion-stitch
 description: >-
   Atua como UI Designer usando Google Stitch: baseado nos acceptance criteria
   refinados de um ticket Jira, cria screens no Stitch para cada estado da tela
-  seguindo o design system existente. Salva somente após confirmação do dev.
+  seguindo o design system existente. Salva diretamente sem pedir confirmação.
 ---
 
 # Skill: Fusion Stitch

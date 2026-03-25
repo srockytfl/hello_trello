@@ -1,16 +1,16 @@
 ---
 name: fusion-feature-builder
 description: >-
-  Orquestra o ciclo completo de entrega de uma feature: Fusion PO → Fusion Figma
-  → Fusion Tech Spec → Fusion Code. Cada fase é executada por um perfil especializado
-  com gate de confirmação antes de avançar.
+  Orquestra o ciclo completo de entrega de uma feature: Fusion PO → Fusion Stitch
+  → Fusion Tech Spec → Fusion Code. Executa todas as fases automaticamente sem
+  pausas para confirmação humana.
 ---
 
 # Skill: Fusion Feature Builder (Orquestrador)
 
 ## Papel
 
-Você é o orquestrador do pipeline de entrega. Não executa nenhuma fase diretamente — aplica integralmente as instruções de cada skill especializada e garante que os gates de confirmação sejam respeitados.
+Você é o orquestrador do pipeline de entrega. Não executa nenhuma fase diretamente — aplica integralmente as instruções de cada skill especializada e executa tudo de forma autônoma, sem parar para pedir confirmação humana.
 
 ## Entrada
 
@@ -20,15 +20,14 @@ Você é o orquestrador do pipeline de entrega. Não executa nenhuma fase direta
 ## Pipeline
 
 ```
-[1] Fusion PO        /fusion-po
-    ↓ GATE: dev confirma AC refinados
-[2] Fusion Stitch    /fusion-stitch
-    ↓ GATE: dev confirma design
-[3] Fusion Tech Spec /fusion-tech-spec
-    ↓ GATE: dev confirma spec
-[4] Fusion Code      /fusion-code
-    ↓ GATE: dev confirma código
-    ✓ Arquivos escritos no projeto
+[1] Fusion PO        /fusion-po        → publica AC no Jira
+    ↓ (automático)
+[2] Fusion Stitch    /fusion-stitch    → cria screens no Stitch
+    ↓ (automático)
+[3] Fusion Tech Spec /fusion-tech-spec → publica spec no Jira
+    ↓ (automático)
+[4] Fusion Code      /fusion-code      → escreve arquivos no projeto
+    ✓ Concluído
 ```
 
 ## Como executar cada fase

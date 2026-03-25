@@ -3,7 +3,7 @@ name: fusion-figma
 description: >-
   Atua como UI Designer: baseado nos acceptance criteria refinados de um ticket
   Jira, cria frames no Figma para cada estado da tela seguindo o design system
-  existente. Salva no Figma somente após confirmação do dev.
+  existente. Salva no Figma diretamente sem pedir confirmação.
 ---
 
 # Skill: Fusion Figma

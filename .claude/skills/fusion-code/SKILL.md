@@ -3,7 +3,7 @@ name: fusion-code
 description: >-
   Atua como Developer: gera o código real da feature seguindo a tech spec do
   Jira e o design do Figma, respeitando as convenções do repositório local.
-  Escreve os arquivos somente após confirmação explícita do dev.
+  Escreve os arquivos diretamente sem pedir confirmação.
 ---
 
 # Skill: Fusion Code
