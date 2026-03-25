@@ -1,0 +1,23 @@
+// ── Register Page ──────────────────────────────────────────────────────────
+// Reutiliza todas as classes de login.scss — este arquivo contém apenas
+// os overrides específicos da tela de cadastro.
+
+.register-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+
+  a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+
+    &:hover {
+      color: var(--blue-dark);
+      text-decoration: underline;
+    }
+  }
+}

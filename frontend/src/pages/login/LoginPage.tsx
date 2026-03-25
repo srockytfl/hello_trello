@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { login } from '../../services/api'
 import './login.scss'
 
@@ -250,6 +250,10 @@ export default function LoginPage() {
 
           <p className="login-hint">
             Use <strong>admin</strong> / <strong>123</strong> para testar
+          </p>
+
+          <p className="login-hint" style={{ marginTop: 12 }}>
+            Não tem conta? <Link to="/register" style={{ color: 'var(--blue)', fontWeight: 500, textDecoration: 'none' }}>Criar conta</Link>
           </p>
         </div>
       </section>
