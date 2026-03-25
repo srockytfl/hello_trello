@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Footer from './components/Footer/Footer'
+import Sidebar from './components/Sidebar/Sidebar'
 
 const Login = lazy(() => import('./pages/login/LoginPage'))
 const Todos = lazy(() => import('./pages/Todos'))
@@ -11,6 +12,15 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }
 
+function AuthLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <Sidebar />
+      {children}
+    </>
+  )
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -19,8 +29,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/todos" element={<RequireAuth><Todos /></RequireAuth>} />
-            <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+            <Route path="/todos" element={<RequireAuth><AuthLayout><Todos /></AuthLayout></RequireAuth>} />
+            <Route path="/profile" element={<RequireAuth><AuthLayout><Profile /></AuthLayout></RequireAuth>} />
           </Routes>
         </Suspense>
         <Footer />

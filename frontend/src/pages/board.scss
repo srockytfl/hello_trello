@@ -6,6 +6,11 @@
   height: calc(100vh - var(--footer-height));
   background: var(--bg);
   overflow: hidden;
+  margin-left: var(--sidebar-width);
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
 }
 
 // ── Header ───────────────────────────────────────────────────────────────────

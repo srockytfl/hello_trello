@@ -73,23 +73,9 @@ export default function ProfilePage() {
     }
   }
 
-  function logout() {
-    localStorage.removeItem('user')
-    navigate('/login')
-  }
-
   const header = (
     <header className="board-header">
       <div className="board-header__left">
-        <div className="board-logo" onClick={() => navigate('/todos')} style={{ cursor: 'pointer' }}>
-          <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <rect width="40" height="40" rx="8" fill="rgba(255,255,255,0.2)" />
-            <rect x="6" y="6" width="11" height="26" rx="3" fill="white" />
-            <rect x="23" y="6" width="11" height="17" rx="3" fill="white" />
-          </svg>
-          <span className="board-logo__name">FusionRun</span>
-        </div>
-        <span className="board-separator" aria-hidden="true">/</span>
         <span className="board-project-name">Meu Perfil</span>
       </div>
       <div className="board-header__right">
@@ -99,14 +85,6 @@ export default function ProfilePage() {
             <span className="board-user__name">{profile.name}</span>
           </div>
         )}
-        <button className="board-btn-logout" onClick={logout} title="Sair">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-            <path d="M10 11l3-3-3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M13 8H6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
-          </svg>
-          Sair
-        </button>
       </div>
     </header>
   )

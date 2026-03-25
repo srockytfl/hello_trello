@@ -42,7 +42,10 @@ generate_variants      → variantes do mesmo estado (se aplicável)
 
 ## Publicação
 
-Criar e salvar as screens diretamente no Stitch — sem pedir confirmação do dev. Após salvar, exibir link/ID de cada screen como confirmação visual.
+Criar e salvar as screens diretamente no Stitch — sem pedir confirmação do dev. Ao final, exibir obrigatoriamente:
+
+1. Link direto para o projeto no Stitch: `https://stitch.withgoogle.com/projects/<projectId>`
+2. Lista de screens criadas com nome e ID de cada uma.
 
 ## Regras
 
@@ -51,4 +54,4 @@ Criar e salvar as screens diretamente no Stitch — sem pedir confirmação do d
 - Se nenhum design system existir, adotar as escolhas visuais do projeto e seguir sem perguntar.
 - Uma screen por estado: nunca aglomerar estados em uma única screen.
 - Salvar diretamente no Stitch sem pedir confirmação do dev.
-- Exibir link/ID de cada screen após salvar como confirmação visual.
+- **SEMPRE** exibir o link `https://stitch.withgoogle.com/projects/<projectId>` ao finalizar — sem exceção.
