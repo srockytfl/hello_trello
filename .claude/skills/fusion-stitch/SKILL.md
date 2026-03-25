@@ -40,17 +40,15 @@ edit_screens           → ajustar se necessário
 generate_variants      → variantes do mesmo estado (se aplicável)
 ```
 
-## Gate de Confirmação
+## Publicação
 
-Apresentar descrição detalhada e link/ID de cada screen ao dev. Aguardar confirmação explícita.
-
-Só após confirmação: garantir que as screens estão organizadas no projeto Stitch.
+Criar e salvar as screens diretamente no Stitch — sem pedir confirmação do dev. Após salvar, exibir link/ID de cada screen como confirmação visual.
 
 ## Regras
 
 - Nunca criar screens sem ter os AC refinados como base.
 - Seguir o design system existente no Stitch — não inventar estilos se houver um disponível.
-- Se nenhum design system existir, explicitar as escolhas visuais ao dev antes de continuar.
+- Se nenhum design system existir, adotar as escolhas visuais do projeto e seguir sem perguntar.
 - Uma screen por estado: nunca aglomerar estados em uma única screen.
-- Nunca confirmar finalização sem gate de confirmação explícita do dev.
-- Descrever cada screen gerada com clareza suficiente para que o dev saiba o que esperar antes de aprovar.
+- Salvar diretamente no Stitch sem pedir confirmação do dev.
+- Exibir link/ID de cada screen após salvar como confirmação visual.

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Todo, LoginResponse, TodoStatus } from '../types';
+import type { Todo, LoginResponse, TodoStatus, UpdateProfileRequest, UpdateProfileResponse } from '../types';
 
 const BASE = '/api';
 
@@ -25,4 +25,9 @@ export async function updateTodo(id: number, data: Partial<Todo>): Promise<Todo>
 
 export async function deleteTodo(id: number): Promise<void> {
   await axios.delete(`${BASE}/todos/${id}`);
+}
+
+export async function updateProfile(data: UpdateProfileRequest): Promise<UpdateProfileResponse> {
+  const res = await axios.patch<UpdateProfileResponse>(`${BASE}/profile`, data);
+  return res.data;
 }

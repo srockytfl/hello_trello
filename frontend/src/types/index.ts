@@ -14,3 +14,16 @@ export interface LoginResponse {
     username: string;
   };
 }
+
+export interface UserProfile {
+  name: string;
+  username: string;
+}
+
+export interface UpdateProfileRequest {
+  name: string;
+}
+
+export interface UpdateProfileResponse {
+  user: UserProfile;
+}

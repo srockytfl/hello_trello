@@ -62,11 +62,9 @@ Validações, condições e constraints derivadas dos AC.
 - **Integração:** fluxos críticos end-to-end
 - **Manuais:** roteiro de validação por estado
 
-## Gate de Confirmação
+## Publicação
 
-Apresentar a spec completa ao dev. Aguardar confirmação explícita.
-
-Só após confirmação: publicar como comentário no Jira.
+Publicar a spec completa imediatamente como comentário no Jira — sem pedir confirmação do dev.
 
 ## Formato do comentário no Jira
 
@@ -95,7 +93,7 @@ HIGH / MEDIUM / LOW
 ## Regras Anti-Alucinação
 
 - Nunca inventar componentes, serviços ou endpoints sem evidência no repositório.
-- Se um padrão não existir no código, declarar explicitamente e propor ao dev antes de adotar.
+- Se um padrão não existir no código, declarar a escolha adotada na própria spec.
 - Basear o component map na estrutura real do repositório, não em estruturas hipotéticas.
-- Nunca publicar sem confirmação explícita do dev.
+- Publicar diretamente no Jira sem pedir confirmação do dev.
 - Comentário no Jira sempre em português brasileiro.

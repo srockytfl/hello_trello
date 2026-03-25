@@ -29,6 +29,16 @@ app.post('/api/login', (req, res) => {
   res.status(401).json({ message: 'Credenciais inválidas' });
 });
 
+// --- Profile ---
+app.patch('/api/profile', (req, res) => {
+  const { name, username } = req.body;
+  if (!name || !name.trim()) {
+    return res.status(400).json({ message: 'Nome é obrigatório' });
+  }
+  const user = { name: name.trim(), username: username || 'admin' };
+  res.json({ user });
+});
+
 // --- Todos CRUD ---
 app.get('/api/todos', (req, res) => {
   res.json(todos);

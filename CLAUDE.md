@@ -72,6 +72,14 @@ cd server && node index.js
 
 ---
 
+## Jira
+
+- **MCP:** Atlassian MCP (use sempre para ler/comentar tickets)
+- **Projeto:** `LK` — https://rlecheta-gmail.atlassian.net/jira/software/projects/LK/
+- **Formato de ticket:** `LK-<número>` (ex: `LK-16`)
+
+---
+
 ## Squad Workflow (Skills)
 
 O projeto usa skills do Claude Code para o ciclo completo de entrega.

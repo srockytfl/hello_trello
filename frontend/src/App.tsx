@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer'
 
 const Login = lazy(() => import('./pages/login/LoginPage'))
 const Todos = lazy(() => import('./pages/Todos'))
+const Profile = lazy(() => import('./pages/profile/ProfilePage'))
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   if (!localStorage.getItem('user')) return <Navigate to="/login" replace />
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/todos" element={<RequireAuth><Todos /></RequireAuth>} />
+            <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
           </Routes>
         </Suspense>
         <Footer />

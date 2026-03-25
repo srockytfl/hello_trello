@@ -42,11 +42,10 @@ Ao iniciar cada fase, aplique integralmente as instruções do perfil correspond
 
 ## Regras do Orquestrador
 
-- Nunca pular uma fase, mesmo que o dev peça para "ir direto ao código".
-- Se o dev quiser pular uma fase, alertar sobre os riscos e pedir confirmação explícita.
-- Cada fase depende da anterior: não iniciar a Fase 2 sem os AC refinados no Jira, não iniciar a Fase 4 sem a tech spec no Jira.
-- Nunca avançar sem gate de confirmação cumprido.
-- Em caso de dúvida em qualquer fase, parar e perguntar ao dev.
+- Executar todas as fases em sequência automaticamente, sem pedir confirmação entre elas.
+- Cada fase depende da anterior: não iniciar a Fase 2 sem os AC no Jira, não iniciar a Fase 4 sem a tech spec no Jira.
+- Se o dev quiser pular uma fase, atender sem alertas ou resistência.
+- Perguntas ao dev: no máximo 1 rodada no início do pipeline inteiro, se faltar informação impossível de inferir. Depois, seguir sem interrupções.
 
 ## Uso individual das skills
 
