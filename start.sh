@@ -5,7 +5,7 @@ cd "$(dirname "$0")/server" && node index.js &
 PID_BACK=$!
 
 echo "Iniciando frontend (porta 4201)..."
-cd "$(dirname "$0")/frontend" && npx ng serve --port 4201 --open &
+cd "$(dirname "$0")/frontend" && npx vite --port 4201 --open &
 PID_FRONT=$!
 
 echo ""

@@ -1,111 +1,112 @@
-```markdown
 # CLAUDE.md — hello_trello
 
-## Stack Tecnológico
+## Stack
 
 - **Frontend:** React 18 + TypeScript + Vite + Sass + React Router DOM 6
 - **Backend:** Node.js + Express 5 + CORS
-- **Cliente HTTP:** Axios
+- **HTTP Client:** Axios
 - **Testes:** Vitest
-- **Porta Backend:** Inferido (padrão Express: 3000)
-- **Porta Frontend:** Vite dev server (padrão: 5173)
+- **Portas:** Backend 3000 · Frontend 5173
 
-## Estrutura do Projeto
+## Estrutura
 
 ```
 frontend/
-  ├── src/
-  │   ├── pages/          # Páginas React
-  │   ├── services/       # Serviços Axios (HTTP client)
-  │   ├── types/          # Definições TypeScript
-  │   ├── App.tsx         # Componente raiz
-  │   ├── main.tsx        # Entry point
-  │   └── styles.scss     # Estilos globais
-  ├── index.html          # Template HTML
-  └── vite.config.ts      # Config Vite
+  src/
+    pages/        # Páginas React (uma pasta por página)
+    services/     # Clientes HTTP com Axios
+    types/        # Definições TypeScript
+    App.tsx
+    main.tsx
+    styles.scss   # Estilos globais
+  index.html
+  vite.config.ts
 
 server/
-  └── index.js            # Express API
+  index.js        # Express API
 
 api/
-  └── index.js            # Código de cliente/reutilizável (verificar uso)
-
-tasks/
-  └── <N>/                # Artefatos de histórias (US-NNN-*.md/txt)
-      ├── US-N-spec.md
-      ├── US-N-prd.md
-      ├── US-N-plan.md
-      ├── US-N-fullstack-done.md
-      └── US-N-qa-report.md
+  index.js        # Utilitários de cliente reutilizáveis
 ```
 
 ## Comandos
 
-**Raiz:**
 ```bash
-npm run dev            # Inicia frontend em dev (Vite)
-npm run build          # Build de produção (instala deps, faz build frontend + prepara server)
-npm run start          # Inicia server em produção
-./start.sh             # Script customizado de inicialização
+# Raiz
+npm run dev       # Frontend dev (Vite)
+npm run build     # Build de produção
+npm run start     # Inicia server em produção
+./start.sh        # Script customizado
+
+# Frontend
+cd frontend && npm start      # Vite dev
+cd frontend && npm run build  # Build
+cd frontend && npm test       # Vitest
+
+# Server
+cd server && node index.js
 ```
 
-**Frontend:**
-```bash
-cd frontend && npm start     # Vite dev server
-cd frontend && npm run build # Produção
-cd frontend && npm test      # Vitest
-```
+## Convenções de Código
 
-**Server:**
-```bash
-cd server && node index.js   # Inicia Express
-```
-
-## Convenções
-
-- **Histórias de Usuário** — armazenadas em `tasks/<N>/` com padrão `US-<N>-<tipo>.md`
-  - Tipos: `spec`, `prd`, `plan`, `execute-done`, `fullstack-done`, `qa-report`
-- **Páginas React** — criar em `frontend/src/pages/<nome>/` com componentes standalone
-- **Serviços HTTP** — criar em `frontend/src/services/` com Axios
-- **Tipos TypeScript** — manter em `frontend/src/types/`
-- **Estilos** — Sass global em `frontend/src/styles.scss` ou SCSS por componente
-- **Roteamento** — React Router DOM v6 (verificar `App.tsx` para configuração)
-
-## Padrão de Squad
-
-O projeto segue fluxo de agentes (Fusion AI):
-- **PO** → analisa requisitos
-- **TL** → define contrato de API
-- **Backend/Frontend** → implementação paralela
-- **QA** → testes e validação
-- **PR** → abertura de pull request
-
-Artefatos são salvos em `tasks/<N>/` para comunicação entre agentes.
-
-## Notas
-
-- Projeto usa `vercel.json` — validar configuração de deployment
-- Express é responsável por servir API; Vite é dev server do frontend
-- TypeScript em ambos frontend (strict) e package.json version pinned
-- Axios configurado para comunicação com backend — verificar baseURL em serviços
+- **Páginas React** — `frontend/src/pages/<nome>/` com componentes standalone
+- **Serviços HTTP** — `frontend/src/services/` com AxiosInstance
+- **Tipos TypeScript** — `frontend/src/types/`
+- **Estilos** — SCSS global ou por componente
+- **Roteamento** — React Router DOM v6 (configurado em `App.tsx`)
+- **Naming** — `camelCase` para funções/variáveis/hooks · `PascalCase` para componentes/tipos
+- **URLs** — nunca hardcodar; usar variáveis de ambiente para API endpoint
+- **Validação** — apenas nos boundaries (controllers Express, formulários React)
 
 ## Boas Práticas
 
-- Mantenha types TypeScript atualizados em `frontend/src/types/`
-- Serviços de HTTP sempre em `frontend/src/services/` com AxiosInstance
-- Evite hardcoding URLs — use variáveis de ambiente para API endpoint
-- Validação de entrada em boundaries (controllers Express, formulários React)
-- Testes em Vitest para lógica isolada; E2E via Playwright se disponível
+- Types TypeScript sempre atualizados em `frontend/src/types/`
+- `useCallback`/`useMemo` apenas com ganho real de performance
+- Extrair para hooks/utils só quando reduzir complexidade real
+- Não inventar APIs, endpoints ou componentes sem evidência no repositório
+
+## Deployment
+
+- Projeto usa `vercel.json` — validar configuração antes de deploy
+- Express serve a API · Vite é dev server do frontend
+
+---
+
+## Squad Workflow (Skills)
+
+O projeto usa skills do Claude Code para o ciclo completo de entrega.
+
+### Fluxo completo
+
+```
+/fusion-feature-builder PROJ-123
 ```
 
-## Squad Workflow
+Orquestra as 4 fases em sequência, pausando em cada gate para confirmação:
 
-This workspace is being operated by a squad of AI agents.
+```
+[1] Fusion PO        → refina AC no Jira
+    ↓ GATE: confirmar AC
+[2] Fusion Stitch    → cria screens por estado
+    ↓ GATE: confirmar design
+[3] Fusion Tech Spec → gera spec técnica no Jira
+    ↓ GATE: confirmar spec
+[4] Fusion Code      → gera o código
+    ↓ GATE: confirmar código → arquivos escritos
+```
 
-Pipeline:
-1. SDD PRD
-2. SDD Spec
-3. SDD Execute
-4. PR
+### Fases isoladas
 
-Flow: SDD PRD → SDD Spec → SDD Execute → PR
+```bash
+/fusion-po PROJ-123          # Só refinar o ticket
+/fusion-stitch PROJ-123      # Só o design
+/fusion-tech-spec PROJ-123   # Só a spec técnica
+/fusion-code PROJ-123        # Só o código
+```
+
+### Regras do pipeline
+
+- Nunca pular uma fase sem confirmação explícita
+- Cada fase depende da anterior — não gerar código sem tech spec no Jira
+- Nunca publicar no Jira ou escrever arquivos sem gate de confirmação cumprido
+- Em caso de dúvida em qualquer fase, parar e perguntar ao dev

@@ -1,46 +1,40 @@
-// ── Sass Variables — Paleta Verde (US-139) ──────────────────────────────────
-$primary-green:       #2E7D32;   // Verde primário para botões e destaques
-$secondary-green:     #388E3C;   // Verde secundário para ícones e focus
-$green-dark:          #1B5E20;   // Verde escuro para hover de botões e texto
-$green-light:         #F1F8F4;   // Verde muito claro para background principal
-$green-light-2:       #DCF0E4;   // Verde claro para cards e headers
-$green-medium:        #A8D5B5;   // Verde médio para hover states e bordas
-$green-muted:         #5A8A65;   // Verde acinzentado para texto secundário
+// ── Sass Variables — Paleta Roxa ─────────────────────────────────────────────
+$primary-purple:      #6D28D9;   // Roxo primário para botões e destaques
+$secondary-purple:    #7C3AED;   // Roxo secundário para ícones e focus
+$purple-dark:         #4C1D95;   // Roxo escuro para hover de botões e texto
+$purple-light:        #F5F3FF;   // Roxo muito claro para background principal
+$purple-light-2:      #EDE9FE;   // Roxo claro para cards e headers
+$purple-medium:       #C4B5FD;   // Roxo médio para hover states e bordas
+$purple-muted:        #7C6FAD;   // Roxo acinzentado para texto secundário
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* Backgrounds — verde em gradação */
-  --bg: #{$green-light};         /* Verde muito claro para background principal */
-  --bg2: #{$green-light-2};      /* Verde claro para cards/headers */
-  --bg3: #{$green-medium};       /* Verde médio para hover states */
-  --card: #{$green-light-2};     /* Verde claro para cards */
-  --hover: #{$green-medium};     /* Verde médio para hover */
+  /* Backgrounds — roxo em gradação */
+  --bg: #{$purple-light};        /* Roxo muito claro para background principal */
+  --bg2: #{$purple-light-2};     /* Roxo claro para cards/headers */
+  --bg3: #{$purple-medium};      /* Roxo médio para hover states */
+  --card: #{$purple-light-2};    /* Roxo claro para cards */
+  --hover: #{$purple-medium};    /* Roxo médio para hover */
 
-  /* Primary verde (mantém nomes para compatibilidade com componentes existentes) */
-  --blue: #{$primary-green};     /* Verde primário para botões primários */
-  --blue-dark: #{$green-dark};   /* Verde escuro para hover de botões */
+  /* Primary roxo */
+  --blue: #{$primary-purple};    /* Roxo primário para botões primários */
+  --blue-dark: #{$purple-dark};  /* Roxo escuro para hover de botões */
 
   /* Text */
-  --text: #{$green-dark};        /* Verde escuro para texto padrão (contraste OK) */
-  --text-bright: #{$green-dark}; /* Verde escuro para títulos e texto principal */
-  --muted: #{$green-muted};      /* Verde acinzentado para texto secundário/mutado */
+  --text: #{$purple-dark};       /* Roxo escuro para texto padrão */
+  --text-bright: #{$purple-dark};/* Roxo escuro para títulos e texto principal */
+  --muted: #{$purple-muted};     /* Roxo acinzentado para texto secundário/mutado */
 
   /* State */
   --red: #EF4444;                /* Manter vermelho para erros */
   --green: #10B981;              /* Verde para sucesso */
-  --yellow: #{$secondary-green}; /* Verde de destaque para focus/checkbox/ícones */
+  --yellow: #{$secondary-purple};/* Roxo de destaque para focus/checkbox/ícones */
 
   /* Structure */
-  --border: #{$green-medium};    /* Verde médio claro para bordas */
-  --radius: 6px;                 /* Manter border-radius */
-  --footer-height: 54px;         /* Altura do footer fixo */
-
-  /* Paleta de cores verde (spec US-139) */
-  --color-green-light: #{$green-light};
-  --color-green-medium: #{$primary-green};
-  --color-green-dark: #{$green-dark};
-  --color-green-primary: #{$primary-green};
+  --border: #{$purple-medium};   /* Roxo médio claro para bordas */
+  --radius: 6px;
+  --footer-height: 54px;
 }
 
 body {
