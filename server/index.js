@@ -34,24 +34,6 @@ app.post('/api/login', (req, res) => {
   res.json({ token: 'fake-token', user: { name: user.name, username: user.username } });
 });
 
-app.post('/api/register', (req, res) => {
-  const { name, username, password } = req.body;
-  if (!name || !username || !password) {
-    return res.status(400).json({ message: 'Nome, usuário e senha são obrigatórios' });
-  }
-  if (users.find(u => u.username === username)) {
-    return res.status(409).json({ message: 'Usuário já cadastrado' });
-  }
-  const newUser = { name: name.trim(), username: username.trim(), password };
-  users.push(newUser);
-  res.status(201).json({ token: 'fake-token', user: { name: newUser.name, username: newUser.username } });
-});
-
-app.post('/api/forgot-password', (req, res) => {
-  // Always returns 200 — never reveal whether username exists
-  res.json({ message: 'Se esse usuário existir em nossa base, você receberá instruções de recuperação.' });
-});
-
 // --- Profile ---
 app.patch('/api/profile', (req, res) => {
   const { name, username } = req.body;

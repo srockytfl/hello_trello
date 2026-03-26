@@ -27,21 +27,3 @@ export interface UpdateProfileRequest {
 export interface UpdateProfileResponse {
   user: UserProfile;
 }
-
-export interface RegisterRequest {
-  name: string;
-  username: string;
-  password: string;
-}
-
-export interface RegisterResponse {
-  token: string;
-  user: {
-    name: string;
-    username: string;
-  };
-}
-
-export interface ForgotPasswordResponse {
-  message: string;
-}

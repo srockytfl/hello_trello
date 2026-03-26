@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { login } from '../../services/api'
 import './login.scss'
 
@@ -150,18 +150,9 @@ export default function LoginPage() {
             </div>
 
             <div className="form-field">
-              <div className="field-label-row">
-                <label htmlFor="password" className="field-label">
-                  Senha
-                </label>
-                <Link
-                  to="/forgot-password"
-                  className="forgot-link"
-                  aria-label="Esqueci minha senha"
-                >
-                  Esqueci minha senha
-                </Link>
-              </div>
+              <label htmlFor="password" className="field-label">
+                Senha
+              </label>
               <div className="field-input-wrapper">
                 <span className="field-icon" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -245,9 +236,6 @@ export default function LoginPage() {
             Use <strong>admin</strong> / <strong>123</strong> para testar
           </p>
 
-          <p className="login-hint" style={{ marginTop: 12 }}>
-            Não tem conta? <Link to="/register" style={{ color: 'var(--blue)', fontWeight: 500, textDecoration: 'none' }}>Criar conta</Link>
-          </p>
         </div>
       </section>
     </main>

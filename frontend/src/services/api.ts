@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Todo, LoginResponse, TodoStatus, UpdateProfileRequest, UpdateProfileResponse, RegisterResponse, ForgotPasswordResponse } from '../types';
+import type { Todo, LoginResponse, TodoStatus, UpdateProfileRequest, UpdateProfileResponse } from '../types';
 
 const BASE = '/api';
 
@@ -29,15 +29,5 @@ export async function deleteTodo(id: number): Promise<void> {
 
 export async function updateProfile(data: UpdateProfileRequest): Promise<UpdateProfileResponse> {
   const res = await axios.patch<UpdateProfileResponse>(`${BASE}/profile`, data);
-  return res.data;
-}
-
-export async function register(name: string, username: string, password: string): Promise<RegisterResponse> {
-  const res = await axios.post<RegisterResponse>(`${BASE}/register`, { name, username, password });
-  return res.data;
-}
-
-export async function forgotPassword(username: string): Promise<ForgotPasswordResponse> {
-  const res = await axios.post<ForgotPasswordResponse>(`${BASE}/forgot-password`, { username });
   return res.data;
 }
