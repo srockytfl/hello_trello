@@ -1,161 +1,112 @@
+```markdown
 # CLAUDE.md — hello_trello
 
-## Stack
+## Stack Tecnológico
 
 - **Frontend:** React 18 + TypeScript + Vite + Sass + React Router DOM 6
 - **Backend:** Node.js + Express 5 + CORS
-- **HTTP Client:** Axios
+- **Cliente HTTP:** Axios
 - **Testes:** Vitest
-- **Portas:** Backend 3000 · Frontend 5173
+- **Porta Backend:** Inferido (padrão Express: 3000)
+- **Porta Frontend:** Vite dev server (padrão: 5173)
 
-## Estrutura
+## Estrutura do Projeto
 
 ```
 frontend/
-  src/
-    pages/        # Páginas React (uma pasta por página)
-    services/     # Clientes HTTP com Axios
-    types/        # Definições TypeScript
-    App.tsx
-    main.tsx
-    styles.scss   # Estilos globais
-  index.html
-  vite.config.ts
+  ├── src/
+  │   ├── pages/          # Páginas React
+  │   ├── services/       # Serviços Axios (HTTP client)
+  │   ├── types/          # Definições TypeScript
+  │   ├── App.tsx         # Componente raiz
+  │   ├── main.tsx        # Entry point
+  │   └── styles.scss     # Estilos globais
+  ├── index.html          # Template HTML
+  └── vite.config.ts      # Config Vite
 
 server/
-  index.js        # Express API
+  └── index.js            # Express API
 
 api/
-  index.js        # Utilitários de cliente reutilizáveis
+  └── index.js            # Código de cliente/reutilizável (verificar uso)
+
+tasks/
+  └── <N>/                # Artefatos de histórias (US-NNN-*.md/txt)
+      ├── US-N-spec.md
+      ├── US-N-prd.md
+      ├── US-N-plan.md
+      ├── US-N-fullstack-done.md
+      └── US-N-qa-report.md
 ```
 
 ## Comandos
 
+**Raiz:**
 ```bash
-# Raiz
-npm run dev       # Frontend dev (Vite)
-npm run build     # Build de produção
-npm run start     # Inicia server em produção
-./start.sh        # Script customizado
-
-# Frontend
-cd frontend && npm start      # Vite dev
-cd frontend && npm run build  # Build
-cd frontend && npm test       # Vitest
-
-# Server
-cd server && node index.js
+npm run dev            # Inicia frontend em dev (Vite)
+npm run build          # Build de produção (instala deps, faz build frontend + prepara server)
+npm run start          # Inicia server em produção
+./start.sh             # Script customizado de inicialização
 ```
 
-## Convenções de Código
-
-- **Páginas React** — `frontend/src/pages/<nome>/` com componentes standalone
-- **Serviços HTTP** — `frontend/src/services/` com AxiosInstance
-- **Tipos TypeScript** — `frontend/src/types/`
-- **Estilos** — SCSS global ou por componente
-- **Roteamento** — React Router DOM v6 (configurado em `App.tsx`)
-- **Naming** — `camelCase` para funções/variáveis/hooks · `PascalCase` para componentes/tipos
-- **URLs** — nunca hardcodar; usar variáveis de ambiente para API endpoint
-- **Validação** — apenas nos boundaries (controllers Express, formulários React)
-
-## Template de Tela (OBRIGATÓRIO)
-
-**Toda página do app DEVE seguir este template.** Sem exceção — o PO, Tech Spec e Code devem garantir isso.
-
-### Estrutura obrigatória
-
-```tsx
-<div className="board-page">          {/* wrapper raiz — flex column, height 100vh */}
-  <header className="board-header">   {/* header fixo do app */}
-    <div className="board-header__left">
-      {/* logo FusionRun clicável → navega para /todos */}
-      {/* separador "/" */}
-      {/* nome da página atual */}
-    </div>
-    <div className="board-header__right">
-      {/* avatar + nome do usuário (clicável → /profile) */}
-      {/* botão Sair */}
-    </div>
-  </header>
-  <main className="[page]-page">      {/* conteúdo da página */}
-    ...
-  </main>
-</div>
+**Frontend:**
+```bash
+cd frontend && npm start     # Vite dev server
+cd frontend && npm run build # Produção
+cd frontend && npm test      # Vitest
 ```
 
-### Referência de implementação
+**Server:**
+```bash
+cd server && node index.js   # Inicia Express
+```
 
-- **CSS do header:** `frontend/src/pages/board.scss` (classes `.board-header`, `.board-logo`, `.board-user`, `.board-btn-logout`)
-- **Exemplo completo:** `frontend/src/pages/Todos.tsx` — copiar o bloco `<header>` como base
-- **Rota `/todos`** é o ponto de entrada após login — o logo sempre volta para lá
+## Convenções
 
-### Checklist para qualquer nova tela
+- **Histórias de Usuário** — armazenadas em `tasks/<N>/` com padrão `US-<N>-<tipo>.md`
+  - Tipos: `spec`, `prd`, `plan`, `execute-done`, `fullstack-done`, `qa-report`
+- **Páginas React** — criar em `frontend/src/pages/<nome>/` com componentes standalone
+- **Serviços HTTP** — criar em `frontend/src/services/` com Axios
+- **Tipos TypeScript** — manter em `frontend/src/types/`
+- **Estilos** — Sass global em `frontend/src/styles.scss` ou SCSS por componente
+- **Roteamento** — React Router DOM v6 (verificar `App.tsx` para configuração)
 
-- [ ] Usa `<div className="board-page">` como wrapper raiz
-- [ ] Tem `<header className="board-header">` com logo + nome da página + avatar + botão Sair
-- [ ] Logo navega para `/todos` ao clicar
-- [ ] Avatar do usuário navega para `/profile` ao clicar
-- [ ] Importa `../board.scss` (ou caminho relativo correto) para herdar os estilos do header
-- [ ] Tem SCSS próprio para o conteúdo interno da página
+## Padrão de Squad
 
----
+O projeto segue fluxo de agentes (Fusion AI):
+- **PO** → analisa requisitos
+- **TL** → define contrato de API
+- **Backend/Frontend** → implementação paralela
+- **QA** → testes e validação
+- **PR** → abertura de pull request
+
+Artefatos são salvos em `tasks/<N>/` para comunicação entre agentes.
+
+## Notas
+
+- Projeto usa `vercel.json` — validar configuração de deployment
+- Express é responsável por servir API; Vite é dev server do frontend
+- TypeScript em ambos frontend (strict) e package.json version pinned
+- Axios configurado para comunicação com backend — verificar baseURL em serviços
 
 ## Boas Práticas
 
-- Types TypeScript sempre atualizados em `frontend/src/types/`
-- `useCallback`/`useMemo` apenas com ganho real de performance
-- Extrair para hooks/utils só quando reduzir complexidade real
-- Não inventar APIs, endpoints ou componentes sem evidência no repositório
-
-## Deployment
-
-- Projeto usa `vercel.json` — validar configuração antes de deploy
-- Express serve a API · Vite é dev server do frontend
-
----
-
-## Jira
-
-- **MCP:** Atlassian MCP (use sempre para ler/comentar tickets)
-- **Projeto:** `LK` — https://rlecheta-gmail.atlassian.net/jira/software/projects/LK/
-- **Formato de ticket:** `LK-<número>` (ex: `LK-16`)
-
----
-
-## Squad Workflow (Skills)
-
-O projeto usa skills do Claude Code para o ciclo completo de entrega.
-
-### Fluxo completo
-
-```
-/fusion-feature-builder PROJ-123
+- Mantenha types TypeScript atualizados em `frontend/src/types/`
+- Serviços de HTTP sempre em `frontend/src/services/` com AxiosInstance
+- Evite hardcoding URLs — use variáveis de ambiente para API endpoint
+- Validação de entrada em boundaries (controllers Express, formulários React)
+- Testes em Vitest para lógica isolada; E2E via Playwright se disponível
 ```
 
-Orquestra as 4 fases em sequência **sem pausas** — executa tudo automaticamente até o código estar escrito.
+## Squad Workflow
 
-```
-[1] Fusion PO        → refina AC no Jira
-    ↓ (automático)
-[2] Fusion Stitch    → cria screens por estado
-    ↓ (automático)
-[3] Fusion Tech Spec → gera spec técnica no Jira
-    ↓ (automático)
-[4] Fusion Code      → escreve os arquivos no projeto
-```
+This workspace is being operated by a squad of AI agents.
 
-### Fases isoladas
+Pipeline:
+1. PO
+2. TL
+3. Backend + Frontend (parallel)
+4. QA
+5. PR
 
-```bash
-/fusion-po PROJ-123          # Só refinar o ticket
-/fusion-stitch PROJ-123      # Só o design
-/fusion-tech-spec PROJ-123   # Só a spec técnica
-/fusion-code PROJ-123        # Só o código
-```
-
-### Regras do pipeline
-
-- Executar todas as fases em sequência sem pedir confirmação humana
-- Publicar no Jira e escrever arquivos diretamente — sem gates
-- Cada fase depende da anterior — não gerar código sem tech spec no Jira
-- Perguntas ao dev: máximo 1 rodada no início, só se faltar info impossível de inferir
+Flow: PO → TL → [Backend | Frontend] → QA → PR

@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "slack": {
+      "args": [
+        "-y",
+        "@anthropic-ai/mcp-server-slack"
+      ],
+      "type": "stdio",
+      "command": "npx"
+    },
+    "stitch": {
+      "url": "https://stitch.googleapis.com/mcp",
+      "type": "http"
+    }
+  }
+}
